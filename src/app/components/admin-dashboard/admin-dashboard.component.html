@@ -1,17 +1,148 @@
 <div id="admin-dashboard" style="min-width: 960px" class="modern">
 
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
+
+        $(document).ready(
+            function () {
+                var timer = null;
+                $('#goals').unbind('mouseenter').bind('mouseenter', function () {
+                    timer = setTimeout(
+                        function () {
+                            $('#goals-cancel').fadeTo(250, 1);
+                        },
+                        2500
+                    );
+                });
+                $('#goals').unbind('mouseleave').bind('mouseleave', function () {
+                    $('#goals-cancel').hide();
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                });
+            }
+        );
+        $(document).ready(
+            function () {
+                $('#integrationGoalToggle').unbind('click').click(
+                    function () {
+                        App.Users.setGoal(6, this.checked);
+                    }
+                );
+            }
+        );
+        $(document).ready(
+            function () {
+                var timer = null;
+                $('#goals').unbind('mouseenter').bind('mouseenter', function () {
+                    timer = setTimeout(
+                        function () {
+                            $('#goals-cancel').fadeTo(250, 1);
+                        },
+                        2500
+                    );
+                });
+                $('#goals').unbind('mouseleave').bind('mouseleave', function () {
+                    $('#goals-cancel').hide();
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                });
+            }
+        );
+        $(document).ready(function () {
+            App.Translations.add(
+                "timespans_hour_short",
+                "h");
+            App.Translations.add(
+                "timespans_minute_short",
+                "m");
+            App.Translations.add(
+                "timespans_second_short",
+                "s");
+        });
+        (function (apiKey) { // <-- passed in at the bottom
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                // Create a `<script>` tag linked to your application-specific Agent build from our CDN...
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            pendo.initialize({
+                sanitizeUrl: function (url) {
+                    return url.replace('index.php?', 'index.php')
+                },
+                visitor: {
+                    id: '728981-1',
+                    is_admin: true,
+                    is_active: true
+                },
+                account: {
+                    id: '728981'
+                }
+            });
+        })('1c20428c-1995-4c00-6e1c-daff12af9c00');
+
+        $(function () {
+            App.Sidebar.init();
+        });
+
+        $(document).ready(function () {
+            $('#milestone_id, #parent_id, #assignedto_id').parent().addClass('dropdown-size');
+        });
+        $(document).ready(function () {
+            App.Todos.runs_by = 'none';
+            App.Todos.runs_by_options = { "none": "None", "milestone": "Milestone", "plan": "Test Plan", "day": "Day", "month": "Month" };
+            App.Todos.status_options = { "1": "Passed", "2": "Blocked", "3": "Untested", "4": "Retest", "5": "Failed", "6": "Unnamed 1", "7": "Unnamed 2", "8": "Unnamed 3", "9": "Unnamed 4", "10": "Unnamed 5", "11": "Unnamed 6", "12": "Unnamed 7" };
+            App.Todos.user_ids = [1];
+            App.Todos.status_ids = [];
+            App.Todos.milestone_id = null;
+            App.Todos.milestones = [];
+            App.Todos.include_unassigned = false;
+            let todoselected = $('#navigation-todos').closest('.header-menu-item').hasClass('header-menu-item-selected');
+            let selectorPngDownload = '#png-download';
+            let selectorCsvDownload = '#csv-download';
+            let selectorsNameToClassManipulate = selectorPngDownload + ', ' + selectorCsvDownload;
+            let toDoMarginClassName = 'margin_todo_dwnld';
+            if ($('body').attr('class') !== 'modern') {
+                if (todoselected) {
+                    $(selectorsNameToClassManipulate).addClass(toDoMarginClassName);
+                } else {
+                    $(selectorsNameToClassManipulate).removeClass(toDoMarginClassName);
+                }
+            } else {
+                $(selectorPngDownload).addClass(toDoMarginClassName);
+                $(selectorCsvDownload).addClass(toDoMarginClassName);
+            }
+        });
+
+        var Consts = {};
+        Consts.ajaxBaseUrl = 'index.php?';
+        Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
+        Consts.ajaxCsrf = 'kyqRSAYnPxiKjL7HwuCW';
+        Consts.ajaxVersion = '7.5.5.2003';
+        Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.5.2003/';
+        Consts.dialogTitleError = 'Error';
+        Consts.statusFailed = 5;
+        Consts.statusRetest = 4;
+        Consts.statusBlocked = 2;
+        Consts.statusPassed = 1;
+        Consts.statusUntested = 3;
+        Consts.statusDefault = 1;
+        Consts.minWidth = 700;
+        Consts.minWidthOffset = 300;
+        Consts.minWidthVariable = 50;
+
         $(document).ready(
             function () {
                 $('#body').css('display', 'table');
             }
         );
-    </script>
-
-
-
-    <script type="text/javascript">
         $(document).ready(function () {
             $.datepicker.setDefaults(
                 {
@@ -25,89 +156,142 @@
                 }
             );
         });
-    </script>
 
-    <div id="top">
-        <div id="top-logo">
-            <a href="javascript:void(0)" id="bannerLink"><img
-                    src="https://static.testrail.io/7.5.5.2003/images/layout/testrail-logo.svg"></a>
-        </div>
-        <div class="bubble estimate-bubble" id="enterpriseBubble">
-            <a class="close close-hover" href="javascript: void(0);"
-                onclick="App.Dialogs.trEnterpriseBannerConfirmNew('logo')">×</a>
-            <div class="modules modules_tab_fullsection">
-                <div class="modules_tab_lefthalf">
-                    <img src="https://static.testrail.io/7.5.5.2003/images/banner/editionsimage.png">
-                </div>
-                <div class="modules_tab_righthalf">
-                    <div id="logo_confirm"></div>
-                    <div id="logo_banner_desc">
-                        <div class="hd_sb_txt">
-                            <span style="color: #979797;">Your edition:</span>
-                            TestRail Professional
-                        </div>
-                        <div class="hd_sb_txt">
-                            Enable enterprise-grade <strong>security</strong>
-                            and <strong>performance.</strong> </div>
-                        <a href="index.php?/enterprise" class="button-enterprise button-arrow button-discover">
-                            Explore Enterprise </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="top-panel">
-            <div class="top-panel-inner">
+        $("#sites").prop("selectedIndex", 0);
+        $(function () {
+            $(document).ready(function () {
+                App.Charts.activity = new FusionCharts({
+                    type: 'stackedbar2d',
+                    renderAt: 'userChart',
+                    width: '100%',
+                    height: '100%',
+                    dataFormat: 'json',
+                    dataSource: {
+                        chart: {
+                            theme: 'fusion',
+                            maxBarHeight: '12',
+                            baseFont: 'Barlow',
+                            baseFontSize: '14',
+                            labelFontColor: '#4D4D4D',
+                            paletteColors: '#7CB5EC',
+                            plottooltext: '$seriesname: <strong>$value</strong>',
+                            showTooltipShadow: '1',
+                            showLegend: '0',
+                            canvasPadding: '0',
+                            canvasBottomMargin: '0',
+                            chartBottomMargin: '0',
+                            yAxisValuesPadding: 7,
+                            exportEnabled: '1',
+                            exportshowmenuitem: '0'
+                        },
+                        categories: [{
+                            category: []
+                        }],
+                        dataset: [{ "seriesname": "Active", "data": [], "color": "#7cb5ec" }, { "seriesname": "Upcoming", "data": [], "color": "#96c6f5" }, { "seriesname": "Completion Pending", "data": [], "color": "#abd5fe" }]
+                    }
+                }).render();
+                $('#csv-download').click(function () {
+                    App.Charts.activity.exportChart({
+                        exportFormat: 'csv',
+                        exportFileName: 'TestRail-todos-1-20221025125528'
+                    });
+                });
+                $('#png-download').click(function () {
+                    App.Charts.activity.exportChart({
+                        exportFormat: 'png',
+                        exportFileName: 'TestRail-todos-1-20221025125528'
+                    });
+                });
+            });
+        });
 
-                <ul class="top-menu pull-right">
-                    <li class="top-menu-item"><a id="inProgressLink" href="javascript:void(0)"
-                            onclick="this.blur(); App.Tests.showInProgress(); return false;">Working On <span
-                                class="caret" style="vertical-align: 2px"></span></a>
-                    </li>
-                    <li class="top-menu-item"><a class="dropdownLink" id="navigation-user" href="#userDropdown"
-                            title="${sessionScope.LOGIN_USERS.fullName}"><span
-                                class="navigation-username">${sessionScope.LOGIN_USERS.fullName}</span> <span
-                                class="caret" style="vertical-align: 2px"></span></a>
 
-                    </li>
-                </ul>
-                <div class="top-search">
-                    <form action="index.php?/search/index/1" style="display: inline" method="post"> <input type="hidden"
-                            name="_token" value="kyqRSAYnPxiKjL7HwuCW"> <input class="top-search-control" type="text"
-                            name="query" tabindex="-1">
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="top-section top-section-with-return text-ppp">
-            <span id="return"><a class="link-noline" id="navigation-dashboard-top" href="adminDashboard.jsp">← Return to
-                    Dashboard</a></span>
-            <a class="link-noline" id="navigation-project" href="adminPJOverview.jsp">aaaa</a>
-        </div>
-    </div>
 
-    <form id="newsletterForm" target="_blank" action="https://secure.gurock.com/customers/testrail/newsletter?email="
-        method="post">
-        <input name="cm-ahdml-ahdml" id="newsletter" type="hidden">
-    </form>
+        $(document).ready(
+            function () {
+                $('#integrationGoalToggle').unbind('click').click(
+                    function () {
+                        App.Users.setGoal(6, this.checked);
+                    }
+                );
+            }
+        );
 
-    <div id="header">
-        <ul class="header-menu">
-            <li class="header-menu-item header-menu-item-right"><a tabindex="-1" href="adminOverview.jsp"
-                    id="navigation-admin">Administration</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminPJOverview.jsp"
-                    id="navigation-projects">Overview</a></li>
-            <li class="header-menu-item header-menu-item-selected"><a tabindex="-1" href="adminTodo.jsp"
-                    id="navigation-todos">Todo</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminMilestone.jsp"
-                    id="navigation-milestones">Milestones</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminTestRun.jsp" id="navigation-runs">Test Runs &amp;
-                    Results</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminTestCase.jsp" id="navigation-suites">Test Cases</a>
-            </li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminReport.jsp" id="navigation-reports">Reports</a>
-            </li>
-        </ul>
-    </div>
+
+        $(document).ready(function () {
+            $('#bannerLink').bubble({
+                bubble: '#enterpriseBubble',
+                inContainer: true
+            });
+            $('#content').on('change', 'input:checkbox[name="entity_run"]', function () {
+                delselectAll(this, 'run')
+            });
+            $('#content').on('change', 'input:checkbox[name="entity_milestones"]', function () {
+                delselectAll(this, 'milestones')
+            });
+        });
+        function delselectAll(type, entity) {
+            let parent = $(type).data('option');
+            if (parent === undefined) {
+                $('input:checkbox[name=select_all]').each(function () {
+                    let select = $(this).parent().closest('div').attr('id');
+                    if ($('#' + select).find(type).length > 0) {
+                        parent = select;
+                    }
+                });
+            }
+            let selector = '#' + parent;
+            $(selector)
+                .find('input:checkbox[name="select_all"]')
+                .prop(
+                    'checked',
+                    $(selector + ' input:checked[name="entity_' + entity + '"]').length ===
+                    $(selector + ' input:checkbox[name="entity_' + entity + '"]').length
+                );
+            $('#delete-' + entity).css(
+                'display',
+                $('input:checked[name="entity_' + entity + '"]').length > 0
+                    ? 'block'
+                    : 'none'
+            );
+        }
+
+        function SelectAllEntity(type) {
+            let parent = $(type).parent().closest('div').attr('id');
+            let checked_status = $(type).is(':checked');
+            $('#' + parent).find('input[type=checkbox]')
+                .attr('data-option', parent)
+                .not(':disabled')
+                .prop(
+                    'checked',
+                    checked_status
+                );
+            let selector = $('#' + parent).find('input:checkbox[name="entity_milestones"]').length
+                ? 'milestones'
+                : 'run';
+            $('#delete-' + selector).css(
+                'display',
+                checked_status && $('input:checked[name="entity_' + selector + '"]').length
+                    ? 'block'
+                    : 'none'
+            );
+        }
+
+        $(function () {
+            $(document).delegate('.dialog-buttons-highlighted .delete-entity-attachment-button-submit', 'click', function (evt) {
+                App.Attachments.dontShowEntityDeleteDialog = $('#deleteDontShowAgain').prop('checked');
+                App.Ajax.call({
+                    target: '/mysettings/ajax_delete_entity_attachment_setting',
+                    arguments: {
+                        dont_show: $('#deleteDontShowAgain').prop('checked')
+                    },
+                    error: function error(data) {
+                        App.Ajax.handleError(data);
+                    }
+                });
+            });
+        });
+    </script> -->
 
     <div id="separator"></div>
     <div id="body-container" class="">
@@ -122,9 +306,6 @@
                             Todo </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    $("#sites").prop("selectedIndex", 0);
-                </script>
                 <div id="content-inner" class="content-inner goals-clear">
 
 
@@ -152,54 +333,6 @@
                             </div>
                         </div>
 
-                        <script type="text/javascript">
-                            $(function () {
-                                $(document).ready(function () {
-                                    App.Charts.activity = new FusionCharts({
-                                        type: 'stackedbar2d',
-                                        renderAt: 'userChart',
-                                        width: '100%',
-                                        height: '100%',
-                                        dataFormat: 'json',
-                                        dataSource: {
-                                            chart: {
-                                                theme: 'fusion',
-                                                maxBarHeight: '12',
-                                                baseFont: 'Barlow',
-                                                baseFontSize: '14',
-                                                labelFontColor: '#4D4D4D',
-                                                paletteColors: '#7CB5EC',
-                                                plottooltext: '$seriesname: <strong>$value</strong>',
-                                                showTooltipShadow: '1',
-                                                showLegend: '0',
-                                                canvasPadding: '0',
-                                                canvasBottomMargin: '0',
-                                                chartBottomMargin: '0',
-                                                yAxisValuesPadding: 7,
-                                                exportEnabled: '1',
-                                                exportshowmenuitem: '0'
-                                            },
-                                            categories: [{
-                                                category: []
-                                            }],
-                                            dataset: [{ "seriesname": "Active", "data": [], "color": "#7cb5ec" }, { "seriesname": "Upcoming", "data": [], "color": "#96c6f5" }, { "seriesname": "Completion Pending", "data": [], "color": "#abd5fe" }]
-                                        }
-                                    }).render();
-                                    $('#csv-download').click(function () {
-                                        App.Charts.activity.exportChart({
-                                            exportFormat: 'csv',
-                                            exportFileName: 'TestRail-todos-1-20221025125528'
-                                        });
-                                    });
-                                    $('#png-download').click(function () {
-                                        App.Charts.activity.exportChart({
-                                            exportFormat: 'png',
-                                            exportFileName: 'TestRail-todos-1-20221025125528'
-                                        });
-                                    });
-                                });
-                            });
-                        </script>
                     </div>
 
                     <div class="message message-info text-soft notodos" style="margin: 0px 0 20px 0">
@@ -380,12 +513,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            $('#milestone_id, #parent_id, #assignedto_id').parent().addClass('dropdown-size');
-                                        });
-                                    </script>
                                 </div>
                                 <li class="dropdown-menu-separator"></li>
                             </ul>
@@ -427,34 +554,6 @@
 
                     <div id="casePagination">
                     </div>
-
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            App.Todos.runs_by = 'none';
-                            App.Todos.runs_by_options = { "none": "None", "milestone": "Milestone", "plan": "Test Plan", "day": "Day", "month": "Month" };
-                            App.Todos.status_options = { "1": "Passed", "2": "Blocked", "3": "Untested", "4": "Retest", "5": "Failed", "6": "Unnamed 1", "7": "Unnamed 2", "8": "Unnamed 3", "9": "Unnamed 4", "10": "Unnamed 5", "11": "Unnamed 6", "12": "Unnamed 7" };
-                            App.Todos.user_ids = [1];
-                            App.Todos.status_ids = [];
-                            App.Todos.milestone_id = null;
-                            App.Todos.milestones = [];
-                            App.Todos.include_unassigned = false;
-                            let todoselected = $('#navigation-todos').closest('.header-menu-item').hasClass('header-menu-item-selected');
-                            let selectorPngDownload = '#png-download';
-                            let selectorCsvDownload = '#csv-download';
-                            let selectorsNameToClassManipulate = selectorPngDownload + ', ' + selectorCsvDownload;
-                            let toDoMarginClassName = 'margin_todo_dwnld';
-                            if ($('body').attr('class') !== 'modern') {
-                                if (todoselected) {
-                                    $(selectorsNameToClassManipulate).addClass(toDoMarginClassName);
-                                } else {
-                                    $(selectorsNameToClassManipulate).removeClass(toDoMarginClassName);
-                                }
-                            } else {
-                                $(selectorPngDownload).addClass(toDoMarginClassName);
-                                $(selectorCsvDownload).addClass(toDoMarginClassName);
-                            }
-                        });
-                    </script>
 
                 </div>
             </div>
@@ -530,25 +629,6 @@
 
     </div>
 
-
-    <script type="text/javascript">
-        var Consts = {};
-        Consts.ajaxBaseUrl = 'index.php?';
-        Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
-        Consts.ajaxCsrf = 'kyqRSAYnPxiKjL7HwuCW';
-        Consts.ajaxVersion = '7.5.5.2003';
-        Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.5.2003/';
-        Consts.dialogTitleError = 'Error';
-        Consts.statusFailed = 5;
-        Consts.statusRetest = 4;
-        Consts.statusBlocked = 2;
-        Consts.statusPassed = 1;
-        Consts.statusUntested = 3;
-        Consts.statusDefault = 1;
-        Consts.minWidth = 700;
-        Consts.minWidthOffset = 300;
-        Consts.minWidthVariable = 50;
-    </script>
 
 
     <div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
@@ -714,84 +794,7 @@
     </div>
 
     <script>
-        $(function () {
-            $(document).delegate('.dialog-buttons-highlighted .delete-entity-attachment-button-submit', 'click', function (evt) {
-                App.Attachments.dontShowEntityDeleteDialog = $('#deleteDontShowAgain').prop('checked');
-                App.Ajax.call({
-                    target: '/mysettings/ajax_delete_entity_attachment_setting',
-                    arguments: {
-                        dont_show: $('#deleteDontShowAgain').prop('checked')
-                    },
-                    error: function error(data) {
-                        App.Ajax.handleError(data);
-                    }
-                });
-            });
-        });
     </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#bannerLink').bubble({
-                bubble: '#enterpriseBubble',
-                inContainer: true
-            });
-            $('#content').on('change', 'input:checkbox[name="entity_run"]', function () {
-                delselectAll(this, 'run')
-            });
-            $('#content').on('change', 'input:checkbox[name="entity_milestones"]', function () {
-                delselectAll(this, 'milestones')
-            });
-        });
-        function delselectAll(type, entity) {
-            let parent = $(type).data('option');
-            if (parent === undefined) {
-                $('input:checkbox[name=select_all]').each(function () {
-                    let select = $(this).parent().closest('div').attr('id');
-                    if ($('#' + select).find(type).length > 0) {
-                        parent = select;
-                    }
-                });
-            }
-            let selector = '#' + parent;
-            $(selector)
-                .find('input:checkbox[name="select_all"]')
-                .prop(
-                    'checked',
-                    $(selector + ' input:checked[name="entity_' + entity + '"]').length ===
-                    $(selector + ' input:checkbox[name="entity_' + entity + '"]').length
-                );
-            $('#delete-' + entity).css(
-                'display',
-                $('input:checked[name="entity_' + entity + '"]').length > 0
-                    ? 'block'
-                    : 'none'
-            );
-        }
-
-        function SelectAllEntity(type) {
-            let parent = $(type).parent().closest('div').attr('id');
-            let checked_status = $(type).is(':checked');
-            $('#' + parent).find('input[type=checkbox]')
-                .attr('data-option', parent)
-                .not(':disabled')
-                .prop(
-                    'checked',
-                    checked_status
-                );
-            let selector = $('#' + parent).find('input:checkbox[name="entity_milestones"]').length
-                ? 'milestones'
-                : 'run';
-            $('#delete-' + selector).css(
-                'display',
-                checked_status && $('input:checked[name="entity_' + selector + '"]').length
-                    ? 'block'
-                    : 'none'
-            );
-        }
-    </script>
-
-
 
 
 
@@ -876,18 +879,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                $('#integrationGoalToggle').unbind('click').click(
-                    function () {
-                        App.Users.setGoal(6, this.checked);
-                    }
-                );
-            }
-        );
-    </script>
-
     <div id="goals" class="goals">
         <div id="goals-banner" class="goals-banner ">
             <span id="goals-cancel" class="goals-cancel hidden">
@@ -952,33 +943,10 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                var timer = null;
-                $('#goals').unbind('mouseenter').bind('mouseenter', function () {
-                    timer = setTimeout(
-                        function () {
-                            $('#goals-cancel').fadeTo(250, 1);
-                        },
-                        2500
-                    );
-                });
-                $('#goals').unbind('mouseleave').bind('mouseleave', function () {
-                    $('#goals-cancel').hide();
-                    if (timer) {
-                        clearTimeout(timer);
-                        timer = null;
-                    }
-                });
-            }
-        );
-    </script>
     <div class="dialog dialog_attachment" id="attachmentInfoDialog" style="width: 900px; height: 531px;"></div>
     <div id="newAttachmentTemplate" style="display: none;">
         <div style="width: 150px; height: 150px; 
-                "
-            class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
+                " class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
             id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
             title="attachment_name">
             <div class="attachment-icon" style=""></div>
@@ -1081,17 +1049,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                $('#integrationGoalToggle').unbind('click').click(
-                    function () {
-                        App.Users.setGoal(6, this.checked);
-                    }
-                );
-            }
-        );
-    </script>
 
     <div id="goals" class="goals">
         <div id="goals-banner" class="goals-banner ">
@@ -1157,28 +1114,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                var timer = null;
-                $('#goals').unbind('mouseenter').bind('mouseenter', function () {
-                    timer = setTimeout(
-                        function () {
-                            $('#goals-cancel').fadeTo(250, 1);
-                        },
-                        2500
-                    );
-                });
-                $('#goals').unbind('mouseleave').bind('mouseleave', function () {
-                    $('#goals-cancel').hide();
-                    if (timer) {
-                        clearTimeout(timer);
-                        timer = null;
-                    }
-                });
-            }
-        );
-    </script>
+
 
     <script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/extensions-combined.js"></script>
     <script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/application-combined.js"></script>
@@ -1187,51 +1123,7 @@
         src="https://static.testrail.io/7.5.5.2003/js/indicator.js"></script>
     <script type="text/javascript" id="js-js-autocomplete"
         src="https://static.testrail.io/7.5.5.2003/js/autocomplete.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            App.Translations.add(
-                "timespans_hour_short",
-                "h");
-            App.Translations.add(
-                "timespans_minute_short",
-                "m");
-            App.Translations.add(
-                "timespans_second_short",
-                "s");
-        });
-    </script>
-    <script type="application/javascript">
-        (function (apiKey) { // <-- passed in at the bottom
-            (function (p, e, n, d, o) {
-                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
-                v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
-                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
-                })(v[w]);
-                // Create a `<script>` tag linked to your application-specific Agent build from our CDN...
-                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
-                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
-            })(window, document, 'script', 'pendo');
-            pendo.initialize({
-                sanitizeUrl: function (url) {
-                    return url.replace('index.php?', 'index.php')
-                },
-                visitor: {
-                    id: '728981-1',
-                    is_admin: true,
-                    is_active: true
-                },
-                account: {
-                    id: '728981'
-                }
-            });
-        })('1c20428c-1995-4c00-6e1c-daff12af9c00');
-    </script>
 
-    <script>
-        $(function () {
-            App.Sidebar.init();
-        });
-    </script>
 
 
 

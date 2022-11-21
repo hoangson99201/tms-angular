@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
+  public menu: any[] = [
+    {
+      'id': 'admin_dashboard',
+      'label': 'Dashboard',
+      'routerLink': ['admin-dashboard']
+    }
+  ]
+
+  public ngOnInit() {
+  }
+
+  
 }
