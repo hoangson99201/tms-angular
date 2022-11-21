@@ -22,6 +22,7 @@ import { AddSectionComponent } from './components/add-section/add-section.compon
 import { ManageReportComponent } from './components/manage-report/manage-report.component';
 import { AddReportComponent } from './components/add-report/add-report.component';
 import { DetailReportComponent } from './components/detail-report/detail-report.component';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DetailReportComponent } from './components/detail-report/detail-report.
     AddSectionComponent,
     ManageReportComponent,
     AddReportComponent,
-    DetailReportComponent
+    DetailReportComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
