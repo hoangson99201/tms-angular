@@ -31,88 +31,6 @@
         });
     </script>
 
-    <div id="top">
-        <div id="top-logo">
-            <a href="javascript:void(0)" id="bannerLink"><img
-                    src="https://static.testrail.io/7.5.5.2003/images/layout/testrail-logo.svg"></a>
-        </div>
-        <div class="bubble estimate-bubble" id="enterpriseBubble">
-            <a class="close close-hover" href="javascript: void(0);"
-                onclick="App.Dialogs.trEnterpriseBannerConfirmNew('logo')">×</a>
-            <div class="modules modules_tab_fullsection">
-                <div class="modules_tab_lefthalf">
-                    <img src="https://static.testrail.io/7.5.5.2003/images/banner/editionsimage.png">
-                </div>
-                <div class="modules_tab_righthalf">
-                    <div id="logo_confirm"></div>
-                    <div id="logo_banner_desc">
-                        <div class="hd_sb_txt">
-                            <span style="color: #979797;">Your edition:</span>
-                            Test Management System Professional
-                        </div>
-                        <div class="hd_sb_txt">
-                            Enable enterprise-grade <strong>security</strong>
-                            and <strong>performance.</strong> </div>
-                        <a href="index.php?/enterprise" class="button-enterprise button-arrow button-discover">
-                            Explore Enterprise </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="top-panel">
-            <div class="top-panel-inner">
-
-                <ul class="top-menu pull-right">
-                    <li class="top-menu-item"><a id="inProgressLink" href="javascript:void(0)"
-                            onclick="this.blur(); App.Tests.showInProgress(); return false;">Working On <span
-                                class="caret" style="vertical-align: 2px"></span></a>
-                    </li>
-                    <li class="top-menu-item"><a class="dropdownLink" id="navigation-user" href="#userDropdown"
-                            title="sessionScope.LOGIN_USERS.fullName"><span
-                                class="navigation-username">sessionScope.LOGIN_USERS.fullName</span> <span class="caret"
-                                style="vertical-align: 2px"></span></a>
-                    </li>
-                    <!--                        <li class="top-menu-item"><a class="dropdownLink top-menu-highlight" id="navigation-menu" href="#helpDropdown" tabindex="-1">Help &amp; Feedback <span class="caret top-menu-highlight" style="vertical-align: 2px"></span></a>
-                    </li>-->
-                </ul>
-                <div class="top-search">
-                    <form action="index.php?/search/index/2" style="display: inline" method="post"> <input type="hidden"
-                            name="_token" value="kyqRSAYnPxiKjL7HwuCW"> <input class="top-search-control" type="text"
-                            name="query" tabindex="-1">
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="top-section top-section-with-return text-ppp">
-            <span id="return"><a class="link-noline" id="navigation-dashboard-top" href="adminDashboard.jsp">← Return to
-                    Dashboard</a></span>
-            <a class="link-noline" id="navigation-project" href="adminPJOverview.jsp">aaaa</a>
-        </div>
-    </div>
-
-    <form id="newsletterForm" target="_blank" action="https://secure.gurock.com/customers/testrail/newsletter?email="
-        method="post">
-        <input name="cm-ahdml-ahdml" id="newsletter" type="hidden">
-    </form>
-
-    <div id="header">
-        <ul class="header-menu">
-            <li class="header-menu-item header-menu-item-right"><a tabindex="-1" href="adminOverview.jsp"
-                    id="navigation-admin">Administration</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminPJOverview.jsp"
-                    id="navigation-projects">Overview</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminTodo.jsp" id="navigation-todos">Todo</a></li>
-            <li class="header-menu-item header-menu-item-selected"><a tabindex="-1" href="adminMilestone.jsp"
-                    id="navigation-milestones">Milestones</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminTestRun.jsp" id="navigation-runs">Test Runs &amp;
-                    Results</a></li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminTestCase.jsp" id="navigation-suites">Test Cases</a>
-            </li>
-            <li class="header-menu-item"><a tabindex="-1" href="adminReport.jsp" id="navigation-reports">Reports</a>
-            </li>
-        </ul>
-    </div>
-
     <div id="separator"></div>
     <div id="body-container" class="">
         <div id="body" class="table" style="display: table;">
@@ -430,7 +348,8 @@
                             <label for="name">Name <span class="form-required">*</span></label>
                             <input class="form-control " type="text" name="name" id="name" maxlength="250" value="">
                             <div class="form-description">Ex: <em>Version 1.0</em>, <em>Internal Beta 2</em> or
-                                <em>Sprint #4</em></div>
+                                <em>Sprint #4</em>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="refs" class="text-ppp" style="width: 462px">

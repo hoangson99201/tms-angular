@@ -1,0 +1,64 @@
+<header>
+    <div id="menu-project">
+        <div id="top">
+            <div id="top-logo">
+                <a href="javascript:void(0)" id="bannerLink"><img
+                        src="https://static.testrail.io/7.5.5.2003/images/layout/testrail-logo.svg"></a>
+            </div>
+            <div class="top-panel">
+                <div class="top-panel-inner">
+                    <ul class="top-menu pull-right">
+                        <li class="top-menu-item"><a id="inProgressLink" href="javascript:void(0)"
+                                onclick="this.blur(); App.Tests.showInProgress(); return false;">Working On <span
+                                    class="caret" style="vertical-align: 2px"></span></a>
+                        </li>
+                        <li class="top-menu-item"><a class="dropdownLink" id="navigation-user" href="#userDropdown"
+                                title="Nguyen Tien Khoa"><span class="navigation-username">Nguyen Tien Khoa</span> <span
+                                    class="caret" style="vertical-align: 2px"></span></a>
+                        </li>
+                        <li class="top-menu-item"><a class="dropdownLink top-menu-highlight" id="navigation-menu"
+                                href="#helpDropdown" tabindex="-1">Help &amp; Feedback <span
+                                    class="caret top-menu-highlight" style="vertical-align: 2px"></span></a>
+                        </li>
+                    </ul>
+                    <div class="top-search">
+                        <form action="index.php?/search/index/1" style="display: inline" method="post"> <input
+                                type="hidden" name="_token" value="qGt3kRwAo24ugb2redt4"> <input
+                                class="top-search-control" type="text" name="query" tabindex="-1">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="top-section top-section-with-return text-ppp">
+                <span id="return"><a class="link-noline" id="navigation-dashboard-top" href="testerDashboard.jsp">←
+                        Return to
+                        Dashboard</a></span>
+                <a class="link-noline" id="navigation-project" href="testerOverviewPJ.jsp">aaaa</a>
+            </div>
+        </div>
+
+        <form id="newsletterForm" target="_blank"
+            action="https://secure.gurock.com/customers/testrail/newsletter?email=" method="post">
+            <input name="cm-ahdml-ahdml" id="newsletter" type="hidden">
+        </form>
+
+        <div id="header">
+            <ul class="header-menu">
+
+                <li class="header-menu-item"><a tabindex="-1" href="testerOverviewPJ.jsp"
+                        id="navigation-projects">Overview</a>
+                </li>
+                <li class="header-menu-item"><a tabindex="-1" href="todos.jsp" id="navigation-todos">Todo</a></li>
+                <li class="header-menu-item header-menu-item-selected"><a tabindex="-1" href="milestones.jsp"
+                        id="navigation-milestones">Milestones</a></li>
+                <li class="header-menu-item"><a tabindex="-1" href="testerTestRun.jsp" id="navigation-runs">Test Runs
+                        &amp;
+                        Results</a></li>
+                <li class="header-menu-item"><a tabindex="-1" href="testcases.jsp" id="navigation-suites">Test Cases</a>
+                </li>
+                <li class="header-menu-item"><a tabindex="-1" href="reports.jsp" id="navigation-reports">Reports</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

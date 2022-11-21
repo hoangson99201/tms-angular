@@ -1,3 +1,4 @@
+<app-menu-project></app-menu-project>
 <div id="milestone">
     <div id="separator"></div>
 
@@ -435,7 +436,7 @@
                                     create
                                     the first milestone.</p>
                                 <div class="button-group">
-                                    <a routerLink="add-milestone" class="button button-left button-add">
+                                    <a href="add-milestone" class="button button-left button-add">
                                         Add Milestone </a>
                                 </div>
                             </div>
@@ -513,7 +514,7 @@
                 </div>
 
                 <div class="sidebar-inner">
-                    <a id="navigation-milestones-add" class="sidebar-button" href="addMilestone.jsp">
+                    <a id="navigation-milestones-add" class="sidebar-button" href="/add-milestone">
                         <span>Add Milestone</span>
                     </a>
                     <p class="top">There are no milestones.</p>
@@ -850,11 +851,11 @@
 
     <div class="dialog dialog_attachment" id="attachmentInfoDialog" style="width: 900px; height: 531px;"></div>
     <div id="newAttachmentTemplate" style="display: none;">
-        <div style="width: 150px; height: 150px; attachment_thumbnail"
+        <div style="width: 150px; height: 150px; "
             class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
             id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
             title="attachment_name">
-            <div class="attachment-icon" style="attachment_icon_style"></div>
+            <div class="attachment-icon" style=""></div>
             <div class="attachment-name">
                 attachment_truncated_name
             </div>
@@ -864,7 +865,7 @@
                 onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
         </div>
     </div>
-    <div id="libraryAttachmentsAddItemTemplate" style="display:none;">
+    <div id="libraryAttachmentsAddItemTemplate" style="">
         <div id="element_id" class="attachment-library-add">
             <div class="attachment-library-add-icon"></div>
         </div>

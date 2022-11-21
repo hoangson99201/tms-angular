@@ -8,7 +8,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 // import { AddProjectComponent } from './components/add-project/add-project.component';
 // import { ManageUserRolesComponent } from './components/manage-user-roles/manage-user-roles.component';
 // import { AddUserComponent } from './components/add-user/add-user.component';
-// import { ManageMilestonesComponent } from './components/manage-milestones/manage-milestones.component';
+import { ManageMilestonesComponent } from './components/manage-milestones/manage-milestones.component';
 // import { ManageTestRunComponent } from './components/manage-test-run/manage-test-run.component';
 // import { ActivityHistoryComponent } from './components/activity-history/activity-history.component';
 // import { EditProjectComponent } from './components/edit-project/edit-project.component';
@@ -24,6 +24,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 // import { AddReportComponent } from './components/add-report/add-report.component';
 // import { DetailReportComponent } from './components/detail-report/detail-report.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     // AddProjectComponent,
     // ManageUserRolesComponent,
     // AddUserComponent,
-    // ManageMilestonesComponent,
+    ManageMilestonesComponent,
     // ManageTestRunComponent,
     // ActivityHistoryComponent,
     // EditProjectComponent,
@@ -47,7 +48,8 @@ import { MenuComponent } from './shared/menu/menu.component';
     // ManageReportComponent,
     // AddReportComponent,
     // DetailReportComponent,
-    MenuComponent
+    MenuComponent,
+    MenuProjectComponent
   ],
   imports: [
     BrowserModule,
