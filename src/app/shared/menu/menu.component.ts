@@ -12,6 +12,11 @@ export class MenuComponent implements OnInit {
       'id': 'admin_dashboard',
       'label': 'Dashboard',
       'routerLink': ['admin-dashboard']
+    },
+    {
+      'id': 'milestone',
+      'label': 'Milestone',
+      'routerLink': ['milestone']
     }
   ]
 
