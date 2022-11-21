@@ -25,6 +25,12 @@ import { ManageMilestonesComponent } from './components/manage-milestones/manage
 // import { DetailReportComponent } from './components/detail-report/detail-report.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
+import { OverviewComponent } from './components/project/overview/overview.component';
+import { TodoComponent } from './components/project/todo/todo.component';
+import { ProjectComponent } from './components/project/project.component';
+import { TestRunComponent } from './components/project/test-run/test-run.component';
+import { TestcaseComponent } from './components/project/testcase/testcase.component';
+import { ReportComponent } from './components/project/report/report.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +55,13 @@ import { MenuProjectComponent } from './shared/menu-project/menu-project.compone
     // AddReportComponent,
     // DetailReportComponent,
     MenuComponent,
-    MenuProjectComponent
+    MenuProjectComponent,
+    OverviewComponent,
+    TodoComponent,
+    ProjectComponent,
+    TestRunComponent,
+    TestcaseComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
