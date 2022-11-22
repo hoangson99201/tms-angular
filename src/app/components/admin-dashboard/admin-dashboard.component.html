@@ -6,7 +6,7 @@
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
           <div class="content-header-result"></div>
-          <span class="content-header-icon content-header-icon-combined"><a href="javascript:void(0)"
+          <span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-header="Compact View"
               tooltip-text="Displays the active projects as a compact list. Useful if you have many projects." onclick="this.blur(); var link = this; var i = document.createElement('input');
 			i.setAttribute('type', 'hidden');
@@ -20,7 +20,7 @@
 			f.appendChild(i);
 			f.submit();; return false;">
               <div class="icon-display-small-inactive"></div>
-            </a></span><span class="content-header-icon"><a href="javascript:void(0)" class="link-tooltip"
+            </a></span><span class="content-header-icon"><a routerLink="javascript:void(0)" class="link-tooltip"
               tooltip-header="Detail View" tooltip-text="Displays the active projects with many details." onclick="this.blur(); var link = this; var i = document.createElement('input');
 			i.setAttribute('type', 'hidden');
 			i.setAttribute('name', '_token');
@@ -57,24 +57,24 @@
               <div class="column summary-column flex-projects-2">
                 <div class="summary-title text-ppp" style="position: relative; padding: 1px 0 1px 0">
                   <span style="position: absolute; top: -1px">
-                    <a href="javascript:void(0)" onclick="this.blur(); App.Projects.unstar(this, 1); return false;"
+                    <a routerLink="javascript:void(0)" onclick="this.blur(); App.Projects.unstar(this, 1); return false;"
                       id="project-starred-1" class="starred link-tooltip" tooltip-text="Remove from project favorites."
                       style="display: none"></a>
-                    <a href="javascript:void(0)" onclick="this.blur(); App.Projects.star(this, 1); return false;"
+                    <a routerLink="javascript:void(0)" onclick="this.blur(); App.Projects.star(this, 1); return false;"
                       id="project-star-1" class="unstarred link-tooltip" tooltip-text="Mark as project favorite."></a>
                   </span>
-                  <a href="overview?id={{project.projectId}}"
+                  <a routerLink="overview?id={{project.projectId}}"
                     style="padding-left: 25px">{{project.projectName}}</a>
                   <span class="hidden fav-busy">
                     <div class="icon-progress-inline"></div>
                   </span>
                 </div>
                 <div class="summary-links text-secondary">
-                  <a class="link" href="todo?id={{project.projectId}}">Todos</a> |
-                  <a class="link" href="milestones?id={{project.projectId}}">Milestones</a> |
-                  <a class="link" href="test-runs?id={{project.projectId}}">Test Runs</a> |
-                  <a class="link" href="test-cases?id={{project.projectId}}">Test Cases</a> |
-                  <a class="link" href="reports?id={{project.projectId}}">Reports</a>
+                  <a class="link" routerLink="todo?id={{project.projectId}}">Todos</a> |
+                  <a class="link" routerLink="milestones?id={{project.projectId}}">Milestones</a> |
+                  <a class="link" routerLink="test-runs?id={{project.projectId}}">Test Runs</a> |
+                  <a class="link" routerLink="test-cases?id={{project.projectId}}">Test Cases</a> |
+                  <a class="link" routerLink="reports?id={{project.projectId}}">Reports</a>
                 </div>
                 <div class="summary-description">
                   Contains <strong>{{project.activeTestRun}}</strong> active test runs and
@@ -85,11 +85,11 @@
               </div>
               <div class="column summary-column summary-column-toggle flex-projects-3">
                 <span class="buttons">
-                  <a class="expand" href="javascript:void(0)"
+                  <a class="expand" routerLink="javascript:void(0)"
                     onclick="this.blur(); App.Projects.toggleDetails(this, 1); return false;">
                     <div class="icon-expand-32"></div>
                   </a>
-                  <a class="hidden collapse" href="javascript:void(0)"
+                  <a class="hidden collapse" routerLink="javascript:void(0)"
                     onclick="this.blur(); App.Projects.toggleDetails(this, 1); return false;">
                     <div class="icon-collapse-32"></div>
                   </a>
@@ -125,7 +125,7 @@
     <div id="sidebar" class="column sidebar" style="width: 250px">
 
       <div class="sidebar-inner">
-        <a id="sidebar-projects-add" class="sidebar-button" href="project/add">
+        <a id="sidebar-projects-add" class="sidebar-button" routerLink="project/add">
           Add Project </a>
         <p class="top"><strong class="text-softer">{{activeProject}}</strong> active and <strong
             class="text-softer">{{completedProject}}</strong>

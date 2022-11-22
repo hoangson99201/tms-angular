@@ -19,7 +19,7 @@ const routes: Routes = [
     component: OverviewComponent,
   },
   {
-    path: 'todo',
+    path: 'project/todo',
     component: TodoComponent,
   },
 ];
