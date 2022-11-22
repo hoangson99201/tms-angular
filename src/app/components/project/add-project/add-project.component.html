@@ -1,34 +1,9 @@
 <app-menu></app-menu>
 <div id="add-project" style="min-width: 960px" class="modern">
 
-
-  <script type="text/javascript">
-    $(document).ready(
-      function () {
-        $('#body').css('display', 'table');
-      }
-    );
-  </script>
-
   <script type="text/javascript">
     $(document).ready(function () {
       $('#name').focus();
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      // $.datepicker.setDefaults(
-      //     {
-      //         dateFormat: 'm/d/yy',
-      //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-      //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      //         firstDay: 0
-      //     }
-      // );
     });
   </script>
 
@@ -40,7 +15,7 @@
 
         <div id="content-header" class="content-header content-header-default">
           <div class="content-header-inner">
-            <div class="content-header-result" style=""></div>
+            <div class="content-header-result"></div>
             <div class="content-header-title page_title">
               Add Project </div>
           </div>
@@ -137,14 +112,6 @@
                 <a id="projects-tabs-project" class="tab1    hidden current" onclick="App.Tabs.activate(this); "
                   rel="1">
                   Project </a>
-                <a id="projects-tabs-access" class="tab2    hidden" onclick="App.Tabs.activate(this); " rel="2">
-                  Access </a>
-                <a id="projects-tabs-defects" class="tab3    hidden" onclick="App.Tabs.activate(this); " rel="3">
-                  Defects </a>
-                <a id="projects-tabs-references" class="tab4    hidden" onclick="App.Tabs.activate(this); " rel="4">
-                  References </a>
-                <a id="users-fields-fields" class="tab5    hidden" onclick="App.Tabs.activate(this); " rel="5">
-                  User Variables </a>
               </div>
               <div class="tab-body tab-frame">
                 <div class="tab tab1  dirty-trackable" style="display: block;">
@@ -179,89 +146,6 @@
                       announcement to the project overview page.
                       This could include links to the project's issue tracker or knowledge
                       base, for example.</div>
-                  </div>
-                  <div class="form-group bottom">
-                    <div class="checkbox">
-                      <label>
-                        <strong>Show the announcement on the overview page</strong>
-                        <input id="show_announcement" type="checkbox" value="1" name="show_announcement">
-                      </label>
-                    </div>
-                  </div>
-                  <div class="form-separator"></div>
-                  <div class="table" style="width: 640px">
-                    <div class="row add-project-row">
-                      <div class="column column-p2 project-type-image">
-                        <a href="javascript:void(0)"
-                          onclick="this.blur(); App.Admin.setSuiteMode('#suite_mode_single'); return false;">
-                          <div class="project-suitessingle"></div>
-                        </a>
-                      </div>
-                      <div class="column project-type">
-                        <div class="radio">
-                          <label>
-                            <strong>Use a single repository for all cases
-                              (recommended)</strong>
-                            <input type="radio" class="radio" name="suite_mode" id="suite_mode_single" checked="checked"
-                              value="1">
-                            <p>
-                              A single test suite (repository) is easy to manage
-                              and flexible enough for most projects with no or few
-                              concurrent versions. You can use sections and
-                              subsections to further organize your test cases.
-                            </p>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row add-project-row">
-                      <div class="column column-p2 project-type-image">
-                        <a href="javascript:void(0)"
-                          onclick="this.blur(); App.Admin.setSuiteMode('#suite_mode_single_baseline'); return false;">
-                          <div class="project-suitesbaseline"></div>
-                        </a>
-                      </div>
-                      <div class="column project-type">
-                        <div class="radio">
-                          <label>
-                            <strong>Use a single repository with baseline
-                              support</strong>
-                            <input type="radio" class="radio" name="suite_mode" id="suite_mode_single_baseline"
-                              value="2">
-                            <p>
-                              Use a single test suite (repository) with the
-                              additional option to create baselines to manage
-                              multiple branches of your test cases at the same
-                              time. This is ideal if you need to test multiple
-                              project versions in parallel. </p>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row add-project-row">
-                      <div class="column column-p2 project-type-image">
-                        <a href="javascript:void(0)"
-                          onclick="this.blur(); App.Admin.setSuiteMode('#suite_mode_multi'); return false;">
-                          <div class="project-suitesmulti"></div>
-                        </a>
-                      </div>
-                      <div class="column project-type">
-                        <div class="radio">
-                          <label>
-                            <strong>Use multiple test suites to manage
-                              cases</strong>
-                            <input type="radio" class="radio" name="suite_mode" id="suite_mode_multi" value="3">
-                            <p>
-                              Multiple test suites can be useful to organize your
-                              test cases by functional areas and application
-                              modules on the test suite level.
-                              This is the traditional mode of Test Management
-                              System and is automatically used for upgraded
-                              projects. </p>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div class="tab tab2 hidden dirty-trackable" style="display: none;">
@@ -358,7 +242,6 @@
                   </div>
                 </div>
                 <div class="tab tab3 hidden dirty-trackable" style="display: none;">
-                  <input type="hidden" name="tab_name" id="tab_name" value="Defects">
                   <div class="message message-hint">
                     <strong>Please note:</strong> Any integration settings defined for this
                     project will override the <a href="index.php?/admin/integration">global
@@ -447,61 +330,61 @@
                               <div><b></b></div>
                             </a>
                             <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                              <div class="chzn-search" style=""><input type="text" autocomplete="off" style=""></div>
+                              <div class="chzn-search"><input type="text" autocomplete="off"></div>
                               <ul class="chzn-results">
-                                <li id="defect_plugin_chzn_o_0" class="active-result result-selected" style="">
+                                <li id="defect_plugin_chzn_o_0" class="active-result result-selected">
                                   &nbsp; </li>
-                                <li id="defect_plugin_chzn_o_1" class="active-result" style="">Asana</li>
-                                <li id="defect_plugin_chzn_o_2" class="active-result" style="">Assembla</li>
-                                <li id="defect_plugin_chzn_o_3" class="active-result" style="">Axosoft /
+                                <li id="defect_plugin_chzn_o_1" class="active-result">Asana</li>
+                                <li id="defect_plugin_chzn_o_2" class="active-result">Assembla</li>
+                                <li id="defect_plugin_chzn_o_3" class="active-result">Axosoft /
                                   OnTime REST</li>
-                                <li id="defect_plugin_chzn_o_4" class="active-result" style="">Axosoft /
+                                <li id="defect_plugin_chzn_o_4" class="active-result">Axosoft /
                                   OnTime SOAP (old versions)</li>
-                                <li id="defect_plugin_chzn_o_5" class="active-result" style="">
+                                <li id="defect_plugin_chzn_o_5" class="active-result">
                                   Axosoft_v17_REST</li>
-                                <li id="defect_plugin_chzn_o_6" class="active-result" style="">
+                                <li id="defect_plugin_chzn_o_6" class="active-result">
                                   Azure_DevOps_CLOUD</li>
-                                <li id="defect_plugin_chzn_o_7" class="active-result" style="">
+                                <li id="defect_plugin_chzn_o_7" class="active-result">
                                   Azure_DevOps_SERVER</li>
-                                <li id="defect_plugin_chzn_o_8" class="active-result" style="">Bitbucket
+                                <li id="defect_plugin_chzn_o_8" class="active-result">Bitbucket
                                 </li>
-                                <li id="defect_plugin_chzn_o_9" class="active-result" style="">Bugzilla</li>
-                                <li id="defect_plugin_chzn_o_10" class="active-result" style="">Bugzilla_REST
+                                <li id="defect_plugin_chzn_o_9" class="active-result">Bugzilla</li>
+                                <li id="defect_plugin_chzn_o_10" class="active-result">Bugzilla_REST
                                 </li>
-                                <li id="defect_plugin_chzn_o_11" class="active-result" style="">
+                                <li id="defect_plugin_chzn_o_11" class="active-result">
                                   Bugzilla_XMLRPC</li>
-                                <li id="defect_plugin_chzn_o_12" class="active-result" style="">Email</li>
-                                <li id="defect_plugin_chzn_o_13" class="active-result" style="">GitHub</li>
-                                <li id="defect_plugin_chzn_o_14" class="active-result" style="">GitLab</li>
-                                <li id="defect_plugin_chzn_o_15" class="active-result" style="">JIRA Cloud
+                                <li id="defect_plugin_chzn_o_12" class="active-result">Email</li>
+                                <li id="defect_plugin_chzn_o_13" class="active-result">GitHub</li>
+                                <li id="defect_plugin_chzn_o_14" class="active-result">GitLab</li>
+                                <li id="defect_plugin_chzn_o_15" class="active-result">JIRA Cloud
                                 </li>
-                                <li id="defect_plugin_chzn_o_16" class="active-result" style="">JIRA REST
+                                <li id="defect_plugin_chzn_o_16" class="active-result">JIRA REST
                                   (JIRA Server 5.x, 6.x, 7.x and later)</li>
-                                <li id="defect_plugin_chzn_o_17" class="active-result" style="">JIRA SOAP
+                                <li id="defect_plugin_chzn_o_17" class="active-result">JIRA SOAP
                                   (JIRA Server 3.x, 4.x)</li>
-                                <li id="defect_plugin_chzn_o_18" class="active-result" style="">Lighthouse
+                                <li id="defect_plugin_chzn_o_18" class="active-result">Lighthouse
                                 </li>
-                                <li id="defect_plugin_chzn_o_19" class="active-result" style="">Mantis_REST
+                                <li id="defect_plugin_chzn_o_19" class="active-result">Mantis_REST
                                 </li>
-                                <li id="defect_plugin_chzn_o_20" class="active-result" style="">Mantis_SOAP
+                                <li id="defect_plugin_chzn_o_20" class="active-result">Mantis_SOAP
                                 </li>
-                                <li id="defect_plugin_chzn_o_21" class="active-result" style="">Manuscript
+                                <li id="defect_plugin_chzn_o_21" class="active-result">Manuscript
                                 </li>
-                                <li id="defect_plugin_chzn_o_22" class="active-result" style="">
+                                <li id="defect_plugin_chzn_o_22" class="active-result">
                                   PivotalTracker</li>
-                                <li id="defect_plugin_chzn_o_23" class="active-result" style="">Rally</li>
-                                <li id="defect_plugin_chzn_o_24" class="active-result" style="">Redmine</li>
-                                <li id="defect_plugin_chzn_o_25" class="active-result" style="">Sample</li>
-                                <li id="defect_plugin_chzn_o_26" class="active-result" style="">Trac</li>
-                                <li id="defect_plugin_chzn_o_27" class="active-result" style="">Trello</li>
-                                <li id="defect_plugin_chzn_o_28" class="active-result" style="">VersionOne
+                                <li id="defect_plugin_chzn_o_23" class="active-result">Rally</li>
+                                <li id="defect_plugin_chzn_o_24" class="active-result">Redmine</li>
+                                <li id="defect_plugin_chzn_o_25" class="active-result">Sample</li>
+                                <li id="defect_plugin_chzn_o_26" class="active-result">Trac</li>
+                                <li id="defect_plugin_chzn_o_27" class="active-result">Trello</li>
+                                <li id="defect_plugin_chzn_o_28" class="active-result">VersionOne
                                 </li>
-                                <li id="defect_plugin_chzn_o_29" class="active-result" style="">YouTrack</li>
-                                <li id="defect_plugin_chzn_o_30" class="active-result" style="">YouTrack20182
+                                <li id="defect_plugin_chzn_o_29" class="active-result">YouTrack</li>
+                                <li id="defect_plugin_chzn_o_30" class="active-result">YouTrack20182
                                 </li>
-                                <li id="defect_plugin_chzn_o_31" class="active-result" style="">YouTrack20184
+                                <li id="defect_plugin_chzn_o_31" class="active-result">YouTrack20184
                                 </li>
-                                <li id="defect_plugin_chzn_o_32" class="active-result" style="">YouTrack20191
+                                <li id="defect_plugin_chzn_o_32" class="active-result">YouTrack20191
                                 </li>
                               </ul>
                             </div>
@@ -663,60 +546,60 @@
                               <div><b></b></div>
                             </a>
                             <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                              <div class="chzn-search" style=""><input type="text" autocomplete="off" style=""></div>
+                              <div class="chzn-search"><input type="text" autocomplete="off"></div>
                               <ul class="chzn-results">
-                                <li id="reference_plugin_chzn_o_0" class="active-result result-selected" style="">
+                                <li id="reference_plugin_chzn_o_0" class="active-result result-selected">
                                   &nbsp; </li>
-                                <li id="reference_plugin_chzn_o_1" class="active-result" style="">Asana</li>
-                                <li id="reference_plugin_chzn_o_2" class="active-result" style="">Assembla</li>
-                                <li id="reference_plugin_chzn_o_3" class="active-result" style="">Axosoft /
+                                <li id="reference_plugin_chzn_o_1" class="active-result">Asana</li>
+                                <li id="reference_plugin_chzn_o_2" class="active-result">Assembla</li>
+                                <li id="reference_plugin_chzn_o_3" class="active-result">Axosoft /
                                   OnTime REST</li>
-                                <li id="reference_plugin_chzn_o_4" class="active-result" style="">Axosoft /
+                                <li id="reference_plugin_chzn_o_4" class="active-result">Axosoft /
                                   OnTime SOAP (old versions)</li>
-                                <li id="reference_plugin_chzn_o_5" class="active-result" style="">
+                                <li id="reference_plugin_chzn_o_5" class="active-result">
                                   Axosoft_v17_REST</li>
-                                <li id="reference_plugin_chzn_o_6" class="active-result" style="">
+                                <li id="reference_plugin_chzn_o_6" class="active-result">
                                   Azure_DevOps_CLOUD</li>
-                                <li id="reference_plugin_chzn_o_7" class="active-result" style="">
+                                <li id="reference_plugin_chzn_o_7" class="active-result">
                                   Azure_DevOps_SERVER</li>
-                                <li id="reference_plugin_chzn_o_8" class="active-result" style="">Bitbucket
+                                <li id="reference_plugin_chzn_o_8" class="active-result">Bitbucket
                                 </li>
-                                <li id="reference_plugin_chzn_o_9" class="active-result" style="">Bugzilla</li>
-                                <li id="reference_plugin_chzn_o_10" class="active-result" style="">Bugzilla_REST
+                                <li id="reference_plugin_chzn_o_9" class="active-result">Bugzilla</li>
+                                <li id="reference_plugin_chzn_o_10" class="active-result">Bugzilla_REST
                                 </li>
-                                <li id="reference_plugin_chzn_o_11" class="active-result" style="">
+                                <li id="reference_plugin_chzn_o_11" class="active-result">
                                   Bugzilla_XMLRPC</li>
-                                <li id="reference_plugin_chzn_o_12" class="active-result" style="">GitHub</li>
-                                <li id="reference_plugin_chzn_o_13" class="active-result" style="">GitLab</li>
-                                <li id="reference_plugin_chzn_o_14" class="active-result" style="">JIRA Cloud
+                                <li id="reference_plugin_chzn_o_12" class="active-result">GitHub</li>
+                                <li id="reference_plugin_chzn_o_13" class="active-result">GitLab</li>
+                                <li id="reference_plugin_chzn_o_14" class="active-result">JIRA Cloud
                                 </li>
-                                <li id="reference_plugin_chzn_o_15" class="active-result" style="">JIRA REST
+                                <li id="reference_plugin_chzn_o_15" class="active-result">JIRA REST
                                   (JIRA Server 5.x, 6.x, 7.x and later)</li>
-                                <li id="reference_plugin_chzn_o_16" class="active-result" style="">JIRA SOAP
+                                <li id="reference_plugin_chzn_o_16" class="active-result">JIRA SOAP
                                   (JIRA Server 3.x, 4.x)</li>
-                                <li id="reference_plugin_chzn_o_17" class="active-result" style="">Lighthouse
+                                <li id="reference_plugin_chzn_o_17" class="active-result">Lighthouse
                                 </li>
-                                <li id="reference_plugin_chzn_o_18" class="active-result" style="">Mantis_REST
+                                <li id="reference_plugin_chzn_o_18" class="active-result">Mantis_REST
                                 </li>
-                                <li id="reference_plugin_chzn_o_19" class="active-result" style="">Mantis_SOAP
+                                <li id="reference_plugin_chzn_o_19" class="active-result">Mantis_SOAP
                                 </li>
-                                <li id="reference_plugin_chzn_o_20" class="active-result" style="">Manuscript
+                                <li id="reference_plugin_chzn_o_20" class="active-result">Manuscript
                                 </li>
-                                <li id="reference_plugin_chzn_o_21" class="active-result" style="">
+                                <li id="reference_plugin_chzn_o_21" class="active-result">
                                   PivotalTracker</li>
-                                <li id="reference_plugin_chzn_o_22" class="active-result" style="">Rally</li>
-                                <li id="reference_plugin_chzn_o_23" class="active-result" style="">Redmine</li>
-                                <li id="reference_plugin_chzn_o_24" class="active-result" style="">Sample</li>
-                                <li id="reference_plugin_chzn_o_25" class="active-result" style="">Trac</li>
-                                <li id="reference_plugin_chzn_o_26" class="active-result" style="">Trello</li>
-                                <li id="reference_plugin_chzn_o_27" class="active-result" style="">VersionOne
+                                <li id="reference_plugin_chzn_o_22" class="active-result">Rally</li>
+                                <li id="reference_plugin_chzn_o_23" class="active-result">Redmine</li>
+                                <li id="reference_plugin_chzn_o_24" class="active-result">Sample</li>
+                                <li id="reference_plugin_chzn_o_25" class="active-result">Trac</li>
+                                <li id="reference_plugin_chzn_o_26" class="active-result">Trello</li>
+                                <li id="reference_plugin_chzn_o_27" class="active-result">VersionOne
                                 </li>
-                                <li id="reference_plugin_chzn_o_28" class="active-result" style="">YouTrack</li>
-                                <li id="reference_plugin_chzn_o_29" class="active-result" style="">YouTrack20182
+                                <li id="reference_plugin_chzn_o_28" class="active-result">YouTrack</li>
+                                <li id="reference_plugin_chzn_o_29" class="active-result">YouTrack20182
                                 </li>
-                                <li id="reference_plugin_chzn_o_30" class="active-result" style="">YouTrack20184
+                                <li id="reference_plugin_chzn_o_30" class="active-result">YouTrack20184
                                 </li>
-                                <li id="reference_plugin_chzn_o_31" class="active-result" style="">YouTrack20191
+                                <li id="reference_plugin_chzn_o_31" class="active-result">YouTrack20191
                                 </li>
                               </ul>
                             </div>
@@ -794,8 +677,7 @@
             <div class="button-group form-buttons">
               <button id="accept" class="button button-left button-positive button-ok" type="submit">
                 Add Project </button>
-              <a href="javascript:void(0)"
-                onclick="this.blur(); App.Users.showWebhookList( & quot; - 1 & quot; ); App.Users.onCancelPage( & quot; index.php?/admin/projects / overview & quot; ); return false;"
+              <a href="javascript:void(0)" onclick="this.blur();"
                 class="button button-left button-negative button-cancel save-cancel-button"
                 id="admin-integration-form-cancel">
                 Cancel </a>
@@ -1117,20 +999,6 @@
           </li>
           <li class="sidebar-menu-item ">
             <a href="manageUser_Roles.jsp" id="navigation-sub-users">Users &amp; Roles</a>
-          </li>
-          <li class="sidebar-menu-item ">
-            <a href="index.php?/admin/custom/overview" id="navigation-sub-customization">Customizations</a>
-          </li>
-          <li class="sidebar-menu-item ">
-            <a href="index.php?/admin/integration" id="navigation-sub-integration">Integration</a>
-          </li>
-          <li class="sidebar-menu-item ">
-            <a href="index.php?/admin/subscription" id="navigation-sub-subscription">Data
-              Management</a>
-          </li>
-          <li class="sidebar-menu-item ">
-            <a href="index.php?/admin/site_settings" id="navigation-sub-sitesettings">Site
-              Settings</a>
           </li>
         </ul>
 
@@ -1629,16 +1497,15 @@
   </script>
   <div class="dialog dialog_attachment" id="attachmentInfoDialog" style="width: 900px; height: 531px;"></div>
   <div id="newAttachmentTemplate" style="display: none;">
-    <div style="width: 150px; height: 150px; attachment_thumbnail"
+    <div style="width: 150px; height: 150px;"
       class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
       id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
       title="attachment_name">
-      <div class="attachment-icon" style="attachment_icon_style"></div>
+      <div class="attachment-icon"></div>
       <div class="attachment-name">
         attachment_truncated_name
       </div>
-      <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror"
-        class="hidden-image">
+      <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
       <div class="attachment-selection attachment_selected_class"
         onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
     </div>
