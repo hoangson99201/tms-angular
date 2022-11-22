@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-// import { AddProjectComponent } from './components/add-project/add-project.component';
 // import { ManageUserRolesComponent } from './components/manage-user-roles/manage-user-roles.component';
 // import { AddUserComponent } from './components/add-user/add-user.component';
 import { ManageMilestonesComponent } from './components/manage-milestones/manage-milestones.component';
@@ -32,12 +31,13 @@ import { AddTestRunComponent } from './components/project/test-run/add-test-run/
 import { TodoComponent } from './components/project/todo/todo.component';
 import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { AddProjectComponent } from './components/project/add-project/add-project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
-    // AddProjectComponent,
+    AddProjectComponent,
     // ManageUserRolesComponent,
     // AddUserComponent,
     ManageMilestonesComponent,

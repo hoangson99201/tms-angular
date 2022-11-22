@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddMilestoneComponent } from './components/add-milestone/add-milestone.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ManageMilestonesComponent } from './components/manage-milestones/manage-milestones.component';
+import { AddProjectComponent } from './components/project/add-project/add-project.component';
 import { OverviewComponent } from './components/project/overview/overview.component';
 import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'reports',
     component: ReportComponent,
+  },
+  {
+    path: 'project/add',
+    component: AddProjectComponent,
   },
 ];
 
