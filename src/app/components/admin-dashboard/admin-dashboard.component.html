@@ -63,18 +63,18 @@
                     <a href="javascript:void(0)" onclick="this.blur(); App.Projects.star(this, 1); return false;"
                       id="project-star-1" class="unstarred link-tooltip" tooltip-text="Mark as project favorite."></a>
                   </span>
-                  <a href="index.php?/projects/overview/{{project.projectId}}"
+                  <a href="overview/{{project.projectId}}"
                     style="padding-left: 25px">{{project.projectName}}</a>
                   <span class="hidden fav-busy">
                     <div class="icon-progress-inline"></div>
                   </span>
                 </div>
                 <div class="summary-links text-secondary">
-                  <a class="link" href="index.php?/todos/overview/{{project.projectId}}">Todos</a> |
-                  <a class="link" href="index.php?/milestones/overview/{{project.projectId}}">Milestones</a> |
-                  <a class="link" href="index.php?/runs/overview/{{project.projectId}}">Test Runs</a> |
-                  <a class="link" href="index.php?/suites/view/{{project.projectId}}">Test Cases</a> |
-                  <a class="link" href="index.php?/reports/overview/{{project.projectId}}">Reports</a>
+                  <a class="link" href="todo?id={{project.projectId}}">Todos</a> |
+                  <a class="link" href="milestones?id={{project.projectId}}">Milestones</a> |
+                  <a class="link" href="test-runs?id={{project.projectId}}">Test Runs</a> |
+                  <a class="link" href="test-cases?id={{project.projectId}}">Test Cases</a> |
+                  <a class="link" href="reports?id={{project.projectId}}">Reports</a>
                 </div>
                 <div class="summary-description">
                   Contains <strong>{{project.activeTestRun}}</strong> active test runs and
