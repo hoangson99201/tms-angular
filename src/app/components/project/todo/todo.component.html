@@ -15,17 +15,17 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $.datepicker.setDefaults(
-                {
-                    dateFormat: 'm/d/yy',
-                    dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-                    dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                    monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    firstDay: 0
-                }
-            );
+            // $.datepicker.setDefaults(
+            //     {
+            //         dateFormat: 'm/d/yy',
+            //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            //         firstDay: 0
+            //     }
+            // );
         });
     </script>
     <div id="separator"></div>
@@ -954,11 +954,11 @@
                 onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
         </div>
     </div>
-    <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
+    <!-- <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
         <div id="element_id" class="attachment-library-add">
             <div class="attachment-library-add-icon"></div>
         </div>
-    </div>
+    </div> -->
 
 
 

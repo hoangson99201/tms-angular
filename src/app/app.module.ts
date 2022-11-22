@@ -14,7 +14,6 @@ import { ManageMilestonesComponent } from './components/manage-milestones/manage
 // import { EditProjectComponent } from './components/edit-project/edit-project.component';
 // import { EditMilestoneComponent } from './components/edit-milestone/edit-milestone.component';
 // import { AddMilestoneComponent } from './components/add-milestone/add-milestone.component';
-// import { AddTestRunComponent } from './components/add-test-run/add-test-run.component';
 // import { ProjectTestRunComponent } from './components/project-test-run/project-test-run.component';
 // import { ManageTestCaseComponent } from './components/manage-test-case/manage-test-case.component';
 // import { AddResultComponent } from './components/add-result/add-result.component';
@@ -31,6 +30,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { ReportComponent } from './components/project/report/report.component';
+import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import { ReportComponent } from './components/project/report/report.component';
     ProjectComponent,
     TestRunComponent,
     TestcaseComponent,
-    ReportComponent
+    ReportComponent,
+    AddTestRunComponent
   ],
   imports: [
     BrowserModule,
