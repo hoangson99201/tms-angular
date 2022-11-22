@@ -23,7 +23,6 @@ import { ManageMilestonesComponent } from './components/manage-milestones/manage
 // import { AddReportComponent } from './components/add-report/add-report.component';
 // import { DetailReportComponent } from './components/detail-report/detail-report.component';
 import { OverviewComponent } from './components/project/overview/overview.component';
-import { ProjectComponent } from './components/project/project.component';
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { ReportComponent } from './components/project/report/report.component';
@@ -59,7 +58,6 @@ import { AddProjectComponent } from './components/project/add-project/add-projec
     MenuProjectComponent,
     OverviewComponent,
     TodoComponent,
-    ProjectComponent,
     TestRunComponent,
     TestcaseComponent,
     ReportComponent,

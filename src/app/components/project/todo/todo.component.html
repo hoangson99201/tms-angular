@@ -1,960 +1,937 @@
 <app-menu-project></app-menu-project>
 
-<div id="todo" style="min-width: 960px" class="modern">
 
 
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                $('#body').css('display', 'table');
-            }
-        );
-    </script>
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // $.datepicker.setDefaults(
-            //     {
-            //         dateFormat: 'm/d/yy',
-            //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-            //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            //         firstDay: 0
-            //     }
-            // );
-        });
-    </script>
-    <div id="separator"></div>
-    <div id="body-container" class="">
-        <div id="body" class="table" style="display: table;">
-            <div id="content" class="column content overflow-content">
-
-
-                <div id="content-header" class="content-header content-header-default">
-                    <div class="content-header-inner">
-                        <div class="content-header-result" style=""></div>
-                        <div class="content-header-title page_title">
-                            Todo </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $("#sites").prop("selectedIndex", 0);
-                </script>
-                <div id="content-inner" class="content-inner goals-clear">
-
-
-                    <div id="chart_todo_overview">
-                        <div id="userChartContainer">
-                            <div class="chart-icon-download-container">
-                                <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left"
-                                    tooltip-width="230" tooltip-text="No drilldown capabilities for this chart">
-                                    <button id="drilldown-info"></button>
-                                </div>
-                                <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left"
-                                    tooltip-width="170" tooltip-text="Download chart as an image">
-                                    <button id="png-download" class="margin_todo_dwnld"></button>
-                                </div>
-                                <div data-html2canvas-ignore="true" class="link-tooltip" tooltip-position="left"
-                                    tooltip-width="150" tooltip-text="Download chart as a CSV">
-                                    <button id="csv-download" class="margin_todo_dwnld"></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <script type="text/javascript">
-                            $(function () {
-                                $(document).ready(function () {
-                                    App.Charts.activity = new FusionCharts({
-                                        type: 'stackedbar2d',
-                                        renderAt: 'userChart',
-                                        width: '100%',
-                                        height: '100%',
-                                        dataFormat: 'json',
-                                        dataSource: {
-                                            chart: {
-                                                theme: 'fusion',
-                                                maxBarHeight: '12',
-                                                baseFont: 'Barlow',
-                                                baseFontSize: '14',
-                                                labelFontColor: '#4D4D4D',
-                                                paletteColors: '#7CB5EC',
-                                                plottooltext: '$seriesname: <strong>$value</strong>',
-                                                showTooltipShadow: '1',
-                                                showLegend: '0',
-                                                canvasPadding: '0',
-                                                canvasBottomMargin: '0',
-                                                chartBottomMargin: '0',
-                                                yAxisValuesPadding: 7,
-                                                exportEnabled: '1',
-                                                exportshowmenuitem: '0'
-                                            },
-                                            categories: [{
-                                                category: []
-                                            }],
-                                            dataset: [{ "seriesname": "Active", "data": [], "color": "#7cb5ec" }, { "seriesname": "Upcoming", "data": [], "color": "#96c6f5" }, { "seriesname": "Completion Pending", "data": [], "color": "#abd5fe" }]
-                                        }
-                                    }).render();
-                                    $('#csv-download').click(function () {
-                                        App.Charts.activity.exportChart({
-                                            exportFormat: 'csv',
-                                            exportFileName: 'TestRail-todos-1-20221025125528'
-                                        });
-                                    });
-                                    $('#png-download').click(function () {
-                                        App.Charts.activity.exportChart({
-                                            exportFormat: 'png',
-                                            exportFileName: 'TestRail-todos-1-20221025125528'
-                                        });
-                                    });
-                                });
-                            });
-                        </script>
-                    </div>
-
-                    <div class="message message-info text-soft notodos" style="margin: 0px 0 20px 0">
-                        <strong>The following users have no todos:</strong>
-                        Doan B.
-                    </div>
-
-
-                    <h1 style="margin-top: 15px">
-                        Test Runs
-                    </h1>
-
-                    <div id="contentSticky" style="margin-bottom: 1.5em">
-                        <div class="toolbar" id="contentToolbar">
-                            <div class="toolbar-inner">
-                                <ul class="toolbar-menu text-ppp">
-                                    <li id="groupBy" class="toolbar-menu-item toolbar-menu-item-first">
-                                        Group by: <a href="#groupDropdown" class="link link-dashed dropdownLink"
-                                            id="groupByChange"><span id="groupByEmpty" class="">None</span><span
-                                                id="groupByName" class="hidden toolbar-highlighted">None</span></a>
-                                        <span class="busy">
-                                            <div class="icon-progress-inline"></div>
-                                        </span>
-                                        <span id="groupByAsc" class="hidden">
-                                            <div class="icon-asc"></div>
-                                        </span>
-                                        <span id="groupByDesc" class="hidden">
-                                            <div class="icon-desc"></div>
-                                        </span>
-                                        <span id="groupByReset" class="hidden">
-                                            <a href="javascript:void(0)"
-                                                onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'none'); return false;"
-                                                class="link-tooltip" tooltip-text="Reset grouping">
-                                                <div class="icon-orderreset"></div>
-                                            </a>
-                                        </span>
-                                    </li>
-                                    <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
-                                        <span class="busy">
-                                            <div class="icon-progress-inline"></div>
-                                        </span>
-                                    </li>
-
-                                    <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-first">
-                                        Filter: <a href="#filterBubble" class="link link-dashed dropdownLink"
-                                            id="filterByChange"><span id="filterByEmpty" class="">None</span><span
-                                                id="filterByName" class="hidden toolbar-highlighted">none</span></a>
-                                        <span class="busy">
-                                            <div class="icon-progress-inline"></div>
-                                        </span>
-                                        <span id="filterReset" class="hidden">
-                                            <a href="javascript:void(0)"
-                                                onclick="this.blur(); App.Todos.resetFilter(1, 'run'); return false;"
-                                                class="link-tooltip" tooltip-text="Reset filter to default.">
-                                                <div class="icon-orderreset"></div>
-                                            </a>
-                                        </span>
-                                    </li>
-                                    <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
-                                        <span class="busy">
-                                            <div class="icon-progress-inline"></div>
-                                        </span>
-
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="groupDropdown" class="dropdown dropdown-menu" style="width: 150px">
-                        <ul>
-                            <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'milestone'); return false;">Milestone</a>
-                            </li>
-                            <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'plan'); return false;">Test
-                                    Plan</a></li>
-                            <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'day'); return false;">Day</a>
-                            </li>
-                            <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'month'); return false;">Month</a>
-                            </li>
-                            <li class="dropdown-menu-separator"></li>
-                            <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'none'); return false;">Reset
-                                    grouping</a></li>
-                        </ul>
-                    </div>
-
-                    <div id="filterBubble" class="bubble filter-bubble hidden">
-                        <div id="filterBubbleContent" class="filter-bubble-inner">
-                            <ul>
-                                <div class="form-group">
-
-                                    <div class="list-container">
+<script type="text/javascript">
+  $(document).ready(
+    function () {
+      $('#body').css('display', 'table');
+    }
+  );
+</script>
 
 
 
-                                        <div class="checkbox-list" style="height: 175px" id="statusSelection_control">
-                                            <div class="checkbox-list-inner">
-                                                <div class="checkbox-list-toolbar toolbar toolbar-compact">
-                                                    <div class="toolbar-inner text-secondary">
-                                                        Select <a class="link" href="javascript:void(0)"
-                                                            onclick="this.blur(); App.Controls.Checkboxes.checkAll('statusSelection'); return false;">All</a>
-                                                        | <a class="link" href="javascript:void(0)"
-                                                            onclick="this.blur(); App.Controls.Checkboxes.checkNone('statusSelection'); return false;">None</a>
-                                                    </div>
-                                                </div>
-                                                <div class="checkbox checkbox-list-item"
-                                                    id="statusSelection_checkbox-1">
-                                                    <label>
-                                                        <span class="checkbox-name text-ppp">Passed</span>
-                                                        <input name="statusSelection[]" id="statusSelection-1"
-                                                            type="checkbox" value="1" class="checkbox-list-input">
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox checkbox-list-item"
-                                                    id="statusSelection_checkbox-2">
-                                                    <label>
-                                                        <span class="checkbox-name text-ppp">Blocked</span>
-                                                        <input name="statusSelection[]" id="statusSelection-2"
-                                                            type="checkbox" value="2" class="checkbox-list-input">
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox checkbox-list-item"
-                                                    id="statusSelection_checkbox-3">
-                                                    <label>
-                                                        <span class="checkbox-name text-ppp">Untested</span>
-                                                        <input name="statusSelection[]" id="statusSelection-3"
-                                                            type="checkbox" value="3" class="checkbox-list-input">
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox checkbox-list-item"
-                                                    id="statusSelection_checkbox-4">
-                                                    <label>
-                                                        <span class="checkbox-name text-ppp">Retest</span>
-                                                        <input name="statusSelection[]" id="statusSelection-4"
-                                                            type="checkbox" value="4" class="checkbox-list-input">
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox checkbox-list-item"
-                                                    id="statusSelection_checkbox-5">
-                                                    <label>
-                                                        <span class="checkbox-name text-ppp">Failed</span>
-                                                        <input name="statusSelection[]" id="statusSelection-5"
-                                                            type="checkbox" value="5" class="checkbox-list-input">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <li class="dropdown-menu-separator"></li>
-                                <div class="form-group" style="margin-bottom: 0em">
-                                    <label for="milestoneSelection" class="form-label-secondary">
-                                        Milestone </label>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $.datepicker.setDefaults(
+    //     {
+    //         dateFormat: 'm/d/yy',
+    //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    //         firstDay: 0
+    //     }
+    // );
+  });
+</script>
+<div id="separator"></div>
+<div id="body-container" class="">
+  <div id="body" class="table" style="display: table;">
+    <div id="content" class="column content overflow-content">
 
 
+      <div id="content-header" class="content-header content-header-default">
+        <div class="content-header-inner">
+          <div class="content-header-result" style=""></div>
+          <div class="content-header-title page_title">
+            Todo </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $("#sites").prop("selectedIndex", 0);
+      </script>
+      <div id="content-inner" class="content-inner goals-clear">
 
-                                    <div>
-                                        <select class="searchable form-control form-control-full form-select  chzn-done"
-                                            id="milestoneSelection" name="milestoneSelection" style="display: none;">
-                                            <option value=""> &nbsp; </option>
-                                        </select>
-                                        <div id="milestoneSelection_chzn" class="chzn-container chzn-container-single"
-                                            style="width: 100%;"><a href="javascript:void(0)"
-                                                class="chzn-single"><span>&nbsp;</span>
-                                                <div><b></b></div>
-                                            </a>
-                                            <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                                                <div class="chzn-search" style=""><input type="text" autocomplete="off"
-                                                        style=""></div>
-                                                <ul class="chzn-results">
-                                                    <li id="milestoneSelection_chzn_o_0"
-                                                        class="active-result result-selected" style=""> &nbsp;
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            $('#milestone_id, #parent_id, #assignedto_id').parent().addClass('dropdown-size');
-                                        });
-                                    </script>
-                                </div>
-                                <li class="dropdown-menu-separator"></li>
-                            </ul>
-
-                            <div class="button-group select-dialog-filter-buttons">
-                                <a href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.applyFilter(1, 'run', true); return false;"
-                                    id="applyFilter" class="button button-left button-positive button-dark button-ok">
-                                    Apply Filter </a>
-                                <a href="javascript:void(0)"
-                                    onclick="this.blur(); App.Todos.cancelFilter(); return false;" id="cancelFilter"
-                                    class="button button-left button-negative button-dark button-cancel">
-                                    Cancel </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="runs" class="">
-                        <div class="empty" id="runsEmpty">
-                            <div class="empty-content empty-info" style="width: 100%">
-                                <div class="empty-title">There aren't any todos for the current filter</div>
-                                <div class="empty-body">
-                                    <p style="margin: 0">
-                                        No test runs found with todos for the current filter. You can try to <a
-                                            href="javascript:void(0)"
-                                            onclick="this.blur(); App.Todos.resetFilter(1, 'run'); return false;">reset
-                                            the filter</a>. </p>
-                                    <div id="resetFilterBusy" class="hidden">
-                                        <div class="icon-progress-inline"></div>
-                                    </div>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="cases" class="hidden">
-                    </div>
-
-                    <div id="casePagination">
-                    </div>
-
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            App.Todos.runs_by = 'none';
-                            App.Todos.runs_by_options = { "none": "None", "milestone": "Milestone", "plan": "Test Plan", "day": "Day", "month": "Month" };
-                            App.Todos.status_options = { "1": "Passed", "2": "Blocked", "3": "Untested", "4": "Retest", "5": "Failed", "6": "Unnamed 1", "7": "Unnamed 2", "8": "Unnamed 3", "9": "Unnamed 4", "10": "Unnamed 5", "11": "Unnamed 6", "12": "Unnamed 7" };
-                            App.Todos.user_ids = [1];
-                            App.Todos.status_ids = [];
-                            App.Todos.milestone_id = null;
-                            App.Todos.milestones = [];
-                            App.Todos.include_unassigned = false;
-                            let todoselected = $('#navigation-todos').closest('.header-menu-item').hasClass('header-menu-item-selected');
-                            let selectorPngDownload = '#png-download';
-                            let selectorCsvDownload = '#csv-download';
-                            let selectorsNameToClassManipulate = selectorPngDownload + ', ' + selectorCsvDownload;
-                            let toDoMarginClassName = 'margin_todo_dwnld';
-                            if ($('body').attr('class') !== 'modern') {
-                                if (todoselected) {
-                                    $(selectorsNameToClassManipulate).addClass(toDoMarginClassName);
-                                } else {
-                                    $(selectorsNameToClassManipulate).removeClass(toDoMarginClassName);
-                                }
-                            } else {
-                                $(selectorPngDownload).addClass(toDoMarginClassName);
-                                $(selectorCsvDownload).addClass(toDoMarginClassName);
-                            }
-                        });
-                    </script>
-
-                </div>
+        <div id="chart_todo_overview">
+          <div id="userChartContainer">
+            <div class="chart-icon-download-container">
+              <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left" tooltip-width="230"
+                tooltip-text="No drilldown capabilities for this chart">
+                <button id="drilldown-info"></button>
+              </div>
+              <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left" tooltip-width="170"
+                tooltip-text="Download chart as an image">
+                <button id="png-download" class="margin_todo_dwnld"></button>
+              </div>
+              <div data-html2canvas-ignore="true" class="link-tooltip" tooltip-position="left" tooltip-width="150"
+                tooltip-text="Download chart as a CSV">
+                <button id="csv-download" class="margin_todo_dwnld"></button>
+              </div>
             </div>
-            <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-            </div>
-            <div id="qpane" class="column qpane" style="width: 600px; display: none">
-                <div id="qpane-empty" class="qpane-empty hidden">
-                    <div class="qpane-empty-header">
-                        No test case selected. </div>
-                    <div class="qpane-empty-body">
-                        You can select a different group or change the filters. </div>
-                </div>
-                <div id="qpane-inner">
-                    <div id="qpaneSticky">
-                        <div id="qpane-content">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-            </div>
-            <div id="sidebar" class="column sidebar" style="width: 250px">
+          </div>
 
-                <div id="sidebar-inner" class="sidebar-inner">
-                    <div class="sidebar-h1 top">
-                        User Filter </div>
-                    <div class="form-group">
-                        <div class="list-container">
-
-
-
-                            <div class="checkbox-list" style="height: 300px" id="userSelection_control">
-                                <div class="checkbox-list-inner">
-                                    <div class="checkbox-list-toolbar toolbar toolbar-compact">
-                                        <div class="toolbar-inner text-secondary">
-                                            Select <a class="link" href="javascript:void(0)"
-                                                onclick="this.blur(); App.Todos.selectUser('userSelection', 1); return false;">Me</a>
-                                            | <a class="link" href="javascript:void(0)"
-                                                onclick="this.blur(); App.Controls.Checkboxes.checkAll('userSelection'); return false;">All</a>
-                                            | <a class="link" href="javascript:void(0)"
-                                                onclick="this.blur(); App.Controls.Checkboxes.checkNone('userSelection'); return false;">None</a>
-                                        </div>
-                                    </div>
-                                    <div class="checkbox checkbox-list-item" id="userSelection_checkbox-1">
-                                        <label>
-                                            <span class="checkbox-name text-ppp">Doan Khoa Bao</span>
-                                            <input name="userSelection[]" id="userSelection-1" type="checkbox" value="2"
-                                                class="checkbox-list-input">
-                                        </label>
-                                    </div>
-                                    <div class="checkbox checkbox-list-item" id="userSelection_checkbox-2">
-                                        <label>
-                                            <span class="checkbox-name text-ppp">Do Thanh Tu</span>
-                                            <input name="userSelection[]" id="userSelection-2" type="checkbox"
-                                                checked="checked" value="1" class="checkbox-list-input">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="button-group select-dialog-filter-buttons">
-                        <a href="javascript:void(0)"
-                            onclick="this.blur(); App.Todos.applyFilter(1, 'run', true); return false;" id="applyFilter"
-                            class="button button-left button-view" style="margin: 0">
-                            User Filter </a>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-    </div>
-
-
-    <script type="text/javascript">
-        var Consts = {};
-        Consts.ajaxBaseUrl = 'index.php?';
-        Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
-        Consts.ajaxCsrf = 'kyqRSAYnPxiKjL7HwuCW';
-        Consts.ajaxVersion = '7.5.5.2003';
-        Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.5.2003/';
-        Consts.dialogTitleError = 'Error';
-        Consts.statusFailed = 5;
-        Consts.statusRetest = 4;
-        Consts.statusBlocked = 2;
-        Consts.statusPassed = 1;
-        Consts.statusUntested = 3;
-        Consts.statusDefault = 1;
-        Consts.minWidth = 700;
-        Consts.minWidthOffset = 300;
-        Consts.minWidthVariable = 50;
-    </script>
-
-
-    <div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
-        <ul>
-            <li><a class="dropdown-menu-link" id="navigation-user-settings" href="index.php?/mysettings">
-                    My Settings</a></li>
-            <li><a class="dropdown-menu-link" id="navigation-user-logout" href="logout">Logout</a></li>
-        </ul>
-    </div>
-    <div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
-        <div class="dialog-title"></div>
-        <div class="dialog-body">
-            <p style="margin: 0" class="dialog-message"></p>
-        </div>
-        <div class="button-group dialog-buttons-highlighted">
-            <a class="button button-ok button-left button-positive dialog-action-default">
-                OK </a>
-        </div>
-    </div>
-    <div class="dialog" id="confirmDialog" style="width: 350px">
-        <div class="dialog-title">Confirmation</div>
-        <div class="dialog-body">
-            <p style="margin: 0" class="dialog-message"></p>
-        </div>
-        <div class="button-group dialog-buttons-highlighted">
-            <a class="button button-ok button-left button-positive dialog-action-default">
-                Yes </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-                No </a>
-        </div>
-    </div>
-
-    <div id="confirmDialogOkCancel" class="dialog">
-        <div class="dialog-title">Confirmation</div>
-        <div class="dialog-body">
-            <p class="dialog-message"></p>
-        </div>
-        <div class="button-group dialog-buttons-highlighted">
-            <a class="button button-ok button-left button-positive dialog-action-default">
-                OK </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-                Cancel </a>
-        </div>
-    </div>
-    <div id="tooltip" class="tooltip">
-        <div class="tooltip-pointer-up"></div>
-        <div class="tooltip-pointer-down"></div>
-        <div class="tooltip-pointer-right"></div>
-        <div class="tooltip-header"></div>
-        <p style="margin: 0"></p>
-    </div>
-    <div class="dialog" id="deleteDialog" style="width: 425px">
-        <div class="dialog-title">Confirmation</div>
-        <div class="dialog-body">
-            <p class="top bottom dialog-message"></p>
-            <p class="dialog-extra text-delete"></p>
-            <div class="message message-delete bottom delete-confirm-container"
-                style="margin-top: 12px; line-height: 1">
-                <div class="checkbox">
-                    <label>
-                        <span class="dialog-confirm"></span>
-                        <span class="dialog-confirm-busy">
-                            <div class="icon-progress-inline"></div>
-                        </span>
-                        <input type="checkbox" value="1" name="deleteCheckbox">
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="button-group dialog-buttons-highlighted">
-            <a
-                class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
-                OK </a>
-            <a
-                class="button button-left button-positive button-disabled button-hidden button-no-margin-right dialog-action-secondary">
-            </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-                Cancel </a>
-        </div>
-    </div>
-    <div class="dialog" id="dpaDialog" style="max-width: 725px">
-        <div class="dialog-title">Confirmation</div>
-        <div class="dialog-body">
-            <p class="top bottom dialog-message"></p>
-            <p class="dialog-extra text-delete"></p>
-
-            <form action="index.php?/admin/users/accept_data_processing_agreement" id="dpa_form" method="post">
-                <input type="hidden" name="_token" value="kyqRSAYnPxiKjL7HwuCW">
-                <div class="form-group">
-                    <label for="name">Please enter your full name:<span class="form-required">*</span></label>
-                    <input class="form-control " type="text" name="full_name" id="full_name" maxlength="250" value="">
-                </div>
-
-            </form>
-            <div class="message message-delete bottom delete-confirm-container"
-                style="margin-top: 12px; line-height: 1; padding-bottom: 50px">
-                <div class="checkbox">
-                    <label>
-                        <span class="dialog-confirm"></span>
-                        <input type="checkbox" value="1" name="deleteCheckbox">
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="button-group dialog-buttons-highlighted">
-            <a
-                class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
-                Submit </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-                Cancel </a>
-        </div>
-    </div>
-    <div class="dialog" id="trEnterpriseDialog" style="width: 350px; word-wrap: break-word">
-        <div class="dialog-title"></div>
-        <form action="index.php?/mysettings/tr_enterprise_banner_setting" id="tr_enterprise_form" method="post">
-            <input type="hidden" name="_token" value="kyqRSAYnPxiKjL7HwuCW">
-            <div class="dialog-body">
-                <p style="margin: 0" class="dialog-message"></p>
-                <div class="form-group">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" class="radio" name="tr_enterprise_banner_display" value="0" checked="">
-                            Remove for this Session </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" class="radio" name="tr_enterprise_banner_display" value="1">
-                            Remove forever </label>
-                    </div>
-                </div>
-            </div>
-            <div class="button-group dialog-buttons-highlighted">
-                <input type="submit" value="Submit"
-                    class="button button-ok button-left button-positive dialog-action-default">
-                <a class="button button-cancel button-left button-negative dialog-action-close">
-                    Cancel </a>
-            </div>
-        </form>
-    </div>
-
-    <div class="dialog" id="deleteEntityAttachmentDialog" style="width: 425px">
-        <div class="dialog-title">Confirmation</div>
-        <div class="dialog-body">
-            <p class="top bottom dialog-message"></p>
-            <p class="dialog-extra text-delete"></p>
-            <div class="message message-delete bottom delete-confirm-container"
-                style="margin-top: 12px; line-height: 1">
-                <div class="checkbox">
-                    <label>
-                        <span class="dialog-confirm">Don’t show me this again</span>
-                        <input id="deleteDontShowAgain" type="checkbox" value="1" name="deleteCheckbox">
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="button-group dialog-buttons-highlighted">
-            <a
-                class="button button-ok button-left button-positive dialog-action-default delete-entity-attachment-button-submit">
-                Delete </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-                Cancel </a>
-        </div>
-    </div>
-
-    <script>
-        $(function () {
-            $(document).delegate('.dialog-buttons-highlighted .delete-entity-attachment-button-submit', 'click', function (evt) {
-                App.Attachments.dontShowEntityDeleteDialog = $('#deleteDontShowAgain').prop('checked');
-                App.Ajax.call({
-                    target: '/mysettings/ajax_delete_entity_attachment_setting',
-                    arguments: {
-                        dont_show: $('#deleteDontShowAgain').prop('checked')
+          <script type="text/javascript">
+            $(function () {
+              $(document).ready(function () {
+                App.Charts.activity = new FusionCharts({
+                  type: 'stackedbar2d',
+                  renderAt: 'userChart',
+                  width: '100%',
+                  height: '100%',
+                  dataFormat: 'json',
+                  dataSource: {
+                    chart: {
+                      theme: 'fusion',
+                      maxBarHeight: '12',
+                      baseFont: 'Barlow',
+                      baseFontSize: '14',
+                      labelFontColor: '#4D4D4D',
+                      paletteColors: '#7CB5EC',
+                      plottooltext: '$seriesname: <strong>$value</strong>',
+                      showTooltipShadow: '1',
+                      showLegend: '0',
+                      canvasPadding: '0',
+                      canvasBottomMargin: '0',
+                      chartBottomMargin: '0',
+                      yAxisValuesPadding: 7,
+                      exportEnabled: '1',
+                      exportshowmenuitem: '0'
                     },
-                    error: function error(data) {
-                        App.Ajax.handleError(data);
-                    }
+                    categories: [{
+                      category: []
+                    }],
+                    dataset: [{ "seriesname": "Active", "data": [], "color": "#7cb5ec" }, { "seriesname": "Upcoming", "data": [], "color": "#96c6f5" }, { "seriesname": "Completion Pending", "data": [], "color": "#abd5fe" }]
+                  }
+                }).render();
+                $('#csv-download').click(function () {
+                  App.Charts.activity.exportChart({
+                    exportFormat: 'csv',
+                    exportFileName: 'TestRail-todos-1-20221025125528'
+                  });
                 });
-            });
-        });
-    </script>
-
-
-    <div id="helpDropdown" class="dropdown dropdown-menu help-menu" rel="helpMenu" style="width: 175px">
-        <ul>
-            <li>
-                <a class="dropdown-menu-link" target="_blank"
-                    href="https://www.gurock.com/testrail/docs/user-guide/getting-started">
-                    TestRail User Guide </a>
-            </li>
-            <li>
-                <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/support">
-                    Support &amp; Videos </a>
-            </li>
-            <li>
-                <a class="dropdown-menu-link" target="_blank" href="http://forum.gurock.com/">
-                    Community Forum </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li>
-                <a class="dropdown-menu-link" target="_blank"
-                    href="https://www.gurock.com/testrail/docs/user-guide/howto/keyboard-shortcuts-hotkeys">
-                    Keyboard Shortcuts </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li>
-                <a class="dropdown-menu-link" target="_blank" href="http://blog.gurock.com/">
-                    Gurock Blog </a>
-            </li>
-            <li>
-                <a class="dropdown-menu-link" target="_blank" href="http://twitter.com/testrail">
-                    TestRail on Twitter </a>
-            </li>
-            <li>
-                <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/">
-                    TestRail on the Web </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li>
-                <a class="dropdown-menu-link dropdown-menu-link-highlighted" target="_blank"
-                    href="https://secure.gurock.com/customers/testrail/newsletter?email=baodkse140180@fpt.edu.vn">
-                    Subscribe to Newsletter </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li>
-                <a class="dropdown-menu-link" href="javascript:void(0)"
-                    onclick="this.blur(); App.Help.showAbout(); return false;">
-                    About TestRail </a>
-            </li>
-        </ul>
-    </div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#bannerLink').bubble({
-                bubble: '#enterpriseBubble',
-                inContainer: true
-            });
-            $('#content').on('change', 'input:checkbox[name="entity_run"]', function () {
-                delselectAll(this, 'run')
-            });
-            $('#content').on('change', 'input:checkbox[name="entity_milestones"]', function () {
-                delselectAll(this, 'milestones')
-            });
-        });
-        function delselectAll(type, entity) {
-            let parent = $(type).data('option');
-            if (parent === undefined) {
-                $('input:checkbox[name=select_all]').each(function () {
-                    let select = $(this).parent().closest('div').attr('id');
-                    if ($('#' + select).find(type).length > 0) {
-                        parent = select;
-                    }
+                $('#png-download').click(function () {
+                  App.Charts.activity.exportChart({
+                    exportFormat: 'png',
+                    exportFileName: 'TestRail-todos-1-20221025125528'
+                  });
                 });
+              });
+            });
+          </script>
+        </div>
+
+        <div class="message message-info text-soft notodos" style="margin: 0px 0 20px 0">
+          <strong>The following users have no todos:</strong>
+          Doan B.
+        </div>
+
+
+        <h1 style="margin-top: 15px">
+          Test Runs
+        </h1>
+
+        <div id="contentSticky" style="margin-bottom: 1.5em">
+          <div class="toolbar" id="contentToolbar">
+            <div class="toolbar-inner">
+              <ul class="toolbar-menu text-ppp">
+                <li id="groupBy" class="toolbar-menu-item toolbar-menu-item-first">
+                  Group by: <a href="#groupDropdown" class="link link-dashed dropdownLink" id="groupByChange"><span
+                      id="groupByEmpty" class="">None</span><span id="groupByName"
+                      class="hidden toolbar-highlighted">None</span></a>
+                  <span class="busy">
+                    <div class="icon-progress-inline"></div>
+                  </span>
+                  <span id="groupByAsc" class="hidden">
+                    <div class="icon-asc"></div>
+                  </span>
+                  <span id="groupByDesc" class="hidden">
+                    <div class="icon-desc"></div>
+                  </span>
+                  <span id="groupByReset" class="hidden">
+                    <a href="javascript:void(0)"
+                      onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'none'); return false;" class="link-tooltip"
+                      tooltip-text="Reset grouping">
+                      <div class="icon-orderreset"></div>
+                    </a>
+                  </span>
+                </li>
+                <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
+                  <span class="busy">
+                    <div class="icon-progress-inline"></div>
+                  </span>
+                </li>
+
+                <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-first">
+                  Filter: <a href="#filterBubble" class="link link-dashed dropdownLink" id="filterByChange"><span
+                      id="filterByEmpty" class="">None</span><span id="filterByName"
+                      class="hidden toolbar-highlighted">none</span></a>
+                  <span class="busy">
+                    <div class="icon-progress-inline"></div>
+                  </span>
+                  <span id="filterReset" class="hidden">
+                    <a href="javascript:void(0)" onclick="this.blur(); App.Todos.resetFilter(1, 'run'); return false;"
+                      class="link-tooltip" tooltip-text="Reset filter to default.">
+                      <div class="icon-orderreset"></div>
+                    </a>
+                  </span>
+                </li>
+                <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
+                  <span class="busy">
+                    <div class="icon-progress-inline"></div>
+                  </span>
+
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="groupDropdown" class="dropdown dropdown-menu" style="width: 150px">
+          <ul>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'milestone'); return false;">Milestone</a>
+            </li>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'plan'); return false;">Test
+                Plan</a></li>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'day'); return false;">Day</a>
+            </li>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'month'); return false;">Month</a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Todos.regroupRuns(1, 'run', 'none'); return false;">Reset
+                grouping</a></li>
+          </ul>
+        </div>
+
+        <div id="filterBubble" class="bubble filter-bubble hidden">
+          <div id="filterBubbleContent" class="filter-bubble-inner">
+            <ul>
+              <div class="form-group">
+
+                <div class="list-container">
+
+
+
+                  <div class="checkbox-list" style="height: 175px" id="statusSelection_control">
+                    <div class="checkbox-list-inner">
+                      <div class="checkbox-list-toolbar toolbar toolbar-compact">
+                        <div class="toolbar-inner text-secondary">
+                          Select <a class="link" href="javascript:void(0)"
+                            onclick="this.blur(); App.Controls.Checkboxes.checkAll('statusSelection'); return false;">All</a>
+                          | <a class="link" href="javascript:void(0)"
+                            onclick="this.blur(); App.Controls.Checkboxes.checkNone('statusSelection'); return false;">None</a>
+                        </div>
+                      </div>
+                      <div class="checkbox checkbox-list-item" id="statusSelection_checkbox-1">
+                        <label>
+                          <span class="checkbox-name text-ppp">Passed</span>
+                          <input name="statusSelection[]" id="statusSelection-1" type="checkbox" value="1"
+                            class="checkbox-list-input">
+                        </label>
+                      </div>
+                      <div class="checkbox checkbox-list-item" id="statusSelection_checkbox-2">
+                        <label>
+                          <span class="checkbox-name text-ppp">Blocked</span>
+                          <input name="statusSelection[]" id="statusSelection-2" type="checkbox" value="2"
+                            class="checkbox-list-input">
+                        </label>
+                      </div>
+                      <div class="checkbox checkbox-list-item" id="statusSelection_checkbox-3">
+                        <label>
+                          <span class="checkbox-name text-ppp">Untested</span>
+                          <input name="statusSelection[]" id="statusSelection-3" type="checkbox" value="3"
+                            class="checkbox-list-input">
+                        </label>
+                      </div>
+                      <div class="checkbox checkbox-list-item" id="statusSelection_checkbox-4">
+                        <label>
+                          <span class="checkbox-name text-ppp">Retest</span>
+                          <input name="statusSelection[]" id="statusSelection-4" type="checkbox" value="4"
+                            class="checkbox-list-input">
+                        </label>
+                      </div>
+                      <div class="checkbox checkbox-list-item" id="statusSelection_checkbox-5">
+                        <label>
+                          <span class="checkbox-name text-ppp">Failed</span>
+                          <input name="statusSelection[]" id="statusSelection-5" type="checkbox" value="5"
+                            class="checkbox-list-input">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <li class="dropdown-menu-separator"></li>
+              <div class="form-group" style="margin-bottom: 0em">
+                <label for="milestoneSelection" class="form-label-secondary">
+                  Milestone </label>
+
+
+
+                <div>
+                  <select class="searchable form-control form-control-full form-select  chzn-done"
+                    id="milestoneSelection" name="milestoneSelection" style="display: none;">
+                    <option value=""> &nbsp; </option>
+                  </select>
+                  <div id="milestoneSelection_chzn" class="chzn-container chzn-container-single" style="width: 100%;"><a
+                      href="javascript:void(0)" class="chzn-single"><span>&nbsp;</span>
+                      <div><b></b></div>
+                    </a>
+                    <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
+                      <div class="chzn-search" style=""><input type="text" autocomplete="off" style=""></div>
+                      <ul class="chzn-results">
+                        <li id="milestoneSelection_chzn_o_0" class="active-result result-selected" style=""> &nbsp;
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <script type="text/javascript">
+                  $(document).ready(function () {
+                    $('#milestone_id, #parent_id, #assignedto_id').parent().addClass('dropdown-size');
+                  });
+                </script>
+              </div>
+              <li class="dropdown-menu-separator"></li>
+            </ul>
+
+            <div class="button-group select-dialog-filter-buttons">
+              <a href="javascript:void(0)" onclick="this.blur(); App.Todos.applyFilter(1, 'run', true); return false;"
+                id="applyFilter" class="button button-left button-positive button-dark button-ok">
+                Apply Filter </a>
+              <a href="javascript:void(0)" onclick="this.blur(); App.Todos.cancelFilter(); return false;"
+                id="cancelFilter" class="button button-left button-negative button-dark button-cancel">
+                Cancel </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="runs" class="">
+          <div class="empty" id="runsEmpty">
+            <div class="empty-content empty-info" style="width: 100%">
+              <div class="empty-title">There aren't any todos for the current filter</div>
+              <div class="empty-body">
+                <p style="margin: 0">
+                  No test runs found with todos for the current filter. You can try to <a href="javascript:void(0)"
+                    onclick="this.blur(); App.Todos.resetFilter(1, 'run'); return false;">reset
+                    the filter</a>. </p>
+                <div id="resetFilterBusy" class="hidden">
+                  <div class="icon-progress-inline"></div>
+                </div>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cases" class="hidden">
+        </div>
+
+        <div id="casePagination">
+        </div>
+
+        <script type="text/javascript">
+          $(document).ready(function () {
+            App.Todos.runs_by = 'none';
+            App.Todos.runs_by_options = { "none": "None", "milestone": "Milestone", "plan": "Test Plan", "day": "Day", "month": "Month" };
+            App.Todos.status_options = { "1": "Passed", "2": "Blocked", "3": "Untested", "4": "Retest", "5": "Failed", "6": "Unnamed 1", "7": "Unnamed 2", "8": "Unnamed 3", "9": "Unnamed 4", "10": "Unnamed 5", "11": "Unnamed 6", "12": "Unnamed 7" };
+            App.Todos.user_ids = [1];
+            App.Todos.status_ids = [];
+            App.Todos.milestone_id = null;
+            App.Todos.milestones = [];
+            App.Todos.include_unassigned = false;
+            let todoselected = $('#navigation-todos').closest('.header-menu-item').hasClass('header-menu-item-selected');
+            let selectorPngDownload = '#png-download';
+            let selectorCsvDownload = '#csv-download';
+            let selectorsNameToClassManipulate = selectorPngDownload + ', ' + selectorCsvDownload;
+            let toDoMarginClassName = 'margin_todo_dwnld';
+            if ($('body').attr('class') !== 'modern') {
+              if (todoselected) {
+                $(selectorsNameToClassManipulate).addClass(toDoMarginClassName);
+              } else {
+                $(selectorsNameToClassManipulate).removeClass(toDoMarginClassName);
+              }
+            } else {
+              $(selectorPngDownload).addClass(toDoMarginClassName);
+              $(selectorCsvDownload).addClass(toDoMarginClassName);
             }
-            let selector = '#' + parent;
-            $(selector)
-                .find('input:checkbox[name="select_all"]')
-                .prop(
-                    'checked',
-                    $(selector + ' input:checked[name="entity_' + entity + '"]').length ===
-                    $(selector + ' input:checkbox[name="entity_' + entity + '"]').length
-                );
-            $('#delete-' + entity).css(
-                'display',
-                $('input:checked[name="entity_' + entity + '"]').length > 0
-                    ? 'block'
-                    : 'none'
-            );
+          });
+        </script>
+
+      </div>
+    </div>
+    <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
+    </div>
+    <div id="qpane" class="column qpane" style="width: 600px; display: none">
+      <div id="qpane-empty" class="qpane-empty hidden">
+        <div class="qpane-empty-header">
+          No test case selected. </div>
+        <div class="qpane-empty-body">
+          You can select a different group or change the filters. </div>
+      </div>
+      <div id="qpane-inner">
+        <div id="qpaneSticky">
+          <div id="qpane-content">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+    </div>
+    <div id="sidebar" class="column sidebar" style="width: 250px">
+
+      <div id="sidebar-inner" class="sidebar-inner">
+        <div class="sidebar-h1 top">
+          User Filter </div>
+        <div class="form-group">
+          <div class="list-container">
+
+
+
+            <div class="checkbox-list" style="height: 300px" id="userSelection_control">
+              <div class="checkbox-list-inner">
+                <div class="checkbox-list-toolbar toolbar toolbar-compact">
+                  <div class="toolbar-inner text-secondary">
+                    Select <a class="link" href="javascript:void(0)"
+                      onclick="this.blur(); App.Todos.selectUser('userSelection', 1); return false;">Me</a>
+                    | <a class="link" href="javascript:void(0)"
+                      onclick="this.blur(); App.Controls.Checkboxes.checkAll('userSelection'); return false;">All</a>
+                    | <a class="link" href="javascript:void(0)"
+                      onclick="this.blur(); App.Controls.Checkboxes.checkNone('userSelection'); return false;">None</a>
+                  </div>
+                </div>
+                <div class="checkbox checkbox-list-item" id="userSelection_checkbox-1">
+                  <label>
+                    <span class="checkbox-name text-ppp">Doan Khoa Bao</span>
+                    <input name="userSelection[]" id="userSelection-1" type="checkbox" value="2"
+                      class="checkbox-list-input">
+                  </label>
+                </div>
+                <div class="checkbox checkbox-list-item" id="userSelection_checkbox-2">
+                  <label>
+                    <span class="checkbox-name text-ppp">Do Thanh Tu</span>
+                    <input name="userSelection[]" id="userSelection-2" type="checkbox" checked="checked" value="1"
+                      class="checkbox-list-input">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-group select-dialog-filter-buttons">
+          <a href="javascript:void(0)" onclick="this.blur(); App.Todos.applyFilter(1, 'run', true); return false;"
+            id="applyFilter" class="button button-left button-view" style="margin: 0">
+            User Filter </a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+  var Consts = {};
+  Consts.ajaxBaseUrl = 'index.php?';
+  Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
+  Consts.ajaxCsrf = 'kyqRSAYnPxiKjL7HwuCW';
+  Consts.ajaxVersion = '7.5.5.2003';
+  Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.5.2003/';
+  Consts.dialogTitleError = 'Error';
+  Consts.statusFailed = 5;
+  Consts.statusRetest = 4;
+  Consts.statusBlocked = 2;
+  Consts.statusPassed = 1;
+  Consts.statusUntested = 3;
+  Consts.statusDefault = 1;
+  Consts.minWidth = 700;
+  Consts.minWidthOffset = 300;
+  Consts.minWidthVariable = 50;
+</script>
+
+
+<div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
+  <ul>
+    <li><a class="dropdown-menu-link" id="navigation-user-settings" href="index.php?/mysettings">
+        My Settings</a></li>
+    <li><a class="dropdown-menu-link" id="navigation-user-logout" href="logout">Logout</a></li>
+  </ul>
+</div>
+<div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
+  <div class="dialog-title"></div>
+  <div class="dialog-body">
+    <p style="margin: 0" class="dialog-message"></p>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-left button-positive dialog-action-default">
+      OK </a>
+  </div>
+</div>
+<div class="dialog" id="confirmDialog" style="width: 350px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p style="margin: 0" class="dialog-message"></p>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-left button-positive dialog-action-default">
+      Yes </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      No </a>
+  </div>
+</div>
+
+<div id="confirmDialogOkCancel" class="dialog">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="dialog-message"></p>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-left button-positive dialog-action-default">
+      OK </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+<div id="tooltip" class="tooltip">
+  <div class="tooltip-pointer-up"></div>
+  <div class="tooltip-pointer-down"></div>
+  <div class="tooltip-pointer-right"></div>
+  <div class="tooltip-header"></div>
+  <p style="margin: 0"></p>
+</div>
+<div class="dialog" id="deleteDialog" style="width: 425px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="top bottom dialog-message"></p>
+    <p class="dialog-extra text-delete"></p>
+    <div class="message message-delete bottom delete-confirm-container" style="margin-top: 12px; line-height: 1">
+      <div class="checkbox">
+        <label>
+          <span class="dialog-confirm"></span>
+          <span class="dialog-confirm-busy">
+            <div class="icon-progress-inline"></div>
+          </span>
+          <input type="checkbox" value="1" name="deleteCheckbox">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
+      OK </a>
+    <a
+      class="button button-left button-positive button-disabled button-hidden button-no-margin-right dialog-action-secondary">
+    </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+<div class="dialog" id="dpaDialog" style="max-width: 725px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="top bottom dialog-message"></p>
+    <p class="dialog-extra text-delete"></p>
+
+    <form action="index.php?/admin/users/accept_data_processing_agreement" id="dpa_form" method="post">
+      <input type="hidden" name="_token" value="kyqRSAYnPxiKjL7HwuCW">
+      <div class="form-group">
+        <label for="name">Please enter your full name:<span class="form-required">*</span></label>
+        <input class="form-control " type="text" name="full_name" id="full_name" maxlength="250" value="">
+      </div>
+
+    </form>
+    <div class="message message-delete bottom delete-confirm-container"
+      style="margin-top: 12px; line-height: 1; padding-bottom: 50px">
+      <div class="checkbox">
+        <label>
+          <span class="dialog-confirm"></span>
+          <input type="checkbox" value="1" name="deleteCheckbox">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
+      Submit </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+<div class="dialog" id="trEnterpriseDialog" style="width: 350px; word-wrap: break-word">
+  <div class="dialog-title"></div>
+  <form action="index.php?/mysettings/tr_enterprise_banner_setting" id="tr_enterprise_form" method="post">
+    <input type="hidden" name="_token" value="kyqRSAYnPxiKjL7HwuCW">
+    <div class="dialog-body">
+      <p style="margin: 0" class="dialog-message"></p>
+      <div class="form-group">
+        <div class="radio">
+          <label>
+            <input type="radio" class="radio" name="tr_enterprise_banner_display" value="0" checked="">
+            Remove for this Session </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" class="radio" name="tr_enterprise_banner_display" value="1">
+            Remove forever </label>
+        </div>
+      </div>
+    </div>
+    <div class="button-group dialog-buttons-highlighted">
+      <input type="submit" value="Submit" class="button button-ok button-left button-positive dialog-action-default">
+      <a class="button button-cancel button-left button-negative dialog-action-close">
+        Cancel </a>
+    </div>
+  </form>
+</div>
+
+<div class="dialog" id="deleteEntityAttachmentDialog" style="width: 425px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="top bottom dialog-message"></p>
+    <p class="dialog-extra text-delete"></p>
+    <div class="message message-delete bottom delete-confirm-container" style="margin-top: 12px; line-height: 1">
+      <div class="checkbox">
+        <label>
+          <span class="dialog-confirm">Don’t show me this again</span>
+          <input id="deleteDontShowAgain" type="checkbox" value="1" name="deleteCheckbox">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a
+      class="button button-ok button-left button-positive dialog-action-default delete-entity-attachment-button-submit">
+      Delete </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $(document).delegate('.dialog-buttons-highlighted .delete-entity-attachment-button-submit', 'click', function (evt) {
+      App.Attachments.dontShowEntityDeleteDialog = $('#deleteDontShowAgain').prop('checked');
+      App.Ajax.call({
+        target: '/mysettings/ajax_delete_entity_attachment_setting',
+        arguments: {
+          dont_show: $('#deleteDontShowAgain').prop('checked')
+        },
+        error: function error(data) {
+          App.Ajax.handleError(data);
         }
+      });
+    });
+  });
+</script>
 
-        function SelectAllEntity(type) {
-            let parent = $(type).parent().closest('div').attr('id');
-            let checked_status = $(type).is(':checked');
-            $('#' + parent).find('input[type=checkbox]')
-                .attr('data-option', parent)
-                .not(':disabled')
-                .prop(
-                    'checked',
-                    checked_status
-                );
-            let selector = $('#' + parent).find('input:checkbox[name="entity_milestones"]').length
-                ? 'milestones'
-                : 'run';
-            $('#delete-' + selector).css(
-                'display',
-                checked_status && $('input:checked[name="entity_' + selector + '"]').length
-                    ? 'block'
-                    : 'none'
-            );
+
+<div id="helpDropdown" class="dropdown dropdown-menu help-menu" rel="helpMenu" style="width: 175px">
+  <ul>
+    <li>
+      <a class="dropdown-menu-link" target="_blank"
+        href="https://www.gurock.com/testrail/docs/user-guide/getting-started">
+        TestRail User Guide </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/support">
+        Support &amp; Videos </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://forum.gurock.com/">
+        Community Forum </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank"
+        href="https://www.gurock.com/testrail/docs/user-guide/howto/keyboard-shortcuts-hotkeys">
+        Keyboard Shortcuts </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://blog.gurock.com/">
+        Gurock Blog </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://twitter.com/testrail">
+        TestRail on Twitter </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/">
+        TestRail on the Web </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link dropdown-menu-link-highlighted" target="_blank"
+        href="https://secure.gurock.com/customers/testrail/newsletter?email=baodkse140180@fpt.edu.vn">
+        Subscribe to Newsletter </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" href="javascript:void(0)"
+        onclick="this.blur(); App.Help.showAbout(); return false;">
+        About TestRail </a>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#bannerLink').bubble({
+      bubble: '#enterpriseBubble',
+      inContainer: true
+    });
+    $('#content').on('change', 'input:checkbox[name="entity_run"]', function () {
+      delselectAll(this, 'run')
+    });
+    $('#content').on('change', 'input:checkbox[name="entity_milestones"]', function () {
+      delselectAll(this, 'milestones')
+    });
+  });
+  function delselectAll(type, entity) {
+    let parent = $(type).data('option');
+    if (parent === undefined) {
+      $('input:checkbox[name=select_all]').each(function () {
+        let select = $(this).parent().closest('div').attr('id');
+        if ($('#' + select).find(type).length > 0) {
+          parent = select;
         }
-    </script>
+      });
+    }
+    let selector = '#' + parent;
+    $(selector)
+      .find('input:checkbox[name="select_all"]')
+      .prop(
+        'checked',
+        $(selector + ' input:checked[name="entity_' + entity + '"]').length ===
+        $(selector + ' input:checkbox[name="entity_' + entity + '"]').length
+      );
+    $('#delete-' + entity).css(
+      'display',
+      $('input:checked[name="entity_' + entity + '"]').length > 0
+        ? 'block'
+        : 'none'
+    );
+  }
+
+  function SelectAllEntity(type) {
+    let parent = $(type).parent().closest('div').attr('id');
+    let checked_status = $(type).is(':checked');
+    $('#' + parent).find('input[type=checkbox]')
+      .attr('data-option', parent)
+      .not(':disabled')
+      .prop(
+        'checked',
+        checked_status
+      );
+    let selector = $('#' + parent).find('input:checkbox[name="entity_milestones"]').length
+      ? 'milestones'
+      : 'run';
+    $('#delete-' + selector).css(
+      'display',
+      checked_status && $('input:checked[name="entity_' + selector + '"]').length
+        ? 'block'
+        : 'none'
+    );
+  }
+</script>
 
 
 
 
 
-    <div id="projectGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">1/6</span>
-            Create a Project
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Welcome! Start by creating your first project. Projects in TestRail usually represent
-                a product or software project and serve as organizational unit for cases, results and
-                milestones. You can create as many projects as you like.</p>
-            <div class="tooltip-goal-image goal-project-help"></div>
-        </div>
+<div id="projectGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">1/6</span>
+    Create a Project
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Welcome! Start by creating your first project. Projects in TestRail usually represent
+      a product or software project and serve as organizational unit for cases, results and
+      milestones. You can create as many projects as you like.</p>
+    <div class="tooltip-goal-image goal-project-help"></div>
+  </div>
+</div>
+<div id="casesGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">2/6</span>
+    Add Test Cases
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test.
+      They often contain a description, a list of steps and expected results. Cases are organized in
+      sections to make it easy to group related cases together.</p>
+    <div class="tooltip-goal-image goal-cases-help"></div>
+  </div>
+</div>
+<div id="runGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">3/6</span>
+    Start a Test Run
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
+      multiple test runs over time and reuse your test cases across runs. A test run has a status and
+      you can easily follow its progress and test activity.</p>
+    <div class="tooltip-goal-image goal-run-help"></div>
+  </div>
+</div>
+<div id="resultsGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">4/6</span>
+    Add Test Results
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Once you've added a test run, you can start testing and record results. A result has
+      a status such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different
+      colors. Adding results contributes to the overall status and progress of the test run.</p>
+    <div class="tooltip-goal-image goal-results-help"></div>
+  </div>
+</div>
+<div id="usersGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">5/6</span>
+    Invite Team Members
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">TestRail is especially useful when used with a team. Invite other team members and
+      build your test case repository, assign test runs and record results together. Easily track the
+      workload and progress from the Todo tab for your entire team.</p>
+    <div class="tooltip-goal-image goal-users-help"></div>
+  </div>
+</div>
+
+
+<div id="integrationGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">6/6</span>
+    Set up Integration
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Integrate TestRail with your issue/bug tracker (such as JIRA, Redmine &amp; more),
+      requirement tool and test automation. Start by configuring your issue integration to collaborate
+      with your dev team, run coverage reports and link issues to results.</p>
+    <div class="tooltip-goal-image goal-integration-help"></div>
+    <div class="checkbox" style="margin-top: 1em">
+      <label>
+        I don't plan to integrate TestRail with other tools for now <input type="checkbox" id="integrationGoalToggle">
+      </label>
     </div>
-    <div id="casesGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">2/6</span>
-            Add Test Cases
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test.
-                They often contain a description, a list of steps and expected results. Cases are organized in
-                sections to make it easy to group related cases together.</p>
-            <div class="tooltip-goal-image goal-cases-help"></div>
-        </div>
-    </div>
-    <div id="runGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">3/6</span>
-            Start a Test Run
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
-                multiple test runs over time and reuse your test cases across runs. A test run has a status and
-                you can easily follow its progress and test activity.</p>
-            <div class="tooltip-goal-image goal-run-help"></div>
-        </div>
-    </div>
-    <div id="resultsGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">4/6</span>
-            Add Test Results
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Once you've added a test run, you can start testing and record results. A result has
-                a status such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different
-                colors. Adding results contributes to the overall status and progress of the test run.</p>
-            <div class="tooltip-goal-image goal-results-help"></div>
-        </div>
-    </div>
-    <div id="usersGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">5/6</span>
-            Invite Team Members
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">TestRail is especially useful when used with a team. Invite other team members and
-                build your test case repository, assign test runs and record results together. Easily track the
-                workload and progress from the Todo tab for your entire team.</p>
-            <div class="tooltip-goal-image goal-users-help"></div>
-        </div>
-    </div>
+  </div>
+</div>
 
+<script type="text/javascript">
+  $(document).ready(
+    function () {
+      $('#integrationGoalToggle').unbind('click').click(
+        function () {
+          App.Users.setGoal(6, this.checked);
+        }
+      );
+    }
+  );
+</script>
 
-    <div id="integrationGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">6/6</span>
-            Set up Integration
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Integrate TestRail with your issue/bug tracker (such as JIRA, Redmine &amp; more),
-                requirement tool and test automation. Start by configuring your issue integration to collaborate
-                with your dev team, run coverage reports and link issues to results.</p>
-            <div class="tooltip-goal-image goal-integration-help"></div>
-            <div class="checkbox" style="margin-top: 1em">
-                <label>
-                    I don't plan to integrate TestRail with other tools for now <input type="checkbox"
-                        id="integrationGoalToggle">
-                </label>
-            </div>
-        </div>
+<div id="goals" class="goals">
+  <div id="goals-banner" class="goals-banner ">
+    <span id="goals-cancel" class="goals-cancel hidden">
+      <a class="link-noline nolink" href="javascript:void(0)"
+        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        <div class="icon-cancel"></div>
+      </a>
+    </span>
+    <div class="goals-banner-inner">
+      <ol class="goals-progress">
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Create a project</span>
+          <div class="goals-progress-marker link-tooltip goal-project-checked" tooltip-id="#projectGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Add cases</span>
+          <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Start a run</span>
+          <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step ">
+          <span class="goals-progress-title">Add results</span>
+          <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Invite users</span>
+          <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step ">
+          <span class="goals-progress-title">Set up integration</span>
+          <div class="goals-progress-marker link-tooltip goal-integration" tooltip-id="#integrationGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+      </ol>
     </div>
+    <div id="goals-start" class="goals-start hidden">
+      <div class="goal-start"></div>
+    </div>
+    <div id="goals-finish" class="goals-finish hidden">
+      <div class="goal-finish"></div>
+    </div>
+    <div id="goals-next" class="goals-next hidden">
+      <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
+      <map name="goalsNextMap">
+        <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
+          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+        <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
+        <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
+        <area shape="rect" coords="496,305,686,339" target="_blank"
+          href="http://www.gurock.com/testrail/videos/introduction-projects/">
+      </map>
+    </div>
+  </div>
+</div>
 
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                $('#integrationGoalToggle').unbind('click').click(
-                    function () {
-                        App.Users.setGoal(6, this.checked);
-                    }
-                );
-            }
+<script type="text/javascript">
+  $(document).ready(
+    function () {
+      var timer = null;
+      $('#goals').unbind('mouseenter').bind('mouseenter', function () {
+        timer = setTimeout(
+          function () {
+            $('#goals-cancel').fadeTo(250, 1);
+          },
+          2500
         );
-    </script>
-
-    <div id="goals" class="goals">
-        <div id="goals-banner" class="goals-banner ">
-            <span id="goals-cancel" class="goals-cancel hidden">
-                <a class="link-noline nolink" href="javascript:void(0)"
-                    onclick="this.blur(); App.Users.hideGoals(false); return false;">
-                    <div class="icon-cancel"></div>
-                </a>
-            </span>
-            <div class="goals-banner-inner">
-                <ol class="goals-progress">
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Create a project</span>
-                        <div class="goals-progress-marker link-tooltip goal-project-checked"
-                            tooltip-id="#projectGoalHelp" tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Add cases</span>
-                        <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Start a run</span>
-                        <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step ">
-                        <span class="goals-progress-title">Add results</span>
-                        <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Invite users</span>
-                        <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step ">
-                        <span class="goals-progress-title">Set up integration</span>
-                        <div class="goals-progress-marker link-tooltip goal-integration"
-                            tooltip-id="#integrationGoalHelp" tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                </ol>
-            </div>
-            <div id="goals-start" class="goals-start hidden">
-                <div class="goal-start"></div>
-            </div>
-            <div id="goals-finish" class="goals-finish hidden">
-                <div class="goal-finish"></div>
-            </div>
-            <div id="goals-next" class="goals-next hidden">
-                <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap"
-                    class="goal-next">
-                <map name="goalsNextMap">
-                    <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
-                        onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
-                    <area shape="rect" coords="64,305,254,339" target="_blank"
-                        href="http://www.gurock.com/testrail/support">
-                    <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
-                    <area shape="rect" coords="496,305,686,339" target="_blank"
-                        href="http://www.gurock.com/testrail/videos/introduction-projects/">
-                </map>
-            </div>
-        </div>
+      });
+      $('#goals').unbind('mouseleave').bind('mouseleave', function () {
+        $('#goals-cancel').hide();
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      });
+    }
+  );
+</script>
+<div class="dialog dialog_attachment" id="attachmentInfoDialog" style="width: 900px; height: 531px;"></div>
+<div id="newAttachmentTemplate" style="display: none;">
+  <div style="width: 150px; height: 150px; "
+    class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
+    id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
+    title="attachment_name">
+    <div class="attachment-icon" style=""></div>
+    <div class="attachment-name">
+      attachment_truncated_name
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                var timer = null;
-                $('#goals').unbind('mouseenter').bind('mouseenter', function () {
-                    timer = setTimeout(
-                        function () {
-                            $('#goals-cancel').fadeTo(250, 1);
-                        },
-                        2500
-                    );
-                });
-                $('#goals').unbind('mouseleave').bind('mouseleave', function () {
-                    $('#goals-cancel').hide();
-                    if (timer) {
-                        clearTimeout(timer);
-                        timer = null;
-                    }
-                });
-            }
-        );
-    </script>
-    <div class="dialog dialog_attachment" id="attachmentInfoDialog" style="width: 900px; height: 531px;"></div>
-    <div id="newAttachmentTemplate" style="display: none;">
-        <div style="width: 150px; height: 150px; attachment_thumbnail"
-            class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-            id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
-            title="attachment_name">
-            <div class="attachment-icon" style="attachment_icon_style"></div>
-            <div class="attachment-name">
-                attachment_truncated_name
-            </div>
-            <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror"
-                class="hidden-image">
-            <div class="attachment-selection attachment_selected_class"
-                onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
-        </div>
-    </div>
-    <!-- <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
+    <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
+    <div class="attachment-selection attachment_selected_class"
+      onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
+  </div>
+</div>
+<!-- <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
         <div id="element_id" class="attachment-library-add">
             <div class="attachment-library-add-icon"></div>
         </div>
@@ -963,335 +940,329 @@
 
 
 
-    <div id="projectGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">1/6</span>
-            Create a Project
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Welcome! Start by creating your first project. Projects in TestRail usually represent
-                a product or software project and serve as organizational unit for cases, results and
-                milestones. You can create as many projects as you like.</p>
-            <div class="tooltip-goal-image goal-project-help"></div>
-        </div>
-    </div>
-    <div id="casesGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">2/6</span>
-            Add Test Cases
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test.
-                They often contain a description, a list of steps and expected results. Cases are organized in
-                sections to make it easy to group related cases together.</p>
-            <div class="tooltip-goal-image goal-cases-help"></div>
-        </div>
-    </div>
-    <div id="runGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">3/6</span>
-            Start a Test Run
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
-                multiple test runs over time and reuse your test cases across runs. A test run has a status and
-                you can easily follow its progress and test activity.</p>
-            <div class="tooltip-goal-image goal-run-help"></div>
-        </div>
-    </div>
-    <div id="resultsGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">4/6</span>
-            Add Test Results
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Once you've added a test run, you can start testing and record results. A result has
-                a status such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different
-                colors. Adding results contributes to the overall status and progress of the test run.</p>
-            <div class="tooltip-goal-image goal-results-help"></div>
-        </div>
-    </div>
-    <div id="usersGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">5/6</span>
-            Invite Team Members
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">TestRail is especially useful when used with a team. Invite other team members and
-                build your test case repository, assign test runs and record results together. Easily track the
-                workload and progress from the Todo tab for your entire team.</p>
-            <div class="tooltip-goal-image goal-users-help"></div>
-        </div>
-    </div>
-
-
-    <div id="integrationGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">6/6</span>
-            Set up Integration
-        </div>
-        <div class="tooltip-goal-body">
-            <p class="top">Integrate TestRail with your issue/bug tracker (such as JIRA, Redmine &amp; more),
-                requirement tool and test automation. Start by configuring your issue integration to collaborate
-                with your dev team, run coverage reports and link issues to results.</p>
-            <div class="tooltip-goal-image goal-integration-help"></div>
-            <div class="checkbox" style="margin-top: 1em">
-                <label>
-                    I don't plan to integrate TestRail with other tools for now <input type="checkbox"
-                        id="integrationGoalToggle">
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                $('#integrationGoalToggle').unbind('click').click(
-                    function () {
-                        App.Users.setGoal(6, this.checked);
-                    }
-                );
-            }
-        );
-    </script>
-
-    <div id="goals" class="goals">
-        <div id="goals-banner" class="goals-banner ">
-            <span id="goals-cancel" class="goals-cancel hidden">
-                <a class="link-noline nolink" href="javascript:void(0)"
-                    onclick="this.blur(); App.Users.hideGoals(false); return false;">
-                    <div class="icon-cancel"></div>
-                </a>
-            </span>
-            <div class="goals-banner-inner">
-                <ol class="goals-progress">
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Create a project</span>
-                        <div class="goals-progress-marker link-tooltip goal-project-checked"
-                            tooltip-id="#projectGoalHelp" tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Add cases</span>
-                        <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Start a run</span>
-                        <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step ">
-                        <span class="goals-progress-title">Add results</span>
-                        <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step goals-progress-step-done">
-                        <span class="goals-progress-title">Invite users</span>
-                        <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
-                            tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                    <li class="goals-progress-step ">
-                        <span class="goals-progress-title">Set up integration</span>
-                        <div class="goals-progress-marker link-tooltip goal-integration"
-                            tooltip-id="#integrationGoalHelp" tooltip-position="top" tooltip-width="400"></div>
-                    </li>
-                </ol>
-            </div>
-            <div id="goals-start" class="goals-start hidden">
-                <div class="goal-start"></div>
-            </div>
-            <div id="goals-finish" class="goals-finish hidden">
-                <div class="goal-finish"></div>
-            </div>
-            <div id="goals-next" class="goals-next hidden">
-                <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap"
-                    class="goal-next">
-                <map name="goalsNextMap">
-                    <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
-                        onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
-                    <area shape="rect" coords="64,305,254,339" target="_blank"
-                        href="http://www.gurock.com/testrail/support">
-                    <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
-                    <area shape="rect" coords="496,305,686,339" target="_blank"
-                        href="http://www.gurock.com/testrail/videos/introduction-projects/">
-                </map>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(document).ready(
-            function () {
-                var timer = null;
-                $('#goals').unbind('mouseenter').bind('mouseenter', function () {
-                    timer = setTimeout(
-                        function () {
-                            $('#goals-cancel').fadeTo(250, 1);
-                        },
-                        2500
-                    );
-                });
-                $('#goals').unbind('mouseleave').bind('mouseleave', function () {
-                    $('#goals-cancel').hide();
-                    if (timer) {
-                        clearTimeout(timer);
-                        timer = null;
-                    }
-                });
-            }
-        );
-    </script>
-
-    <script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/extensions-combined.js"></script>
-    <script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/application-combined.js"></script>
-
-    <script type="text/javascript" id="js-js-indicator"
-        src="https://static.testrail.io/7.5.5.2003/js/indicator.js"></script>
-    <script type="text/javascript" id="js-js-autocomplete"
-        src="https://static.testrail.io/7.5.5.2003/js/autocomplete.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            App.Translations.add(
-                "timespans_hour_short",
-                "h");
-            App.Translations.add(
-                "timespans_minute_short",
-                "m");
-            App.Translations.add(
-                "timespans_second_short",
-                "s");
-        });
-    </script>
-    <script type="application/javascript">
-        (function (apiKey) { // <-- passed in at the bottom
-            (function (p, e, n, d, o) {
-                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
-                v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
-                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
-                })(v[w]);
-                // Create a `<script>` tag linked to your application-specific Agent build from our CDN...
-                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
-                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
-            })(window, document, 'script', 'pendo');
-            pendo.initialize({
-                sanitizeUrl: function (url) {
-                    return url.replace('index.php?', 'index.php')
-                },
-                visitor: {
-                    id: '728981-1',
-                    is_admin: true,
-                    is_active: true
-                },
-                account: {
-                    id: '728981'
-                }
-            });
-        })('1c20428c-1995-4c00-6e1c-daff12af9c00');
-    </script>
-
-    <script>
-        $(function () {
-            App.Sidebar.init();
-        });
-    </script>
-
-
-
-    <div id="fancy_overlay"></div>
-    <div id="fancy_wrap">
-        <div class="fancy_loading" id="fancy_loading">
-            <div id="fancy_loading_spinner"></div>
-        </div>
-        <div id="fancy_outer">
-            <div id="fancy_inner">
-                <div id="fancy_close"></div>
-                <div id="fancy_bg">
-                    <div class="fancy_bg fancy_bg_n"></div>
-                    <div class="fancy_bg fancy_bg_ne"></div>
-                    <div class="fancy_bg fancy_bg_e"></div>
-                    <div class="fancy_bg fancy_bg_se"></div>
-                    <div class="fancy_bg fancy_bg_s"></div>
-                    <div class="fancy_bg fancy_bg_sw"></div>
-                    <div class="fancy_bg fancy_bg_w"></div>
-                    <div class="fancy_bg fancy_bg_nw"></div>
-                </div><a href="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a
-                    href="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a>
-                <div id="fancy_content"></div>
-                <div id="fancy_title">
-                    <table cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                            <tr>
-                                <td class="fancy_title" id="fancy_title_left"></td>
-                                <td class="fancy_title" id="fancy_title_main">
-                                    <div></div>
-                                </td>
-                                <td class="fancy_title" id="fancy_title_right"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="jstree-marker" style="display: none;"></div>
-    <div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
-        style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
-    </div>
-    <div id="yola-lexis-feature-tooltip-container">
-        <div id="yola-lexis-feature-tooltip" hidden="" style="position: relative;"></div>
-    </div>
-    <div id="yola-lexis-modal-container">
-        <div id="yola-lexis-popup-container" hidden=""
-            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 0px, 0px);"
-            data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom"><iframe
-                src="chrome-extension://odeehfkncohpobkeeldjblbkfghfbpai/en/index.html"></iframe>
-            <div id="popup-arrow"></div>
-            <div id="yola-lexis-folder-button" hidden=""></div>
-        </div>
-    </div><img id="yola-lexis-popup-button" alt="yola-lexis-popup-button" draggable="false"
-        src="chrome-extension://odeehfkncohpobkeeldjblbkfghfbpai/assets/icons/icon.svg" hidden=""><button
-        aria-label="Open Resource Center" aria-expanded="false" type="button"
-        id="_pendo-badge_Hhf7H23vJ3hk1jdtR271Im-1A3o" data-layout="badgeResourceCenter"
-        class="_pendo-badge _pendo-resource-center-badge-container _pendo-badge_"
-        style="border-radius: 28px; inset: auto 10px 10px auto; margin: 0px; position: fixed; z-index: 19000; background: rgba(255, 255, 255, 0); padding: 0px; height: 56px; width: 56px; box-shadow: rgba(0, 0, 0, 0.15) 2px 0px 6px 0px; border: 0px; float: none; vertical-align: text-bottom; cursor: pointer; display: inline-block;">
-        <style type="text/css" scoped="scoped" style="white-space: pre-wrap;"></style><img
-            id="pendo-image-badge-32cf3f20"
-            src="https://pendo-static-5699730914541568.storage.googleapis.com/hnixR8-p_2H5A6MW6X1ymGBKyug/guide-media-6bd9592b-f953-4757-9ef7-5c226a43bb8d"
-            data-_pendo-image-1="" class="_pendo-image _pendo-badge-image _pendo-resource-center-badge-image"
-            style="display: block; height: 56px; width: 56px; padding: 0px; margin: 0px; line-height: 1; border: none; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 0px; float: none; vertical-align: baseline;">
-        <style id="pendo-resource-center-bubble-animation">
-            @keyframes pulse {
-                0% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-
-                100% {
-                    opacity: 0;
-                    transform: scale(1.6)
-                }
-            }
-
-            .pendo-resource-center-badge-notification-bubble::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgb(3, 148, 116);
-                border-radius: 100%;
-                z-index: -1;
-                animation: pulse 2s infinite;
-                will-change: transform;
-            }
-        </style>
-        <div class="pendo-resource-center-badge-notification-bubble"
-            style="position: absolute; border-radius: 20px; line-height: 0px; height: 26px; box-sizing: content-box; background-color: rgb(3, 148, 116); top: -2px; left: -12px; padding: 0px 10px; margin-left: 0px; margin-top: 0px;">
-            <div class="pendo-notification-bubble-unread-count"
-                style="font-weight: 400; font-family: inherit; height: 100%; position: relative; top: 50%; color: rgb(255, 255, 255); white-space: pre-wrap;">
-                6</div>
-        </div>
-    </button>
+<div id="projectGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">1/6</span>
+    Create a Project
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Welcome! Start by creating your first project. Projects in TestRail usually represent
+      a product or software project and serve as organizational unit for cases, results and
+      milestones. You can create as many projects as you like.</p>
+    <div class="tooltip-goal-image goal-project-help"></div>
+  </div>
 </div>
+<div id="casesGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">2/6</span>
+    Add Test Cases
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test.
+      They often contain a description, a list of steps and expected results. Cases are organized in
+      sections to make it easy to group related cases together.</p>
+    <div class="tooltip-goal-image goal-cases-help"></div>
+  </div>
+</div>
+<div id="runGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">3/6</span>
+    Start a Test Run
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
+      multiple test runs over time and reuse your test cases across runs. A test run has a status and
+      you can easily follow its progress and test activity.</p>
+    <div class="tooltip-goal-image goal-run-help"></div>
+  </div>
+</div>
+<div id="resultsGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">4/6</span>
+    Add Test Results
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Once you've added a test run, you can start testing and record results. A result has
+      a status such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different
+      colors. Adding results contributes to the overall status and progress of the test run.</p>
+    <div class="tooltip-goal-image goal-results-help"></div>
+  </div>
+</div>
+<div id="usersGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">5/6</span>
+    Invite Team Members
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">TestRail is especially useful when used with a team. Invite other team members and
+      build your test case repository, assign test runs and record results together. Easily track the
+      workload and progress from the Todo tab for your entire team.</p>
+    <div class="tooltip-goal-image goal-users-help"></div>
+  </div>
+</div>
+
+
+<div id="integrationGoalHelp" class="tooltip tooltip-goal">
+  <div class="tooltip-goal-title">
+    <span class="tooltip-goal-step">6/6</span>
+    Set up Integration
+  </div>
+  <div class="tooltip-goal-body">
+    <p class="top">Integrate TestRail with your issue/bug tracker (such as JIRA, Redmine &amp; more),
+      requirement tool and test automation. Start by configuring your issue integration to collaborate
+      with your dev team, run coverage reports and link issues to results.</p>
+    <div class="tooltip-goal-image goal-integration-help"></div>
+    <div class="checkbox" style="margin-top: 1em">
+      <label>
+        I don't plan to integrate TestRail with other tools for now <input type="checkbox" id="integrationGoalToggle">
+      </label>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(
+    function () {
+      $('#integrationGoalToggle').unbind('click').click(
+        function () {
+          App.Users.setGoal(6, this.checked);
+        }
+      );
+    }
+  );
+</script>
+
+<div id="goals" class="goals">
+  <div id="goals-banner" class="goals-banner ">
+    <span id="goals-cancel" class="goals-cancel hidden">
+      <a class="link-noline nolink" href="javascript:void(0)"
+        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        <div class="icon-cancel"></div>
+      </a>
+    </span>
+    <div class="goals-banner-inner">
+      <ol class="goals-progress">
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Create a project</span>
+          <div class="goals-progress-marker link-tooltip goal-project-checked" tooltip-id="#projectGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Add cases</span>
+          <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Start a run</span>
+          <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step ">
+          <span class="goals-progress-title">Add results</span>
+          <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step goals-progress-step-done">
+          <span class="goals-progress-title">Invite users</span>
+          <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+        <li class="goals-progress-step ">
+          <span class="goals-progress-title">Set up integration</span>
+          <div class="goals-progress-marker link-tooltip goal-integration" tooltip-id="#integrationGoalHelp"
+            tooltip-position="top" tooltip-width="400"></div>
+        </li>
+      </ol>
+    </div>
+    <div id="goals-start" class="goals-start hidden">
+      <div class="goal-start"></div>
+    </div>
+    <div id="goals-finish" class="goals-finish hidden">
+      <div class="goal-finish"></div>
+    </div>
+    <div id="goals-next" class="goals-next hidden">
+      <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
+      <map name="goalsNextMap">
+        <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
+          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+        <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
+        <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
+        <area shape="rect" coords="496,305,686,339" target="_blank"
+          href="http://www.gurock.com/testrail/videos/introduction-projects/">
+      </map>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(
+    function () {
+      var timer = null;
+      $('#goals').unbind('mouseenter').bind('mouseenter', function () {
+        timer = setTimeout(
+          function () {
+            $('#goals-cancel').fadeTo(250, 1);
+          },
+          2500
+        );
+      });
+      $('#goals').unbind('mouseleave').bind('mouseleave', function () {
+        $('#goals-cancel').hide();
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      });
+    }
+  );
+</script>
+
+<script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/extensions-combined.js"></script>
+<script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/application-combined.js"></script>
+
+<script type="text/javascript" id="js-js-indicator"
+  src="https://static.testrail.io/7.5.5.2003/js/indicator.js"></script>
+<script type="text/javascript" id="js-js-autocomplete"
+  src="https://static.testrail.io/7.5.5.2003/js/autocomplete.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    App.Translations.add(
+      "timespans_hour_short",
+      "h");
+    App.Translations.add(
+      "timespans_minute_short",
+      "m");
+    App.Translations.add(
+      "timespans_second_short",
+      "s");
+  });
+</script>
+<script type="application/javascript">
+  (function (apiKey) { // <-- passed in at the bottom
+    (function (p, e, n, d, o) {
+      var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+      v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+        o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+      })(v[w]);
+      // Create a `<script>` tag linked to your application-specific Agent build from our CDN...
+      y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+      z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+    })(window, document, 'script', 'pendo');
+    pendo.initialize({
+      sanitizeUrl: function (url) {
+        return url.replace('index.php?', 'index.php')
+      },
+      visitor: {
+        id: '728981-1',
+        is_admin: true,
+        is_active: true
+      },
+      account: {
+        id: '728981'
+      }
+    });
+  })('1c20428c-1995-4c00-6e1c-daff12af9c00');
+</script>
+
+<script>
+  $(function () {
+    App.Sidebar.init();
+  });
+</script>
+
+
+
+<div id="fancy_overlay"></div>
+<div id="fancy_wrap">
+  <div class="fancy_loading" id="fancy_loading">
+    <div id="fancy_loading_spinner"></div>
+  </div>
+  <div id="fancy_outer">
+    <div id="fancy_inner">
+      <div id="fancy_close"></div>
+      <div id="fancy_bg">
+        <div class="fancy_bg fancy_bg_n"></div>
+        <div class="fancy_bg fancy_bg_ne"></div>
+        <div class="fancy_bg fancy_bg_e"></div>
+        <div class="fancy_bg fancy_bg_se"></div>
+        <div class="fancy_bg fancy_bg_s"></div>
+        <div class="fancy_bg fancy_bg_sw"></div>
+        <div class="fancy_bg fancy_bg_w"></div>
+        <div class="fancy_bg fancy_bg_nw"></div>
+      </div><a href="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a
+        href="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a>
+      <div id="fancy_content"></div>
+      <div id="fancy_title">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+            <tr>
+              <td class="fancy_title" id="fancy_title_left"></td>
+              <td class="fancy_title" id="fancy_title_main">
+                <div></div>
+              </td>
+              <td class="fancy_title" id="fancy_title_right"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="jstree-marker" style="display: none;"></div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+  style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+</div>
+<div id="yola-lexis-feature-tooltip-container">
+  <div id="yola-lexis-feature-tooltip" hidden="" style="position: relative;"></div>
+</div>
+<div id="yola-lexis-modal-container">
+  <div id="yola-lexis-popup-container" hidden=""
+    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 0px, 0px);"
+    data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom"><iframe
+      src="chrome-extension://odeehfkncohpobkeeldjblbkfghfbpai/en/index.html"></iframe>
+    <div id="popup-arrow"></div>
+    <div id="yola-lexis-folder-button" hidden=""></div>
+  </div>
+</div><img id="yola-lexis-popup-button" alt="yola-lexis-popup-button" draggable="false"
+  src="chrome-extension://odeehfkncohpobkeeldjblbkfghfbpai/assets/icons/icon.svg" hidden=""><button
+  aria-label="Open Resource Center" aria-expanded="false" type="button" id="_pendo-badge_Hhf7H23vJ3hk1jdtR271Im-1A3o"
+  data-layout="badgeResourceCenter" class="_pendo-badge _pendo-resource-center-badge-container _pendo-badge_"
+  style="border-radius: 28px; inset: auto 10px 10px auto; margin: 0px; position: fixed; z-index: 19000; background: rgba(255, 255, 255, 0); padding: 0px; height: 56px; width: 56px; box-shadow: rgba(0, 0, 0, 0.15) 2px 0px 6px 0px; border: 0px; float: none; vertical-align: text-bottom; cursor: pointer; display: inline-block;">
+  <style type="text/css" scoped="scoped" style="white-space: pre-wrap;"></style><img id="pendo-image-badge-32cf3f20"
+    src="https://pendo-static-5699730914541568.storage.googleapis.com/hnixR8-p_2H5A6MW6X1ymGBKyug/guide-media-6bd9592b-f953-4757-9ef7-5c226a43bb8d"
+    data-_pendo-image-1="" class="_pendo-image _pendo-badge-image _pendo-resource-center-badge-image"
+    style="display: block; height: 56px; width: 56px; padding: 0px; margin: 0px; line-height: 1; border: none; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 0px; float: none; vertical-align: baseline;">
+  <style id="pendo-resource-center-bubble-animation">
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.6)
+      }
+    }
+
+    .pendo-resource-center-badge-notification-bubble::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(3, 148, 116);
+      border-radius: 100%;
+      z-index: -1;
+      animation: pulse 2s infinite;
+      will-change: transform;
+    }
+  </style>
+  <div class="pendo-resource-center-badge-notification-bubble"
+    style="position: absolute; border-radius: 20px; line-height: 0px; height: 26px; box-sizing: content-box; background-color: rgb(3, 148, 116); top: -2px; left: -12px; padding: 0px 10px; margin-left: 0px; margin-top: 0px;">
+    <div class="pendo-notification-bubble-unread-count"
+      style="font-weight: 400; font-family: inherit; height: 100%; position: relative; top: 50%; color: rgb(255, 255, 255); white-space: pre-wrap;">
+      6</div>
+  </div>
+</button>
