@@ -37,6 +37,15 @@
           }
         }
       }
-    }
+    },
+    {
+      "label": "build-dev",
+      "type": "shell",
+      "command": "ng build --base-href=/tms/ --watch --source-map=false",
+      "group": "build",
+      "problemMatcher": [
+        "$msCompile"
+      ]
+    },
   ]
 }
