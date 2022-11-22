@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,15 +23,15 @@ import { ManageMilestonesComponent } from './components/manage-milestones/manage
 // import { ManageReportComponent } from './components/manage-report/manage-report.component';
 // import { AddReportComponent } from './components/add-report/add-report.component';
 // import { DetailReportComponent } from './components/detail-report/detail-report.component';
-import { MenuComponent } from './shared/menu/menu.component';
-import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 import { OverviewComponent } from './components/project/overview/overview.component';
-import { TodoComponent } from './components/project/todo/todo.component';
 import { ProjectComponent } from './components/project/project.component';
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
+import { TodoComponent } from './components/project/todo/todo.component';
+import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { AddTestRunComponent } from './components/project/test-run/add-test-run/
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],
