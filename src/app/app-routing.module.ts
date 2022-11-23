@@ -18,7 +18,7 @@ const routes: Routes = [
     component: AdminDashboardComponent,
   },
   {
-    path: 'milestones',
+    path: 'milestones/:id',
     component: MilestonesComponent,
   },
   {
@@ -26,15 +26,15 @@ const routes: Routes = [
     component: AddMilestoneComponent,
   },
   {
-    path: 'overview',
+    path: 'overview/:id',
     component: OverviewComponent,
   },
   {
-    path: 'todo',
+    path: 'todo/:id',
     component: TodoComponent,
   },
   {
-    path: 'test-runs',
+    path: 'test-runs/:id',
     component: TestRunComponent,
   },
   {
@@ -42,7 +42,7 @@ const routes: Routes = [
     component: AddTestRunComponent,
   },
   {
-    path: 'test-cases',
+    path: 'test-cases/:id',
     component: TestcaseComponent,
   },
 
@@ -51,7 +51,7 @@ const routes: Routes = [
     component: AddTestCaseComponent,
   },
   {
-    path: 'reports',
+    path: 'reports/:id',
     component: ReportComponent,
   },
   {
