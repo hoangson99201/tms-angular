@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 // import { ManageUserRolesComponent } from './components/manage-user-roles/manage-user-roles.component';
 // import { AddUserComponent } from './components/add-user/add-user.component';
-import { ManageMilestonesComponent } from './components/manage-milestones/manage-milestones.component';
 // import { ManageTestRunComponent } from './components/manage-test-run/manage-test-run.component';
 // import { ActivityHistoryComponent } from './components/activity-history/activity-history.component';
 // import { EditProjectComponent } from './components/edit-project/edit-project.component';
@@ -31,6 +30,8 @@ import { TodoComponent } from './components/project/todo/todo.component';
 import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { AddProjectComponent } from './components/project/add-project/add-project.component';
+import { MilestonesComponent } from './components/project/milestones/milestones.component';
+import { AddMilestoneComponent } from './components/project/milestones/add-milestone/add-milestone.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +40,11 @@ import { AddProjectComponent } from './components/project/add-project/add-projec
     AddProjectComponent,
     // ManageUserRolesComponent,
     // AddUserComponent,
-    ManageMilestonesComponent,
     // ManageTestRunComponent,
     // ActivityHistoryComponent,
     // EditProjectComponent,
     // EditMilestoneComponent,
-    // AddMilestoneComponent,
+    AddMilestoneComponent,
     // AddTestRunComponent,
     // ProjectTestRunComponent,
     // ManageTestCaseComponent,
@@ -61,7 +61,8 @@ import { AddProjectComponent } from './components/project/add-project/add-projec
     TestRunComponent,
     TestcaseComponent,
     ReportComponent,
-    AddTestRunComponent
+    AddTestRunComponent,
+    MilestonesComponent
   ],
   imports: [
     BrowserModule,
