@@ -11,12 +11,11 @@ import { TestRunComponent } from './components/project/test-run/test-run.compone
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
-import { TodoComponent } from './components/project/todo/todo.component';
 import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { AddProjectComponent } from './components/project/add-project/add-project.component';
 import { MilestonesComponent } from './components/project/milestones/milestones.component';
-import { AddMilestoneComponent } from './components/project/milestones/add-milestone/add-milestone.component';
+import { AddMilestoneComponent } from './components/add-milestone/add-milestone.component';
 import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { AddTestCaseComponent } from './components/project/testcase/add-test-cas
     MenuComponent,
     MenuProjectComponent,
     OverviewComponent,
-    TodoComponent,
     TestRunComponent,
     TestcaseComponent,
     ReportComponent,

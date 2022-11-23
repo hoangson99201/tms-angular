@@ -45,17 +45,21 @@
     <div id="header">
       <ul class="header-menu">
 
-        <li class="header-menu-item"><a tabindex="-1" routerLink="/overview" id="navigation-overview">Overview</a>
+        <li class="header-menu-item"><a tabindex="-1" [routerLink]="['/overview', projectId]"
+            id="navigation-overview">Overview</a>
         </li>
-        <li class="header-menu-item"><a tabindex="-1" routerLink="/todo" id="navigation-todos">Todo</a></li>
-        <li class="header-menu-item"><a tabindex="-1" routerLink="/milestones" id="navigation-milestones">Milestones</a>
+        <li class="header-menu-item"><a tabindex="-1" [routerLink]="['/milestones', projectId]"
+            id="navigation-milestones">Milestones</a>
         </li>
-        <li class="header-menu-item"><a tabindex="-1" routerLink="/test-runs" id="navigation-runs">Test Runs
+        <li class="header-menu-item"><a tabindex="-1" [routerLink]="['/test-runs', projectId]" id="navigation-runs">Test
+            Runs
             &amp;
             Results</a></li>
-        <li class="header-menu-item"><a tabindex="-1" routerLink="/test-cases" id="navigation-suites">Test Cases</a>
+        <li class="header-menu-item"><a tabindex="-1" [routerLink]="['/test-cases', projectId]"
+            id="navigation-suites">Test Cases</a>
         </li>
-        <li class="header-menu-item"><a tabindex="-1" routerLink="/reports" id="navigation-reports">Reports</a>
+        <li class="header-menu-item"><a tabindex="-1" [routerLink]="['/reports', projectId]"
+            id="navigation-reports">Reports</a>
         </li>
       </ul>
     </div>

@@ -57,24 +57,25 @@
               <div class="column summary-column flex-projects-2">
                 <div class="summary-title text-ppp" style="position: relative; padding: 1px 0 1px 0">
                   <span style="position: absolute; top: -1px">
-                    <a routerLink="javascript:void(0)" onclick="this.blur(); App.Projects.unstar(this, 1); return false;"
-                      id="project-starred-1" class="starred link-tooltip" tooltip-text="Remove from project favorites."
+                    <a routerLink="javascript:void(0)"
+                      onclick="this.blur(); App.Projects.unstar(this, 1); return false;" id="project-starred-1"
+                      class="starred link-tooltip" tooltip-text="Remove from project favorites."
                       style="display: none"></a>
                     <a routerLink="javascript:void(0)" onclick="this.blur(); App.Projects.star(this, 1); return false;"
                       id="project-star-1" class="unstarred link-tooltip" tooltip-text="Mark as project favorite."></a>
                   </span>
-                  <a  [routerLink]="['/overview', '{{project.projectId}}']"
+                  <a [routerLink]="['/overview', '{{project.projectId}}']"
                     style="padding-left: 25px">{{project.projectName}}</a>
                   <span class="hidden fav-busy">
                     <div class="icon-progress-inline"></div>
                   </span>
                 </div>
                 <div class="summary-links text-secondary">
-                  <a class="link"  [routerLink]="['/todo', '{{project.projectId}}']" >Todos</a> |
-                  <a class="link"  [routerLink]="['/milestones', '{{project.projectId}}']" >Milestones</a> |
-                  <a class="link"  [routerLink]="['/test-runs', '{{project.projectId}}']">Test Runs</a> |
-                  <a class="link"  [routerLink]="['/test-cases', '{{project.projectId}}']" >Test Cases</a> |
-                  <a class="link" [routerLink]="['/reports', '{{project.projectId}}']" >Reports</a>
+                  <a class="link" [routerLink]="['/todo', '{{project.projectId}}']">Todos</a> |
+                  <a class="link" [routerLink]="['/milestones', '{{project.projectId}}']">Milestones</a> |
+                  <a class="link" [routerLink]="['/test-runs', '{{project.projectId}}']">Test Runs</a> |
+                  <a class="link" [routerLink]="['/test-cases', '{{project.projectId}}']">Test Cases</a> |
+                  <a class="link" [routerLink]="['/reports', '{{project.projectId}}']">Reports</a>
                 </div>
                 <div class="summary-description">
                   Contains <strong>{{project.activeTestRun}}</strong> active test runs and

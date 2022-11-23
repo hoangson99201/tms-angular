@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddMilestoneComponent } from './components/project/milestones/add-milestone/add-milestone.component';
+import { AddMilestoneComponent } from './components/add-milestone/add-milestone.component';
+import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AddProjectComponent } from './components/project/add-project/add-project.component';
 import { MilestonesComponent } from './components/project/milestones/milestones.component';
@@ -9,8 +10,6 @@ import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
-import { TodoComponent } from './components/project/todo/todo.component';
-import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 
 const routes: Routes = [
   {
@@ -22,7 +21,7 @@ const routes: Routes = [
     component: MilestonesComponent,
   },
   {
-    path: 'milestones/add',
+    path: 'milestones-add',
     component: AddMilestoneComponent,
   },
   {
@@ -30,15 +29,11 @@ const routes: Routes = [
     component: OverviewComponent,
   },
   {
-    path: 'todo/:id',
-    component: TodoComponent,
-  },
-  {
     path: 'test-runs/:id',
     component: TestRunComponent,
   },
   {
-    path: 'test-runs/add',
+    path: 'test-runs-add',
     component: AddTestRunComponent,
   },
   {
@@ -47,7 +42,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'test-cases/add',
+    path: 'test-cases-add',
     component: AddTestCaseComponent,
   },
   {

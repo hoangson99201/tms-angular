@@ -1,4 +1,4 @@
-<app-menu-project></app-menu-project>
+<app-menu-project [projectId]="projectId"></app-menu-project>
 
 <script type="text/javascript">
   $(document).ready(
@@ -339,7 +339,7 @@
               <p>This project doesn't have any active test
                 runs. You can add a new test run.</p>
               <div class="button-group">
-                <a id="navigation-overview-addrunssuite" routerLink="/test-runs/add"
+                <a id="navigation-overview-addrunssuite" routerLink="/test-runs-add"
                   class="button button-left button-add">
                   Add Test Run </a>
               </div>
@@ -393,7 +393,7 @@
                 <a id="sidebar-runs-overview" routerLink="/test-runs">Test Runs</a>
               </div>
               <div class="summary-description-compact text-secondary">
-                <a id="sidebar-runs-add" class="link" routerLink="/test-runs/add">Add</a> |
+                <a id="sidebar-runs-add" class="link" routerLink="/test-runs-add">Add</a> |
                 <a id="sidebar-runs-viewall" class="link" routerLink="/test-runs">View
                   All</a>
               </div>
