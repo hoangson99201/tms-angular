@@ -351,7 +351,7 @@
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
           <div class="content-header-result" style=""></div>
-          <span class="content-header-icon content-header-icon-combined"><a href="javascript:void(0)"
+          <span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-header="Compact View"
               tooltip-text="Displays the milestones as a compact list. Useful if you have many milestones." onclick="this.blur(); var link = this; var i = document.createElement('input');
                         i.setAttribute('type', 'hidden');
@@ -365,7 +365,7 @@
                         f.appendChild(i);
                         f.submit(); ; return false;">
               <div class="icon-display-small-inactive"></div>
-            </a></span><span class="content-header-icon content-header-icon-combined"><a href="javascript:void(0)"
+            </a></span><span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-header="Medium View"
               tooltip-text="Displays the milestones in a medium-sized way." onclick="this.blur(); var link = this; var i = document.createElement('input');
                             i.setAttribute('type', 'hidden');
@@ -379,7 +379,7 @@
                             f.appendChild(i);
                             f.submit(); ; return false;">
               <div class="icon-display-medium-inactive"></div>
-            </a></span><span class="content-header-icon"><a href="javascript:void(0)" class="link-tooltip"
+            </a></span><span class="content-header-icon"><a routerLink="javascript:void(0)" class="link-tooltip"
               tooltip-header="Detail View"
               tooltip-text="Displays the milestones with many details. Useful if you have just a few milestones."
               onclick="this.blur(); var link = this; var i = document.createElement('input');
@@ -434,7 +434,7 @@
                 create
                 the first milestone.</p>
               <div class="button-group">
-                <a href="milestones/add" class="button button-left button-add">
+                <a routerLink="/milestones/add" class="button button-left button-add">
                   Add Milestone </a>
               </div>
             </div>
@@ -512,7 +512,7 @@
       </div>
 
       <div class="sidebar-inner">
-        <a id="navigation-milestones-add" class="sidebar-button" href="/milestones/add">
+        <a id="navigation-milestones-add" class="sidebar-button" routerLink="/milestones/add">
           <span>Add Milestone</span>
         </a>
         <p class="top">There are no milestones.</p>
@@ -528,9 +528,9 @@
 
 <div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
   <ul>
-    <li><a class="dropdown-menu-link" id="navigation-user-settings" href="mySettings.jsp">
+    <li><a class="dropdown-menu-link" id="navigation-user-settings" routerLink="mySettings.jsp">
         My Settings</a></li>
-    <li><a class="dropdown-menu-link" id="navigation-user-logout" href="logout">Logout</a></li>
+    <li><a class="dropdown-menu-link" id="navigation-user-logout" routerLink="logout">Logout</a></li>
   </ul>
 </div>
 <div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
@@ -780,7 +780,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" href="javascript:void(0)"
+      <a class="link-noline nolink" routerLink="javascript:void(0)"
         onclick="this.blur(); App.Users.hideGoals(false); return false;">
         <div class="icon-cancel"></div>
       </a>
@@ -828,12 +828,12 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
           onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
-        <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
-        <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
+        <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
+        <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
-          href="http://www.gurock.com/testrail/videos/introduction-projects/">
+          routerLink="http://www.gurock.com/testrail/videos/introduction-projects/">
       </map>
     </div>
   </div>
@@ -956,7 +956,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" href="javascript:void(0)"
+      <a class="link-noline nolink" routerLink="javascript:void(0)"
         onclick="this.blur(); App.Users.hideGoals(false); return false;">
         <div class="icon-cancel"></div>
       </a>
@@ -1004,12 +1004,12 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
           onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
-        <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
-        <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
+        <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
+        <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
-          href="http://www.gurock.com/testrail/videos/introduction-projects/">
+          routerLink="http://www.gurock.com/testrail/videos/introduction-projects/">
       </map>
     </div>
   </div>
@@ -1044,13 +1044,13 @@
         <strong class="attachment-library-title">Media Library</strong>
         <a id="libraryAddAttachment" class="button button-left button-add">Add New</a>
         <a id="libraryDeleteAttachment" style="display: none;" class="button button-left button-negative button-delete"
-          href="javascript:void(0)"
+          routerLink="javascript:void(0)"
           onclick="this.blur(); App.Dialogs.remove('This action <strong>deletes selected attachment/s and all their instances across your projects</strong> (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); }); ; return false;">Delete</a>
       </div>
 
       <div style="float: right">
         <span class="h1-additional">
-          Sort: <a id="attachments-library-sortby" href="#sortDropdown" class="link link-dashed dropdownLink">
+          Sort: <a id="attachments-library-sortby" routerLink="#sortDropdown" class="link link-dashed dropdownLink">
             <span id="attachmentsByName">Date</span></a>
           <span id="orderByAsc" class="hidden">
             <div class="icon-asc"></div>
@@ -1059,7 +1059,7 @@
             <div class="icon-desc"></div>
           </span>
           &nbsp;|&nbsp;
-          Filter: <a class="link link-dashed" href="javascript:void(0)"
+          Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
             onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
             id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
               id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
@@ -1067,7 +1067,7 @@
             <div class="icon-progress-inline"></div>
           </span>
           <span id="attachmentFilterByReset" class="hidden">
-            <a href="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
+            <a routerLink="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
               class="link-tooltip" tooltip-text="Reset filters">
               <div class="icon-orderreset"></div>
             </a>
@@ -1078,13 +1078,13 @@
 
         <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown" style="position: fixed; width: 100px">
           <ul>
-            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
                 onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
             </li>
-            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
                 onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a>
             </li>
-            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
                 onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a>
             </li>
           </ul>

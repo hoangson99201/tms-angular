@@ -10,6 +10,7 @@ import { AddTestRunComponent } from './components/project/test-run/add-test-run/
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { TodoComponent } from './components/project/todo/todo.component';
+import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'test-cases',
     component: TestcaseComponent,
+  },
+
+  {
+    path: 'test-cases/add',
+    component: AddTestCaseComponent,
   },
   {
     path: 'reports',

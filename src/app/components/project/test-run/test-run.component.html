@@ -35,7 +35,7 @@
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
           <div class="content-header-result" style=""></div>
-          <span class="content-header-icon content-header-icon-combined"><a href="javascript:void(0)"
+          <span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-header="Compact View"
               tooltip-text="Displays the test runs and plans as a compact list. Useful if you have many runs/plans."
               onclick="this.blur(); var link = this; var i = document.createElement('input');
@@ -50,7 +50,7 @@
                                 f.appendChild(i);
                                 f.submit(); ; return false;">
               <div class="icon-display-small-inactive"></div>
-            </a></span><span class="content-header-icon content-header-icon-combined"><a href="javascript:void(0)"
+            </a></span><span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-header="Medium View"
               tooltip-text="Displays the test runs and plans in a medium-sized way." onclick="this.blur(); var link = this; var i = document.createElement('input');
                                     i.setAttribute('type', 'hidden');
@@ -64,7 +64,7 @@
                                     f.appendChild(i);
                                     f.submit(); ; return false;">
               <div class="icon-display-medium-inactive"></div>
-            </a></span><span class="content-header-icon"><a href="javascript:void(0)" class="link-tooltip"
+            </a></span><span class="content-header-icon"><a routerLink="javascript:void(0)" class="link-tooltip"
               tooltip-header="Detail View"
               tooltip-text="Displays the test runs and plans with many details. Useful if you have just a few runs/plans."
               onclick="this.blur(); var link = this; var i = document.createElement('input');
@@ -173,13 +173,13 @@
                 <a id="libraryAddAttachment" class="button button-left button-add">Add
                   New</a>
                 <a id="libraryDeleteAttachment" style="display: none;"
-                  class="button button-left button-negative button-delete" href="javascript:void(0)"
+                  class="button button-left button-negative button-delete" routerLink="javascript:void(0)"
                   onclick="this.blur(); App.Dialogs.remove('This action <strong>deletes selected attachment/s and all their instances across your projects</strong> (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); }); ; return false;">Delete</a>
               </div>
 
               <div style="float: right">
                 <span class="h1-additional">
-                  Sort: <a id="attachments-library-sortby" href="#sortDropdown" class="link link-dashed dropdownLink">
+                  Sort: <a id="attachments-library-sortby" routerLink="#sortDropdown" class="link link-dashed dropdownLink">
                     <span id="attachmentsByName">Date</span></a>
                   <span id="orderByAsc" class="hidden">
                     <div class="icon-asc"></div>
@@ -188,7 +188,7 @@
                     <div class="icon-desc"></div>
                   </span>
                   &nbsp;|&nbsp;
-                  Filter: <a class="link link-dashed" href="javascript:void(0)"
+                  Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
                     onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
                     id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
                       id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
@@ -196,7 +196,7 @@
                     <div class="icon-progress-inline"></div>
                   </span>
                   <span id="attachmentFilterByReset" class="hidden">
-                    <a href="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
+                    <a routerLink="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
                       class="link-tooltip" tooltip-text="Reset filters">
                       <div class="icon-orderreset"></div>
                     </a>
@@ -208,13 +208,13 @@
                 <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown"
                   style="position: fixed; width: 100px">
                   <ul>
-                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                    <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
                         onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
                     </li>
-                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                    <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
                         onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a>
                     </li>
-                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                    <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
                         onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a>
                     </li>
                   </ul>
@@ -308,7 +308,7 @@
               <p>No test runs have been defined for this project, yet. Use the following
                 button to add your first test run.</p>
               <div class="button-group">
-                <a class="button button-left button-add" href="addTestRun.jsp">
+                <a class="button button-left button-add" routerLink="/test-runs/add">
                   Add Test Run </a>
               </div>
             </div>
@@ -383,10 +383,10 @@
 
 
       <div class="sidebar-inner">
-        <a id="navigation-runs-add" class="sidebar-button bottom" href="addTestRun.jsp">
+        <a id="navigation-runs-add" class="sidebar-button bottom" routerLink="/test-runs/add">
           <span>Add Test Run</span>
         </a>
-        <a id="navigation-plans-add" class="sidebar-button" href="index.php?/plans/add/2">
+        <a id="navigation-plans-add" class="sidebar-button" routerLink="index.php?/plans/add/2">
           <span>Add Test Plan</span>
         </a>
 
@@ -508,9 +508,9 @@
 
 <div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
   <ul>
-    <li><a class="dropdown-menu-link" id="navigation-user-settings" href="index.php?/mysettings">
+    <li><a class="dropdown-menu-link" id="navigation-user-settings" routerLink="index.php?/mysettings">
         My Settings</a></li>
-    <li><a class="dropdown-menu-link" id="navigation-user-logout" href="logout">Logout</a></li>
+    <li><a class="dropdown-menu-link" id="navigation-user-logout" routerLink="logout">Logout</a></li>
   </ul>
 </div>
 <div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
@@ -686,45 +686,45 @@
   <ul>
     <li>
       <a class="dropdown-menu-link" target="_blank"
-        href="https://www.gurock.com/testrail/docs/user-guide/getting-started">
+        routerLink="https://www.gurock.com/testrail/docs/user-guide/getting-started">
         Test Management System User Guide </a>
     </li>
     <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/support">
+      <a class="dropdown-menu-link" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         Support &amp; Videos </a>
     </li>
     <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://forum.gurock.com/">
+      <a class="dropdown-menu-link" target="_blank" routerLink="http://forum.gurock.com/">
         Community Forum </a>
     </li>
     <li class="dropdown-menu-separator"></li>
     <li>
       <a class="dropdown-menu-link" target="_blank"
-        href="https://www.gurock.com/testrail/docs/user-guide/howto/keyboard-shortcuts-hotkeys">
+        routerLink="https://www.gurock.com/testrail/docs/user-guide/howto/keyboard-shortcuts-hotkeys">
         Keyboard Shortcuts </a>
     </li>
     <li class="dropdown-menu-separator"></li>
     <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://blog.gurock.com/">
+      <a class="dropdown-menu-link" target="_blank" routerLink="http://blog.gurock.com/">
         Gurock Blog </a>
     </li>
     <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://twitter.com/testrail">
+      <a class="dropdown-menu-link" target="_blank" routerLink="http://twitter.com/testrail">
         Test Management System on Twitter </a>
     </li>
     <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/">
+      <a class="dropdown-menu-link" target="_blank" routerLink="http://www.gurock.com/testrail/">
         Test Management System on the Web </a>
     </li>
     <li class="dropdown-menu-separator"></li>
     <li>
       <a class="dropdown-menu-link dropdown-menu-link-highlighted" target="_blank"
-        href="https://secure.gurock.com/customers/testrail/newsletter?email=baodkse140180@fpt.edu.vn">
+        routerLink="https://secure.gurock.com/customers/testrail/newsletter?email=baodkse140180@fpt.edu.vn">
         Subscribe to Newsletter </a>
     </li>
     <li class="dropdown-menu-separator"></li>
     <li>
-      <a class="dropdown-menu-link" href="javascript:void(0)"
+      <a class="dropdown-menu-link" routerLink="javascript:void(0)"
         onclick="this.blur(); App.Help.showAbout(); return false;">
         About Test Management System </a>
     </li>
@@ -892,7 +892,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" href="javascript:void(0)"
+      <a class="link-noline nolink" routerLink="javascript:void(0)"
         onclick="this.blur(); App.Users.hideGoals(false); return false;">
         <div class="icon-cancel"></div>
       </a>
@@ -940,12 +940,12 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
           onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
-        <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
-        <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
+        <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
+        <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
-          href="http://www.gurock.com/testrail/videos/introduction-projects/">
+          routerLink="http://www.gurock.com/testrail/videos/introduction-projects/">
       </map>
     </div>
   </div>
@@ -1093,7 +1093,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" href="javascript:void(0)"
+      <a class="link-noline nolink" routerLink="javascript:void(0)"
         onclick="this.blur(); App.Users.hideGoals(false); return false;">
         <div class="icon-cancel"></div>
       </a>
@@ -1141,12 +1141,12 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" href="javascript:void(0)"
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
           onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
-        <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
-        <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
+        <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
+        <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
-          href="http://www.gurock.com/testrail/videos/introduction-projects/">
+          routerLink="http://www.gurock.com/testrail/videos/introduction-projects/">
       </map>
     </div>
   </div>
@@ -1227,7 +1227,7 @@
     App.Sidebar.init();
     $('#groupbySelection, #orderbySelection').change(function () {
       window.location.replace(
-        window.location.href
+        window.location.routerLink
         + '&group_by='
         + $('#groupbySelection').val()
         + '&order_by='
@@ -1257,8 +1257,8 @@
         <div class="fancy_bg fancy_bg_sw"></div>
         <div class="fancy_bg fancy_bg_w"></div>
         <div class="fancy_bg fancy_bg_nw"></div>
-      </div><a href="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a
-        href="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a>
+      </div><a routerLink="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a
+        routerLink="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a>
       <div id="fancy_content"></div>
       <div id="fancy_title">
         <table cellspacing="0" cellpadding="0" border="0">
