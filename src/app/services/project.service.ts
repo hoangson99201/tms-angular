@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project } from '../models/project';
+import { Project } from 'src/app/models/project';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +12,11 @@ export class ProjectService {
 
   getProjects(): Observable<Project[]> {
     return this._http.get<Project[]>("/tms/api/v1/project");
+  }
+
+  addProject(project: Project): Observable<string> {
+    return this._http.post("/tms/api/v1/project", project, {
+      responseType: 'text'
+    });
   }
 }

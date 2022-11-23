@@ -1,9 +1,9 @@
 export interface Project {
-  projectId: number,
+  projectId?: number,
   projectName: string,
   announcement?: string,
   masterId?: number,
-  completed: boolean,
-  activeMilestone: number,
-  activeTestRun: number
+  completed?: boolean,
+  activeMilestone?: number,
+  activeTestRun?: number
 }
