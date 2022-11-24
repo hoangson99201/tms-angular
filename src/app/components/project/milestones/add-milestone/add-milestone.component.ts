@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Milestone } from 'src/app/models/milestone';
 
 @Component({
   selector: 'app-add-milestone',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-milestone.component.scss']
 })
 export class AddMilestoneComponent {
-
+  projectId = 1;
+  milestone: Milestone = {
+    projectId: this.projectId,
+    milestoneName: '',
+    completed: false
+  }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddMilestoneComponent } from './components/add-milestone/add-milestone.component';
+import { AddMilestoneComponent } from './components/project/milestones/add-milestone/add-milestone.component';
 import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AddProjectComponent } from './components/project/add-project/add-project.component';

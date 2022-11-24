@@ -1,35 +1,5 @@
 <app-menu-project></app-menu-project>
 
-<script type="text/javascript">
-  $(document).ready(
-    function () {
-      $('#body').css('display', 'table');
-    }
-  );
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#name').focus();
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    // $.datepicker.setDefaults(
-    //     {
-    //         dateFormat: 'm/d/yy',
-    //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-    //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    //         firstDay: 0
-    //     }
-    // );
-  });
-</script>
-
 <div id="separator"></div>
 <div id="body-container" class="">
   <div id="body" class="table" style="display: table;">
@@ -345,51 +315,6 @@
               <em>Sprint #4</em>
             </div>
           </div>
-          <div class="form-group">
-            <label for="refs" class="text-ppp" style="width: 462px">
-              <span class="pull-left" style="line-height: 1.4;">
-                References </span>
-              <span class="text-secondary pull-right">
-                <a class="link" target="_blank" tabindex="-1"
-                  href="https://www.gurock.com/testrail/docs/integrate/references/introduction">
-                  ? </a>
-              </span>
-            </label>
-            <input id="reference" type="text" name="reference" class="form-control" maxlength="250" value="">
-          </div>
-
-          <div class="form-group">
-            <label for="parent_id">Parent</label>
-
-
-
-            <div class="dropdown-size">
-              <select class="searchable form-control form-control-small form-select  chzn-done" id="parent_id"
-                name="parent_id" style="display: none;">
-                <option value=""> &nbsp; </option>
-              </select>
-              <div id="parent_id_chzn" class="chzn-container chzn-container-single" style="width: 100%;"><a
-                  href="javascript:void(0)" class="chzn-single"><span>&nbsp;</span>
-                  <div><b></b></div>
-                </a>
-                <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                  <div class="chzn-search" style=""><input type="text" autocomplete="off" style=""></div>
-                  <ul class="chzn-results">
-                    <li id="parent_id_chzn_o_0" class="active-result result-selected" style="">
-                      &nbsp; </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <script type="text/javascript">
-              $(document).ready(function () {
-                $('#milestone_id, #parent_id, #assignedto_id').parent().addClass('dropdown-size');
-              });
-            </script>
-            <div class="form-description">The parent milestone for this milestone (for sub-milestones in
-              milestones).</div>
-          </div>
           <div class="form-separator">
           </div>
           <div class="form-group">
@@ -412,31 +337,12 @@
               </span>
               Description </label>
 
-            <div class="textarea-resizable editor-bindable attachment-list-wrapper" data-attribute="description"
-              id="description_attachments_wrapper">
-              <div contenteditable="true" class="form-control field-editor form-control-full " id="description_display">
-              </div>
-              <div id="description_display_drop" class="dropzone dz-clickable" rel="description_display" dialog=""
-                data-project-id="2">
-                <div class="dz-default dz-message"><span>Drop images here to embed.</span></div>
-              </div>
-
-              <script type="text/javascript">
-                $(document).ready(function () {
-                  App.Editor.applyDrop({
-                    'selector': '#' + 'description_display_drop',
-                    'control': '#' + 'description_display',
-                    'project_id': 2,
-                    'can_attach': true,
-                    'entity_type': 'milestone',
-                    'entity_id': ''
-                  });
-                }
-                );
-              </script>
+            <div class="textarea-resizable">
+              <textarea [(ngModel)]="milestone.description"
+                class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="description"
+                id="description"></textarea>
+              <div class="textarea-grippie"></div>
             </div>
-
-            <input type="hidden" value="" id="description" name="description">
 
             <script type="text/javascript">
               $(document).ready(

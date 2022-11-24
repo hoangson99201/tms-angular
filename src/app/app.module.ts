@@ -15,7 +15,7 @@ import { MenuProjectComponent } from './shared/menu-project/menu-project.compone
 import { MenuComponent } from './shared/menu/menu.component';
 import { AddProjectComponent } from './components/project/add-project/add-project.component';
 import { MilestonesComponent } from './components/project/milestones/milestones.component';
-import { AddMilestoneComponent } from './components/add-milestone/add-milestone.component';
+import { AddMilestoneComponent } from './components/project/milestones/add-milestone/add-milestone.component';
 import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 
 @NgModule({
