@@ -15,4 +15,8 @@ export class TestCaseService {
       responseType: 'text'
     });
   }
+
+  findAllByProjectId(projectId: number): Observable<TestCase[]> {
+    return this._http.get<TestCase[]>("/tms/api/v1/test-case/" + projectId);
+  }
 }

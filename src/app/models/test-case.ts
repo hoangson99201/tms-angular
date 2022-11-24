@@ -8,5 +8,7 @@ export interface TestCase {
   steps?: string,
   expectedResult?: string,
   userId: number,
-  projectId: number
+  projectId: number,
+  sectionName?: string,
+  fullname?: string
 }
