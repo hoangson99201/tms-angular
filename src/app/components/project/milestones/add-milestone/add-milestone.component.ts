@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IDatePickerDirectiveConfig } from 'ng2-date-picker';
 import { ToastrService } from 'ngx-toastr';
 import { Milestone } from 'src/app/models/milestone';
@@ -11,15 +11,24 @@ import { MilestoneService } from 'src/app/services/milestone.service';
   templateUrl: './add-milestone.component.html',
   styleUrls: ['./add-milestone.component.scss'],
 })
-export class AddMilestoneComponent {
+export class AddMilestoneComponent implements OnInit {
   constructor(
     private milestoneService: MilestoneService,
     private router: Router,
     private toastr: ToastrService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
 
-  projectId = 1;
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      console.log(params);
+      this.projectId = params['id'];
+      console.log(this.projectId);
+    });
+  }
+
+  public projectId = 0;
   milestone: Milestone = {
     projectId: this.projectId,
     milestoneName: '',
@@ -37,7 +46,6 @@ export class AddMilestoneComponent {
   }
 
   submit() {
-
     this.milestoneService.addMilestone(this.milestone).subscribe({
       next: (res) => {
         console.log(res);

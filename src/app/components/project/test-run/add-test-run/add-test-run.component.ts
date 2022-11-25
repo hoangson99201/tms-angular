@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Milestone } from 'src/app/models/milestone';
 import { TestRun } from 'src/app/models/test-run';
@@ -15,31 +15,44 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add-test-run.component.scss'],
 })
 export class AddTestRunComponent implements OnInit {
-
-  constructor(private testRunService: TestRunService, private router: Router, private milestoneService: MilestoneService,
-    private toastr: ToastrService, private userService: UserService, private location: Location) { }
+  constructor(
+    private testRunService: TestRunService,
+    private router: Router,
+    private milestoneService: MilestoneService,
+    private toastr: ToastrService,
+    private userService: UserService,
+    private location: Location,
+    private route: ActivatedRoute
+  ) {}
 
   projectId = 1;
   userId = 2;
   testRun: TestRun = {
     runName: 'Test Run ' + this.getToday(),
     projectId: this.projectId,
-    userId: this.userId
-  }
+    userId: this.userId,
+  };
   milestones: Milestone[] = [];
   users: User[] = [];
 
   ngOnInit(): void {
-    this.milestoneService.findAllByProjectId(this.projectId).subscribe(milestones => {
-      this.milestones = milestones;
-      console.log(milestones);
-    });
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
-      console.log(users);
-    })
-  }
+    this.route.params.subscribe((params) => {
+      console.log(params);
+      this.projectId = params['id'];
+      console.log(this.projectId);
 
+      this.milestoneService
+        .findAllByProjectId(this.projectId)
+        .subscribe((milestones) => {
+          this.milestones = milestones;
+          console.log(milestones);
+        });
+      this.userService.getUsers().subscribe((users) => {
+        this.users = users;
+        console.log(users);
+      });
+    });
+  }
 
   cancel() {
     this.location.back();
