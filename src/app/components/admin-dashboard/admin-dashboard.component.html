@@ -56,16 +56,7 @@
               </div>
               <div class="column summary-column flex-projects-2">
                 <div class="summary-title text-ppp" style="position: relative; padding: 1px 0 1px 0">
-                  <span style="position: absolute; top: -1px">
-                    <a routerLink="javascript:void(0)"
-                      onclick="this.blur(); App.Projects.unstar(this, 1); return false;" id="project-starred-1"
-                      class="starred link-tooltip" tooltip-text="Remove from project favorites."
-                      style="display: none"></a>
-                    <a routerLink="javascript:void(0)" onclick="this.blur(); App.Projects.star(this, 1); return false;"
-                      id="project-star-1" class="unstarred link-tooltip" tooltip-text="Mark as project favorite."></a>
-                  </span>
-                  <a [routerLink]="['/overview', project.projectId]"
-                    style="padding-left: 25px">{{project.projectName}}</a>
+                  <a [routerLink]="['/overview', project.projectId]">{{project.projectName}}</a>
                   <span class="hidden fav-busy">
                     <div class="icon-progress-inline"></div>
                   </span>
@@ -80,23 +71,6 @@
                 <div class="summary-description">
                   Contains <strong>{{project.activeTestRun}}</strong> active test runs and
                   <strong>{{project.activeMilestone}}</strong> active milestones.
-                </div>
-                <div class="hidden details summary-expand">
-                </div>
-              </div>
-              <div class="column summary-column summary-column-toggle flex-projects-3">
-                <span class="buttons">
-                  <a class="expand" routerLink="javascript:void(0)"
-                    onclick="this.blur(); App.Projects.toggleDetails(this, 1); return false;">
-                    <div class="icon-expand-32"></div>
-                  </a>
-                  <a class="hidden collapse" routerLink="javascript:void(0)"
-                    onclick="this.blur(); App.Projects.toggleDetails(this, 1); return false;">
-                    <div class="icon-collapse-32"></div>
-                  </a>
-                </span>
-                <div class="busy" style="margin-top: 8px; margin-left: 8px">
-                  <div class="icon-progress-standard"></div>
                 </div>
               </div>
             </div>
