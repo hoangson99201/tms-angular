@@ -8,309 +8,17 @@
 
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result" style=""></div>
+          <div class="content-header-result"></div>
           <div class="content-header-title page_title">
             Add Milestone </div>
         </div>
       </div>
-      <script type="text/javascript">
-        $("#sites").prop("selectedIndex", 0);
-      </script>
       <div id="content-inner" class="content-inner goals-clear">
-
-
-        <script type="text/javascript">
-          $(document).ready(function () {
-            App.Translations.add(
-              "attachments_drop",
-              "Drop files here to attach, or click to browse.");
-            App.Translations.add(
-              "attachments_drop_image",
-              "Drop images here to embed, or click to browse.");
-            App.Translations.add(
-              "attachments_drop_image_nobrowse",
-              "Drop images here to embed.");
-            App.Translations.add(
-              "attachments_drop_notype",
-              "You can only add images to this text field (example: PNG or JPG files).");
-            App.Translations.add(
-              "attachments_drop_notype_canattach",
-              "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs.");
-            App.Translations.add(
-              "attachments_file_here",
-              "Drop file here, or click to browse.");
-            App.Translations.add(
-              "attachments_remove_image",
-              "Remove");
-            App.Translations.add(
-              "attachments_drop_notype_canattach_jira",
-              "You can only add images to this text field (example: PNG or JPG files).");
-            App.Translations.add(
-              "attachments_confirm_replace",
-              "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?");
-            App.Translations.add(
-              "attachments_replace_title",
-              "Replace?");
-            App.Translations.add(
-              "attachments_loading_error_title",
-              "Loading error");
-            App.Translations.add(
-              "attachments_loading_error_generic",
-              "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!");
-            App.Translations.add(
-              "attachment_info_all_projects",
-              "All Projects");
-            App.Translations.add(
-              "attachments_confirm_delete",
-              "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.");
-            App.Translations.add(
-              "attachments_delete",
-              "Delete");
-            App.Translations.add(
-              "attachment_upload_name_allowed",
-              "");
-          });
-        </script>
-        <script type="text/javascript">
-          $(document).ready(
-            function () {
-              App.Dropzone.init();
-            }
-          );
-        </script>
-        <div class="dialog dialog_dialog" id="attachmentDialog" style="width: 450px">
-          <div class="dialog-title">
-            <span class="addAttachment">Add Attachment</span>
-            <span class="addImage">Add Images</span>
-          </div>
-          <form id="attachmentForm" action="post">
-            <div class="dialog-body">
-              <div class="message message-error validationError" id="attachmentErrors"></div>
-              <div class="form-group bottom">
-                <div id="attachmentDropzone" class="dropzone dz-persistent" style="min-height: 100px"
-                  data-project-id="2"></div>
-              </div>
-              <div id="attachmentScreenshotMac" class="hidden">
-                <div class="shortcut">
-                  <p class="top">How to take a screenshot on your Mac:</p>
-                  <kbd>^ Ctrl</kbd>
-                  <span class="shortcut-plus">+</span>
-                  <kbd>⌘ Cmd</kbd>
-                  <span class="shortcut-plus">+</span>
-                  <kbd>⇧ Shift</kbd>
-                  <span class="shortcut-plus">+</span>
-                  <kbd>4</kbd>
-                </div>
-                <div class="shortcut">
-                  <p class="top">Then paste it:</p>
-                  <kbd>⌘ Cmd</kbd>
-                  <span class="shortcut-plus">+</span>
-                  <kbd>v</kbd>
-                </div>
-              </div>
-              <div id="attachmentScreenshotWin" class="hidden">
-                <div class="shortcut">
-                  <p class="top">How to take a screenshot on Windows:</p>
-                  <kbd>Alt</kbd>
-                  <span class="shortcut-plus">+</span>
-                  <kbd>PrtSc</kbd>
-                  <span class="shortcut-plus">or</span>
-                  <kbd>PrtSc</kbd>
-                </div>
-                <div class="shortcut">
-                  <p class="top">Then paste it:</p>
-                  <kbd>Ctrl</kbd>
-                  <span class="shortcut-plus">+</span>
-                  <kbd>v</kbd>
-                </div>
-              </div>
-            </div>
-            <div id="attachmentButtons" class="dialog-buttons-highlighted button-group">
-              <button id="attachmentSubmit" type="submit"
-                class="button button-left button-positive button-ok dialog-action-default">
-                <span class="addAttachment">Add Attachment</span><span class="addImage">Add
-                  Images</span>
-              </button>
-              <a class="button button-left button-negative button-cancel dialog-action-close">
-                Cancel </a>
-            </div>
-          </form>
-        </div>
-
-        <script type="text/javascript">
-          $(document).ready(
-            function () {
-              App.Editor.init(2);
-            }
-          );
-        </script>
-        <div class="attachments-new-dialog dialog dialog_attachment" id="attachmentNewDialogFile">
-          <div class="dialog-title">
-            <span class="addAttachment">Attach file</span>
-          </div>
-
-          <div class="attachments-filter bubble filter-bubble hidden" id="filterAttachmentsBubble">
-            <div id="filterAttachmentsContent" class="filter-bubble-inner">
-            </div>
-          </div>
-          <script type="text/javascript">
-            $(document).ready(function () {
-              App.Translations.add(
-                "attachments_drop",
-                "Drop files here to attach, or click to browse.");
-              App.Translations.add(
-                "attachments_drop_image",
-                "Drop images here to embed, or click to browse.");
-              App.Translations.add(
-                "attachments_drop_image_nobrowse",
-                "Drop images here to embed.");
-              App.Translations.add(
-                "attachments_drop_notype",
-                "You can only add images to this text field (example: PNG or JPG files).");
-              App.Translations.add(
-                "attachments_drop_notype_canattach",
-                "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs.");
-              App.Translations.add(
-                "attachments_file_here",
-                "Drop file here, or click to browse.");
-              App.Translations.add(
-                "attachments_remove_image",
-                "Remove");
-              App.Translations.add(
-                "attachments_drop_notype_canattach_jira",
-                "You can only add images to this text field (example: PNG or JPG files).");
-              App.Translations.add(
-                "attachments_confirm_replace",
-                "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?");
-              App.Translations.add(
-                "attachments_replace_title",
-                "Replace?");
-              App.Translations.add(
-                "attachments_loading_error_title",
-                "Loading error");
-              App.Translations.add(
-                "attachments_loading_error_generic",
-                "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!");
-              App.Translations.add(
-                "attachment_info_all_projects",
-                "All Projects");
-              App.Translations.add(
-                "attachments_confirm_delete",
-                "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.");
-              App.Translations.add(
-                "attachments_delete",
-                "Delete");
-              App.Translations.add(
-                "attachment_upload_name_allowed",
-                "");
-            });
-          </script>
-          <script type="text/javascript">
-            $(document).ready(
-              function () {
-                App.Dropzone.init();
-              }
-            );
-          </script>
-
-          <input id="newAttachments" type="hidden">
-          <input id="projectId" type="hidden" value="">
-          <div class="attachments-library attachment-library-dialog">
-            <div>
-              <div style="float: left">
-                <strong class="attachment-library-title">Media Library</strong>
-                <a id="libraryAddAttachment" class="button button-left button-add">Add New</a>
-                <a id="libraryDeleteAttachment" style="display: none;"
-                  class="button button-left button-negative button-delete" href="javascript:void(0)"
-                  onclick="this.blur(); App.Dialogs.remove('This action <strong>deletes selected attachment/s and all their instances across your projects</strong> (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); }); ; return false;">Delete</a>
-              </div>
-
-              <div style="float: right">
-                <span class="h1-additional">
-                  Sort: <a id="attachments-library-sortby" href="#sortDropdown" class="link link-dashed dropdownLink">
-                    <span id="attachmentsByName">Date</span></a>
-                  <span id="orderByAsc" class="hidden">
-                    <div class="icon-asc"></div>
-                  </span>
-                  <span id="orderByDesc" class="">
-                    <div class="icon-desc"></div>
-                  </span>
-                  &nbsp;|&nbsp;
-                  Filter: <a class="link link-dashed" href="javascript:void(0)"
-                    onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
-                    id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
-                      id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
-                  <span id="attachmentFilterByBusy" class="busy">
-                    <div class="icon-progress-inline"></div>
-                  </span>
-                  <span id="attachmentFilterByReset" class="hidden">
-                    <a href="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
-                      class="link-tooltip" tooltip-text="Reset filters">
-                      <div class="icon-orderreset"></div>
-                    </a>
-                  </span>
-
-                  <input type="text" name="search" id="libraryAttachmentsSearch" class="attachment-library-search">
-                </span>
-
-                <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown"
-                  style="position: fixed; width: 100px">
-                  <ul>
-                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                        onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
-                    </li>
-                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                        onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a>
-                    </li>
-                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                        onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-
-            <div style="margin-top: 40px; clear: both; background-color: white; height: 361px; overflow-y: auto;"
-              id="attachmentsNewList">
-            </div>
-            <div id="attachmentsPagination" style="margin-bottom: 10px;"></div>
-          </div>
-
-          <script type="text/javascript">
-            $(document).ready(function () {
-              App.Attachments.orderByOptions = { "created_on": "Date", "name": "Name", "size": "Size" };
-              var defaultTimeout = null;
-              $('#libraryAttachmentsSearch').keyup(function () {
-                if (defaultTimeout != null) clearTimeout(defaultTimeout);
-                defaultTimeout = setTimeout(
-                  function () {
-                    defaultTimeout = null;
-                    App.Attachments.reloadRepository();
-                  },
-                  500
-                );
-              });
-            });
-          </script>
-          <div id="attachmentNewButtons" class="dialog-buttons-highlighted button-group">
-            <div style="margin-top: 6px; float: left;">Maximum file size: 256 MB.</div>
-            <button id="attachmentNewSubmit" type="submit" class="button button-right button-positive button-ok"
-              style="margin-left: 7px">
-              <span class="addAttachment">Attach</span>
-            </button>
-            <a class="button button-right button-negative button-cancel dialog-action-close">
-              Cancel </a>
-          </div>
-        </div>
-
-
-        <form action="index.php?/milestones-add/2/1" id="form" method="post"><input type="hidden" name="_token"
-            value="kyqRSAYnPxiKjL7HwuCW">
-
+        <form action="index.php?/milestones-add/2/1" id="form" method="post">
           <div class="form-group form-group-main">
             <label for="name">Name <span class="form-required">*</span></label>
-            <input class="form-control " type="text" name="name" id="name" maxlength="250" value="">
+            <input [(ngModel)]="milestone.milestoneName" class="form-control " type="text" name="name" id="name"
+              maxlength="250" value="">
             <div class="form-description">Ex: <em>Version 1.0</em>, <em>Internal Beta 2</em> or
               <em>Sprint #4</em>
             </div>
@@ -343,17 +51,6 @@
                 id="description"></textarea>
               <div class="textarea-grippie"></div>
             </div>
-
-            <script type="text/javascript">
-              $(document).ready(
-                function () {
-                  if ($('#description_display .attachment-block:last').length > 0
-                    && $('#description_display .attachment-block:last').find('.attachment-list-delete-inline').length === 0) {
-                    $('#description_display .attachment-block:last').after('<div contenteditable="false" class="inlineAttachmentListRemove attachment-list-delete-inline" style="display: none;" href="javascript:void(0)" onclick="App.Attachments.entityRemoveAttachmentsDialog(\'This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.\', \'2\', \'milestone\', \'#description_attachments_wrapper\'); $(\'#description_display .inlineAttachmentListRemove\').hide(); return false;"><div class="attachment-list-delete-icon"></div><span>Delete</span></div><span contenteditable="false" class="inline-attachment-list-whitespace">&nbsp;</span>&nbsp;');
-                  }
-                }
-              );
-            </script>
             <div class="form-description">Use this description to describe the purpose and goals of this
               milestone.</div>
           </div>
@@ -361,15 +58,15 @@
           </div>
           <div class="form-group">
             <label for="due_on">Start Date</label>
-            <input class="form-control form-control-small  dirty-trackable-datepicker hasDatepicker" type="text"
-              name="start_on" id="start_on" maxlength="250" autocomplete="off" value="">
+            <input name="startDate" [(ngModel)]="milestone.startDate" [dpDayPicker]="configStartDate"
+              class="form-control form-control-small dirty-trackable-datepicker hasDatepicker">
             <div class="form-description">The expected or scheduled start date of this milestone (for
               upcoming and not yet active milestones).</div>
           </div>
           <div class="form-group">
             <label for="due_on">End Date</label>
-            <input class="form-control form-control-small  dirty-trackable-datepicker hasDatepicker" type="text"
-              name="due_on" id="due_on" maxlength="250" autocomplete="off" value="">
+            <input name="endDate" [(ngModel)]="milestone.endDate" [dpDayPicker]="configEndDate"
+              class="form-control form-control-small dirty-trackable-datepicker hasDatepicker">
             <div class="form-description">The expected due or end date of this milestone.</div>
           </div>
           <div class="form-separator">
@@ -378,7 +75,8 @@
             <div class="checkbox">
               <label>
                 <strong>This milestone is completed</strong>
-                <input class="dirty-trackable" type="checkbox" id="is_completed" name="is_completed" value="1">
+                <input type="checkbox" [checked]="milestone.completed"
+                  (change)="milestone.completed = !milestone.completed">
               </label>
             </div>
             <div class="form-description">Tests and test cases can only be assigned to active
@@ -386,27 +84,14 @@
           </div>
 
           <div class="button-group form-buttons">
-            <button id="accept" class="button button-left button-positive button-ok" type="submit">
-              Add Milestone </button>
+            <button (click)="submit()" id="accept" class="button button-left button-positive button-ok" type="button"
+              [disabled]="milestone.milestoneName.trim().length == 0">
+              Add Milestone
+            </button>
             <a href="adminMilestone.jsp" class="button button-left button-negative button-cancel milestone-form-cancel">
               Cancel </a>
           </div>
-
-          <input id="attachments" type="hidden" name="attachments" value="">
         </form>
-        <script type="text/javascript">
-          $(document).ready(function () {
-
-            App.Hotkeys.isForm(true);
-            App.Hotkeys.registerModifier(
-              's',
-              function () {
-                $('#form').submit();
-              }
-            );
-            App.Attachments.initEditorAttachments(App.Milestones.attachmentsCode);
-          });
-        </script>
 
       </div>
     </div>
@@ -1079,7 +764,7 @@
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
     id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
     title="attachment_name">
-    <div class="attachment-icon" style=""></div>
+    <div class="attachment-icon"></div>
     <div class="attachment-name">
       attachment_truncated_name
     </div>

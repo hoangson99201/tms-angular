@@ -4,5 +4,5 @@ export interface Milestone {
   startDate?: string | number[],
   endDate?: string | number[],
   projectId: number,
-  completed: boolean
+  completed?: boolean
 }
