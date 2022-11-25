@@ -1,4 +1,5 @@
 export interface Milestone {
+  milestoneId?: number,
   milestoneName: string,
   description?: string,
   startDate?: string | number[],

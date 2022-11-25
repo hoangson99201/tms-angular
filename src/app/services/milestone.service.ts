@@ -15,4 +15,8 @@ export class MilestoneService {
       responseType: 'text'
     });
   }
+
+  findAllByProjectId(projectId: number): Observable<Milestone[]> {
+    return this._http.get<Milestone[]>("/tms/api/v1/milestone/" + projectId);
+  }
 }

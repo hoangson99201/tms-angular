@@ -322,21 +322,12 @@
           <div class="form-group">
             <label for="milestone_id">Milestone</label>
             <div class="dropdown-size">
-              <select class="searchable form-control form-control-small form-select  chzn-done" id="milestone_id"
-                name="milestone_id" style="display: none;">
-                <option value=""> &nbsp; </option>
+              <select [(ngModel)]="testRun.milestoneId" name="milestone_id" id="milestone_id"
+                class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
+                <option *ngFor="let milestone of milestones" value="{{milestone.milestoneId}}">
+                  {{milestone.milestoneName}}
+                </option>
               </select>
-              <div id="milestone_id_chzn" class="chzn-container chzn-container-single" style="width: 100%;"><a
-                  href="javascript:void(0)" class="chzn-single"><span>&nbsp;</span>
-                  <div><b></b></div>
-                </a>
-                <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                  <div class="chzn-search"><input type="text" autocomplete="off"></div>
-                  <ul class="chzn-results">
-                    <li id="milestone_id_chzn_o_0" class="active-result result-selected"> &nbsp; </li>
-                  </ul>
-                </div>
-              </div>
             </div>
 
             <script type="text/javascript">
@@ -349,34 +340,12 @@
           <div class="searchable-wrapper">
             <div class="form-group dropdown-size">
               <label for="assignedto_id">Assign To</label>
-              <select class="form-control form-control-small form-select searchable chzn-done" name="assignedto_id"
-                id="assignedto_id" style="display: none;">
-                <option value="">&nbsp;</option>
-                <option value="1">Me</option>
-                <optgroup disabled="disabled" label="–––"></optgroup>
-                <option value="1">Doan Bao</option>
-                <option value="2">Nguyen Tien Khoa</option>
+              <select [(ngModel)]="testRun.assignedToId" name="user_id" id="user_id"
+                class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
+                <option *ngFor="let user of users" value="{{user.userId}}">
+                  {{user.fullname}}
+                </option>
               </select>
-              <div id="assignedto_id_chzn" class="chzn-container chzn-container-single" style="width: 100%;"><a
-                  href="javascript:void(0)" class="chzn-single"><span>&nbsp;</span>
-                  <div><b></b></div>
-                </a>
-                <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                  <div class="chzn-search"><input type="text" autocomplete="off"></div>
-                  <ul class="chzn-results">
-                    <li id="assignedto_id_chzn_o_0" class="active-result result-selected">&nbsp;</li>
-                    <li id="assignedto_id_chzn_o_1" class="active-result">Me
-                    </li>
-                    <li id="assignedto_id_chzn_o_3" class="active-result">Doan
-                      Bao</li>
-                    <li id="assignedto_id_chzn_o_4" class="active-result">
-                      Nguyen Tien Khoa</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="form-description">The user to whom the tests of the new test run
-                should initially be assigned.
-                An email is sent to the user if email notifications are enabled.</div>
             </div>
           </div>
           <div class="form-separator">
