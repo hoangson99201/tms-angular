@@ -57,7 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DpDatePickerModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 50000,
+      timeOut: 5000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
     })

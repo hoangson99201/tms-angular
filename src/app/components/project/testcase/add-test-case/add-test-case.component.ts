@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Priority } from 'src/app/models/priority';
 import { Section } from 'src/app/models/section';
 import { TestCase } from 'src/app/models/test-case';
@@ -24,7 +25,7 @@ export class AddTestCaseComponent implements OnInit {
   priorities: Priority[] = [];
 
   constructor(private sectionService: SectionService, private priorityService: PriorityService,
-    private _location: Location, private testCaseService: TestCaseService, private router: Router) { }
+    private _location: Location, private testCaseService: TestCaseService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.sectionService.findAllByProjectId(this.projectId).subscribe(sections => {
@@ -40,9 +41,17 @@ export class AddTestCaseComponent implements OnInit {
   }
 
   submit() {
-    this.testCaseService.addTestCase(this.testCase).subscribe(response => {
-      console.log(response);
-      this.router.navigateByUrl('');
+
+    this.testCaseService.addTestCase(this.testCase).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Add testcase success', 'Success');
+        this.router.navigateByUrl('');
+      },
+      error: (e) => {
+        console.log(e);
+        this.toastr.error('Add testcase failed', 'Error');
+      },
     });
   }
 }
