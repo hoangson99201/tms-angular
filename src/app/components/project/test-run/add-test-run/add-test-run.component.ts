@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Milestone } from 'src/app/models/milestone';
@@ -16,7 +17,7 @@ import { UserService } from 'src/app/services/user.service';
 export class AddTestRunComponent implements OnInit {
 
   constructor(private testRunService: TestRunService, private router: Router, private milestoneService: MilestoneService,
-    private toastr: ToastrService, private userService: UserService) { }
+    private toastr: ToastrService, private userService: UserService, private location: Location) { }
 
   projectId = 1;
   userId = 2;
@@ -39,6 +40,10 @@ export class AddTestRunComponent implements OnInit {
     })
   }
 
+
+  cancel() {
+    this.location.back();
+  }
 
   submit() {
     this.testRunService.addTestRun(this.testRun).subscribe({

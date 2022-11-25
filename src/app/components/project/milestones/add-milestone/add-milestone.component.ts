@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDatePickerDirectiveConfig } from 'ng2-date-picker';
@@ -14,7 +15,8 @@ export class AddMilestoneComponent {
   constructor(
     private milestoneService: MilestoneService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private location: Location
   ) {}
 
   projectId = 1;
@@ -29,6 +31,10 @@ export class AddMilestoneComponent {
   configEndDate: IDatePickerDirectiveConfig = {
     format: 'YYYY-MM-DD',
   };
+
+  cancel() {
+    this.location.back();
+  }
 
   submit() {
 

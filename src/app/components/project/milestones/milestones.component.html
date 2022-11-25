@@ -434,7 +434,7 @@
                 create
                 the first milestone.</p>
               <div class="button-group">
-                <a routerLink="/milestones-add" class="button button-left button-add">
+                <a [routerLink]="['/milestones-add', projectId]" class="button button-left button-add">
                   Add Milestone </a>
               </div>
             </div>
@@ -512,7 +512,7 @@
       </div>
 
       <div class="sidebar-inner">
-        <a id="navigation-milestones-add" class="sidebar-button" routerLink="/milestones-add">
+        <a id="navigation-milestones-add" class="sidebar-button" [routerLink]="['/milestones-add', projectId]">
           <span>Add Milestone</span>
         </a>
         <p class="top">There are no milestones.</p>

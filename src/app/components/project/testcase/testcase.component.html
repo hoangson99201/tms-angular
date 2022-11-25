@@ -27,7 +27,7 @@
                 <a id="addSectionInline" class="button button-left button-add" routerLink="javascript:void(0)"
                   onclick="this.blur(); App.Sections.add(2); return false;">
                   Add Section </a>
-                <a routerLink="/test-cases-add" class="button button-left button-add">
+                <a [routerLink]="['/test-cases-add', projectId]" class="button button-left button-add">
                   Add Test Case </a>
               </div>
             </div>
@@ -183,7 +183,7 @@
 
 
       <div class="sidebar-inner">
-        <a id="sidebar-cases-add" class="sidebar-button" routerLink="/test-cases-add">
+        <a id="sidebar-cases-add" class="sidebar-button" [routerLink]="['/test-cases-add', projectId]">
           <span>Add Test Case</span>
         </a>
 

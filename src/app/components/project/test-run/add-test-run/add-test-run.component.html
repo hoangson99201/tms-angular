@@ -421,7 +421,7 @@
               [disabled]="testRun.runName.trim().length == 0">
               Add Test Run
             </button>
-            <a href="testerTestRun.jsp" class="button button-left button-negative button-cancel run-form-cancel">
+            <a (click)="cancel()" class="button button-left button-negative button-cancel run-form-cancel">
               Cancel </a>
           </div>
         </form>

@@ -21,7 +21,7 @@ const routes: Routes = [
     component: MilestonesComponent,
   },
   {
-    path: 'milestones-add',
+    path: 'milestones-add/:id',
     component: AddMilestoneComponent,
   },
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
     component: TestRunComponent,
   },
   {
-    path: 'test-runs-add',
+    path: 'test-runs-add/:id',
     component: AddTestRunComponent,
   },
   {
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'test-cases-add',
+    path: 'test-cases-add/:id',
     component: AddTestCaseComponent,
   },
   {

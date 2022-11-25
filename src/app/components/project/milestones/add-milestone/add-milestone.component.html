@@ -88,7 +88,7 @@
               [disabled]="milestone.milestoneName.trim().length == 0">
               Add Milestone
             </button>
-            <a href="adminMilestone.jsp" class="button button-left button-negative button-cancel milestone-form-cancel">
+            <a (click)="cancel()" class="button button-left button-negative button-cancel milestone-form-cancel">
               Cancel </a>
           </div>
         </form>

@@ -339,7 +339,7 @@
               <p>This project doesn't have any active test
                 runs. You can add a new test run.</p>
               <div class="button-group">
-                <a id="navigation-overview-addrunssuite" routerLink="/test-runs-add"
+                <a id="navigation-overview-addrunssuite" [routerLink]="['/test-runs-add', projectId]"
                   class="button button-left button-add">
                   Add Test Run </a>
               </div>
@@ -377,11 +377,11 @@
             </div>
             <div class="column summary-column summary-column-first">
               <div class="summary-title summary-title-compact">
-                <a id="sidebar-milestones-overview" routerLink="/milestones">Milestones</a>
+                <a id="sidebar-milestones-overview" [routerLink]="['/milestones', projectId]">Milestones</a>
               </div>
               <div class="summary-description-compact text-secondary">
 
-                <a id="sidebar-milestones-viewall" class="link" routerLink="/milestones">View All</a>
+                <a id="sidebar-milestones-viewall" class="link"  [routerLink]="['/milestones', projectId]">View All</a>
               </div>
             </div>
           </div>
@@ -390,11 +390,11 @@
             </div>
             <div class="column summary-column">
               <div class="summary-title summary-title-compact">
-                <a id="sidebar-runs-overview" routerLink="/test-runs">Test Runs</a>
+                <a id="sidebar-runs-overview" [routerLink]="['/test-runs', projectId]">Test Runs</a>
               </div>
               <div class="summary-description-compact text-secondary">
-                <a id="sidebar-runs-add" class="link" routerLink="/test-runs-add">Add</a> |
-                <a id="sidebar-runs-viewall" class="link" routerLink="/test-runs">View
+                <a id="sidebar-runs-add" class="link"  [routerLink]="['/test-runs-add', projectId]">Add</a> |
+                <a id="sidebar-runs-viewall" class="link"  [routerLink]="['/test-runs', projectId]" >View
                   All</a>
               </div>
             </div>
@@ -404,11 +404,11 @@
             </div>
             <div class="column summary-column summary-column-last">
               <div class="summary-title summary-title-compact">
-                <a id="sidebar-cases-overview" routerLink="/test-cases">Test Cases</a>
+                <a id="sidebar-cases-overview" [routerLink]="['/test-cases', projectId]">Test Cases</a>
               </div>
               <div class="summary-description-compact text-secondary">
 
-                <a id="sidebar-suites-viewall" class="link" routerLink="/test-cases">View
+                <a id="sidebar-suites-viewall" class="link" [routerLink]="['/test-cases', projectId]">View
                   All</a>
               </div>
             </div>
