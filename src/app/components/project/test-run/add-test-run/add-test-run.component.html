@@ -1,44 +1,12 @@
 <app-menu-project></app-menu-project>
 
-<script type="text/javascript">
-  $(document).ready(
-    function () {
-      $('#body').css('display', 'table');
-    }
-  );
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#name').focus();
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    // $.datepicker.setDefaults(
-    //     {
-    //         dateFormat: 'm/d/yy',
-    //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-    //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    //         firstDay: 0
-    //     }
-    // );
-  });
-</script>
-
 <div id="separator"></div>
 <div id="body-container" class="">
   <div id="body" class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
-
-
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result" style=""></div>
+          <div class="content-header-result"></div>
           <div class="content-header-title page_title">
             Add Test Run </div>
         </div>
@@ -343,32 +311,16 @@
 
           <div class="form-group form-group-main">
             <label for="name">Name <span class="form-required">*</span></label>
-            <input class="form-control " type="text" name="name" id="name" maxlength="250" value="">
+            <input [(ngModel)]="testRun.runName" class="form-control " type="text" name="name" id="name"
+              maxlength="250">
             <div class="form-description">
               Ex: <em>Test Run 2014-08-01</em>, <em>Build 240</em> or <em>Version 3.0</em>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="refs" class="text-ppp" style="width: 462px">
-              <span class="pull-left" style="line-height: 1.4;">
-                References </span>
-              <span class="text-secondary pull-right">
-                <a class="link" target="_blank" tabindex="-1"
-                  href="https://www.gurock.com/testrail/docs/integrate/references/introduction">
-                  ? </a>
-              </span>
-            </label>
-            <input class="form-control " type="text" name="refs" id="refs" maxlength="250" style="margin-top:5px"
-              value="">
-            <div class="form-description">Add reference ID's to external tickets here.</div>
           </div>
           <div class="form-separator">
           </div>
           <div class="form-group">
             <label for="milestone_id">Milestone</label>
-
-
-
             <div class="dropdown-size">
               <select class="searchable form-control form-control-small form-select  chzn-done" id="milestone_id"
                 name="milestone_id" style="display: none;">
@@ -379,9 +331,9 @@
                   <div><b></b></div>
                 </a>
                 <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                  <div class="chzn-search" style=""><input type="text" autocomplete="off" style=""></div>
+                  <div class="chzn-search"><input type="text" autocomplete="off"></div>
                   <ul class="chzn-results">
-                    <li id="milestone_id_chzn_o_0" class="active-result result-selected" style=""> &nbsp; </li>
+                    <li id="milestone_id_chzn_o_0" class="active-result result-selected"> &nbsp; </li>
                   </ul>
                 </div>
               </div>
@@ -410,14 +362,14 @@
                   <div><b></b></div>
                 </a>
                 <div class="chzn-drop" style="display: none; width: 100%; top: 0px;">
-                  <div class="chzn-search" style=""><input type="text" autocomplete="off" style=""></div>
+                  <div class="chzn-search"><input type="text" autocomplete="off"></div>
                   <ul class="chzn-results">
-                    <li id="assignedto_id_chzn_o_0" class="active-result result-selected" style="">&nbsp;</li>
-                    <li id="assignedto_id_chzn_o_1" class="active-result" style="">Me
+                    <li id="assignedto_id_chzn_o_0" class="active-result result-selected">&nbsp;</li>
+                    <li id="assignedto_id_chzn_o_1" class="active-result">Me
                     </li>
-                    <li id="assignedto_id_chzn_o_3" class="active-result" style="">Doan
+                    <li id="assignedto_id_chzn_o_3" class="active-result">Doan
                       Bao</li>
-                    <li id="assignedto_id_chzn_o_4" class="active-result" style="">
+                    <li id="assignedto_id_chzn_o_4" class="active-result">
                       Nguyen Tien Khoa</li>
                   </ul>
                 </div>
@@ -449,43 +401,12 @@
               </span>
               Description </label>
 
-            <div class="textarea-resizable editor-bindable attachment-list-wrapper" data-attribute="description"
-              id="description_attachments_wrapper">
-              <div contenteditable="true" class="form-control field-editor form-control-full " id="description_display">
-              </div>
-              <div id="description_display_drop" class="dropzone dz-clickable" rel="description_display" dialog=""
-                data-project-id="2">
-                <div class="dz-default dz-message"><span>Drop images here to embed.</span>
-                </div>
-              </div>
-
-              <script type="text/javascript">
-                $(document).ready(function () {
-                  App.Editor.applyDrop({
-                    'selector': '#' + 'description_display_drop',
-                    'control': '#' + 'description_display',
-                    'project_id': 2,
-                    'can_attach': true,
-                    'entity_type': 'run',
-                    'entity_id': ''
-                  });
-                }
-                );
-              </script>
+            <div class="textarea-resizable">
+              <textarea [(ngModel)]="testRun.description"
+                class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="description"
+                id="description"></textarea>
+              <div class="textarea-grippie"></div>
             </div>
-
-            <input type="hidden" value="" id="description" name="description">
-
-            <script type="text/javascript">
-              $(document).ready(
-                function () {
-                  if ($('#description_display .attachment-block:last').length > 0
-                    && $('#description_display .attachment-block:last').find('.attachment-list-delete-inline').length === 0) {
-                    $('#description_display .attachment-block:last').after('<div contenteditable="false" class="inlineAttachmentListRemove attachment-list-delete-inline" style="display: none;" href="javascript:void(0)" onclick="App.Attachments.entityRemoveAttachmentsDialog(\'This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.\', \'2\', \'run\', \'#description_attachments_wrapper\'); $(\'#description_display .inlineAttachmentListRemove\').hide(); return false;"><div class="attachment-list-delete-icon"></div><span>Delete</span></div><span contenteditable="false" class="inline-attachment-list-whitespace">&nbsp;</span>&nbsp;');
-                  }
-                }
-              );
-            </script>
             <div class="form-description form-description-full">
               Use this description to describe the purpose of this test run. </div>
           </div>
@@ -524,65 +445,16 @@
                     selection</a>) </span>
               </div>
             </div>
-            <div class="radio" style="margin-top: 15px">
-              <label>
-                <strong class="beta">Dynamic Filtering</strong>
-                <a href="http://docs.gurock.com/testrail-userguide/userguide-testrunfilters#dynamic_filtering"
-                  class="beta-help" target="_blank" title="Read more about Dynamic Filtering in our User Guide."></a>
-                <input type="radio" class="radio" name="include_all" value="0" id="includeDynamic">
-                <input type="hidden" value="0" name="include_dynamic" id="include_dynamic">
-                <input type="hidden" value="" name="dynamic_filters" id="dynamic_filters">
-                <p>Automatically add test cases based on filter selection. New test cases
-                  are automatically added to the run if they match the filter (unless the
-                  run is closed).</p>
-              </label>
-            </div>
-            <div id="includeDynamicContainer" style="margin-top: 5px; margin-left: 20px" class="hidden">
-              <div class="form-message">
-                <span id="includeDynamicInfo">
-                  <strong>0</strong> test cases included (<a class="" href="javascript:void(0)"
-                    onclick="this.blur(); App.Runs.dynamicFilters(2, 1); return false;">change
-                    filter</a>) </span>
-              </div>
-            </div>
           </div>
 
           <div class="button-group form-buttons">
-            <button id="accept" class="button button-left button-positive button-ok" type="submit">
-              Add Test Run </button>
+            <button (click)="submit()" id="accept" class="button button-left button-positive button-ok" type="button"
+              [disabled]="testRun.runName.trim().length == 0">
+              Add Test Run
+            </button>
             <a href="testerTestRun.jsp" class="button button-left button-negative button-cancel run-form-cancel">
               Cancel </a>
           </div>
-
-          <script type="text/javascript">
-            $(document).ready(
-              function () {
-                $('#includeAll').click(
-                  function () {
-                    $('#include_dynamic').val(0);
-                    $('#includeSpecificContainer').hide();
-                    $('#includeDynamicContainer').hide();
-                  }
-                );
-                $('#includeSpecific').click(
-                  function () {
-                    $('#include_dynamic').val(0);
-                    $('#includeSpecificContainer').show();
-                    $('#includeDynamicContainer').hide();
-                  }
-                );
-                $('#includeDynamic').click(
-                  function () {
-                    $('#include_dynamic').val(1);
-                    $('#includeSpecificContainer').hide();
-                    $('#includeDynamicContainer').show();
-                  }
-                );
-                App.Attachments.initEditorAttachments(App.Runs.attachmentsCode);
-              }
-            );
-          </script>
-
         </form>
         <div id="selectionDropdown" class="dropdown dropdown-menu" rel="itemPrev" style="width: 165px; z-index: 10000">
           <ul>
@@ -1305,7 +1177,7 @@
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
     id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
     title="attachment_name">
-    <div class="attachment-icon" style=""></div>
+    <div class="attachment-icon"></div>
     <div class="attachment-name">
       attachment_truncated_name
     </div>
