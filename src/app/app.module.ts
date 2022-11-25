@@ -13,10 +13,12 @@ import { OverviewComponent } from './components/project/overview/overview.compon
 import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
 import { TestRunComponent } from './components/project/test-run/test-run.component';
-import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,13 @@ import { MenuComponent } from './shared/menu/menu.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 50000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
