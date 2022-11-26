@@ -18,7 +18,7 @@ export class AddMilestoneComponent implements OnInit {
     private toastr: ToastrService,
     private location: Location,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

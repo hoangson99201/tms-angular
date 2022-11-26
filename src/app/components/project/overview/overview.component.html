@@ -1,33 +1,8 @@
 <app-menu-project [projectId]="projectId"></app-menu-project>
 
-<script type="text/javascript">
-  $(document).ready(
-    function () {
-      $('#body').css('display', 'table');
-    }
-  );
-</script>
-
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    // $.datepicker.setDefaults(
-    //     {
-    //         dateFormat: 'm/d/yy',
-    //         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    //         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    //         dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-    //         monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    //         monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    //         firstDay: 0
-    //     }
-    // );
-  });
-</script>
-
 <div id="separator"></div>
 <div id="body-container" class="">
-  <div id="body-overview" class="table">
+  <div id="body" class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
       <div id="notificationbar" class="notificationbar notificationbar-hidden">
       </div>
@@ -35,7 +10,7 @@
       </div>
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result" style=""></div>
+          <div class="content-header-result"></div>
           <div class="content-header-id">P1</div>
           <div class="toolbar content-header-toolbar"><a
               class="toolbar-button toolbar-button-last content-header-button button-report dropdownLink toolbar-button-first"
@@ -48,290 +23,39 @@
         $("#sites").prop("selectedIndex", 0);
       </script>
       <div id="content-inner" class="content-inner goals-clear">
-
-
-        <div id="reportDropdown" class="dropdown dropdown-menu dropdown-menu-grouped" style="width: 225px">
-          <div class="dropdown-menu-title top">Defects</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a summary of found defects for this project.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=defects_summary">
-                Summary </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a summary of found defects per test case &amp; test.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=cases_defect_summary">
-                Summary for Cases </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a summary of found defects for the references (requirements, user stories, etc.) in this project.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=references_defect_summary">
-                Summary for References </a>
-            </li>
-          </ul>
-          <div class="dropdown-menu-title">Results</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the results for select test runs per test case (result coverage &amp; comparison).">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=cases_result_coverage">
-                Comparison for Cases </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the results for the references (requirements, user stories, etc.) in this project (result coverage &amp; comparison).">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=references_result_coverage">
-                Comparison for References </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the distribution and groups for a specific test attribute (e.g. priority, type or status) for this project.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=tests_property_groups">
-                Property Distribution </a>
-            </li>
-          </ul>
-          <div class="dropdown-menu-title">Project</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a full summary &amp; overview of this project with milestones &amp; test runs as well as activity and history details.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=projects_summary">
-                Summary </a>
-            </li>
-          </ul>
-          <div class="dropdown-menu-title">Users</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the workload summary, estimates and forecasts for users in this project.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                routerLink="index.php?/reports/add_job/1&plugin=users_workload_summary">
-                Workload Summary </a>
-            </li>
-          </ul>
-        </div>
-        <div id="defectDropdown" class="dropdown dropdown-menu dropdown-menu-grouped dropdown-menu-defect">
-          <ul>
-
-
-          </ul>
-        </div>
-
-
-
-
-        <div class="dialog" id="chooseSuiteDialog" style="width: 400px">
-          <div class="dialog-title">Select Test Suite</div>
-          <form id="chooseSuiteForm">
-            <div class="dialog-body">
-              <div class="form-group bottom">
-                <label for="choose_suite_id">Test Suite <span class="form-required">*</span></label>
-                <select class="form-control form-control-full form-select" name="choose_suite_id" id="choose_suite_id">
-                  <option value="1">Master</option>
-                </select>
-                <div class="form-description">Select the test suite for the new test run.</div>
-              </div>
-            </div>
-            <div class="button-group dialog-buttons-highlighted">
-              <button class="button button-left button-positive button-ok dialog-action-default" type="submit">
-                OK </button>
-              <a class="button button-left button-negative button-cancel dialog-action-close">
-                Cancel </a>
-            </div>
-          </form>
-        </div>
-
-
-
-
-        <div class="dialog" id="selectTimeframeDialog" style="width: 400px">
-          <div class="dialog-title">Select Time Frame</div>
-          <form id="selectTimeframeForm">
-            <div class="dialog-body">
-              <div class="form-group bottom">
-                <label for="select_timeframe">Time Frame <span class="form-required">*</span></label>
-                <select class="form-control form-control-full form-select" name="select_timeframe"
-                  id="select_timeframe">
-                  <option value="7">7 days</option>
-                  <option value="14" selected="selected">14 days</option>
-                  <option value="30">30 days</option>
-                  <option value="60">60 days</option>
-                  <option value="90">90 days</option>
-                </select>
-                <div class="form-description">Select a different time frame for the chart.</div>
-              </div>
-            </div>
-            <div class="button-group dialog-buttons-highlighted">
-              <button id="selectTimeframeSubmit"
-                class="button button-left button-ok button-positive dialog-action-default" type="submit">
-                OK </button>
-              <a routerLink="javascript:void(0)"
-                class="button button-left button-cancel button-negative dialog-action-close">
-                Cancel </a>
-            </div>
-          </form>
-        </div>
-        <div id="activityContainer">
-
-
-
-
-
-
-          <div id="chart-line-fc" class="chart-line">
-            <div class="table">
-              <div id="activityChart" class="column chart-line-column-graph" style="width: 83%"></div>
-
-
-              <div class="column chart-line-column-legend">
-                <div class="chart-legend">
-                  <div class="chart-legend-title">
-                    In the past <a class="link link-tooltip" routerLink="javascript:void(0)"
-                      onclick="this.blur(); App.Projects.selectActivityDays(1); return false;"
-                      tooltip-text="Change the time frame for the chart.">14 days</a>: </div>
-                  <div class="table chart-legend-item" style="height: auto">
-                    <div class="column column-valign chart-legend-column-icon">
-                      <div class="chart-legend-icon" style="background: #3cb850">
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="chart-legend-name text-ppp">0 Passed</div>
-                      <div class="chart-legend-description text-ppp">0% set to Passed</div>
-                    </div>
-                  </div>
-                  <div class="table chart-legend-item" style="height: auto">
-                    <div class="column column-valign chart-legend-column-icon">
-                      <div class="chart-legend-icon" style="background: #595959">
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="chart-legend-name text-ppp">0 Blocked</div>
-                      <div class="chart-legend-description text-ppp">0% set to Blocked</div>
-                    </div>
-                  </div>
-                  <div class="table chart-legend-item" style="height: auto">
-                    <div class="column column-valign chart-legend-column-icon">
-                      <div class="chart-legend-icon" style="background: #fcc200">
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="chart-legend-name text-ppp">0 Retest</div>
-                      <div class="chart-legend-description text-ppp">0% set to Retest</div>
-                    </div>
-                  </div>
-                  <div class="table chart-legend-item" style="height: auto">
-                    <div class="column column-valign chart-legend-column-icon">
-                      <div class="chart-legend-icon" style="background: #e40046">
-                      </div>
-                    </div>
-                    <div class="column">
-                      <div class="chart-legend-name text-ppp">0 Failed</div>
-                      <div class="chart-legend-description text-ppp">0% set to Failed</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="chart-icon-download-container">
-                <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left" tooltip-width="170"
-                  tooltip-text="Download chart as an image">
-                  <button id="activities-as-png-download"></button>
-                </div>
-                <div data-html2canvas-ignore="true" class="link-tooltip" tooltip-position="left" tooltip-width="150"
-                  tooltip-text="Download chart as a CSV">
-                  <button id="activities-as-csv-download"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a download="TestRail-activities-1-20221006135458.png" routerLink="#" id="dl" hidden>download
-            image</a>
-
-          <script type="text/javascript">
-            $(function () {
-              $(document).ready(function () {
-                const dataSource = {
-                  chart: {
-                    showLegend: '0',
-                    exportEnabled: '1',
-                    exportshowmenuitem: '0',
-                    showxaxisline: '1',
-                    showyaxisline: '1',
-                    xaxislinecolor: '#C0C0C0',
-                    yaxislinecolor: '#C0C0C0',
-                    divLineColor: '#d2e2ed',
-                    theme: 'fusion',
-                    bgColor: '#FFFFFF',
-                    height: 210,
-                    baseFont: 'Barlow',
-                    baseFontSize: '14',
-                    baseFontColor: '#4D4D4D',
-                    showHoverEffect: 0,
-                    anchorHoverEffect: 1,
-                    plotHoverEffect: 1,
-                    drawAnchors: 1,
-                    plotToolText: `<strong>$seriesname</strong> <br /> $label: $value<div id="drilldown-icon"></div>`,
-                    plotcolorintooltip: '0',
-                    drawCrossLine: '0',
-                    chartBottomMargin: '0',
-                    chartLeftMargin: '0'
-                  },
-                  categories: [
-                    {
-                      category: [{ "label": "9\/22" }, { "label": "9\/23" }, { "label": "9\/24" }, { "label": "9\/25" }, { "label": "9\/26" }, { "label": "9\/27" }, { "label": "9\/28" }, { "label": "9\/29" }, { "label": "9\/30" }, { "label": "10\/1" }, { "label": "10\/2" }, { "label": "10\/3" }, { "label": "10\/4" }, { "label": "10\/5" }, { "label": "10\/6" }]
-                    }
-                  ],
-                  dataset: [{ "seriesname": "Failed", "color": "e40046", "data": [{ "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/22\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/23\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/24\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/25\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/26\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/27\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/28\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/29\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/30\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/1\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/2\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/3\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/4\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/5\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/6\", 0, 0, \"ACTIVITY\", 1, 5)", "anchorRadius": 0 }] }, { "seriesname": "Retest", "color": "fcc200", "data": [{ "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/22\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/23\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/24\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/25\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/26\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/27\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/28\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/29\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/30\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/1\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/2\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/3\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/4\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/5\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/6\", 0, 0, \"ACTIVITY\", 1, 4)", "anchorRadius": 0 }] }, { "seriesname": "Blocked", "color": "595959", "data": [{ "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/22\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/23\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/24\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/25\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/26\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/27\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/28\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/29\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/30\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/1\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/2\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/3\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/4\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/5\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/6\", 0, 0, \"ACTIVITY\", 1, 2)", "anchorRadius": 0 }] }, { "seriesname": "Passed", "color": "3cb850", "data": [{ "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/22\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/23\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/24\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/25\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/26\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/27\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/28\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/29\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"9\/30\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/1\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/2\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/3\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/4\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/5\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }, { "value": 0, "link": "JavaScript:App.Drilldown.changes(1,\"10\/6\", 0, 0, \"ACTIVITY\", 1, 1)", "anchorRadius": 0 }] }]
-                };
-                App.Charts.activity = new FusionCharts({
-                  type: 'msline',
-                  renderAt: 'activityChart',
-                  width: '100%',
-                  height: '100%',
-                  dataFormat: 'json',
-                  dataSource
-                }).render();
-                $('#activities-as-csv-download').click(function () {
-                  App.Charts.activity.exportChart({
-                    exportFormat: 'csv',
-                    exportFileName: 'TestRail-activities-1-20221006135458'
-                  });
-                });
-                $('#activities-as-png-download').click(function () {
-                  html2canvas($('#chart-line-fc')[0], {
-                    height: 250,
-                    y: 155
-                  }).then(function (canvas) {
-                    if (navigator.userAgent.toLowerCase().indexOf('safari/') > - 1) {
-                      var ctx = canvas.getContext("2d");
-                      ctx.fillStyle = "#FFFFFF";
-                      ctx.fillRect(0, 0, 30, 300);
-                    }
-                    var dl = document.getElementById('dl');
-                    var dt = canvas.toDataURL('image/png');
-                    dl.routerLink = dt;
-                    dl.click();
-                  });
-                });
-              });
-            });
-          </script>
-        </div>
-        <div id="drilldown_container"></div>
         <div id="content_container">
           <div class="table">
             <div class="column column-p2 column-pad-right">
               <h1 class="top"><a id="navigation-overview-viewmilestones" class="nolink"
-                  routerLink="milestones">Milestones</a>
-              </h1>
-              <p>This project doesn't have any active milestones. Unfortunately, you don't have the
-                permissions to add one.</p>
-
+                  href="index.php?/milestones/overview/2">Milestones</a></h1>
+              <div *ngIf="milestones.length == 0; then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                <p>This project doesn't have any active milestones.
+                  You can add a new milestone.</p>
+                <div class="button-group">
+                  <a id="navigation-overview-addmilestones" [routerLink]="['/milestones-add', projectId]"
+                    class="button button-left button-add">
+                    Add Milestone </a>
+                </div>
+              </ng-template>
+              <ng-template #elseBlock>
+                <div class="table" style="margin-top: 1.2em;">
+                  <div *ngFor="let milestone of milestones" class="row flex-milestones-row">
+                    <div
+                      class="column summary-column summary-column-icon-compact flex-milestones-1-compact icon-milestone-32 summary-column-first ">
+                    </div>
+                    <div class="column summary-column  flex-milestones-2-compact summary-column-first ">
+                      <div class="summary-title summary-title-compact text-ppp">
+                        <a id="navigation-overview-viewmilestones"
+                          href="index.php?/milestones/view/3">{{milestone.milestoneName}}</a>
+                      </div>
+                      <div class="summary-description-compact text-secondary text-ppp">
+                        {{milestone.endDate ? "Due on " + milestone.endDate : "No due date"}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
             </div>
             <div class="column column-p2 column-pad-left">
               <h1 class="top"><a id="navigation-overview-runs" class="nolink" routerLink="test-runs">Test Runs</a>
@@ -381,7 +105,7 @@
               </div>
               <div class="summary-description-compact text-secondary">
 
-                <a id="sidebar-milestones-viewall" class="link"  [routerLink]="['/milestones', projectId]">View All</a>
+                <a id="sidebar-milestones-viewall" class="link" [routerLink]="['/milestones', projectId]">View All</a>
               </div>
             </div>
           </div>
@@ -393,8 +117,8 @@
                 <a id="sidebar-runs-overview" [routerLink]="['/test-runs', projectId]">Test Runs</a>
               </div>
               <div class="summary-description-compact text-secondary">
-                <a id="sidebar-runs-add" class="link"  [routerLink]="['/test-runs-add', projectId]">Add</a> |
-                <a id="sidebar-runs-viewall" class="link"  [routerLink]="['/test-runs', projectId]" >View
+                <a id="sidebar-runs-add" class="link" [routerLink]="['/test-runs-add', projectId]">Add</a> |
+                <a id="sidebar-runs-viewall" class="link" [routerLink]="['/test-runs', projectId]">View
                   All</a>
               </div>
             </div>
