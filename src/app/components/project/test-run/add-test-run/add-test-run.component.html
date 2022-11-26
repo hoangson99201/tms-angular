@@ -418,7 +418,7 @@
 
           <div class="button-group form-buttons">
             <button (click)="submit()" id="accept" class="button button-left button-positive button-ok" type="button"
-              [disabled]="testRun.runName.trim().length == 0">
+              [disabled]="testRun.runName.trim().length == 0 || !testRun.projectId">
               Add Test Run
             </button>
             <a (click)="cancel()" class="button button-left button-negative button-cancel run-form-cancel">

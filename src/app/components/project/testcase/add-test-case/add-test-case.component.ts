@@ -15,10 +15,9 @@ import { TestCaseService } from 'src/app/services/test-case.service';
   styleUrls: ['./add-test-case.component.scss'],
 })
 export class AddTestCaseComponent implements OnInit {
-  projectId: number = 1;
   testCase: TestCase = {
     caseName: '',
-    projectId: this.projectId,
+    projectId: 0,
     userId: 2,
   };
   sections: Section[] = [];
@@ -32,15 +31,15 @@ export class AddTestCaseComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
-      this.projectId = params['id'];
-      console.log(this.projectId);
+      this.testCase.projectId = params['id'];
+      console.log(this.testCase.projectId);
       this.sectionService
-        .findAllByProjectId(this.projectId)
+        .findAllByProjectId(this.testCase.projectId)
         .subscribe((sections) => {
           this.sections = sections;
         });

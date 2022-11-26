@@ -85,7 +85,7 @@
 
           <div class="button-group form-buttons">
             <button (click)="submit()" id="accept" class="button button-left button-positive button-ok" type="button"
-              [disabled]="milestone.milestoneName.trim().length == 0">
+              [disabled]="milestone.milestoneName.trim().length == 0 || !milestone.projectId">
               Add Milestone
             </button>
             <a (click)="cancel()" class="button button-left button-negative button-cancel milestone-form-cancel">

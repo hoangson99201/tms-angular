@@ -23,14 +23,13 @@ export class AddMilestoneComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
-      this.projectId = params['id'];
-      console.log(this.projectId);
+      this.milestone.projectId = params['id'];
+      console.log(this.milestone.projectId);
     });
   }
 
-  public projectId = 0;
   milestone: Milestone = {
-    projectId: this.projectId,
+    projectId: 0,
     milestoneName: '',
     completed: false,
   };

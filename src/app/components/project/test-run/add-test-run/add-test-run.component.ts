@@ -23,13 +23,12 @@ export class AddTestRunComponent implements OnInit {
     private userService: UserService,
     private location: Location,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
-  projectId = 1;
   userId = 2;
   testRun: TestRun = {
     runName: 'Test Run ' + this.getToday(),
-    projectId: this.projectId,
+    projectId: 0,
     userId: this.userId,
   };
   milestones: Milestone[] = [];
@@ -38,11 +37,14 @@ export class AddTestRunComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
-      this.projectId = params['id'];
-      console.log(this.projectId);
+      this.testRun.projectId = params['id'];
+      if (!this.testRun.projectId) {
+        return;
+      }
+      console.log(this.testRun.projectId);
 
       this.milestoneService
-        .findAllByProjectId(this.projectId)
+        .findAllByProjectId(this.testRun.projectId)
         .subscribe((milestones) => {
           this.milestones = milestones;
           console.log(milestones);
