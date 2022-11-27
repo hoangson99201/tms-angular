@@ -5,14 +5,14 @@
 
 
 <div class="ui-dialog-titlebar ui-widget-header" style="display: flex;justify-content: space-between;padding: 10px;">
-  <span  *ngIf="dialogType === 'add'" class="ui-dialog-title" id="ui-dialog-title-editSectionDialog">
+  <span *ngIf="dialogType === 'add'" class="ui-dialog-title" id="ui-dialog-title-editSectionDialog">
     Add Section
   </span>
   <span *ngIf="dialogType === 'edit'" class="ui-dialog-title" id="ui-dialog-title-editSectionDialog">
     Edit Section
   </span>
   <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
-    <span class="ui-icon ui-icon-closethick">close</span>
+    <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>
   </a>
 </div>
 <form id="editSectionForm" class="dialogFormDefault">
@@ -147,7 +147,7 @@
       type="submit">
       <span class="editSectionEdit">Save Section</span><span class="editSectionAdd">Add Section</span>
     </button>
-    <a class="button button-left button-negative button-cancel dialog-action-close">
+    <a (click)="close()" class="button button-left button-negative button-cancel dialog-action-close">
       Cancel </a>
   </div>
 </form>

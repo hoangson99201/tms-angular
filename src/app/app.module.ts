@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -56,6 +56,7 @@ import { SectionDialogComponent } from './components/project/testcase/section-di
     SidebarComponent,
     SectionDialogComponent
   ],
+  entryComponents: [SectionDialogComponent],
   imports: [
     MatDialogModule,
     BrowserModule,
