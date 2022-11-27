@@ -1,0 +1,14 @@
+<div class="sidebar-inner">
+  <p style="margin: 0">Manage projects, users and global settings.</p>
+</div>
+<ul class="sidebar-menu">
+  <li class="sidebar-menu-item sidebar-menu-item-first ">
+    <a routerLink="adminOverview.jsp" (click)="selectSide(0)" id="navigation-sub-overview">Overview</a>
+  </li>
+  <li class="sidebar-menu-item">
+    <a routerLink="/project/add" (click)="selectSide(1)" id="navigation-sub-projects">Projects</a>
+  </li>
+  <li class="sidebar-menu-item" >
+    <a routerLink="/users-roles" (click)="selectSide(2)" id="navigation-sub-users">Users &amp; Roles</a>
+  </li>
+</ul>

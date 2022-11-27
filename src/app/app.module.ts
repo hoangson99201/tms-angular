@@ -19,14 +19,17 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddUserComponent } from './components/project/add-project/manage-user-roles/add-user/add-user.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
     AddProjectComponent,
-    // ManageUserRolesComponent,
-    // AddUserComponent,
+    ManageUserRolesComponent,
+    AddUserComponent,
     // ManageTestRunComponent,
     // ActivityHistoryComponent,
     // EditProjectComponent,
@@ -47,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TestcaseComponent,
     ReportComponent,
     AddTestRunComponent,
-    MilestonesComponent
+    MilestonesComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

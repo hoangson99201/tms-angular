@@ -10,6 +10,8 @@ import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
+import { AddUserComponent } from './components/project/add-project/manage-user-roles/add-user/add-user.component';
+import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,14 @@ const routes: Routes = [
   {
     path: 'project/add',
     component: AddProjectComponent,
+  },
+  {
+    path: 'users-roles',
+    component: ManageUserRolesComponent,
+  },
+  {
+    path: 'user-role/add',
+    component: AddUserComponent,
   },
 ];
 

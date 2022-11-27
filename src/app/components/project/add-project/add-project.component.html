@@ -31,12 +31,12 @@
                 <div class="form-group">
                   <label for="announcement">
                     <span class="form-toolbar" style="padding-top: 0px">
-                      <a href="javascript:void(0)"
+                      <a routerLink="javascript:void(0)"
                         onclick="this.blur(); App.Editor.addTable('#announcement' + '_display'); return false;"
                         class="link-tooltip" tooltip-text="Add a table to this text field." tabindex="-1">
                         <div class="icon-markdown-table"></div>
                       </a>
-                      <a href="https://www.gurock.com/testrail/docs/user-guide/getting-started/editor"
+                      <a routerLink="https://www.gurock.com/testrail/docs/user-guide/getting-started/editor"
                         class="link-tooltip" tooltip-text="Open the editor formatting reference." target="_blank"
                         tabindex="-1">
                         <div class="icon-markdown-help"></div>
@@ -62,7 +62,7 @@
             <button id="accept" class="button button-left button-positive button-ok"
               [disabled]="project.projectName.trim().length == 0" type="button" (click)="submit()">
               Add Project </button>
-            <a href="javascript:void(0)" (click)="backClicked()"
+            <a routerLink="javascript:void(0)" (click)="backClicked()"
               class="button button-left button-negative button-cancel save-cancel-button"
               id="admin-integration-form-cancel">
               Cancel </a>
@@ -75,21 +75,7 @@
     <div id="sidebar-splitter" class="column splitter sidebar-splitter">
     </div>
     <div id="sidebar" class="column sidebar" style="width: 250px">
-      <div class="sidebar-inner">
-        <p style="margin: 0">Manage projects, users and global settings.</p>
-      </div>
-      <ul class="sidebar-menu">
-        <li class="sidebar-menu-item sidebar-menu-item-first ">
-          <a href="adminOverview.jsp" id="navigation-sub-overview">Overview</a>
-        </li>
-        <li class="sidebar-menu-item sidebar-menu-item-selected">
-          <a href="projects.jsp" id="navigation-sub-projects">Projects</a>
-        </li>
-        <li class="sidebar-menu-item ">
-          <a href="manageUser_Roles.jsp" id="navigation-sub-users">Users &amp; Roles</a>
-        </li>
-      </ul>
-
+      <app-sidebar></app-sidebar>
     </div>
   </div>
 
