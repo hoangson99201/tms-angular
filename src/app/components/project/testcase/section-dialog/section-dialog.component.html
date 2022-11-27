@@ -1,9 +1,3 @@
-<!-- <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-  <span class="ui-dialog-title" *ngIf="dialogType === 'edit'">Edit Section</span>
-  <span class="ui-dialog-title" *ngIf="dialogType === 'add'">Add Section</span>
-</div> -->
-
-
 <div class="ui-dialog-titlebar ui-widget-header" style="display: flex;justify-content: space-between;padding: 10px;">
   <span *ngIf="dialogType === 'add'" class="ui-dialog-title" id="ui-dialog-title-editSectionDialog">
     Add Section
@@ -17,11 +11,10 @@
 </div>
 <form id="editSectionForm" class="dialogFormDefault">
   <div class="dialog-body">
-    <!-- <div class="message message-error validationError" id="editSectionErrors"></div> -->
     <div class="form-group">
       <label for="editSectionName">Name <span class="form-required">*</span></label>
-      <input autocomplete="off" class="form-control" type="text" name="editSectionName" id="editSectionName"
-        maxlength="250" value="">
+      <input [(ngModel)]="section.sectionName" autocomplete="off" class="form-control" type="text"
+        name="editSectionName" id="editSectionName" maxlength="250" value="">
       <div class="form-description form-description-full">Ex: <em>Save Dialog Tests</em>, <em>Contact Form</em> or
         <em>Performance Tests</em>
       </div>
@@ -44,108 +37,23 @@
             <div class="icon-markdown-help"></div>
           </a>
         </span>
-        Description </label>
-
-      <div class="textarea-resizable editor-bindable attachment-list-wrapper" data-attribute="editSectionDescription"
-        id="editSectionDescription_attachments_wrapper">
-        <div contenteditable="true" class="form-control field-editor form-control-full "
-          id="editSectionDescription_display"></div>
-        <div id="editSectionDescription_display_drop" class="dropzone dz-clickable" rel="editSectionDescription_display"
-          dialog="editSectionDialog" data-project-id="2">
-          <div class="dz-default dz-message"><span>Drop images here to embed.</span></div>
-        </div>
-
-        <script type="text/javascript">
-          $(document).ready(function () {
-            App.Editor.applyDrop({
-              'selector': '#' + 'editSectionDescription_display_drop',
-              'control': '#' + 'editSectionDescription_display',
-              'project_id': 2,
-              'can_attach': true,
-              'entity_type': 'section',
-              'entity_id': ''
-            });
-          }
-          );
-        </script>
+        Description
+      </label>
+      <div class="textarea-resizable">
+        <textarea [(ngModel)]="section.description"
+          class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="announcement"
+          id="announcement"></textarea>
+        <div class="textarea-grippie"></div>
       </div>
-
-      <input type="hidden" value="" id="editSectionDescription" name="editSectionDescription">
-
-      <script type="text/javascript">
-        $(document).ready(
-          function () {
-            if ($('#editSectionDescription_display .attachment-block:last').length > 0
-              && $('#editSectionDescription_display .attachment-block:last').find('.attachment-list-delete-inline').length === 0) {
-              $('#editSectionDescription_display .attachment-block:last').after('<div contenteditable="false" class="inlineAttachmentListRemove attachment-list-delete-inline" style="display: none;" href="javascript:void(0)" onclick="App.Attachments.entityRemoveAttachmentsDialog(\'This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.\', \'2\', \'section\', \'#editSectionDescription_attachments_wrapper\'); $(\'#editSectionDescription_display .inlineAttachmentListRemove\').hide(); return false;"><div class="attachment-list-delete-icon"></div><span>Delete</span></div><span contenteditable="false" class="inline-attachment-list-whitespace">&nbsp;</span>&nbsp;');
-            }
-          }
-        );
-      </script>
       <div class="form-description form-description-full">An optional description for this section (e.g. to explain its
         content or purpose).</div>
     </div>
-    <div id="editSectionAttachments" class="form-group bottom attachments-group">
-      <input id="attachments" type="hidden" name="attachments" value="[]">
-
-      <input id="attachmentsToDelete" type="hidden">
-      <div id="entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459" class="attachment-list-wrapper"
-        deleteids="">
-        <div id="entityAttachmentList" class="attachment-list dz-persistent">
-          <div id="entityAttachmentListAdd" style="display: none;" class="attachment-list-add"
-            onclick="App.Attachments.showDialog('#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459', 2, '', 'section', { 'inputParent': '#editSectionAttachments' });">
-            <div class="attachment-list-add-icon"></div>
-          </div>
-          <div id="entityAttachmentListRemove" style="display: none;" class="attachment-list-delete"
-            href="javascript:void(0)"
-            onclick="this.blur(); App.Attachments.entityRemoveAttachmentsDialog('This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.', '2', 'section', '#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459', '#editSectionAttachments'); return false;">
-            <div class="attachment-list-delete-icon"></div>
-            <span>Delete</span>
-          </div>
-          <div id="entityAttachmentListEmptyIcon" class="attachment-list-empty-add"
-            onclick="App.Attachments.showDialog('#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459', 2, '', 'section', { 'inputParent': '#editSectionAttachments' });">
-          </div>
-        </div>
-
-        <div id="entityAttachmentListDropzoneText" class="attachment-list-dropzone-text">
-          <span>Drop files here to attach,<br>or click on "+" to browse</span>
-        </div>
-        <div id="entityAttachmentListRemoveBottom" class="attachment-list-delete-text" style="display: none;"
-          href="javascript:void(0)"
-          onclick="this.blur(); App.Attachments.entityRemoveAttachmentsDialog('This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.', '2', 'section', '#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459', '#editSectionAttachments'); return false;">
-          <div class="attachment-list-delete-icon-red"></div><span>Delete</span>
-        </div>
-      </div>
-
-      <script type="text/javascript">
-        $(function () {
-          App.Attachments.init({
-            selector: '#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459 #entityAttachmentList',
-            itemsParent: '#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459',
-            inputParent: '#editSectionAttachments',
-            project_id: 2,
-            entity_id: '',
-            entity_type: 'section',
-            clickable: false
-          });
-        }
-        );
-      </script>
-
-      <script type="text/javascript">
-        $(function () {
-          var wrapperParent = '#entityAttachmentListWrapper-1e41a55f-8a78-4104-950e-26e1f6291459';
-          $(wrapperParent).attr('deleteIds', '');
-          App.Attachments.lazyLoad(wrapperParent + ' #entityAttachmentList', 0.35);
-          App.Attachments.dontShowEntityDeleteDialog = false;
-        });
-      </script>
-    </div>
   </div>
   <div class="button-group dialog-buttons-highlighted">
-    <button class="button button-left button-positive button-ok dialog-action-default" id="editSectionSubmit"
-      type="submit">
-      <span class="editSectionEdit">Save Section</span><span class="editSectionAdd">Add Section</span>
+    <button [disabled]="!section.sectionName!.trim()" (click)="submit()"
+      class="button button-left button-positive button-ok dialog-action-default" id="editSectionSubmit" type="button">
+      <!-- <span class="editSectionEdit">Save Section</span> -->
+      <span class="editSectionAdd">Add Section</span>
     </button>
     <a (click)="close()" class="button button-left button-negative button-cancel dialog-action-close">
       Cancel </a>

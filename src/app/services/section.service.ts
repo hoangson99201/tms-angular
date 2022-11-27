@@ -13,4 +13,10 @@ export class SectionService {
   findAllByProjectId(projectId: number): Observable<Section[]> {
     return this._http.get<Section[]>("/tms/api/v1/section/" + projectId);
   }
+
+  create(user: Section): Observable<string> {
+    return this._http.post("/tms/api/v1/section", user, {
+      responseType: 'text'
+    });
+  }
 }
