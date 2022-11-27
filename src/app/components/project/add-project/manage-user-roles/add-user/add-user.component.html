@@ -33,8 +33,6 @@
 <div id="body-container" class="">
   <div id="body" class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
-
-
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
           <div class="content-header-result" style=""></div>
@@ -59,20 +57,21 @@
               <div class="tab tab1 dirty-trackable">
                 <div class="form-group">
                   <label for="name">Full Name <span class="form-required">*</span></label>
-                  <input class="form-control " type="text" name="name" id="name" maxlength="250" value="">
+                  <input [(ngModel)]="user.fullname" class="form-control " type="text" name="name" id="name"
+                    maxlength="250">
                   <div class="form-description">Ex: <em>John Doe</em> or <em>Jane Doe</em>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="email">Email Address <span class="form-required">*</span></label>
-                  <input class="form-control   " autocomplete="off" type="text" name="email" id="email" maxlength="250"
-                    value="">
+                  <input [(ngModel)]="user.email" class="form-control" autocomplete="off" type="text" name="email"
+                    id="email" maxlength="250">
                 </div>
                 <div class="form-group">
                   <label for="password">Password <span class="form-required">*</span>
                   </label>
-                  <input class="form-control " type="password" autocomplete="new-password" name="password" id="password"
-                    maxlength="250">
+                  <input [(ngModel)]="user.password" class="form-control " type="password" autocomplete="new-password"
+                    name="password" id="password" maxlength="250">
                   <div class="form-description">Please confirm this password
                     in the next field.</div>
                 </div>
@@ -80,45 +79,34 @@
                   <label for="confirm">Confirm
                     Password <span class="form-required">*</span>
                   </label>
-                  <input class="form-control fo" type="password" autocomplete="off" name="confirm" id="confirm"
-                    maxlength="250">
+                  <input [(ngModel)]="confirmPassword" class="form-control fo" type="password" autocomplete="off"
+                    name="confirm" id="confirm" maxlength="250">
                 </div>
-                <div class="form-group">
-                  <div class="checkbox">
-                    <label>
-                      <strong>Enable email notifications</strong>
-                      <input type="checkbox" class="checkbox" id="notifications" name="notifications" value="1"
-                        checked="checked">
-                    </label>
-                  </div>
-                  <div class="form-description">Email notifications are sent for test
-                    changes and test results.
-                    Note: global email notifications must also be enabled to use this
-                    feature.</div>
+                <!-- <div class="form-group">
+                <div class="checkbox">
+                  <label>
+                    <strong>Enable email notifications</strong>
+                    <input type="checkbox" class="checkbox" id="notifications" name="notifications" value="1"
+                      checked="checked">
+                  </label>
                 </div>
+                <div class="form-description">Email notifications are sent for test
+                  changes and test results.
+                  Note: global email notifications must also be enabled to use this
+                  feature.</div>
+              </div> -->
                 <div class="form-separator">
                 </div>
                 <div class="form-group">
                   <label for="role_id">Role <span class="form-required">*</span></label>
-                  <select class="form-control form-control-small form-select " name="role_id" id="role_id">
-                    <option value="5">
-                      No Access </option>
-                    <option value="4">
-                      Read-only </option>
-                    <option value="3">
-                      Tester </option>
-                    <option value="2">
-                      Designer </option>
-                    <option value="1" selected="selected">
-                      Lead </option>
+                  <select [(ngModel)]="user.roleId" class="form-control form-control-small form-select " name="role_id"
+                    id="role_id">
+                    <option *ngFor="let role of roles" value="{{role.roleId}}">
+                      {{role.roleName}}
+                    </option>
                   </select>
                   <div class="form-description">Specifies the global role and hence
                     permissions of the user.
-                    <!-- Can be overriden for each project on the individual
-                      <a class="link" tabindex="-1" href="index.php?/admin/projects/overview">project settings</a>.
-                      <a class="link" tabindex="-1" target="_blank"
-                        href="https://www.gurock.com/testrail/docs/user-guide/howto/permissions">Learn
-                        more</a> -->
                   </div>
                 </div>
               </div>
@@ -129,14 +117,15 @@
           <input type="hidden" id="js_test" name="js_test" value="0">
 
           <div class="button-group form-buttons">
-            <button class="button button-left button-positive button-ok" type="submit" id="accept" disabled="disabled">
+            <button class="button button-left button-positive button-ok" type="button" id="accept" (click)="submit()"
+              [disabled]="!user.email!.trim() || !user.fullname!.trim() || !user.password!.trim() || !user.roleId || (user.password != confirmPassword)">
               Add User </button>
             <a (click)="backClicked()" class="button button-left button-negative button-cancel">
               Cancel </a>
           </div>
-          <input type="hidden" id="userprojectaccess-3" name="userprojectaccess-3" class="dirty-trackable" value="">
-          <input type="hidden" id="userprojectaccess-1" name="userprojectaccess-1" class="dirty-trackable" value="">
-          <input type="hidden" id="userprojectaccess-2" name="userprojectaccess-2" class="dirty-trackable" value="">
+          <input type="hidden" id="userprojectaccess-3" name="userprojectaccess-3" class="dirty-trackable">
+          <input type="hidden" id="userprojectaccess-1" name="userprojectaccess-1" class="dirty-trackable">
+          <input type="hidden" id="userprojectaccess-2" name="userprojectaccess-2" class="dirty-trackable">
         </form>
 
 
@@ -301,7 +290,7 @@
       <input type="hidden" name="_token" value="uHSABemLRpgzKlfkCYev">
       <div class="form-group">
         <label for="name">Please enter your full name:<span class="form-required">*</span></label>
-        <input class="form-control " type="text" name="full_name" id="full_name" maxlength="250" value="">
+        <input class="form-control " type="text" name="full_name" id="full_name" maxlength="250">
       </div>
 
     </form>

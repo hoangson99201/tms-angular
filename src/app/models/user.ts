@@ -2,5 +2,6 @@ export interface User {
   userId?: number,
   fullname?: string,
   email?: string,
-  roleId?: number
+  roleId?: number,
+  password?: string
 }
