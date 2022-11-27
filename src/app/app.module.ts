@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddUserComponent } from './components/project/add-project/manage-user-roles/add-user/add-user.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
+import { SectionDialogComponent } from './components/project/testcase/section-dialog/section-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,11 @@ import { ManageUserRolesComponent } from './components/project/add-project/manag
     ReportComponent,
     AddTestRunComponent,
     MilestonesComponent,
-    SidebarComponent
+    SidebarComponent,
+    SectionDialogComponent
   ],
   imports: [
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -66,7 +70,7 @@ import { ManageUserRolesComponent } from './components/project/add-project/manag
       preventDuplicates: true
     })
   ],
-  providers: [],
+  providers: [SectionDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

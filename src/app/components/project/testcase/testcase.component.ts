@@ -2,14 +2,20 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TestCase } from 'src/app/models/test-case';
 import { TestCaseService } from 'src/app/services/test-case.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SectionDialogComponent } from './section-dialog/section-dialog.component';
 
 @Component({
   selector: 'app-testcase',
   templateUrl: './testcase.component.html',
-  styleUrls: ['./testcase.component.scss']
+  styleUrls: ['./testcase.component.scss'],
 })
 export class TestcaseComponent {
-  constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private testCaseService: TestCaseService,
+    public dialog: MatDialog
+  ) {}
   public projectId: string = '';
   public testCases: TestCase[] = [];
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
@@ -20,7 +26,7 @@ export class TestcaseComponent {
       console.log(this.projectId);
     });
     let id = 1;
-    this.testCaseService.findAllByProjectId(id).subscribe(testCases => {
+    this.testCaseService.findAllByProjectId(id).subscribe((testCases) => {
       this.testCases = testCases;
       for (const testCase of testCases) {
         if (!testCase.sectionName) continue;
@@ -34,5 +40,15 @@ export class TestcaseComponent {
       console.log(testCases);
       console.log(this.map);
     });
+  }
+
+  openDialog() {
+    console.log('here');
+
+    const dialogRef = this.dialog.open(SectionDialogComponent, {
+      data: {
+        type: 'add'
+      }
+    })
   }
 }
