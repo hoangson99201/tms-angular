@@ -4,5 +4,7 @@ export interface TestRun {
   assignedToId?: number,
   description?: string,
   userId?: number,
-  projectId?: number
+  projectId?: number,
+  createdOn?: number[] | string,
+  fullname?: string
 }

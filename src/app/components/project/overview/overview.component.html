@@ -28,8 +28,8 @@
             <div class="column column-p2 column-pad-right">
               <h1 class="top"><a id="navigation-overview-viewmilestones" class="nolink"
                   href="index.php?/milestones/overview/2">Milestones</a></h1>
-              <div *ngIf="milestones.length == 0; then thenBlock else elseBlock"></div>
-              <ng-template #thenBlock>
+              <div *ngIf="milestones.length == 0; then thenMilestoneBlock else elseMilestoneBlock"></div>
+              <ng-template #thenMilestoneBlock>
                 <p>This project doesn't have any active milestones.
                   You can add a new milestone.</p>
                 <div class="button-group">
@@ -38,7 +38,7 @@
                     Add Milestone </a>
                 </div>
               </ng-template>
-              <ng-template #elseBlock>
+              <ng-template #elseMilestoneBlock>
                 <div class="table" style="margin-top: 1.2em;">
                   <div *ngFor="let milestone of milestones" class="row flex-milestones-row">
                     <div
@@ -60,13 +60,33 @@
             <div class="column column-p2 column-pad-left">
               <h1 class="top"><a id="navigation-overview-runs" class="nolink" routerLink="test-runs">Test Runs</a>
               </h1>
-              <p>This project doesn't have any active test
-                runs. You can add a new test run.</p>
-              <div class="button-group">
-                <a id="navigation-overview-addrunssuite" [routerLink]="['/test-runs-add', projectId]"
-                  class="button button-left button-add">
-                  Add Test Run </a>
-              </div>
+              <div *ngIf="testRuns.length == 0; then thenTestRunBlock else elseTestRunBlock"></div>
+              <ng-template #thenTestRunBlock>
+                <p>This project doesn't have any active test
+                  runs. You can add a new test run.</p>
+                <div class="button-group">
+                  <a id="navigation-overview-addrunssuite" [routerLink]="['/test-runs-add', projectId]"
+                    class="button button-left button-add">
+                    Add Test Run </a>
+                </div>
+              </ng-template>
+              <ng-template #elseTestRunBlock>
+                <div class="table" style="margin-top: 1.2em;">
+                  <div *ngFor="let testRun of testRuns" class="row flex-runs-row">
+                    <div
+                      class="column summary-column summary-column-icon-compact flex-runs-1-compact icon-run-32 summary-column-first ">
+                    </div>
+                    <div class="column summary-column flex-runs-2-compact summary-column-first ">
+                      <div class="summary-title summary-title-compact text-ppp">
+                        <a id="navigation-overview-viewruns" href="index.php?/runs/view/24">{{testRun.runName}}</a>
+                      </div>
+                      <div class="summary-description-compact text-secondary text-ppp">
+                        By {{testRun.fullname}} on {{testRun.createdOn}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
             </div>
           </div>
 

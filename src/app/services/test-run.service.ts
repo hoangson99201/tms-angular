@@ -15,4 +15,8 @@ export class TestRunService {
       responseType: 'text'
     });
   }
+
+  findAllByProjectId(projectId: number): Observable<TestRun[]> {
+    return this._http.get<TestRun[]>("/tms/api/v1/test-run/" + projectId);
+  }
 }
