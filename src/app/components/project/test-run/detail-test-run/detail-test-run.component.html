@@ -1,33 +1,7 @@
-<script type="text/javascript">
-  $(document).ready(
-    function () {
-      $('#body').css('display', 'table');
-    }
-  );
-</script>
-
-
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    $.datepicker.setDefaults(
-      {
-        dateFormat: 'm/d/yy',
-        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        firstDay: 0
-      }
-    );
-  });
-</script>
-
-<app-menu-project></app-menu-project>
+<app-menu-project [projectId]="projectId"></app-menu-project>
 
 <div id="separator"></div>
-<div id="body-container" class="">
+<div id="body-container">
   <div id="body" class="table">
     <div id="content" class="column content overflow-content">
       <div id="notificationbar" class="notificationbar notificationbar-hidden">
@@ -36,7 +10,7 @@
       </div>
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result" style=""></div>
+          <div class="content-header-result"></div>
           <div class="content-header-id">R24</div>
           <div class="toolbar content-header-toolbar"><a
               class="toolbar-button content-header-button button-responsive button-edit toolbar-button-last"
@@ -390,13 +364,13 @@
                   <span id="orderByAsc" class="hidden">
                     <div class="icon-asc"></div>
                   </span>
-                  <span id="orderByDesc" class="">
+                  <span id="orderByDesc">
                     <div class="icon-desc"></div>
                   </span>
                   &nbsp;|&nbsp;
                   Filter: <a class="link link-dashed" href="javascript:void(0)"
                     onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
-                    id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
+                    id="attachmentFilterByChange"><span id="attachmentFilterByEmpty">None</span><span
                       id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
                   <span id="attachmentFilterByBusy" class="busy">
                     <div class="icon-progress-inline"></div>
@@ -881,8 +855,8 @@
                 class="toolbar-button button-responsive button-assign-toolbar dropdownLink">
                 <span class="button-text">Assign To</span><span class="caret button-caret"></span>
               </a>
-              <a id="massAddResult" style="display: block" (click)="openDialog()"
-                style="margin-left: 8px" class="toolbar-button button-responsive button-add">
+              <a id="massAddResult" style="display: block" (click)="openDialog()" style="margin-left: 8px"
+                class="toolbar-button button-responsive button-add">
                 <span class="button-text">Add Results</span>
               </a>
               <!-- <a id="massAddResultDisabled" href="javascript:void(0)" style="margin-left: 8px"
@@ -893,7 +867,7 @@
                 <ul class="toolbar-menu text-ppp">
                   <li id="orderBy" class="toolbar-menu-item toolbar-menu-item-first">
                     Sort: <a href="#orderDropdown" class="link link-dashed dropdownLink" id="orderByChange"><span
-                        id="orderByEmpty" class="">Section</span><span id="orderByName"
+                        id="orderByEmpty">Section</span><span id="orderByName"
                         class="hidden toolbar-highlighted">Section</span></a>
                     <span class="busy">
                       <div class="icon-progress-inline"></div>
@@ -915,7 +889,7 @@
                   <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
                     Filter: <a class="link link-dashed" href="javascript:void(0)"
                       onclick="this.blur(); App.Runs.filterTests(event); return false;" id="filterByChange"><span
-                        id="filterByEmpty" class="">None</span><span id="filterByInfo"
+                        id="filterByEmpty">None</span><span id="filterByInfo"
                         class="hidden toolbar-highlighted"></span></a>
                     <span class="busy">
                       <div class="icon-progress-inline"></div>
