@@ -12,6 +12,7 @@ import { TestRunComponent } from './components/project/test-run/test-run.compone
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { AddUserComponent } from './components/project/add-project/manage-user-roles/add-user/add-user.component';
 import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
+import { DetailTestRunComponent } from './components/project/test-run/detail-test-run/detail-test-run.component';
 
 const routes: Routes = [
   {
@@ -39,12 +40,19 @@ const routes: Routes = [
     component: AddTestRunComponent,
   },
   {
+    path: 'test-runs/:id/detail/:subId',
+    component: DetailTestRunComponent,
+  },
+  {
     path: 'test-cases/:id',
     component: TestcaseComponent,
   },
-
   {
     path: 'test-cases-add/:id',
+    component: AddTestCaseComponent,
+  },
+  {
+    path: 'test-cases-edit/:id',
     component: AddTestCaseComponent,
   },
   {

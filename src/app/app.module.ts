@@ -24,6 +24,8 @@ import { AddUserComponent } from './components/project/add-project/manage-user-r
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
 import { SectionDialogComponent } from './components/project/testcase/section-dialog/section-dialog.component';
+import { DetailTestRunComponent } from './components/project/test-run/detail-test-run/detail-test-run.component';
+import { AddResultComponent } from './components/project/test-run/add-result/add-result.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +56,11 @@ import { SectionDialogComponent } from './components/project/testcase/section-di
     AddTestRunComponent,
     MilestonesComponent,
     SidebarComponent,
-    SectionDialogComponent
+    SectionDialogComponent,
+    DetailTestRunComponent,
+    AddResultComponent
   ],
-  entryComponents: [SectionDialogComponent],
+  entryComponents: [SectionDialogComponent, AddResultComponent],
   imports: [
     MatDialogModule,
     BrowserModule,
@@ -71,7 +75,7 @@ import { SectionDialogComponent } from './components/project/testcase/section-di
       preventDuplicates: true
     })
   ],
-  providers: [SectionDialogComponent],
+  providers: [SectionDialogComponent, AddResultComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

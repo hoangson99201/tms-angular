@@ -1,0 +1,2488 @@
+<script type="text/javascript">
+  $(document).ready(
+    function () {
+      $('#body').css('display', 'table');
+    }
+  );
+</script>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $.datepicker.setDefaults(
+      {
+        dateFormat: 'm/d/yy',
+        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        firstDay: 0
+      }
+    );
+  });
+</script>
+
+<app-menu-project></app-menu-project>
+
+<div id="separator"></div>
+<div id="body-container" class="">
+  <div id="body" class="table">
+    <div id="content" class="column content overflow-content">
+      <div id="notificationbar" class="notificationbar notificationbar-hidden">
+      </div>
+      <div class="notificationbar notificationbar-local">
+      </div>
+      <div id="content-header" class="content-header content-header-default">
+        <div class="content-header-inner">
+          <div class="content-header-result" style=""></div>
+          <div class="content-header-id">R24</div>
+          <div class="toolbar content-header-toolbar"><a
+              class="toolbar-button content-header-button button-responsive button-edit toolbar-button-last"
+              href="index.php?/runs/edit/24/1" rel="keep-get"><span class="button-text">Edit</span></a><a
+              class="toolbar-button content-header-button button-responsive button-start" href="javascript:void(0)"
+              onclick="this.blur(); App.Runs.rerun(24, 1); return false;"><span class="button-text">Rerun</span></a><a
+              class="toolbar-button toolbar-button-last content-header-button button-responsive button-report dropdownLink"
+              href="#reportDropdown"><span class="button-text">Reports</span><span
+                class="caret button-caret"></span></a><a
+              class="toolbar-button toolbar-button-first content-header-button button-defect dropdownLink"
+              href="#defectDropdown">Defects<span class="caret button-caret"></span></a></div><span
+            class="content-header-icon"><a href="javascript:void(0)" class="link-tooltip" tooltip-header="Close Run"
+              tooltip-text="Closes this test run to archive its tests and results. Prevents future modifications."
+              onclick="this.blur(); var link = this; App.Dialogs.confirm('Really close this test run? Closing a test run archives the related tests and prevents future modifications. This change cannot be undone.', function() { var i = document.createElement('input');
+			i.setAttribute('type', 'hidden');
+			i.setAttribute('name', '_token');
+			i.setAttribute('value', 'GfD1ScRHYIseFNXMaPab');
+			var f = document.createElement('form');
+			f.style.display = 'none';
+			link.parentNode.appendChild(f);
+			f.method = 'POST';
+			f.action = 'index.php?/runs/close/24';
+			f.appendChild(i);
+			f.submit();; } );; return false;">
+              <div class="icon-close"></div>
+            </a></span><span class="content-header-icon"><a id="printPopupLink" class="popupLink link-tooltip"
+              rel="print" href="index.php?/runs/plot/24&amp;format=outline" tooltip-header="Print Run"
+              tooltip-text="Opens a print view of this test run.">
+              <div class="icon-print"></div>
+            </a></span><span class="content-header-icon"><a class="dropdownLink link-tooltip" href="#exportDropdown"
+              tooltip-header="Export Run" tooltip-text="Exports this test run into different formats (XML, Excel/CSV).">
+              <div class="icon-export"></div>
+            </a></span><span id="unsubscribed" class="content-header-icon ">
+            <a class="subscribe link-tooltip" href="javascript:void(0)"
+              onclick="this.blur(); App.Runs.subscribe(24); return false;"
+              tooltip-text="Subscribe to receive emails on test changes for this test run.">
+              <div class="icon-subscribe"></div>
+            </a>
+            <span class="hidden busy">
+              <div class="icon-progress-standard"></div>
+            </span>
+          </span>
+          <span id="subscribed" class="content-header-icon hidden">
+            <a class="unsubscribe link-tooltip" href="javascript:void(0)"
+              onclick="this.blur(); App.Runs.unsubscribe(24); return false;"
+              tooltip-text="Unsubscribe from email updates on test changes for this test run.">
+              <div class="icon-unsubscribe"></div>
+            </a>
+            <span class="hidden busy">
+              <div class="icon-progress-standard"></div>
+            </span>
+          </span>
+          <div class="content-header-title page_title">
+            Test Run 11/25/2022 </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $("#sites").prop("selectedIndex", 0);
+      </script>
+      <div id="content-inner" class="content-inner ">
+
+
+        <div id="reportDropdown" class="dropdown dropdown-menu dropdown-menu-grouped" style="width: 225px">
+          <div class="dropdown-menu-title top">Defects</div>
+          <ul>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows a summary of found defects for this test run.">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=defects_summary&run_ids=24">
+                Summary </a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows a summary of found defects for this test run per test case &amp; test.">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=cases_defect_summary&suite_id=1&run_ids=24">
+                Summary for Cases </a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows a summary of found defects for the references (requirements, user stories, etc.) in this test run.">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=references_defect_summary&run_ids=24">
+                Summary for References </a>
+            </li>
+          </ul>
+          <div class="dropdown-menu-title">Results</div>
+          <ul>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows the results in this test run per test case (result coverage &amp; comparison).">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=cases_result_coverage&suite_id=1&run_ids=24">
+                Comparison for Cases </a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows the results for the references (requirements, user stories, etc.) in this test run (result coverage &amp; comparison).">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=references_result_coverage&run_ids=24">
+                Comparison for References </a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows the distribution and groups for a specific test attribute (e.g. priority, type or status) for this test run.">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=tests_property_groups&run_ids=24">
+                Property Distribution </a>
+            </li>
+          </ul>
+          <div class="dropdown-menu-title">Run</div>
+          <ul>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows a full summary &amp; overview of this test run with statistics as well as activity and progress details.">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=runs_summary&run_ids=24">
+                Summary </a>
+            </li>
+          </ul>
+          <div class="dropdown-menu-title">Users</div>
+          <ul>
+            <li class="link-tooltip" tooltip-position="left"
+              tooltip-text="Shows the workload summary, estimates and forecasts for users in this test run.">
+              <a class="dropdown-menu-link dropdown-menu-link-report"
+                href="index.php?/reports/add_job/1&plugin=users_workload_summary&run_ids=24">
+                Workload Summary </a>
+            </li>
+          </ul>
+        </div>
+        <div id="defectDropdown" class="dropdown dropdown-menu dropdown-menu-grouped dropdown-menu-defect">
+          <ul>
+
+            <li class="link-tooltip" tooltip-position="left" tooltip-text="Submit a new defect to your external tool.">
+              <a class="dropdown-menu-link dropdown-menu-link-defect" tabindex="-1" href="javascript:void(0)"
+                onclick="this.blur(); App.Defects.preparePush(1, 0, 'runs/view', 24); return false;">
+                Push New Defect </a>
+            </li>
+
+          </ul>
+        </div>
+
+
+        <script type="text/javascript">
+          $(document).ready(function () {
+            App.Translations.add(
+              "attachments_drop",
+              "Drop files here to attach, or click to browse.");
+            App.Translations.add(
+              "attachments_drop_image",
+              "Drop images here to embed, or click to browse.");
+            App.Translations.add(
+              "attachments_drop_image_nobrowse",
+              "Drop images here to embed.");
+            App.Translations.add(
+              "attachments_drop_notype",
+              "You can only add images to this text field (example: PNG or JPG files).");
+            App.Translations.add(
+              "attachments_drop_notype_canattach",
+              "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs.");
+            App.Translations.add(
+              "attachments_file_here",
+              "Drop file here, or click to browse.");
+            App.Translations.add(
+              "attachments_remove_image",
+              "Remove");
+            App.Translations.add(
+              "attachments_drop_notype_canattach_jira",
+              "You can only add images to this text field (example: PNG or JPG files).");
+            App.Translations.add(
+              "attachments_confirm_replace",
+              "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?");
+            App.Translations.add(
+              "attachments_replace_title",
+              "Replace?");
+            App.Translations.add(
+              "attachments_loading_error_title",
+              "Loading error");
+            App.Translations.add(
+              "attachments_loading_error_generic",
+              "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!");
+            App.Translations.add(
+              "attachment_info_all_projects",
+              "All Projects");
+            App.Translations.add(
+              "attachments_confirm_delete",
+              "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.");
+            App.Translations.add(
+              "attachments_delete",
+              "Delete");
+            App.Translations.add(
+              "attachment_upload_name_allowed",
+              "");
+          });
+        </script>
+        <script type="text/javascript">
+          $(document).ready(
+            function () {
+              App.Dropzone.init();
+            }
+          );
+        </script>
+        <div class="dialog dialog_dialog" id="attachmentDialog" style="width: 450px">
+          <div class="dialog-title">
+            <span class="addAttachment">Add Attachment</span>
+            <span class="addImage">Add Images</span>
+          </div>
+          <form id="attachmentForm" action="post">
+            <div class="dialog-body">
+              <div class="message message-error validationError" id="attachmentErrors"></div>
+              <div class="form-group bottom">
+                <div id="attachmentDropzone" class="dropzone dz-persistent" style="min-height: 100px"
+                  data-project-id="1"></div>
+              </div>
+              <div id="attachmentScreenshotMac" class="hidden">
+                <div class="shortcut">
+                  <p class="top">How to take a screenshot on your Mac:</p>
+                  <kbd>^ Ctrl</kbd>
+                  <span class="shortcut-plus">+</span>
+                  <kbd>&#8984; Cmd</kbd>
+                  <span class="shortcut-plus">+</span>
+                  <kbd>&#x21E7; Shift</kbd>
+                  <span class="shortcut-plus">+</span>
+                  <kbd>4</kbd>
+                </div>
+                <div class="shortcut">
+                  <p class="top">Then paste it:</p>
+                  <kbd>&#8984; Cmd</kbd>
+                  <span class="shortcut-plus">+</span>
+                  <kbd>v</kbd>
+                </div>
+              </div>
+              <div id="attachmentScreenshotWin" class="hidden">
+                <div class="shortcut">
+                  <p class="top">How to take a screenshot on Windows:</p>
+                  <kbd>Alt</kbd>
+                  <span class="shortcut-plus">+</span>
+                  <kbd>PrtSc</kbd>
+                  <span class="shortcut-plus">or</span>
+                  <kbd>PrtSc</kbd>
+                </div>
+                <div class="shortcut">
+                  <p class="top">Then paste it:</p>
+                  <kbd>Ctrl</kbd>
+                  <span class="shortcut-plus">+</span>
+                  <kbd>v</kbd>
+                </div>
+              </div>
+            </div>
+            <div id="attachmentButtons" class="dialog-buttons-highlighted button-group">
+              <button id="attachmentSubmit" type="submit"
+                class="button button-left button-positive button-ok dialog-action-default">
+                <span class="addAttachment">Add Attachment</span><span class="addImage">Add Images</span>
+              </button>
+              <a class="button button-left button-negative button-cancel dialog-action-close">
+                Cancel </a>
+            </div>
+          </form>
+        </div>
+
+        <script type="text/javascript">
+          $(document).ready(
+            function () {
+              App.Editor.init(1);
+            }
+          );
+        </script>
+        <div class='attachments-new-dialog dialog dialog_attachment' id='attachmentNewDialogFile'>
+          <div class='dialog-title'>
+            <span class='addAttachment'>Attach file</span>
+          </div>
+
+          <div class="attachments-filter bubble filter-bubble hidden" id="filterAttachmentsBubble">
+            <div id="filterAttachmentsContent" class="filter-bubble-inner">
+            </div>
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function () {
+              App.Translations.add(
+                "attachments_drop",
+                "Drop files here to attach, or click to browse.");
+              App.Translations.add(
+                "attachments_drop_image",
+                "Drop images here to embed, or click to browse.");
+              App.Translations.add(
+                "attachments_drop_image_nobrowse",
+                "Drop images here to embed.");
+              App.Translations.add(
+                "attachments_drop_notype",
+                "You can only add images to this text field (example: PNG or JPG files).");
+              App.Translations.add(
+                "attachments_drop_notype_canattach",
+                "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs.");
+              App.Translations.add(
+                "attachments_file_here",
+                "Drop file here, or click to browse.");
+              App.Translations.add(
+                "attachments_remove_image",
+                "Remove");
+              App.Translations.add(
+                "attachments_drop_notype_canattach_jira",
+                "You can only add images to this text field (example: PNG or JPG files).");
+              App.Translations.add(
+                "attachments_confirm_replace",
+                "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?");
+              App.Translations.add(
+                "attachments_replace_title",
+                "Replace?");
+              App.Translations.add(
+                "attachments_loading_error_title",
+                "Loading error");
+              App.Translations.add(
+                "attachments_loading_error_generic",
+                "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!");
+              App.Translations.add(
+                "attachment_info_all_projects",
+                "All Projects");
+              App.Translations.add(
+                "attachments_confirm_delete",
+                "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.");
+              App.Translations.add(
+                "attachments_delete",
+                "Delete");
+              App.Translations.add(
+                "attachment_upload_name_allowed",
+                "");
+            });
+          </script>
+          <script type="text/javascript">
+            $(document).ready(
+              function () {
+                App.Dropzone.init();
+              }
+            );
+          </script>
+
+          <input id='newAttachments' type='hidden' />
+          <input id='projectId' type='hidden' value='' />
+          <div class='attachments-library attachment-library-dialog'>
+            <div>
+              <div style='float: left'>
+                <strong class='attachment-library-title'>Media Library</strong>
+                <a id='libraryAddAttachment' class="button button-left button-add">Add New</a>
+                <a id='libraryDeleteAttachment' style='display: none;'
+                  class="button button-left button-negative button-delete" href="javascript:void(0)"
+                  onclick="this.blur(); App.Dialogs.remove('This action &lt;strong&gt;deletes selected attachment/s and all their instances across your projects&lt;/strong&gt; (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); });; return false;">Delete</a>
+              </div>
+
+              <div style='float: right'>
+                <span class="h1-additional">
+                  Sort: <a id="attachments-library-sortby" href="#sortDropdown" class="link link-dashed dropdownLink">
+                    <span id="attachmentsByName">Date</span></a>
+                  <span id="orderByAsc" class="hidden">
+                    <div class="icon-asc"></div>
+                  </span>
+                  <span id="orderByDesc" class="">
+                    <div class="icon-desc"></div>
+                  </span>
+                  &nbsp;|&nbsp;
+                  Filter: <a class="link link-dashed" href="javascript:void(0)"
+                    onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
+                    id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
+                      id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
+                  <span id="attachmentFilterByBusy" class="busy">
+                    <div class="icon-progress-inline"></div>
+                  </span>
+                  <span id="attachmentFilterByReset" class="hidden">
+                    <a href="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
+                      class="link-tooltip" tooltip-text="Reset filters">
+                      <div class="icon-orderreset"></div>
+                    </a>
+                  </span>
+
+                  <input type="text" name="search" id="libraryAttachmentsSearch" class="attachment-library-search" />
+                </span>
+
+                <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown"
+                  style="position: fixed; width: 100px">
+                  <ul>
+                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                        onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
+                    </li>
+                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                        onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a></li>
+                    <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                        onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+            <div style='margin-top: 40px; clear: both; background-color: white; height: 361px; overflow-y: auto;'
+              id='attachmentsNewList'>
+            </div>
+            <div id="attachmentsPagination" style='margin-bottom: 10px;'></div>
+          </div>
+
+          <script type="text/javascript">
+            $(document).ready(function () {
+              App.Attachments.orderByOptions = { "created_on": "Date", "name": "Name", "size": "Size" };
+
+              var defaultTimeout = null;
+              $('#libraryAttachmentsSearch').keyup(function () {
+                if (defaultTimeout != null) clearTimeout(defaultTimeout);
+                defaultTimeout = setTimeout(
+                  function () {
+                    defaultTimeout = null;
+                    App.Attachments.reloadRepository();
+                  },
+                  500
+                );
+              });
+
+            });
+          </script>
+          <div id='attachmentNewButtons' class='dialog-buttons-highlighted button-group'>
+            <div style='margin-top: 6px; float: left;'>Maximum file size: 256 MB.</div>
+            <button id='attachmentNewSubmit' type='submit' class='button button-right button-positive button-ok'
+              style='margin-left: 7px'>
+              <span class='addAttachment'>Attach</span>
+            </button>
+            <a class='button button-right button-negative button-cancel dialog-action-close'>
+              Cancel </a>
+          </div>
+        </div>
+
+        <div id="addResultNextDropdown" class="dropdown dropdown-menu" style="width: 175px; z-index: 10000">
+          <ul>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Tests.setResultNext(true); return false;">Jump to next test: Yes</a></li>
+            <li class="dropdown-menu-separator"></li>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Tests.setResultNext(false); return false;">Jump to next test: No</a></li>
+          </ul>
+        </div>
+
+        <div class="dialog" id="addResultDialog" style="width: 650px; height: 425px">
+          <div class="dialog-title">
+            <span class="addResult">Add Result</span>
+            <span class="editResult">Edit Result</span>
+          </div>
+
+          <form id="addResultForm">
+            <div class="dialog-body result-dialog-body">
+              <div class="result-dialog-busy resultBusy" style="margin: auto">
+                <div class="icon-progress-large" title="Loading..."></div>
+                <p></p>
+              </div>
+              <div class="result-dialog-container resultContainer hidden"></div>
+            </div>
+          </form>
+
+          <div class="dialog-buttons-pane-container">
+            <div id="addResultButtons" class="button-group dialog-buttons-pane dialog-buttons-highlighted">
+              <button type="submit" id="addResultSubmit" (click)="openDialog()"
+                class="button button-left button-positive button-ok button-dark">
+                <span class="addResult">Add Result</span><span class="editResult">Edit Result</span>
+              </button>
+              <button type="submit" id="addResultSubmitDisabled"
+                class="button button-left button-positive button-disabled button-ok-disabled button-dark">
+                <span class="addResult">Add Result</span><span class="editResult">Edit Result</span>
+              </button>
+              <a id="addResultClose"
+                class="button button-left button-negative button-cancel button-dark dialog-action-close">
+                Cancel </a>
+              <span id="addResultNext" rel="1" class="pull-right button-extra text-soft">
+                <a href="#addResultNextDropdown" class="dropdownLink link-noline">
+                  <span id="addResultNextYes">Jump to next test: Yes</span>
+                  <span id="addResultNextNo" class="hidden">Jump to next test: No</span>
+                  <span class="caret addResultNext"></span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dialog" id="addCommentDialog" style="width: 500px">
+          <div class="dialog-title">
+            <span class="addComment">Add Comment or File</span>
+            <span class="editComment">Edit Comment</span>
+            <span class="assignTo">Assign To</span>
+            <span class="editAssignTo">Edit Assign To</span>
+          </div>
+
+          <form id="addCommentForm">
+            <div class="dialog-body" style="padding-bottom: 0">
+              <div class="message message-error validationError" id="addCommentErrors"></div>
+              <div class="form-group">
+                <label for="addCommentAssignTo">Assign To</label>
+                <select class="form-control form-control-small form-select" name="addCommentComment"
+                  id="addCommentAssignTo">
+                  <option value=""></option>
+                  <option value="unassign">Nobody (Unassigned)</option>
+                  <option value="3">Me</option>
+                  <optgroup disabled="disabled" label="&ndash;&ndash;&ndash;"></optgroup>
+                  <option value="2">Duy</option>
+                  <option value="1">Đỗ Tú</option>
+                  <option value="3">Thắng</option>
+                </select>
+                <div class="form-description">Assign to another team member.</div>
+              </div>
+              <div class="form-group">
+                <label for="addCommentComment">
+                  <span class="form-toolbar" style="padding-top: 0px">
+                    <a href="javascript:void(0)"
+                      onclick="this.blur(); App.Editor.addTable('#addCommentComment' + '_display'); return false;"
+                      class="link-tooltip" tooltip-text="Add a table to this text field." tabindex="-1">
+                      <div class="icon-markdown-table"></div>
+                    </a>
+                    <a href="javascript:void(0)"
+                      onclick="this.blur(); App.Editor.addImage('#addCommentComment', 1, 'test_change', ''); return false;"
+                      class="link-tooltip" tooltip-text="Add an image to this text field." tabindex="-1">
+                      <div class="icon-markdown-image"></div>
+                    </a>
+                    <a href="https://www.gurock.com/testrail/docs/user-guide/getting-started/editor"
+                      class="link-tooltip" tooltip-text="Open the editor formatting reference." target="_blank"
+                      tabindex="-1">
+                      <div class="icon-markdown-help"></div>
+                    </a>
+                  </span>
+                  Comment </label>
+
+                <div class='textarea-resizable editor-bindable attachment-list-wrapper'
+                  data-attribute='addCommentComment' id='addCommentComment_attachments_wrapper'>
+                  <span contenteditable="true" class="form-control field-editor form-control-full "
+                    id="addCommentComment_display"></span>
+                  <div id="addCommentComment_display_drop" class="dropzone" rel="addCommentComment_display"
+                    dialog="addCommentDialog" data-project-id="1"></div>
+
+                  <script type="text/javascript">
+                    $(document).ready(function () {
+                      App.Editor.applyDrop({
+                        'selector': '#' + 'addCommentComment_display_drop',
+                        'control': '#' + 'addCommentComment_display',
+                        'project_id': 1,
+                        'can_attach': true,
+                        'entity_type': 'test_change',
+                        'entity_id': ''
+                      });
+                    }
+                    );
+                  </script>
+                </div>
+
+                <input type='hidden' value="" id='addCommentComment' name='addCommentComment'>
+
+                <script type="text/javascript">
+                  $(document).ready(
+                    function () {
+                      if ($('#addCommentComment_display .attachment-block:last').length > 0
+                        && $('#addCommentComment_display .attachment-block:last').find('.attachment-list-delete-inline').length === 0) {
+                        $('#addCommentComment_display .attachment-block:last')
+                          .after(
+                            '<div contenteditable="false"' +
+                            'class="inlineAttachmentListRemove attachment-list-delete-inline"' +
+                            'style="display:none;"' +
+                            'href="javascript:void(0)"' +
+                            'onclick="App.Attachments.entityRemoveAttachmentsDialog(\'This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.\', \'1\', \'test_change\', \'#addCommentComment_attachments_wrapper\');"' +
+                            '$(\'#addCommentComment_display .inlineAttachmentListRemove\').hide(); return false;">' +
+                            '<div class="attachment-list-delete-icon"></div>' +
+                            '<span>Delete</span>' +
+                            '</div>' +
+                            '<span contenteditable="false" class="inline-attachment-list-whitespace"></span>'
+                          );
+                      }
+                    }
+                  );
+                </script>
+                <div class="form-description form-description-full addComment">Add a new comment to this test.</div>
+                <div class="form-description form-description-full editComment">Edit your comment to this test.</div>
+                <div class="form-description form-description-full assignTo">Add a comment for the tester.</div>
+                <div class="form-description form-description-full editAssignTo">Edit your comment for the tester.</div>
+                <div id="addCommentAttachments">
+                  <input id="attachments" type="hidden" name="attachments" value="[]">
+
+                  <input id='attachmentsToDelete' type='hidden' />
+                  <div id='entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210'
+                    class='attachment-list-wrapper'>
+                    <div id='entityAttachmentList' class="attachment-list dz-persistent">
+                      <div id='entityAttachmentListAdd' style='display: none;' class='attachment-list-add'
+                        onclick="App.Attachments.showDialog('#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210', 1, '', 'test_change', { 'inputParent': '#addCommentAttachments' });">
+                        <div class='attachment-list-add-icon'></div>
+                      </div>
+                      <div id='entityAttachmentListRemove' style='display: none;' class='attachment-list-delete'
+                        href="javascript:void(0)"
+                        onclick="this.blur(); App.Attachments.entityRemoveAttachmentsDialog('This &lt;strong&gt;deletes selected instances of your attachments.&lt;/strong&gt; The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.', '1', 'test_change', '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210', '#addCommentAttachments'); return false;">
+                        <div class='attachment-list-delete-icon'></div>
+                        <span>Delete</span>
+                      </div>
+                      <div id='entityAttachmentListEmptyIcon' class='attachment-list-empty-add'
+                        onclick="App.Attachments.showDialog('#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210', 1, '', 'test_change', { 'inputParent': '#addCommentAttachments' });">
+                      </div>
+                    </div>
+
+                    <div id='entityAttachmentListDropzoneText' class='attachment-list-dropzone-text'>
+                      <span>Drop files here to attach,<br />or click on &quot;+&quot; to browse</span>
+                    </div>
+                    <div id='entityAttachmentListRemoveBottom' class='attachment-list-delete-text'
+                      style='display: none;' href="javascript:void(0)"
+                      onclick="this.blur(); App.Attachments.entityRemoveAttachmentsDialog('This &lt;strong&gt;deletes selected instances of your attachments.&lt;/strong&gt; The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.', '1', 'test_change', '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210', '#addCommentAttachments'); return false;">
+                      <div class='attachment-list-delete-icon-red'></div><span>Delete</span>
+                    </div>
+                  </div>
+
+                  <script type="text/javascript">
+                    $(function () {
+                      App.Attachments.init({
+                        selector: '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210 #entityAttachmentList',
+                        itemsParent: '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210',
+                        inputParent: '#addCommentAttachments',
+                        project_id: 1,
+                        entity_id: '',
+                        entity_type: 'test_change',
+                        clickable: false
+                      });
+                    }
+                    );
+                  </script>
+
+                  <script type="text/javascript">
+                    $(function () {
+                      var wrapperParent = '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210';
+                      $(wrapperParent).attr('deleteIds', '');
+                      App.Attachments.lazyLoad(wrapperParent + ' #entityAttachmentList', 0.35);
+                      App.Attachments.dontShowEntityDeleteDialog = false;
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="button-group dialog-buttons-highlighted top">
+              <button id="addCommentSubmit" type="submit"
+                class="button button-left button-positive button-ok dialog-action-default">
+                <span class="addComment">Add Comment or File</span><span class="editComment">Edit Comment</span><span
+                  class="assignTo">Assign To</span><span class="editAssignTo">Edit Assign To</span>
+              </button>
+              <a class="button button-left button-negative button-cancel dialog-action-close">
+                Cancel </a>
+            </div>
+          </form>
+
+          <script type="text/javascript">
+            $(document).ready(
+              function () {
+                var selector = '#addCommentAttachments';
+                App.Tests.canAddEditAttachments = true;
+                App.Attachments.initEditorAttachments(
+                  App.Tests.attachmentsCode,
+                  {
+                    inputParent: selector,
+                    itemsParent: selector
+                  }
+                );
+              }
+            );
+          </script>
+        </div>
+
+        <script type="text/javascript">
+          $(document).ready(
+            function () {
+              App.Editor.bind('addCommentComment');
+            }
+          );
+        </script>
+
+
+
+        <div id="statsContainer">
+
+
+          <div class="chart-pie" rel="4">
+            <div class="table-extended" id="tablechart_testun">
+              <div id="statusChartContainer">
+                <div id="statusChart" class="column chart-pie-status"></div>
+
+
+                <div class="column chart-pie-column-legend" id="legend-">
+                  <div class="chart-legend" style="padding: 20px 10px 0 40px">
+                    <div class="table chart-legend-item" style="height: auto">
+                      <div class="column column-valign chart-legend-column-icon">
+                        <div class="chart-legend-icon" style="background: #3cb850">
+                        </div>
+                      </div>
+                      <div class="column">
+                        <div class="chart-legend-name text-ppp">0 Passed</div>
+                        <div class="chart-legend-description text-ppp">0% set to Passed</div>
+                      </div>
+                    </div>
+                    <div class="table chart-legend-item" style="height: auto">
+                      <div class="column column-valign chart-legend-column-icon">
+                        <div class="chart-legend-icon" style="background: #595959">
+                        </div>
+                      </div>
+                      <div class="column">
+                        <div class="chart-legend-name text-ppp">0 Blocked</div>
+                        <div class="chart-legend-description text-ppp">0% set to Blocked</div>
+                      </div>
+                    </div>
+                    <div class="table chart-legend-item" style="height: auto">
+                      <div class="column column-valign chart-legend-column-icon">
+                        <div class="chart-legend-icon" style="background: #fcc200">
+                        </div>
+                      </div>
+                      <div class="column">
+                        <div class="chart-legend-name text-ppp">0 Retest</div>
+                        <div class="chart-legend-description text-ppp">0% set to Retest</div>
+                      </div>
+                    </div>
+                    <div class="table chart-legend-item" style="height: auto">
+                      <div class="column column-valign chart-legend-column-icon">
+                        <div class="chart-legend-icon" style="background: #e40046">
+                        </div>
+                      </div>
+                      <div class="column">
+                        <div class="chart-legend-name text-ppp">0 Failed</div>
+                        <div class="chart-legend-description text-ppp">0% set to Failed</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chart-icon-download-container">
+                  <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left" tooltip-width="170"
+                    tooltip-text="Download chart as an image">
+                    <button id="png-download"></button>
+                  </div>
+                  <div data-html2canvas-ignore="true" class="link-tooltip" tooltip-position="left" tooltip-width="150"
+                    tooltip-text="Download chart as a CSV">
+                    <button id="csv-download"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="column chart-pie-column-percent">
+                <div class="chart-pie-percent" style="padding-top: 5em">
+                  <div class="chart-pie-percent-title">0%</div>
+                  <div class="chart-pie-percent-description">passed</div>
+                  <div class="chart-pie-percent-note text-secondary" style="line-height: 130%">
+                    245 / 245 untested (100%). </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-pie-footer-stage1">
+              <div class="chart-pie-footer-percent">
+                <strong>0%</strong>
+                Passed
+              </div>
+              <div class="text-secondary">
+                245 / 245 untested (100%). </div>
+            </div>
+            <div class="chart-pie-footer-stage2">
+              <div class="chart-pie-footer-bar">
+                <div class="table">
+                  <div class="column">
+                    <div class="chart-bar chart-bar-lg">
+                      <div class="chart-bar-custom link-tooltip" style="background: #979797; width: 250px"
+                        tooltip-html="100% Untested (245/245 tests) <div id='drilldown-icon'></div>"></div>
+                    </div>
+                  </div>
+                  <div class="column chart-bar-percent ">
+                    0%
+                  </div>
+                </div>
+              </div>
+              <div class="text-secondary center">
+                245 / 245 untested (100%). </div>
+            </div>
+          </div>
+          <a download="TestRail-stats-1-20221128170723.png" href="#" id="dl" hidden>download image</a>
+
+          <script type="text/javascript">
+            $(function () {
+              $(document).ready(function () {
+                App.Charts.status = new FusionCharts({
+                  type: 'pie2d',
+                  renderAt: 'statusChart',
+                  width: '100%',
+                  height: '100%',
+                  dataFormat: 'json',
+                  dataSource: {
+                    chart: {
+                      showToolTip: 1,
+                      showLegend: false,
+                      showLabels: false,
+                      showPercentageInLabel: '0',
+                      enableSmartLabels: '0',
+                      showValues: false,
+                      theme: 'fusion',
+                      bgColor: '#FFFFFF',
+                      exportEnabled: '1',
+                      exportshowmenuitem: '0',
+                      chartLeftMargin: '0',
+                      chartTopMargin: '0',
+                      chartRightMargin: '0',
+                      chartBottomMargin: '0',
+                      plotToolText: '<strong>$label</strong> <br />$value ($percentValue)<div id="drilldown-icon"></div>',
+                      animation: false,
+                      enableMultiSlicing: false
+                    },
+                    data: [{ "label": "Passed", "value": 0, "color": "3cb850", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 1)" }, { "label": "Blocked", "value": 0, "color": "595959", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 2)" }, { "label": "Untested", "value": 245, "color": "979797", "link": "JavaScript:App.Drilldown.tests(1,245, 0, RUN, 24, 3)" }, { "label": "Retest", "value": 0, "color": "fcc200", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 4)" }, { "label": "Failed", "value": 0, "color": "e40046", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 5)" }]
+                  },
+                }).render();
+
+                $('#csv-download').click(function () {
+                  App.Charts.status.exportChart({
+                    exportFormat: 'csv',
+                    exportFileName: 'TestRail-stats-1-20221128170723'
+                  });
+                });
+
+                $('#png-download').click(function () {
+                  App.Charts.status.setChartAttribute('enableSlicing', '0');
+                  setTimeout(function () {
+                    html2canvas($('#statusChartContainer')[0], {
+                      height: 230,
+                      scrollY: -window.scrollY
+                    }).then(function (canvas) {
+                      var dl = document.getElementById('dl');
+                      var dt = canvas.toDataURL('image/png');
+                      dl.href = dt;
+                      dl.click();
+                    });
+                    App.Charts.status.setChartAttribute('enableSlicing', '1');
+                  }, 100);
+                });
+              });
+            });
+          </script>
+        </div>
+
+        <div id="drilldown_container"></div>
+        <div id="content_container">
+
+
+
+          <div id="contentSticky">
+            <div class="toolbar" id="contentToolbar">
+              <a id="selectColumns-global" href="javascript:void(0)"
+                onclick="this.blur(); App.Runs.selectTestColumns('global', 1); return false;"
+                class="toolbar-button button-responsive button-columns">
+                <span class="button-text">Columns</span>
+              </a>
+              <a id="massAssign" href="#assignDropdown"
+                class="toolbar-button button-responsive button-assign-toolbar dropdownLink">
+                <span class="button-text">Assign To</span><span class="caret button-caret"></span>
+              </a>
+              <a id="massAddResult" style="display: block" (click)="openDialog()"
+                style="margin-left: 8px" class="toolbar-button button-responsive button-add">
+                <span class="button-text">Add Results</span>
+              </a>
+              <!-- <a id="massAddResultDisabled" href="javascript:void(0)" style="margin-left: 8px"
+                class="toolbar-button toolbar-button-disabled button-responsive button-add-disabled">
+                <span class="button-text">Add Results</span>
+              </a> -->
+              <div class="toolbar-inner">
+                <ul class="toolbar-menu text-ppp">
+                  <li id="orderBy" class="toolbar-menu-item toolbar-menu-item-first">
+                    Sort: <a href="#orderDropdown" class="link link-dashed dropdownLink" id="orderByChange"><span
+                        id="orderByEmpty" class="">Section</span><span id="orderByName"
+                        class="hidden toolbar-highlighted">Section</span></a>
+                    <span class="busy">
+                      <div class="icon-progress-inline"></div>
+                    </span>
+                    <span id="orderByAsc" class="hidden">
+                      <div class="icon-asc"></div>
+                    </span>
+                    <span id="orderByDesc" class="hidden">
+                      <div class="icon-desc"></div>
+                    </span>
+                    <span id="orderByReset" class="hidden">
+                      <a href="javascript:void(0)"
+                        onclick="this.blur(); App.Runs.setTestGrouping('cases:section_id', true); return false;"
+                        class="link-tooltip" tooltip-text="Reset grouping to sections.">
+                        <div class="icon-orderreset"></div>
+                      </a>
+                    </span>
+                  </li>
+                  <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
+                    Filter: <a class="link link-dashed" href="javascript:void(0)"
+                      onclick="this.blur(); App.Runs.filterTests(event); return false;" id="filterByChange"><span
+                        id="filterByEmpty" class="">None</span><span id="filterByInfo"
+                        class="hidden toolbar-highlighted"></span></a>
+                    <span class="busy">
+                      <div class="icon-progress-inline"></div>
+                    </span>
+
+                  </li>
+                </ul>
+                <span id="filterByReset" class="hidden">
+                  <a href="javascript:void(0)" onclick="this.blur(); App.Runs.filterReset(); return false;"
+                    class="link-tooltip" tooltip-text="Remove filter and show all tests.">
+                    <div class="icon-orderreset"></div>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="orderDropdown" class="dropdown dropdown-menu orderDropdown">
+            <ul>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:assignedto_id', true); return false;">Assigned
+                  To</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:custom_automation_type', true); return false;">Automation
+                  Type</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:original_case_id', true); return false;">Case
+                  ID</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:defects', true); return false;">Defects</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:defects_all', true); return false;">Defects
+                  All</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:elapsed', true); return false;">Elapsed</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:elapsed_all', true); return false;">Elapsed
+                  All</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:estimate', true); return false;">Estimate</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:estimate_forecast', true); return false;">Forecast</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:id', true); return false;">ID</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:in_progress_by', true); return false;">In
+                  Progress</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:priority_id', true); return false;">Priority</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:refs', true); return false;">References</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:status_id', true); return false;">Status</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:template_id', true); return false;">Template</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:tested_by', true); return false;">Tested By</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:tested_on', true); return false;">Tested On</a>
+              </li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:title', true); return false;">Title</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:type_id', true); return false;">Type</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:version', true); return false;">Version</a></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('tests:version_all', true); return false;">Version
+                  All</a></li>
+              <li class="dropdown-menu-separator"></li>
+              <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.setTestGrouping('cases:section_id', true); return false;">Reset to
+                  sections</a></li>
+            </ul>
+          </div>
+          <div id="displayDropdown" class="dropdown dropdown-menu displayDropdown" style="width: 215px">
+            <ul>
+              <li><a href="javascript:void(0)" class="dropdown-menu-link" onclick="this.blur(); var link = this; var i = document.createElement('input');
+			i.setAttribute('type', 'hidden');
+			i.setAttribute('name', '_token');
+			i.setAttribute('value', 'GfD1ScRHYIseFNXMaPab');
+			var f = document.createElement('form');
+			f.style.display = 'none';
+			link.parentNode.appendChild(f);
+			f.method = 'POST';
+			f.action = 'index.php?/runs/view_display/24&amp;display=tree';
+			f.appendChild(i);
+			f.submit();; return false;">All groups and tests</a></li>
+              <li class="dropdown-menu-separator"></li>
+              <li><a href="javascript:void(0)" class="dropdown-menu-link" onclick="this.blur(); var link = this; var i = document.createElement('input');
+			i.setAttribute('type', 'hidden');
+			i.setAttribute('name', '_token');
+			i.setAttribute('value', 'GfD1ScRHYIseFNXMaPab');
+			var f = document.createElement('form');
+			f.style.display = 'none';
+			link.parentNode.appendChild(f);
+			f.method = 'POST';
+			f.action = 'index.php?/runs/view_display/24&amp;display=subtree';
+			f.appendChild(i);
+			f.submit();; return false;">Selected group and subgroups</a></li>
+              <li class="dropdown-menu-separator"></li>
+              <li><a href="javascript:void(0)" class="dropdown-menu-link" onclick="this.blur(); var link = this; var i = document.createElement('input');
+			i.setAttribute('type', 'hidden');
+			i.setAttribute('name', '_token');
+			i.setAttribute('value', 'GfD1ScRHYIseFNXMaPab');
+			var f = document.createElement('form');
+			f.style.display = 'none';
+			link.parentNode.appendChild(f);
+			f.method = 'POST';
+			f.action = 'index.php?/runs/view_display/24&amp;display=compact';
+			f.appendChild(i);
+			f.submit();; return false;">Selected group only</a></li>
+            </ul>
+          </div>
+          <div id="assignDropdown" class="dropdown dropdown-menu" style="width: 175px">
+            <ul>
+              <li><a id="massAssignSelected" class="dropdown-menu-link link-tooltip" style="display: none"
+                  tooltip-text="Assigns all selected tests to a user." tooltip-position="left" href="javascript:void(0)"
+                  onclick="this.blur(); App.Tests.massAssignTo(); return false;">Assign selected</a></li>
+              <li><a id="massAssignSelectedDisabled" class="dropdown-menu-link dropdown-menu-link-disabled"
+                  href="javascript:void(0)">Assign selected</a></li>
+              <li class="dropdown-menu-separator"></li>
+              <li><a id="massAssignAll" class="dropdown-menu-link link-tooltip"
+                  tooltip-text="Assigns all tests of the test run to the selected user, respecting the current filter."
+                  tooltip-position="left" href="javascript:void(0)"
+                  onclick="this.blur(); App.Runs.assignAllTo(); return false;">Assign all in filter</a></li>
+            </ul>
+          </div>
+          <div class="bubble filter-bubble hidden" id="filterTestsBubble">
+            <div id="filterTestsContent" class="filter-bubble-inner">
+            </div>
+          </div>
+
+          <div id="groupContainer" style="margin-top: 1.5em">
+          </div>
+
+
+          <div id="statusDropdown" class="dropdown dropdown-menu" rel="" style="width: 175px;">
+            <ul>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Tests.addResultInline(1, 1); return false;">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
+              </li>
+              <li class="dropdown-menu-separator"></li>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Tests.addResultInline(1, 2); return false;">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
+              </li>
+              <li class="dropdown-menu-separator"></li>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Tests.addResultInline(1, 4); return false;">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
+              </li>
+              <li class="dropdown-menu-separator"></li>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)"
+                  onclick="this.blur(); App.Tests.addResultInline(1, 5); return false;">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
+              </li>
+            </ul>
+          </div>
+
+
+          <div id="addResultAndNextDropdown" class="dropdown dropdown-menu" rel="itemPrev" style="width: 175px">
+            <ul>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)" rel="1">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
+              </li>
+              <li class="dropdown-menu-separator"></li>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)" rel="2">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
+              </li>
+              <li class="dropdown-menu-separator"></li>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)" rel="4">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
+              </li>
+              <li class="dropdown-menu-separator"></li>
+              <li>
+                <a class="dropdown-menu-link" href="javascript:void(0)" rel="5">
+                  <span class="status-mini"
+                    style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
+              </li>
+            </ul>
+          </div>
+
+          <script type="text/javascript">
+            $(document).ready(
+              function () {
+                $('#addResultAndNextDropdown a').click(
+                  function () {
+                    App.Dropdowns.closeAll();
+
+                    App.Tests.addResultAndNext(
+                      1,
+                      App.QPane.getCurrentRowID(),
+                      $(this).attr('rel'),
+                      App.Runs.can_pass
+                    );
+
+                    return false;
+                  }
+                );
+              }
+            );
+          </script>
+          <div id="contentLoading" class="page-loading" style="padding-top: 150px">
+            Loading tests .. <br />
+            <br />
+            <div class="icon-progress-large" title="Loading..."></div>
+          </div>
+
+        </div>
+        <div id="exportDropdown" class="dropdown dropdown-menu" style="width: 150px">
+          <ul>
+            <li>
+              <a class="dropdown-menu-link" href="index.php?/runs/export/24">
+                <div class="icon-xml-10" style="vertical-align: -1px"></div>
+                Export to XML
+              </a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Runs.exportTestsCsv(24); return false;">
+                <div class="icon-csv-10" style="vertical-align: -1px"></div>
+                Export to CSV
+              </a>
+            </li>
+            <li class="dropdown-menu-separator"></li>
+            <li>
+              <a class="dropdown-menu-link" href="javascript:void(0)"
+                onclick="this.blur(); App.Runs.exportTestsExcel(24); return false;">
+                <div class="icon-excel-10" style="vertical-align: -1px"></div>
+                Export to Excel
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dialog" id="exportCsvDialog" style="width: 500px">
+          <div class="dialog-title">
+            <span class="csv">Export to CSV</span>
+            <span class="excel">Export to Excel</span>
+          </div>
+          <form id="exportCsvForm" action="post">
+            <div class="dialog-body">
+              <div class="message message-error validationError" id="exportCsvErrorNoSection">
+                You need to select at least one section (or include all sections). </div>
+              <div class="message message-error validationError" id="exportCsvErrorNoColumn">
+                You need to select at least one column to export. </div>
+              <div class="form-group">
+                <label>Sections</label>
+                <div class="radio form-radio" style="margin-left: 5px; margin-top: 15px">
+                  <label>
+                    Export all sections <input type="radio" id="exportCsvSectionsAll" name="exportCsvSections"
+                      value="all" checked="checked" />
+                  </label>
+                </div>
+                <div class="radio form-radio" style="margin-left: 5px">
+                  <label>
+                    Export the following sections only: <span class="busy" id="exportCsvSectionsSelectedBusy">
+                      <div class="icon-progress-inline"></div>
+                    </span>
+                    <input type="radio" id="exportCsvSectionsSelected" name="exportCsvSections" value="selected" />
+                  </label>
+                </div>
+                <div style="margin-left: 25px">
+                  <select class="form-control form-select" id="exportCsvSectionsSelection"
+                    name="exportCsvSectionsSelection" multiple="multiple" style="width: 100%; height: 120px">
+                  </select>
+                  <div class="form-description">
+                    You can select multiple sections by holding Ctrl/Cmd on your keyboard. </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>
+                  Layout </label>
+
+
+
+                <div class="checkbox-list" style="height: 160px" id="exportCsvColumns_control">
+                  <div class="checkbox-list-inner">
+                    <div class="checkbox-list-toolbar toolbar toolbar-compact">
+                      <div class="toolbar-inner text-secondary">
+                        Select <a class="link" href="javascript:void(0)"
+                          onclick="this.blur(); App.Controls.Checkboxes.checkAll('exportCsvColumns'); return false;">All</a>
+                        | <a class="link" href="javascript:void(0)"
+                          onclick="this.blur(); App.Controls.Checkboxes.checkNone('exportCsvColumns'); return false;">None</a>
+                      </div>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:id">
+                      <label>
+                        <span class="checkbox-name text-ppp">ID</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:id" type="checkbox" value="tests:id"
+                          checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:title">
+                      <label>
+                        <span class="checkbox-name text-ppp">Title</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:title" type="checkbox"
+                          value="cases:title" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:assignedto_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Assigned To</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:assignedto_id" type="checkbox"
+                          value="tests:assignedto_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_automation_type">
+                      <label>
+                        <span class="checkbox-name text-ppp">Automation Type</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_automation_type"
+                          type="checkbox" value="cases:custom_automation_type" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:original_case_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Case ID</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:original_case_id" type="checkbox"
+                          value="tests:original_case_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:comment">
+                      <label>
+                        <span class="checkbox-name text-ppp">Comment</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:comment" type="checkbox"
+                          value="tests:comment" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:defects">
+                      <label>
+                        <span class="checkbox-name text-ppp">Defects</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:defects" type="checkbox"
+                          value="tests:defects" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:elapsed">
+                      <label>
+                        <span class="checkbox-name text-ppp">Elapsed</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:elapsed" type="checkbox"
+                          value="tests:elapsed" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:estimate">
+                      <label>
+                        <span class="checkbox-name text-ppp">Estimate</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:estimate" type="checkbox"
+                          value="cases:estimate" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_expected">
+                      <label>
+                        <span class="checkbox-name text-ppp">Expected Result</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_expected" type="checkbox"
+                          value="cases:custom_expected" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:estimate_forecast">
+                      <label>
+                        <span class="checkbox-name text-ppp">Forecast</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:estimate_forecast" type="checkbox"
+                          value="cases:estimate_forecast" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_goals">
+                      <label>
+                        <span class="checkbox-name text-ppp">Goals</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_goals" type="checkbox"
+                          value="cases:custom_goals" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:in_progress_by">
+                      <label>
+                        <span class="checkbox-name text-ppp">In Progress</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:in_progress_by" type="checkbox"
+                          value="tests:in_progress_by" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_mission">
+                      <label>
+                        <span class="checkbox-name text-ppp">Mission</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_mission" type="checkbox"
+                          value="cases:custom_mission" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:plan_name">
+                      <label>
+                        <span class="checkbox-name text-ppp">Plan</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:plan_name" type="checkbox"
+                          value="tests:plan_name" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:plan_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Plan ID</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:plan_id" type="checkbox"
+                          value="tests:plan_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_preconds">
+                      <label>
+                        <span class="checkbox-name text-ppp">Preconditions</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_preconds" type="checkbox"
+                          value="cases:custom_preconds" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:priority_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Priority</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:priority_id" type="checkbox"
+                          value="cases:priority_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:refs">
+                      <label>
+                        <span class="checkbox-name text-ppp">References</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:refs" type="checkbox"
+                          value="cases:refs" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:run_name">
+                      <label>
+                        <span class="checkbox-name text-ppp">Run</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:run_name" type="checkbox"
+                          value="tests:run_name" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:run_config">
+                      <label>
+                        <span class="checkbox-name text-ppp">Run Configuration</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:run_config" type="checkbox"
+                          value="tests:run_config" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:run_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Run ID</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:run_id" type="checkbox"
+                          value="tests:run_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Section</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_id" type="checkbox"
+                          value="cases:section_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_depth">
+                      <label>
+                        <span class="checkbox-name text-ppp">Section Depth</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_depth" type="checkbox"
+                          value="cases:section_depth" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_desc">
+                      <label>
+                        <span class="checkbox-name text-ppp">Section Description</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_desc" type="checkbox"
+                          value="cases:section_desc" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_full">
+                      <label>
+                        <span class="checkbox-name text-ppp">Section Hierarchy</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_full" type="checkbox"
+                          value="cases:section_full" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:status_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Status</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:status_id" type="checkbox"
+                          value="tests:status_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_steps">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps" type="checkbox"
+                          value="cases:custom_steps" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_steps_separated">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated"
+                          type="checkbox" value="cases:custom_steps_separated" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:custom_step_results">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results" type="checkbox"
+                          value="tests:custom_step_results" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-tests:custom_step_results.actual">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Actual Result)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.actual"
+                          type="checkbox" value="tests:custom_step_results.actual" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.additional_info">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Additional Info)</span>
+                        <input name="exportCsvColumns[]"
+                          id="exportCsvColumns-cases:custom_steps_separated.additional_info" type="checkbox"
+                          value="cases:custom_steps_separated.additional_info" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.expected">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Expected Result)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated.expected"
+                          type="checkbox" value="cases:custom_steps_separated.expected" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-tests:custom_step_results.expected">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Expected Result)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.expected"
+                          type="checkbox" value="tests:custom_step_results.expected" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.refs">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (References)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated.refs"
+                          type="checkbox" value="cases:custom_steps_separated.refs" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.shared_step_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Shared step ID)</span>
+                        <input name="exportCsvColumns[]"
+                          id="exportCsvColumns-cases:custom_steps_separated.shared_step_id" type="checkbox"
+                          value="cases:custom_steps_separated.shared_step_id" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-tests:custom_step_results.status_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Status)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.status_id"
+                          type="checkbox" value="tests:custom_step_results.status_id" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.content">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Step)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated.content"
+                          type="checkbox" value="cases:custom_steps_separated.content" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item"
+                      id="exportCsvColumns_checkbox-tests:custom_step_results.step">
+                      <label>
+                        <span class="checkbox-name text-ppp">Steps (Step)</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.step"
+                          type="checkbox" value="tests:custom_step_results.step" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:template_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Template</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:template_id" type="checkbox"
+                          value="cases:template_id" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:tested_by">
+                      <label>
+                        <span class="checkbox-name text-ppp">Tested By</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:tested_by" type="checkbox"
+                          value="tests:tested_by" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:tested_on">
+                      <label>
+                        <span class="checkbox-name text-ppp">Tested On</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:tested_on" type="checkbox"
+                          value="tests:tested_on" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:type_id">
+                      <label>
+                        <span class="checkbox-name text-ppp">Type</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:type_id" type="checkbox"
+                          value="cases:type_id" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:version">
+                      <label>
+                        <span class="checkbox-name text-ppp">Version</span>
+                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:version" type="checkbox"
+                          value="tests:version" checked="checked" class="checkbox-list-input" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <select class="form-control form-select form-control-full" id="exportCsvLayout" name="exportCsvLayout">
+                  <option value="tests" selected="selected">Export latest results only (one line per test)</option>
+                  <option value="results">Export all results and comments (multiple lines per test)</option>
+                </select>
+              </div>
+              <div id="exportCsvSeparatorHintContainer" class="form-group bottom">
+                <div class="checkbox">
+                  <label>
+                    Include separator hint for maximum Excel compatibility <input type="checkbox"
+                      id="exportCsvSeparatorHint" name="exportCsvSeparatorHint" value="1" checked="checked" />
+                  </label>
+                </div>
+              </div>
+
+              <div id='exportCsvNewLinesForSeparatedStepsContainer' class='form-group bottom'>
+                <div class='checkbox'>
+                  <label>
+                    Include separated steps on separate rows <input type='checkbox' id='exportCsvSeparatedStepsNewLines'
+                      name='exportCsvSeparatedStepsNewLines' value='1' />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="button-group dialog-buttons-highlighted">
+              <button class="button button-left button-positive button-add dialog-action-default" id="exportSubmit"
+                type="submit">
+                Export </button>
+              <a class="button button-left button-negative button-cancel dialog-action-close">
+                Cancel </a>
+            </div>
+          </form>
+          <form action="index.php?/runs/export_csv/24" id="exportCsvExportForm" method="post"> <input type="hidden"
+              name="_token" value="GfD1ScRHYIseFNXMaPab" /> <input type="hidden" id="exportCsvExportSectionIDs"
+              name="section_ids" value="" />
+            <input type="hidden" id="exportCsvExportSectionInclude" name="section_include" value="" />
+            <input type="hidden" id="exportCsvExportColumns" name="columns" value="" />
+            <input type="hidden" id="exportCsvExportLayout" name="layout" value="" />
+            <input type="hidden" id="exportCsvExportSeparatorHint" name="separator_hint" value="" />
+            <input type='hidden' id='exportCsvExportSeparatedStepsNewLines' name='separated_steps_new_lines' value='' />
+            <input type="hidden" id="exportCsvExportFormat" name="format" value="" />
+          </form>
+        </div>
+        <div class="dialog" id="selectColumnsDialog" style="width: 500px;">
+          <div class="dialog-title">
+            Select Columns </div>
+          <form id="selectColumnsForm" class="dialogFormDefault">
+            <div class="dialog-body">
+              <script type="text/javascript">
+                var selectColumnsDialogValidation = {
+                  'width_required': 'Field Width is a required field.',
+                  'width_min_max': 'Field Width must be between 25 and 1000.'
+                };
+              </script>
+              <div class="message message-error validationError" id="selectColumnsErrors"></div>
+              <div id="selectColumnsGridContainer"></div>
+              <div style="margin-top: 1em">
+                <a id="selectColumnsAdd" href="javascript:void(0)"
+                  onclick="this.blur(); App.Tables.addColumn(); return false;">Add Column</a>
+              </div>
+            </div>
+            <div class="button-group dialog-buttons-highlighted">
+              <button id="selectColumnsSubmit" type="submit"
+                class="button button-left button-positive button-ok dialog-action-default">
+                Update Columns </button>
+              <a class="button button-left button-negative button-cancel dialog-action-close">
+                Cancel </a>
+            </div>
+          </form>
+        </div>
+        <div class="dialog" id="addColumnDialog" style="width: 400px;">
+          <div class="dialog-title">
+            Add Column </div>
+          <form id="addColumnForm" class="dialogFormDefault">
+            <div class="dialog-body">
+              <div class="form-group bottom">
+                <label for="addColumnItems">Column <span class="form-required">*</span></label>
+                <select class="form-control form-control-full form-select" name="addColumnItems" id="addColumnItems">
+                </select>
+                <div class="form-description">Select the column to add to the tables.</div>
+              </div>
+            </div>
+            <div class="button-group dialog-buttons-highlighted">
+              <button id="addColumnSubmit" type="submit"
+                class="button button-left button-positive button-ok dialog-action-default">
+                Add Column </button>
+              <a class="button button-left button-negative button-cancel dialog-action-close">
+                Cancel </a>
+            </div>
+          </form>
+        </div>
+
+        <div class="bubble integration-bubble" id="defectBubble">
+          <div class="integration-bubble-busy busy">
+            <div class="icon-progress-large" title="Loading..."></div>
+          </div>
+          <div class="error">
+            <div class="integration-bubble-error-header">
+              An Error Occurred </div>
+            <div class="integration-bubble-error-body" id="defectBubbleError"></div>
+          </div>
+          <div class="content"></div>
+        </div>
+        <div class="bubble integration-bubble" id="referenceBubble">
+          <div class="integration-bubble-busy busy">
+            <div class="icon-progress-large" title="Loading..."></div>
+          </div>
+          <div class="error">
+            <div class="integration-bubble-error-header">
+              An Error Occurred </div>
+            <div class="integration-bubble-error-body" id="referenceBubbleError"></div>
+          </div>
+          <div class="content"></div>
+        </div>
+
+        <div class="dialog" id="rerunDialog" style="width: 400px">
+          <div class="dialog-title">
+            Select Tests </div>
+
+          <form id="rerunForm">
+            <div class="dialog-body">
+              <p class="top">Include tests of the following previous status:</p>
+              <div class="message message-error hidden validationError" id="rerunErrors"></div>
+
+
+
+              <div class="checkbox-list" style="height: 200px" id="rerunStatuses_control">
+                <div class="checkbox-list-inner">
+                  <div class="checkbox-list-toolbar toolbar toolbar-compact">
+                    <div class="toolbar-inner text-secondary">
+                      Select <a class="link" href="javascript:void(0)"
+                        onclick="this.blur(); App.Controls.Checkboxes.checkAll('rerunStatuses'); return false;">All</a>
+                      | <a class="link" href="javascript:void(0)"
+                        onclick="this.blur(); App.Controls.Checkboxes.checkNone('rerunStatuses'); return false;">None</a>
+                    </div>
+                  </div>
+                  <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-1">
+                    <label>
+                      <span class="checkbox-name text-ppp">Passed</span>
+                      <input name="rerunStatuses[]" id="rerunStatuses-1" type="checkbox" value="1" checked="checked"
+                        class="checkbox-list-input" />
+                    </label>
+                  </div>
+                  <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-2">
+                    <label>
+                      <span class="checkbox-name text-ppp">Blocked</span>
+                      <input name="rerunStatuses[]" id="rerunStatuses-2" type="checkbox" value="2" checked="checked"
+                        class="checkbox-list-input" />
+                    </label>
+                  </div>
+                  <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-3">
+                    <label>
+                      <span class="checkbox-name text-ppp">Untested</span>
+                      <input name="rerunStatuses[]" id="rerunStatuses-3" type="checkbox" value="3" checked="checked"
+                        class="checkbox-list-input" />
+                    </label>
+                  </div>
+                  <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-4">
+                    <label>
+                      <span class="checkbox-name text-ppp">Retest</span>
+                      <input name="rerunStatuses[]" id="rerunStatuses-4" type="checkbox" value="4" checked="checked"
+                        class="checkbox-list-input" />
+                    </label>
+                  </div>
+                  <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-5">
+                    <label>
+                      <span class="checkbox-name text-ppp">Failed</span>
+                      <input name="rerunStatuses[]" id="rerunStatuses-5" type="checkbox" value="5" checked="checked"
+                        class="checkbox-list-input" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="checkbox checkbox-list-item" id="fetch_assignedto_check">
+                <label>
+                  <span class="checkbox-name text-ppp">Copy Assigned To</span>
+                  <input name="fetch_assignedto" id="fetch_assignedto" type="checkbox" value="1"
+                    class="checkbox-list-input">
+                </label>
+              </div>
+            </div>
+            <div>
+              <div class="button-group dialog-buttons-highlighted">
+                <button class="button button-left button-positive button-ok dialog-action-default" type="submit">
+                  OK </button>
+                <a class="button button-left button-negative button-cancel dialog-action-close">
+                  Cancel </a>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        <div class="dialog" id="selectUserDialog" style="width: 400px;">
+          <div class="dialog-title">Assign To</div>
+          <form id="selectUserForm">
+            <div class="dialog-body">
+              <div class="form-group bottom">
+                <label for="selectUser">User <span class="form-required">*</span>
+                </label>
+                <select class="form-control form-control-full form-select searchable" name="selectUser" id="selectUser">
+                  <option value="">Nobody (Unassigned)</option>
+                  <option value="3">Me</option>
+                  <optgroup disabled="disabled" label="&ndash;&ndash;&ndash;"></optgroup>
+                  <option value="2">Duy</option>
+                  <option value="1">Đỗ Tú</option>
+                  <option value="3">Thắng</option>
+                </select>
+                <div class="form-description">Select a user to assign the tests.</div>
+              </div>
+            </div>
+            <div class="button-group dialog-buttons-highlighted">
+              <button class="button button-left button-positive button-ok dialog-action-default" type="submit"
+                id="selectUserSubmit">
+                OK </button>
+              <a class="button button-left button-negative button-cancel dialog-action-close">
+                Cancel </a>
+            </div>
+          </form>
+        </div>
+
+        <script type="text/javascript">
+          var statuses = {};
+          statuses[1] = { "id": 1, "name": "passed", "system_name": "passed", "label": "Passed", "color_dark": "338a41", "color_medium": "3cb850", "color_bright": "4be663", "color_gradient_a": "2b7537", "color_gradient_b": "23602d" };
+          statuses[2] = { "id": 2, "name": "blocked", "system_name": "blocked", "label": "Blocked", "color_dark": "474747", "color_medium": "595959", "color_bright": "8c8c8c", "color_gradient_a": "3c3c3c", "color_gradient_b": "313131" };
+          statuses[3] = { "id": 3, "name": "untested", "system_name": "untested", "label": "Untested", "color_dark": "737373", "color_medium": "979797", "color_bright": "c9c9c9", "color_gradient_a": "616161", "color_gradient_b": "505050" };
+          statuses[4] = { "id": 4, "name": "retest", "system_name": "retest", "label": "Retest", "color_dark": "b99109", "color_medium": "fcc200", "color_bright": "ffd549", "color_gradient_a": "9d7b07", "color_gradient_b": "816506" };
+          statuses[5] = { "id": 5, "name": "failed", "system_name": "failed", "label": "Failed", "color_dark": "a9093a", "color_medium": "e40046", "color_bright": "fc004e", "color_gradient_a": "8f0731", "color_gradient_b": "760628" };
+          statuses[6] = { "id": 6, "name": "custom_status1", "system_name": "custom_status1", "label": "Unnamed 1", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          statuses[7] = { "id": 7, "name": "custom_status2", "system_name": "custom_status2", "label": "Unnamed 2", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          statuses[8] = { "id": 8, "name": "custom_status3", "system_name": "custom_status3", "label": "Unnamed 3", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          statuses[9] = { "id": 9, "name": "custom_status4", "system_name": "custom_status4", "label": "Unnamed 4", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          statuses[10] = { "id": 10, "name": "custom_status5", "system_name": "custom_status5", "label": "Unnamed 5", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          statuses[11] = { "id": 11, "name": "custom_status6", "system_name": "custom_status6", "label": "Unnamed 6", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          statuses[12] = { "id": 12, "name": "custom_status7", "system_name": "custom_status7", "label": "Unnamed 7", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
+          var status_default_id = 1;
+        </script>
+        <div id="resultsHelp" class="tooltip tooltip-help">
+          <div class="tooltip-help-body">
+            <p style="margin: 0">The <strong>Results &amp; Comments</strong> tab shows the results, comments and
+              assignments for the current test in this run in chronological order.</p>
+          </div>
+        </div>
+        <div id="historyHelp" class="tooltip tooltip-help">
+          <div class="tooltip-help-body">
+            <p style="margin: 0">The <strong>History &amp; Context</strong> tab shows all related tests over time
+              (all tests of the same <em>test case</em>). This can include related tests of other configurations in the
+              same
+              test plan or past test runs. The current test in this run is highlighted.
+              <br /><br />
+              A line chart at the top displays recent and related test results with the recorded statuses.
+            </p>
+          </div>
+        </div>
+        <div id="defectsHelp" class="tooltip tooltip-help">
+          <div class="tooltip-help-body">
+            <p style="margin: 0">The <strong>Defects</strong> tab shows all logged defects for related tests over time
+              (all defects of the same <em>test case</em>). Defects of the current test in this run are highlighted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
+    </div>
+    <div id="qpane" class="column qpane" style="width: 600px; display: none">
+      <div id="qpane-empty" class="qpane-empty hidden">
+        <div class="qpane-empty-header">
+          No test case selected. </div>
+        <div class="qpane-empty-body">
+          You can select a different group or change the filters. </div>
+      </div>
+      <div id="qpane-inner">
+        <div id="qpaneSticky">
+          <div id="qpane-content">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+    </div>
+    <div id="sidebar" class="column sidebar" style="width: 250px">
+
+      <div class="sidebar-inner">
+        <p style="margin: 0">
+          Created by Thắng on 11/25/2022. <br>
+          References
+        </p>
+      </div>
+
+      <div class="sidebar-menu">
+        <ul>
+          <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected">
+            <a id="navigation-runs-testsresults" href="index.php?/runs/view/24">
+              Tests &amp; Results</a>
+          </li>
+          <li class="sidebar-menu-item ">
+            <a id="navigation-runs-activity" href="index.php?/runs/activity/24">
+              Activity</a>
+          </li>
+          <li class="sidebar-menu-item ">
+            <a id="navigation-runs-progress" href="index.php?/runs/progress/24">
+              Progress</a>
+          </li>
+          <li class="sidebar-menu-item ">
+            <a id="navigation-runs-defects" href="index.php?/runs/defects/24">
+              Defects</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar-inner">
+
+      </div>
+
+      <div id="sidebar-inner" class="sidebar-inner">
+        <div id="sidebarSticky">
+          <div class="toolbar " id="sidebarToolbar">
+            <div class="toolbar-inner">
+              <a href="#displayDropdown" class="link dropdownLink toolbar-dropdown">
+                <span class="toolbar-dropdown-icon">
+                  <div class="icon-display-tree-inactive"></div>
+                </span>
+                <span class="toolbar-dropdown-text link-dashed">All</span>
+                <div class="icon-desc"></div>
+              </a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div id="groupTreeContainer">
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          App.Tables.columns_for_user = {};
+          App.Tables.columns_for_user['tests:id'] = 65;
+          App.Tables.columns_for_user['cases:title'] = 0;
+          App.Tables.columns_for_user['tests:assignedto_id'] = 125;
+
+          App.Tables.columns = {};
+          App.Tables.columns['tests:assignedto_id'] = 'Assigned To';
+          App.Tables.columns['cases:custom_automation_type'] = 'Automation Type';
+          App.Tables.columns['tests:original_case_id'] = 'Case ID';
+          App.Tables.columns['tests:defects'] = 'Defects';
+          App.Tables.columns['tests:defects_all'] = 'Defects All';
+          App.Tables.columns['tests:elapsed'] = 'Elapsed';
+          App.Tables.columns['tests:elapsed_all'] = 'Elapsed All';
+          App.Tables.columns['cases:estimate'] = 'Estimate';
+          App.Tables.columns['cases:estimate_forecast'] = 'Forecast';
+          App.Tables.columns['tests:id'] = 'ID';
+          App.Tables.columns['tests:in_progress_by'] = 'In Progress';
+          App.Tables.columns['cases:priority_id'] = 'Priority';
+          App.Tables.columns['cases:refs'] = 'References';
+          App.Tables.columns['cases:section_id'] = 'Section';
+          App.Tables.columns['tests:status_id'] = 'Status';
+          App.Tables.columns['cases:template_id'] = 'Template';
+          App.Tables.columns['tests:tested_by'] = 'Tested By';
+          App.Tables.columns['tests:tested_on'] = 'Tested On';
+          App.Tables.columns['cases:title'] = 'Title';
+          App.Tables.columns['cases:type_id'] = 'Type';
+          App.Tables.columns['tests:version'] = 'Version';
+          App.Tables.columns['tests:version_all'] = 'Version All';
+
+          App.Tables.group_by = 'cases:section_id';
+          App.Tables.group_order = 'asc';
+
+
+          App.Tables.runsColumns = {};
+
+        });
+      </script>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          App.Storage.init();
+
+          App.Runs.columns_for_qpane = {};
+          App.Runs.columns_for_qpane['tests:id'] = 65;
+          App.Runs.columns_for_qpane['cases:title'] = 0;
+
+          $('#contentSticky').sticky(
+            {
+              topPadding: 15,
+              height: 28,
+              className: 'content-sticky',
+              container: '#content-inner'
+            });
+
+          $('#qpaneSticky').sticky(
+            {
+              className: 'qpane-sticky',
+              container: '#qpane-inner'
+            });
+
+          $('#sidebarSticky').sticky(
+            {
+              topSpacing: 15,
+              className: 'sidebar-sticky',
+              container: '#sidebar-inner'
+            });
+
+          App.Runs.project_id = 1;
+          App.Runs.run_id = 24;
+          App.Runs.display = 'tree';
+          App.Runs.user_ids = [];
+          App.Runs.page_type = 'view';
+
+
+          App.Runs.scroll_offset = 58;
+
+          App.Runs.applyActions();
+          App.Runs.applyResponsive();
+          App.Runs.applyQPane(0);
+          App.Runs.initialized = true;
+
+          App.Runs.showInitial();
+        });
+      </script>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          App.Translations.add(
+            "tests_status",
+            "Status");
+        });
+      </script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          App.Hotkeys.registerAlt(
+            'r',
+            function () {
+              if (App.QPane.isVisible()) {
+                App.Tests.addResultQPane(
+                  1,
+                  App.QPane.getCurrentRowID()
+                );
+              }
+            }
+          );
+
+          App.References.applyLookup(1);
+        });
+      </script>
+
+
+
+      <script type="text/javascript">
+        var isFilter = 0;
+
+        $('#filterTestsContent, #exportCsvSectionsSelection').click(function () {
+          isFilter = 1;
+        });
+
+        $('body').on('click', '#filterTestsCancel, #filterTestsApply, .button-cancel', function () {
+          isFilter = 0;
+        });
+
+        $('body').keyup(function (e) {
+          if (!$(e.target).is('input')) {
+            var DKey = 68;
+            var EKey = 69;
+            var RKey = 82;
+            var PKey = 80;
+            var MKey = 77;
+            var AKey = 65;
+            var JKey = 74;
+            var KKey = 75;
+            var QKey = 81;
+
+            if ($('#dialog-ident-exportCsvDialog').css('display') === 'none') {
+              isFilter = 0;
+            }
+
+            if (e.which === DKey && !e.ctrlKey && isFilter === 0) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                App.Defects.preparePush(1, 0, 'runs/view', 24);
+              }
+            }
+
+            if (e.which === EKey && isFilter === 0) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                App.Page.load('runs/edit/24/1');
+              }
+            }
+
+            if (e.which === RKey && !e.ctrlKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                App.Tests.massAddResult(1);
+              }
+            }
+
+            if (e.which === PKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                if (App.QPane.isVisible()) {
+                  App.Runs.passRowAndNext(
+                    App.QPane.getCurrentRowID()
+                  );
+                }
+              }
+            }
+
+            if (e.which === MKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                if (App.QPane.isVisible()) {
+                  App.Tests.addCommentNoDialogActivate(
+                    App.QPane.getCurrentRowID()
+                  );
+                }
+              }
+            }
+
+            if (e.which === AKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                App.Tests.massAssignTo();
+              }
+            }
+
+            if (e.which === JKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                if (App.QPane.isVisible()) {
+                  App.Runs.nextRow();
+                }
+              }
+            }
+
+            if (e.which === KKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                if (App.QPane.isVisible()) {
+                  App.Runs.prevRow();
+                }
+              }
+            }
+
+            if (e.which === QKey) {
+              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
+                if (!App.Ajax.isBusy()) {
+                  App.QPane.tryToggleRow();
+                }
+              }
+            }
+          }
+        });
+      </script>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+  var Consts = {};
+  Consts.ajaxBaseUrl = 'index.php?';
+  Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
+  Consts.ajaxCsrf = 'GfD1ScRHYIseFNXMaPab';
+  Consts.ajaxVersion = '7.5.6.3001';
+  Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.6.3001/';
+  Consts.dialogTitleError = 'Error';
+  Consts.statusFailed = 5;
+  Consts.statusRetest = 4;
+  Consts.statusBlocked = 2;
+  Consts.statusPassed = 1;
+  Consts.statusUntested = 3;
+  Consts.statusDefault = 1;
+  Consts.minWidth = 550;
+  Consts.minWidthOffset = 300;
+  Consts.minWidthVariable = 50;
+</script>
+
+<div id="ajaxResponse" class="hidden"></div>
+
+<div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
+  <ul>
+    <li><a class="dropdown-menu-link" id="navigation-user-settings" href="index.php?/mysettings">
+        My Settings</a></li>
+    <li><a class="dropdown-menu-link" id="navigation-user-logout" href="index.php?/auth/logout">Logout</a></li>
+  </ul>
+</div>
+<div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
+  <div class="dialog-title"></div>
+  <div class="dialog-body">
+    <p style="margin: 0" class="dialog-message"></p>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-left button-positive dialog-action-default">
+      OK </a>
+  </div>
+</div>
+<div class="dialog" id="confirmDialog" style="width: 350px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p style="margin: 0" class="dialog-message"></p>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-left button-positive dialog-action-default">
+      Yes </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      No </a>
+  </div>
+</div>
+
+<div id="confirmDialogOkCancel" class="dialog">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="dialog-message"></p>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-left button-positive dialog-action-default">
+      OK </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+<div id="tooltip" class="tooltip">
+  <div class="tooltip-pointer-up"></div>
+  <div class="tooltip-pointer-down"></div>
+  <div class="tooltip-pointer-right"></div>
+  <div class="tooltip-header"></div>
+  <p style="margin: 0"></p>
+</div>
+<div class="dialog" id="deleteDialog" style="width: 425px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="top bottom dialog-message"></p>
+    <p class="dialog-extra text-delete"></p>
+    <div class="message message-delete bottom delete-confirm-container" style="margin-top: 12px; line-height: 1">
+      <div class="checkbox">
+        <label>
+          <span class="dialog-confirm"></span>
+          <span class="dialog-confirm-busy">
+            <div class="icon-progress-inline"></div>
+          </span>
+          <input type="checkbox" value="1" name="deleteCheckbox" />
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
+      OK </a>
+    <a
+      class='button button-left button-positive button-disabled button-hidden button-no-margin-right dialog-action-secondary'>
+    </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+<div class="dialog" id="dpaDialog" style="max-width: 725px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="top bottom dialog-message"></p>
+    <p class="dialog-extra text-delete"></p>
+
+    <form action="index.php?/admin/users/accept_data_processing_agreement" id="dpa_form" method="post"> <input
+        type="hidden" name="_token" value="GfD1ScRHYIseFNXMaPab" />
+      <div class="form-group">
+        <label for="name">Please enter your full name:<span class="form-required">*</span></label>
+        <input class="form-control " type="text" name="full_name" id="full_name" maxlength="250" value="">
+      </div>
+
+    </form>
+    <div class="message message-delete bottom delete-confirm-container"
+      style="margin-top: 12px; line-height: 1; padding-bottom: 50px">
+      <div class="checkbox">
+        <label>
+          <span class="dialog-confirm"></span>
+          <input type="checkbox" value="1" name="deleteCheckbox" />
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
+      Submit </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+<div class="dialog" id="trEnterpriseDialog" style="width: 350px; word-wrap: break-word">
+  <div class="dialog-title"></div>
+  <form action="index.php?/mysettings/tr_enterprise_banner_setting" id="tr_enterprise_form" method="post"> <input
+      type="hidden" name="_token" value="GfD1ScRHYIseFNXMaPab" />
+    <div class="dialog-body">
+      <p style="margin: 0" class="dialog-message"></p>
+      <div class="form-group">
+        <div class="radio">
+          <label>
+            <input type="radio" class="radio" name="tr_enterprise_banner_display" value="0" checked>
+            Remove for this Session </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" class="radio" name="tr_enterprise_banner_display" value="1">
+            Remove forever </label>
+        </div>
+      </div>
+    </div>
+    <div class="button-group dialog-buttons-highlighted">
+      <input type="submit" value="Submit" class="button button-ok button-left button-positive dialog-action-default">
+      <a class="button button-cancel button-left button-negative dialog-action-close">
+        Cancel </a>
+    </div>
+  </form>
+</div>
+
+<div class="dialog" id="deleteEntityAttachmentDialog" style="width: 425px">
+  <div class="dialog-title">Confirmation</div>
+  <div class="dialog-body">
+    <p class="top bottom dialog-message"></p>
+    <p class="dialog-extra text-delete"></p>
+    <div class="message message-delete bottom delete-confirm-container" style="margin-top: 12px; line-height: 1">
+      <div class="checkbox">
+        <label>
+          <span class="dialog-confirm">Don’t show me this again</span>
+          <input id='deleteDontShowAgain' type="checkbox" value="1" name="deleteCheckbox" />
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a
+      class="button button-ok button-left button-positive dialog-action-default delete-entity-attachment-button-submit">
+      Delete </a>
+    <a class="button button-cancel button-left button-negative dialog-action-close">
+      Cancel </a>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $(document).delegate('.dialog-buttons-highlighted .delete-entity-attachment-button-submit', 'click', function (evt) {
+      App.Attachments.dontShowEntityDeleteDialog = $('#deleteDontShowAgain').prop('checked');
+      App.Ajax.call({
+        target: '/mysettings/ajax_delete_entity_attachment_setting',
+
+        arguments: {
+          dont_show: $('#deleteDontShowAgain').prop('checked')
+        },
+
+        error: function error(data) {
+          App.Ajax.handleError(data);
+        }
+      });
+    });
+  });
+</script>
+
+
+<div id="helpDropdown" class="dropdown dropdown-menu help-menu" rel="helpMenu" style="width: 175px">
+  <ul>
+    <li>
+      <a class="dropdown-menu-link" target="_blank"
+        href="https://www.gurock.com/testrail/docs/user-guide/getting-started">
+        TestRail User Guide </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/support">
+        Support &amp; Videos </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://forum.gurock.com/">
+        Community Forum </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank"
+        href="https://www.gurock.com/testrail/docs/user-guide/howto/keyboard-shortcuts-hotkeys">
+        Keyboard Shortcuts </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://blog.gurock.com/">
+        Gurock Blog </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://twitter.com/testrail">
+        TestRail on Twitter </a>
+    </li>
+    <li>
+      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/">
+        TestRail on the Web </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link dropdown-menu-link-highlighted" target="_blank"
+        href="https://secure.gurock.com/customers/testrail/newsletter?email=doanvanthang4271@gmail.com">
+        Subscribe to Newsletter </a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" href="javascript:void(0)"
+        onclick="this.blur(); App.Help.showAbout(); return false;">
+        About TestRail </a>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#bannerLink').bubble({
+      bubble: '#enterpriseBubble',
+      inContainer: true
+    });
+
+    $('#content').on('change', 'input:checkbox[name="entity_run"]', function () {
+      delselectAll(this, 'run')
+    });
+
+    $('#content').on('change', 'input:checkbox[name="entity_milestones"]', function () {
+      delselectAll(this, 'milestones')
+    });
+  });
+
+  function delselectAll(type, entity) {
+    let parent = $(type).data('option');
+    if (parent === undefined) {
+      $('input:checkbox[name=select_all]').each(function () {
+        let select = $(this).parent().closest('div').attr('id');
+
+        if ($('#' + select).find(type).length > 0) {
+          parent = select;
+        }
+      });
+    }
+    let selector = '#' + parent;
+    $(selector)
+      .find('input:checkbox[name="select_all"]')
+      .prop(
+        'checked',
+        $(selector + ' input:checked[name="entity_' + entity + '"]').length ===
+        $(selector + ' input:checkbox[name="entity_' + entity + '"]').length
+      );
+    $('#delete-' + entity).css(
+      'display',
+      $('input:checked[name="entity_' + entity + '"]').length > 0
+        ? 'block'
+        : 'none'
+    );
+  }
+
+  function SelectAllEntity(type) {
+    let parent = $(type).parent().closest('div').attr('id');
+    let checked_status = $(type).is(':checked');
+    $('#' + parent).find('input[type=checkbox]')
+      .attr('data-option', parent)
+      .not(':disabled')
+      .prop(
+        'checked',
+        checked_status
+      );
+    let selector = $('#' + parent).find('input:checkbox[name="entity_milestones"]').length
+      ? 'milestones'
+      : 'run';
+    $('#delete-' + selector).css(
+      'display',
+      checked_status && $('input:checked[name="entity_' + selector + '"]').length
+        ? 'block'
+        : 'none'
+    );
+  }
+</script>
+
+<div class='dialog dialog_attachment' id='attachmentInfoDialog' style='width: 900px; height: 531px;'></div>
+<div id='newAttachmentTemplate' style='display: none;'>
+  <div style='width: 150px; height: 150px; '
+    class='attachment-block attachment-attachment_icon attachment_selected_class lazy'
+    id='libraryAttachment-attachment_id' onclick="App.Attachments.showInfoDialog('attachment_id');"
+    title='attachment_name'>
+    <div class='attachment-icon' style=''></div>
+    <div class='attachment-name'>
+      attachment_truncated_name
+    </div>
+    <img attachment_src_tag='attachment_imgurl' attachment_onerror_tag='attachment_img_onerror' class='hidden-image' />
+    <div class='attachment-selection attachment_selected_class'
+      onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
+  </div>
+</div>
+<div id='libraryAttachmentsAddItemTemplate' style='display: none;'>
+  <div id='element_id' class='attachment-library-add'>
+    <div class='attachment-library-add-icon'></div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://static.testrail.io/7.5.6.3001/js/extensions-combined.js"></script>
+<script type="text/javascript" src="https://static.testrail.io/7.5.6.3001/js/application-combined.js"></script>
+
+<script type="text/javascript" id="js-js-indicator"
+  src="https://static.testrail.io/7.5.6.3001/js/indicator.js"></script>
+<script type="text/javascript" id="js-js-autocomplete"
+  src="https://static.testrail.io/7.5.6.3001/js/autocomplete.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    App.Translations.add(
+      "timespans_hour_short",
+      "h");
+    App.Translations.add(
+      "timespans_minute_short",
+      "m");
+    App.Translations.add(
+      "timespans_second_short",
+      "s");
+  });
+</script>
+<script type='application/javascript'>
+  (function (apiKey) { // <-- passed in at the bottom
+    (function (p, e, n, d, o) {
+      var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+      v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+        o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+      })(v[w]);
+      // Create a `<script>` tag linked to your application-specific Agent build from our CDN...
+      y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+      z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+    })(window, document, 'script', 'pendo');
+    pendo.initialize({
+      sanitizeUrl: function (url) {
+        return url.replace('index.php?', 'index.php')
+      },
+      visitor: {
+        id: '736674-3',
+        is_admin: true,
+        is_active: true
+      },
+      account: {
+        id: '736674'
+      }
+    });
+  })('1c20428c-1995-4c00-6e1c-daff12af9c00');
+</script>
+
+<script>
+  $(function () {
+    App.Sidebar.init();
+
+    App.Editor.codePreformat();
+  });
+</script>

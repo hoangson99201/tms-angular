@@ -1,0 +1,222 @@
+<div class="ui-dialog-titlebar ui-widget-header"
+  style="background: rgb(43, 117, 55); color: rgb(255, 255, 255); display: flex;justify-content: space-between;padding: 10px;">
+  <span class="ui-dialog-title" id="ui-dialog-title-addResultDialog">Add Result</span>
+  <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
+    <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>
+  </a>
+</div>
+<div class="dialog ui-dialog-content ui-widget-content" id="addResultDialog"
+  style="width: auto; height: 386px; display: block; min-height: 0px;">
+  <div class="dialog-title">
+    <span class="addResult">Add Result</span>
+    <span class="editResult" style="display: none;">Edit Result</span>
+  </div>
+
+  <form id="addResultForm">
+    <div class="dialog-body result-dialog-body" style="height: 323px;">
+      <div class="result-dialog-busy resultBusy" style="margin: auto; padding-top: 137px; display: none;">
+        <div class="icon-progress-large" title="Loading..."></div>
+        <p></p>
+      </div>
+      <div class="result-dialog-container resultContainer hidden" style="display: block;">
+
+        <div class="message message-error hidden validationError" id="addResultErrors"></div>
+
+        <div class="table">
+          <div class="column result-dialog-column-left">
+            <div class="form-group">
+              <label for="addResultStatus">Status <span class="form-required">*</span></label>
+              <select class="form-control form-control-small form-select searchable chzn-done" name="addResultStatus"
+                id="addResultStatus" style="display: none;">
+                <option value="1">Passed</option>
+                <option value="2">Blocked</option>
+                <option value="4">Retest</option>
+                <option value="5">Failed</option>
+              </select>
+              <div id="addResultStatus_chzn" class="chzn-container chzn-container-single" style="width: 100%"><a
+                  href="javascript:void(0)" class="chzn-single"><span>Passed</span>
+                  <div><b></b></div>
+                </a>
+                <div class="chzn-drop" style="display: none; width: 100%; top: 25px;">
+                  <div class="chzn-search"><input type="text" autocomplete="off"></div>
+                  <ul class="chzn-results">
+                    <li id="addResultStatus_chzn_o_0" class="active-result result-selected">Passed</li>
+                    <li id="addResultStatus_chzn_o_1" class="active-result">Blocked</li>
+                    <li id="addResultStatus_chzn_o_2" class="active-result">Retest</li>
+                    <li id="addResultStatus_chzn_o_3" class="active-result">Failed</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-description">Set the test status (<em>passed</em>, <em>failed</em> etc.).</div>
+            </div>
+            <div class="form-group">
+              <label for="addResultComment">
+                <span class="form-toolbar" style="padding-top: 0px">
+                  <a href="javascript:void(0)"
+                    onclick="this.blur(); App.Editor.addTable('#addResultComment' + '_display'); return false;"
+                    class="link-tooltip" tooltip-text="Add a table to this text field." tabindex="-1">
+                    <div class="icon-markdown-table"></div>
+                  </a>
+                  <a href="javascript:void(0)"
+                    onclick="this.blur(); App.Editor.addImage('#addResultComment', 1, 'test_change', ''); return false;"
+                    class="link-tooltip" tooltip-text="Add an image to this text field." tabindex="-1">
+                    <div class="icon-markdown-image"></div>
+                  </a>
+                  <a href="https://www.gurock.com/testrail/docs/user-guide/getting-started/editor" class="link-tooltip"
+                    tooltip-text="Open the editor formatting reference." target="_blank" tabindex="-1">
+                    <div class="icon-markdown-help"></div>
+                  </a>
+                </span>
+                Comment </label>
+
+              <div class="textarea-resizable editor-bindable attachment-list-wrapper" data-attribute="addResultComment"
+                id="addResultComment_attachments_wrapper">
+                <div contenteditable="true" class="form-control field-editor form-control-full "
+                  id="addResultComment_display"></div>
+                <div id="addResultComment_display_drop" class="dropzone dz-clickable" rel="addResultComment_display"
+                  dialog="addResultDialog" data-project-id="1">
+                  <div class="dz-default dz-message"><span>Drop images here to embed.</span></div>
+                </div>
+
+
+              </div>
+
+              <input type="hidden" value="" id="addResultComment" name="addResultComment">
+
+
+              <div class="form-description">Describe your test result.</div>
+            </div>
+            <div id="result_content">
+              <input id="attachments" type="hidden" name="attachments" value="[]">
+
+              <input id="attachmentsToDelete" type="hidden">
+              <div id="entityAttachmentListWrapper-6ffec974-2e72-4a08-9e47-9c15c9dff387" class="attachment-list-wrapper"
+                deleteids="">
+                <div id="entityAttachmentList" class="attachment-list dz-persistent">
+                  <div id="entityAttachmentListAdd" style="display: none;" class="attachment-list-add"
+                    onclick="App.Attachments.showDialog('#entityAttachmentListWrapper-6ffec974-2e72-4a08-9e47-9c15c9dff387', 1, '', 'test_change', { 'inputParent': '#result_content' });">
+                    <div class="attachment-list-add-icon"></div>
+                  </div>
+                  <div id="entityAttachmentListRemove" style="display: none;" class="attachment-list-delete"
+                    href="javascript:void(0)"
+                    onclick="this.blur(); App.Attachments.entityRemoveAttachmentsDialog('This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.', '1', 'test_change', '#entityAttachmentListWrapper-6ffec974-2e72-4a08-9e47-9c15c9dff387', '#result_content'); return false;">
+                    <div class="attachment-list-delete-icon"></div>
+                    <span>Delete</span>
+                  </div>
+                  <div id="entityAttachmentListEmptyIcon" class="attachment-list-empty-add"
+                    onclick="App.Attachments.showDialog('#entityAttachmentListWrapper-6ffec974-2e72-4a08-9e47-9c15c9dff387', 1, '', 'test_change', { 'inputParent': '#result_content' });">
+                  </div>
+                </div>
+
+                <div id="entityAttachmentListDropzoneText" class="attachment-list-dropzone-text">
+                  <span>Drop files here to attach,<br>or click on "+" to browse</span>
+                </div>
+                <div id="entityAttachmentListRemoveBottom" class="attachment-list-delete-text" style="display: none;"
+                  href="javascript:void(0)"
+                  onclick="this.blur(); App.Attachments.entityRemoveAttachmentsDialog('This <strong>deletes selected instances of your attachments.</strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.', '1', 'test_change', '#entityAttachmentListWrapper-6ffec974-2e72-4a08-9e47-9c15c9dff387', '#result_content'); return false;">
+                  <div class="attachment-list-delete-icon-red"></div><span>Delete</span>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+          <div class="column result-dialog-column-right">
+            <div class="form-group">
+              <label for="addResultAssignTo">Assign To</label>
+              <select class="form-control form-control-full form-select searchable chzn-done" name="addResultAssignTo"
+                id="addResultAssignTo" style="display: none;">
+                <option value=""> &nbsp; </option>
+                <option value="unassign">Nobody (Unassigned)</option>
+                <option value="3">Me</option>
+                <optgroup disabled="disabled" label="–––"></optgroup>
+                <option value="2">Duy</option>
+                <option value="1">Đỗ Tú</option>
+                <option value="3">Thắng</option>
+              </select>
+              <div id="addResultAssignTo_chzn" class="chzn-container chzn-container-single" style="width: 100%"><a
+                  href="javascript:void(0)" class="chzn-single"><span>&nbsp;</span>
+                  <div><b></b></div>
+                </a>
+                <div class="chzn-drop" style="display: none; width: 100%; top: 25px;">
+                  <div class="chzn-search"><input type="text" autocomplete="off"></div>
+                  <ul class="chzn-results">
+                    <li id="addResultAssignTo_chzn_o_0" class="active-result result-selected"> &nbsp; </li>
+                    <li id="addResultAssignTo_chzn_o_1" class="active-result">Nobody (Unassigned)</li>
+                    <li id="addResultAssignTo_chzn_o_2" class="active-result">Me</li>
+                    <li id="addResultAssignTo_chzn_o_4" class="active-result">Duy</li>
+                    <li id="addResultAssignTo_chzn_o_5" class="active-result">Đỗ Tú</li>
+                    <li id="addResultAssignTo_chzn_o_6" class="active-result">Thắng</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-description">Assign to another team member.</div>
+            </div>
+            <div class="form-group">
+              <label for="addResultVersion">
+                Version </label>
+              <input type="text" class="form-control form-control-full" name="addResultVersion" id="addResultVersion"
+                maxlength="250" value="">
+              <div class="form-description">The version you tested against.</div>
+            </div>
+            <div class="form-group">
+              <label for="addResultElapsed">
+                Elapsed </label>
+              <input type="text" class="form-control form-control-full" name="addResultElapsed" id="addResultElapsed"
+                maxlength="250" value="">
+              <div class="form-description">How long the test took.</div>
+            </div>
+            <div class="form-group">
+              <label for="addResultDefects">
+                <span id="pushDefectLink" class="text-secondary pull-right" style="padding-right: 0"><a class="link"
+                    tabindex="-1" href="javascript:void(0)"
+                    onclick="this.blur(); App.Defects.preparePush(1, null, 'tests', 1); return false;">Push</a></span><span
+                  class="busy" id="pushDefectLinkBusy" style="float: right; padding-right: 0">
+                  <div class="icon-progress-inline"></div>
+                </span>
+                Defects </label>
+              <input type="text" class="form-control form-control-full" name="addResultDefects" id="addResultDefects"
+                maxlength="250" value="">
+              <div class="form-description">A list of IDs in your bug tracker.</div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+
+
+</div>
+<div class="dialog-buttons-pane-container">
+  <div id="addResultButtons" class="button-group dialog-buttons-pane dialog-buttons-highlighted">
+    <button type="submit" id="addResultSubmit" class="button button-left button-positive button-ok button-dark">
+      <span class="addResult">Add Result</span><span class="editResult" style="display: none;">Edit Result</span>
+    </button>
+    <button type="submit" id="addResultSubmitDisabled"
+      class="button button-left button-positive button-disabled button-ok-disabled button-dark" style="display: none;">
+      <span class="addResult">Add Result</span><span class="editResult" style="display: none;">Edit Result</span>
+    </button>
+    <a id="addResultClose" class="button button-left button-negative button-cancel button-dark dialog-action-close">
+      Cancel </a>
+    <span id="addResultNext" rel="0" class="pull-right button-extra text-soft" style="display: none;">
+      <a href="#addResultNextDropdown" class="dropdownLink link-noline">
+        <span id="addResultNextYes" style="display: none;">Jump to next test: Yes</span>
+        <span id="addResultNextNo" class="hidden" style="display: inline;">Jump to next test: No</span>
+        <span class="caret addResultNext"></span>
+      </a>
+    </span>
+  </div>
+</div>
+<div class="ui-resizable-handle ui-resizable-n"></div>
+<div class="ui-resizable-handle ui-resizable-e"></div>
+<div class="ui-resizable-handle ui-resizable-s"></div>
+<div class="ui-resizable-handle ui-resizable-w"></div>
+<div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se"
+  style="z-index: 1001;"></div>
+<div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div>
+<div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div>
+<div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div>
