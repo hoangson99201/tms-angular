@@ -85,25 +85,170 @@
         $("#sites").prop("selectedIndex", 0);
       </script>
       <div id="content-inner" class="content-inner goals-clear">
-        <div class="empty empty-with-explanation">
-          <div class="empty-explanation">
-            <div class="empty-explanation-title">What's a test run?</div>
-            <div class="empty-explanation-body">Once you have started adding test cases, you can
-              start a test run to execute your tests and track results.</div>
-          </div>
-          <div class="empty-content empty-info">
-            <div class="empty-title">
-              This project doesn't have any test runs, yet. </div>
-            <div class="empty-body">
-              <p>No test runs have been defined for this project, yet. Use the following
-                button to add your first test run.</p>
-              <div class="button-group">
-                <a class="button button-left button-add" [routerLink]="['/test-runs-add', projectId]">
-                  Add Test Run </a>
+        <div *ngIf="!incompleteTestRuns.length && !completedTestRuns.length; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <div class="empty empty-with-explanation">
+            <div class="empty-explanation">
+              <div class="empty-explanation-title">What's a test run?</div>
+              <div class="empty-explanation-body">Once you have started adding test cases, you can
+                start a test run to execute your tests and track results.</div>
+            </div>
+            <div class="empty-content empty-info">
+              <div class="empty-title">
+                This project doesn't have any test runs, yet. </div>
+              <div class="empty-body">
+                <p>No test runs have been defined for this project, yet. Use the following
+                  button to add your first test run.</p>
+                <div class="button-group">
+                  <a class="button button-left button-add" [routerLink]="['/test-runs-add', projectId]">
+                    Add Test Run </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <ng-template [ngIf]="incompleteTestRuns.length">
+            <h1 class="top width-4">
+              Open </h1>
+            <div id="open">
+              <span class="select-checkbox select-checkbox-details">
+                <input name="select_all" type="checkbox" onchange="SelectAllEntity(this);">
+              </span>
+              <span class="select-checkbox-label">Select all</span>
+
+              <div id="active">
+                <div class="table" style="margin-top: 1.2em;">
+                  <div *ngFor="let testRun of incompleteTestRuns" id="run-24" class="row flex-runs-row">
+                    <div
+                      class="column summary-column summary-column-checkbox-first select-checkbox-flex summary-column-first summary-column-last">
+                      <input type="checkbox" name="entity_run" value="24">
+                    </div>
+                    <div
+                      class="column summary-column summary-column-icon flex-runs-1 icon-run-64 summary-column-first summary-column-last">
+                    </div>
+                    <div class="column summary-column flex-runs-2 summary-column-first summary-column-last">
+                      <div class="summary-title text-ppp">
+                        <a href="index.php?/runs/view/24">{{testRun.runName}}</a>
+                      </div>
+                      <div class="summary-links text-secondary">
+                        By {{testRun.fullname}} on {{testRun.createdOn}} | <a class="link"
+                          href="index.php?/runs/edit/24">Edit</a>
+                      </div>
+                      <div class="summary-description">
+                        0 Passed, 0 Blocked, 245 Untested, 0 Retest and 0 Failed. </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template [ngIf]="completedTestRuns.length">
+            <h1 style="margin-top: 2em" class="width-6">
+              Completed </h1>
+            <div id="completed">
+              <div id="run-600807682">
+                <h3>
+                  <span class="title">Friday, November 18, 2022</span>
+                </h3>
+                <table class="run-grid grid">
+                  <colgroup>
+                    <col>
+                    <col class="percent">
+                  </colgroup>
+                  <tbody>
+                    <tr class="odd hoverSensitive" id="run-22">
+                      <td>
+                        <a href="index.php?/runs/view/22">Test Run 11/18/2022</a>
+                      </td>
+                      <td class="sub right">
+                        0%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-16">
+                      <td>
+                        <a href="index.php?/runs/view/16">Release 1.1: Run 1 (smoke test)</a>
+                      </td>
+                      <td class="sub right">
+                        30%
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div id="run-874776202">
+                <h3>
+                  <span class="title">Thursday, November 17, 2022</span>
+                </h3>
+                <table class="run-grid grid">
+                  <colgroup>
+                    <col>
+                    <col class="percent">
+                  </colgroup>
+                  <tbody>
+                    <tr class="odd hoverSensitive" id="run-9">
+                      <td>
+                        <a href="index.php?/runs/view/9">Release 1.0: Run 1 (smoke test)</a>
+                      </td>
+                      <td class="sub right">
+                        52%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-6">
+                      <td>
+                        <a href="index.php?/runs/view/6">Beta 1.0: Run 1 (alpha fixes)</a>
+                      </td>
+                      <td class="sub right">
+                        29%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-5">
+                      <td>
+                        <a href="index.php?/runs/view/5">Beta 1.0: Run 2 (feature freeze)</a>
+                      </td>
+                      <td class="sub right">
+                        28%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-4">
+                      <td>
+                        <a href="index.php?/runs/view/4">Beta 1.0: Run 3 (final run)</a>
+                      </td>
+                      <td class="sub right">
+                        61%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-3">
+                      <td>
+                        <a href="index.php?/runs/view/3">Alpha 1.0: Run 1 (smoke test)</a>
+                      </td>
+                      <td class="sub right">
+                        46%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-2">
+                      <td>
+                        <a href="index.php?/runs/view/2">Alpha 1.0: Run 2</a>
+                      </td>
+                      <td class="sub right">
+                        59%
+                      </td>
+                    </tr>
+                    <tr class="odd hoverSensitive" id="run-1">
+                      <td>
+                        <a href="index.php?/runs/view/1">Alpha 1.0: Run 3 (final run)</a>
+                      </td>
+                      <td class="sub right">
+                        58%
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+        </ng-template>
 
         <script type="text/javascript">
           $(document).ready(function () {
@@ -173,10 +318,10 @@
 
 
       <div class="sidebar-inner">
-        <a id="navigation-runs-add" class="sidebar-button bottom"  [routerLink]="['/test-runs-add', projectId]">
+        <a id="navigation-runs-add" class="sidebar-button bottom" [routerLink]="['/test-runs-add', projectId]">
           <span>Add Test Run</span>
         </a>
-        <a id="navigation-plans-add" class="sidebar-button" >
+        <a id="navigation-plans-add" class="sidebar-button">
           <span>Add Test Plan</span>
         </a>
 

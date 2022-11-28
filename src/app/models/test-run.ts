@@ -6,5 +6,7 @@ export interface TestRun {
   userId?: number,
   projectId?: number,
   createdOn?: number[] | string,
-  fullname?: string
+  fullname?: string,
+  isCompleted?: boolean,
+  completedOn?: number[] | string
 }
