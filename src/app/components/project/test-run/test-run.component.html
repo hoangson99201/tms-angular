@@ -129,7 +129,7 @@
                     </div>
                     <div class="column summary-column flex-runs-2 summary-column-first summary-column-last">
                       <div class="summary-title text-ppp">
-                        <a [routerLink]="['/test-runs', projectId, 'detail', '1']">{{testRun.runName}}</a>
+                        <a  [routerLink]="['/test-runs', projectId, 'detail', testRun.runId]">{{testRun.runName}}</a>
                       </div>
                       <div class="summary-links text-secondary">
                         By {{testRun.fullname}} on {{testRun.createdOn}} | <a class="link"

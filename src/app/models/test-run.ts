@@ -1,5 +1,6 @@
 export interface TestRun {
   runName: string,
+  runId?: string,
   milestoneId?: number,
   assignedToId?: number,
   description?: string,

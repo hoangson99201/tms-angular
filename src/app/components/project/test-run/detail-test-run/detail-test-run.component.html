@@ -2,7 +2,7 @@
 
 <div id="separator"></div>
 <div id="body-container">
-  <div id="body" class="table">
+  <div class="table" style=" height: 100%; display: table;">
     <div id="content" class="column content overflow-content">
       <div id="notificationbar" class="notificationbar notificationbar-hidden">
       </div>
@@ -613,30 +613,6 @@
                       <div class='attachment-list-delete-icon-red'></div><span>Delete</span>
                     </div>
                   </div>
-
-                  <script type="text/javascript">
-                    $(function () {
-                      App.Attachments.init({
-                        selector: '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210 #entityAttachmentList',
-                        itemsParent: '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210',
-                        inputParent: '#addCommentAttachments',
-                        project_id: 1,
-                        entity_id: '',
-                        entity_type: 'test_change',
-                        clickable: false
-                      });
-                    }
-                    );
-                  </script>
-
-                  <script type="text/javascript">
-                    $(function () {
-                      var wrapperParent = '#entityAttachmentListWrapper-5a8f1010-8bf7-4518-90ef-4eb9c0f02210';
-                      $(wrapperParent).attr('deleteIds', '');
-                      App.Attachments.lazyLoad(wrapperParent + ' #entityAttachmentList', 0.35);
-                      App.Attachments.dontShowEntityDeleteDialog = false;
-                    });
-                  </script>
                 </div>
               </div>
             </div>
@@ -651,192 +627,7 @@
             </div>
           </form>
 
-          <script type="text/javascript">
-            $(document).ready(
-              function () {
-                var selector = '#addCommentAttachments';
-                App.Tests.canAddEditAttachments = true;
-                App.Attachments.initEditorAttachments(
-                  App.Tests.attachmentsCode,
-                  {
-                    inputParent: selector,
-                    itemsParent: selector
-                  }
-                );
-              }
-            );
-          </script>
-        </div>
 
-        <script type="text/javascript">
-          $(document).ready(
-            function () {
-              App.Editor.bind('addCommentComment');
-            }
-          );
-        </script>
-
-
-
-        <div id="statsContainer">
-
-
-          <div class="chart-pie" rel="4">
-            <div class="table-extended" id="tablechart_testun">
-              <div id="statusChartContainer">
-                <div id="statusChart" class="column chart-pie-status"></div>
-
-
-                <div class="column chart-pie-column-legend" id="legend-">
-                  <div class="chart-legend" style="padding: 20px 10px 0 40px">
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #3cb850">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">0 Passed</div>
-                        <div class="chart-legend-description text-ppp">0% set to Passed</div>
-                      </div>
-                    </div>
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #595959">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">0 Blocked</div>
-                        <div class="chart-legend-description text-ppp">0% set to Blocked</div>
-                      </div>
-                    </div>
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #fcc200">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">0 Retest</div>
-                        <div class="chart-legend-description text-ppp">0% set to Retest</div>
-                      </div>
-                    </div>
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #e40046">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">0 Failed</div>
-                        <div class="chart-legend-description text-ppp">0% set to Failed</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="chart-icon-download-container">
-                  <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left" tooltip-width="170"
-                    tooltip-text="Download chart as an image">
-                    <button id="png-download"></button>
-                  </div>
-                  <div data-html2canvas-ignore="true" class="link-tooltip" tooltip-position="left" tooltip-width="150"
-                    tooltip-text="Download chart as a CSV">
-                    <button id="csv-download"></button>
-                  </div>
-                </div>
-              </div>
-              <div class="column chart-pie-column-percent">
-                <div class="chart-pie-percent" style="padding-top: 5em">
-                  <div class="chart-pie-percent-title">0%</div>
-                  <div class="chart-pie-percent-description">passed</div>
-                  <div class="chart-pie-percent-note text-secondary" style="line-height: 130%">
-                    245 / 245 untested (100%). </div>
-                </div>
-              </div>
-            </div>
-            <div class="chart-pie-footer-stage1">
-              <div class="chart-pie-footer-percent">
-                <strong>0%</strong>
-                Passed
-              </div>
-              <div class="text-secondary">
-                245 / 245 untested (100%). </div>
-            </div>
-            <div class="chart-pie-footer-stage2">
-              <div class="chart-pie-footer-bar">
-                <div class="table">
-                  <div class="column">
-                    <div class="chart-bar chart-bar-lg">
-                      <div class="chart-bar-custom link-tooltip" style="background: #979797; width: 250px"
-                        tooltip-html="100% Untested (245/245 tests) <div id='drilldown-icon'></div>"></div>
-                    </div>
-                  </div>
-                  <div class="column chart-bar-percent ">
-                    0%
-                  </div>
-                </div>
-              </div>
-              <div class="text-secondary center">
-                245 / 245 untested (100%). </div>
-            </div>
-          </div>
-          <a download="TestRail-stats-1-20221128170723.png" href="#" id="dl" hidden>download image</a>
-
-          <script type="text/javascript">
-            $(function () {
-              $(document).ready(function () {
-                App.Charts.status = new FusionCharts({
-                  type: 'pie2d',
-                  renderAt: 'statusChart',
-                  width: '100%',
-                  height: '100%',
-                  dataFormat: 'json',
-                  dataSource: {
-                    chart: {
-                      showToolTip: 1,
-                      showLegend: false,
-                      showLabels: false,
-                      showPercentageInLabel: '0',
-                      enableSmartLabels: '0',
-                      showValues: false,
-                      theme: 'fusion',
-                      bgColor: '#FFFFFF',
-                      exportEnabled: '1',
-                      exportshowmenuitem: '0',
-                      chartLeftMargin: '0',
-                      chartTopMargin: '0',
-                      chartRightMargin: '0',
-                      chartBottomMargin: '0',
-                      plotToolText: '<strong>$label</strong> <br />$value ($percentValue)<div id="drilldown-icon"></div>',
-                      animation: false,
-                      enableMultiSlicing: false
-                    },
-                    data: [{ "label": "Passed", "value": 0, "color": "3cb850", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 1)" }, { "label": "Blocked", "value": 0, "color": "595959", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 2)" }, { "label": "Untested", "value": 245, "color": "979797", "link": "JavaScript:App.Drilldown.tests(1,245, 0, RUN, 24, 3)" }, { "label": "Retest", "value": 0, "color": "fcc200", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 4)" }, { "label": "Failed", "value": 0, "color": "e40046", "link": "JavaScript:App.Drilldown.tests(1,0, 0, RUN, 24, 5)" }]
-                  },
-                }).render();
-
-                $('#csv-download').click(function () {
-                  App.Charts.status.exportChart({
-                    exportFormat: 'csv',
-                    exportFileName: 'TestRail-stats-1-20221128170723'
-                  });
-                });
-
-                $('#png-download').click(function () {
-                  App.Charts.status.setChartAttribute('enableSlicing', '0');
-                  setTimeout(function () {
-                    html2canvas($('#statusChartContainer')[0], {
-                      height: 230,
-                      scrollY: -window.scrollY
-                    }).then(function (canvas) {
-                      var dl = document.getElementById('dl');
-                      var dt = canvas.toDataURL('image/png');
-                      dl.href = dt;
-                      dl.click();
-                    });
-                    App.Charts.status.setChartAttribute('enableSlicing', '1');
-                  }, 100);
-                });
-              });
-            });
-          </script>
         </div>
 
         <div id="drilldown_container"></div>
@@ -2071,27 +1862,7 @@
   </div>
 
 </div>
-
-
-<script type="text/javascript">
-  var Consts = {};
-  Consts.ajaxBaseUrl = 'index.php?';
-  Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
-  Consts.ajaxCsrf = 'GfD1ScRHYIseFNXMaPab';
-  Consts.ajaxVersion = '7.5.6.3001';
-  Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.6.3001/';
-  Consts.dialogTitleError = 'Error';
-  Consts.statusFailed = 5;
-  Consts.statusRetest = 4;
-  Consts.statusBlocked = 2;
-  Consts.statusPassed = 1;
-  Consts.statusUntested = 3;
-  Consts.statusDefault = 1;
-  Consts.minWidth = 550;
-  Consts.minWidthOffset = 300;
-  Consts.minWidthVariable = 50;
-</script>
-
+<!--
 <div id="ajaxResponse" class="hidden"></div>
 
 <div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
@@ -2459,4 +2230,4 @@
 
     App.Editor.codePreformat();
   });
-</script>
+</script> -->
