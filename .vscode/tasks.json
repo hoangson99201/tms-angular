@@ -41,7 +41,7 @@
     {
       "label": "build-dev",
       "type": "shell",
-      "command": "ng build --base-href=/tms/ --watch --source-map=false",
+      "command": "ng build --base-href=/tms/ --watch --configuration development",
       "group": "build",
       "problemMatcher": [
         "$msCompile"
