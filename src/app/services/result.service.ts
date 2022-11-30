@@ -13,4 +13,10 @@ export class ResultService {
   findAllByTestRunId(testRunId: number): Observable<Result[]> {
     return this._http.get<Result[]>("/tms/api/v1/result/" + testRunId);
   }
+
+  update(result: Result): Observable<string> {
+    return this._http.put("/tms/api/v1/result", result, {
+      responseType: 'text'
+    });
+  }
 }

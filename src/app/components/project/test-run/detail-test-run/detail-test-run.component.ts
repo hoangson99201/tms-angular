@@ -12,7 +12,7 @@ import { AddResultComponent } from '../add-result/add-result.component';
 })
 export class DetailTestRunComponent implements OnInit {
   public projectId: string = '';
-  public subId: string = '';
+  public testRunId: string = '';
   public results: Result[] = [];
   public map: Map<string, Result[]> = new Map<string, Result[]>();
 
@@ -21,22 +21,26 @@ export class DetailTestRunComponent implements OnInit {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.projectId = params['id'];
-      this.subId = params['subId'];
+      this.testRunId = params['subId'];
       console.log(this.projectId);
-      console.log(this.subId);
-      this.resultService.findAllByTestRunId(5).subscribe(results => {
-        this.results = results;
-        for (const result of results) {
-          if (!result.sectionName) continue;
-          let results = this.map.get(result.sectionName);
-          if (!results) {
-            this.map.set(result.sectionName, [result]);
-          } else {
-            results.push(result);
-          }
-        }
-      })
+      console.log(this.testRunId);
+      this.refreshResult(parseInt(this.testRunId));
     });
+  }
+
+  refreshResult(testRunId: number) {
+    this.resultService.findAllByTestRunId(testRunId).subscribe(results => {
+      this.results = results;
+      for (const result of results) {
+        if (!result.sectionName) continue;
+        let results = this.map.get(result.sectionName);
+        if (!results) {
+          this.map.set(result.sectionName, [result]);
+        } else {
+          results.push(result);
+        }
+      }
+    })
   }
 
   openDialog() {
