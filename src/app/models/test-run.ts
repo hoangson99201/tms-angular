@@ -9,5 +9,6 @@ export interface TestRun {
   createdOn?: number[] | string,
   fullname?: string,
   isCompleted?: boolean,
-  completedOn?: number[] | string
+  completedOn?: number[] | string,
+  includeAll?: boolean
 }

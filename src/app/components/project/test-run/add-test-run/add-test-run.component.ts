@@ -30,6 +30,7 @@ export class AddTestRunComponent implements OnInit {
     runName: 'Test Run ' + this.getToday(),
     projectId: 0,
     userId: this.userId,
+    includeAll: true
   };
   milestones: Milestone[] = [];
   users: User[] = [];

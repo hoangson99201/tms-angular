@@ -390,7 +390,8 @@
             <div class="radio" style="margin-bottom: 15px">
               <label>
                 <strong>Include all test cases</strong>
-                <input type="radio" class="radio" name="include_all" value="1" id="includeAll" checked="checked">
+                <input [(ngModel)]="testRun.includeAll" type="radio" class="radio" name="include_all" [value]="true"
+                  id="includeAll" checked="checked">
                 <p>
                   Select this option to include all test cases in this test run. If new
                   test cases are added to the repository, they are also automatically
@@ -400,7 +401,8 @@
             <div class="radio">
               <label>
                 <strong>Select specific test cases</strong>
-                <input type="radio" class="radio" name="include_all" value="0" id="includeSpecific">
+                <input [(ngModel)]="testRun.includeAll" type="radio" class="radio" name="include_all" [value]="false"
+                  id="includeSpecific">
                 <p>You can alternatively select the test cases to include in this test run.
                   New test cases are not automatically added to this run in this case.</p>
               </label>
