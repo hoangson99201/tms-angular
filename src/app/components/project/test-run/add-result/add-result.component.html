@@ -1,5 +1,6 @@
 <div class="ui-dialog-titlebar ui-widget-header"
-  style="background: rgb(43, 117, 55); color: rgb(255, 255, 255); display: flex;justify-content: space-between;padding: 10px;">
+  style="background: rgb(43, 117, 55); color: rgb(255, 255, 255); display: flex;justify-content: space-between;padding: 10px;"
+  [ngStyle]="{'background': color}">
   <span class="ui-dialog-title" id="ui-dialog-title-addResultDialog">Add Result</span>
   <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
     <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>

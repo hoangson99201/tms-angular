@@ -28,6 +28,7 @@ export class TestcaseComponent {
     let id = 1;
     this.testCaseService.findAllByProjectId(id).subscribe((testCases) => {
       this.testCases = testCases;
+      this.map = new Map<string, TestCase[]>();
       for (const testCase of testCases) {
         if (!testCase.sectionName) continue;
         let testCases = this.map.get(testCase.sectionName);

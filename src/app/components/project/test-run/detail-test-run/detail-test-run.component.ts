@@ -31,7 +31,7 @@ export class DetailTestRunComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private resultService: ResultService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   ) {
     // this.renderer.listen('window', 'click', (e: Event) => {
     //   console.log(this.statusDropdown);
@@ -64,8 +64,9 @@ export class DetailTestRunComponent implements OnInit {
   }
 
   refreshResult(testRunId: number) {
-    this.resultService.findAllByTestRunId(testRunId).subscribe(results => {
+    this.resultService.findAllByTestRunId(testRunId).subscribe((results) => {
       this.results = results;
+      this.map = new Map<string, Result[]>();
       for (const result of results) {
         if (!result.sectionName) continue;
         let results = this.map.get(result.sectionName);
@@ -75,17 +76,22 @@ export class DetailTestRunComponent implements OnInit {
           results.push(result);
         }
       }
-    })
+    });
   }
 
-  openDialog() {
+  openDialog(status: any, id: any) {
     console.log('here');
-
-    const dialogRef = this.dialog.open(AddResultComponent, {
-      data: {
-        type: 'add',
-      },
-    });
+    const dialogRef = this.dialog
+      .open(AddResultComponent, {
+        data: {
+          status: status,
+          id: id,
+        },
+      })
+      .afterClosed()
+      .subscribe((_) => {
+        this.refreshResult(parseInt(this.testRunId));
+      });
   }
 
   openDropDown(e: any) {

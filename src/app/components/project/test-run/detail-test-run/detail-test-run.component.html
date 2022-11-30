@@ -167,27 +167,26 @@
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a> -->
 
-                        <a #button (click)="openDialog()" *ngIf="result.status == 'Untested'" rel="4086"
+                        <a #button (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Untested'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #737373; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog()" *ngIf="result.status == 'Passed'" rel="4086"
+                        <a #button (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Passed'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #338a41; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog()" *ngIf="result.status == 'Blocked'" rel="4086"
+                        <a #button (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Blocked'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #474747; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog()" *ngIf="result.status == 'Retest'" rel="4086"
+                        <a #button (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Retest'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #b99109; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog()" *ngIf="result.status == 'Failed'" rel="4086"
+                        <a #button (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Failed'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-
                       </td>
                       <td class="action">
                       </td>
