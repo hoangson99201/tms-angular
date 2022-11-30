@@ -26,6 +26,8 @@ import { ManageUserRolesComponent } from './components/project/add-project/manag
 import { SectionDialogComponent } from './components/project/testcase/section-dialog/section-dialog.component';
 import { DetailTestRunComponent } from './components/project/test-run/detail-test-run/detail-test-run.component';
 import { AddResultComponent } from './components/project/test-run/add-result/add-result.component';
+import {MatSelectModule} from '@angular/material/select';
+import { StatusDropdownComponent } from './components/project/test-run/detail-test-run/status-dropdown/status-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -58,9 +60,10 @@ import { AddResultComponent } from './components/project/test-run/add-result/add
     SidebarComponent,
     SectionDialogComponent,
     DetailTestRunComponent,
-    AddResultComponent
+    AddResultComponent,
+    StatusDropdownComponent
   ],
-  entryComponents: [SectionDialogComponent, AddResultComponent],
+  entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent],
   imports: [
     MatDialogModule,
     BrowserModule,
@@ -73,9 +76,10 @@ import { AddResultComponent } from './components/project/test-run/add-result/add
       timeOut: 5000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
-    })
+    }),
+    MatSelectModule
   ],
-  providers: [SectionDialogComponent, AddResultComponent],
+  providers: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

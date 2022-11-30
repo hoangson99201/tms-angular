@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Result } from 'src/app/models/result';
 import { ResultService } from 'src/app/services/result.service';
 import { AddResultComponent } from '../add-result/add-result.component';
+import { StatusDropdownComponent } from './status-dropdown/status-dropdown.component';
 
 @Component({
   selector: 'app-detail-test-run',
@@ -15,8 +22,36 @@ export class DetailTestRunComponent implements OnInit {
   public testRunId: string = '';
   public results: Result[] = [];
   public map: Map<string, Result[]> = new Map<string, Result[]>();
+  public top: string = '';
+  public left: string = '';
+  @ViewChild('statusDropdown') statusDropdown: any;
+  @ViewChild('button') button: any;
+  public isMenuOpen = false;
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private resultService: ResultService,
+    private renderer: Renderer2
+  ) {
+    // this.renderer.listen('window', 'click', (e: Event) => {
+    //   console.log(this.statusDropdown);
+    //   console.log(this.button);
+    //   if (
+    //     e.target !== this.statusDropdown.nativeElement &&
+    //     e.target !== this.button.nativeElement
+    //   ) {
+    //     console.log('if');
+    //     console.log(e.target);
+    //     this.top = ''
+    //     this.left = ''
+    //   } else {
+    //     console.log('else');
+    //     console.log(e.target);
+    //   }
+    // }
+    // );
+  }
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private resultService: ResultService) { }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -51,5 +86,15 @@ export class DetailTestRunComponent implements OnInit {
         type: 'add',
       },
     });
+  }
+
+  openDropDown(e: any) {
+    var target = e.target || e.srcElement || e.currentTarget;
+    console.log(target.getBoundingClientRect());
+    this.left = target.getBoundingClientRect()['x'] + 'px';
+    this.top = target.getBoundingClientRect()['y'] + 24 + 'px';
+    console.log(this.isMenuOpen);
+    console.log(this.top);
+    console.log(this.left);
   }
 }

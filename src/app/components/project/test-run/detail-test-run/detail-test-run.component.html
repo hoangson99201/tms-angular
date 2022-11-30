@@ -146,36 +146,50 @@
                         </a>
                       </td>
                       <td class="js-status" rel="4">
-                        <a *ngIf="result.status == 'Untested'" href="#statusDropdown" rel="4086"
+                        <!-- <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Untested'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #737373; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a *ngIf="result.status == 'Passed'" href="#statusDropdown" rel="4086"
+                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Passed'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #338a41; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a *ngIf="result.status == 'Blocked'" href="#statusDropdown" rel="4086"
+                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Blocked'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #474747; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a *ngIf="result.status == 'Retest'" href="#statusDropdown" rel="4086"
+                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Retest'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #b99109; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a *ngIf="result.status == 'Failed'" href="#statusDropdown" rel="4086"
+                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Failed'" rel="4086"
+                          class="dropdownLink status hidden-xs"
+                          style="background: #a9093a; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a> -->
+
+                        <a #button (click)="openDialog()" *ngIf="result.status == 'Untested'" rel="4086"
+                          class="dropdownLink status hidden-xs"
+                          style="background: #737373; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog()" *ngIf="result.status == 'Passed'" rel="4086"
+                          class="dropdownLink status hidden-xs"
+                          style="background: #338a41; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog()" *ngIf="result.status == 'Blocked'" rel="4086"
+                          class="dropdownLink status hidden-xs"
+                          style="background: #474747; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog()" *ngIf="result.status == 'Retest'" rel="4086"
+                          class="dropdownLink status hidden-xs"
+                          style="background: #b99109; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog()" *ngIf="result.status == 'Failed'" rel="4086"
                           class="dropdownLink status hidden-xs"
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
+
                       </td>
                       <td class="action">
-                        <a href="javascript:void(0)"
-                          onclick="this.blur(); App.QPane.toggleRow(4086); return false;"><span class="action-expand">
-                            <div class="icon-expandrow"></div>
-                          </span><span class="action-collapse hidden">
-                            <div class="icon-collapserow"></div>
-                          </span><span class="action-expanding busy">
-                            <div class="icon-progress-inline"></div>
-                          </span></a>
                       </td>
                     </tr>
                   </tbody>
@@ -186,6 +200,11 @@
         </div>
       </div>
     </div>
+
+
+
+
+
     <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
     </div>
     <div id="qpane" class="column qpane" style="width: 600px; display: none">
@@ -473,6 +492,37 @@
   </div>
 
 </div>
+
+<div id="statusDropdown" #statusDropdown class="dropdown dropdown-menu"
+  [ngStyle]="{'top': top, 'left': left, 'width': '175px', 'display': 'block', 'position': 'absolute' }"
+  *ngIf="top && left">
+  <ul>
+    <li>
+      <a class="dropdown-menu-link" href="javascript:void(0)"
+        onclick="this.blur(); App.Tests.addResultInline(1, 1); return false;">
+        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" href="javascript:void(0)"
+        onclick="this.blur(); App.Tests.addResultInline(1, 2); return false;">
+        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" href="javascript:void(0)"
+        onclick="this.blur(); App.Tests.addResultInline(1, 4); return false;">
+        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
+    </li>
+    <li class="dropdown-menu-separator"></li>
+    <li>
+      <a class="dropdown-menu-link" href="javascript:void(0)"
+        onclick="this.blur(); App.Tests.addResultInline(1, 5); return false;">
+        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
+    </li>
+  </ul>
+</div>
+
 <!--
 <div id="ajaxResponse" class="hidden"></div>
 
