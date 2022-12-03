@@ -9,7 +9,9 @@ export class MenuProjectComponent implements OnInit {
   constructor() {}
 
   @Input() projectId = '';
+  @Input() projectName = '';
   public ngOnInit() {
     console.log(this.projectId);
+    console.log(this.projectName);
   }
 }

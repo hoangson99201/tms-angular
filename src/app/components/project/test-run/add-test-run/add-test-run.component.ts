@@ -23,14 +23,14 @@ export class AddTestRunComponent implements OnInit {
     private userService: UserService,
     private location: Location,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   userId = 2;
   testRun: TestRun = {
     runName: 'Test Run ' + this.getToday(),
     projectId: 0,
     userId: this.userId,
-    includeAll: true
+    includeAll: true,
   };
   milestones: Milestone[] = [];
   users: User[] = [];
@@ -66,7 +66,7 @@ export class AddTestRunComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.toastr.success('Add test run success', 'Success');
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/test-runs/' + this.testRun.projectId);
       },
       error: (e) => {
         console.log(e);

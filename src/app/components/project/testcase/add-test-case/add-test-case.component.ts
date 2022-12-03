@@ -31,7 +31,7 @@ export class AddTestCaseComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -58,7 +58,7 @@ export class AddTestCaseComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.toastr.success('Add testcase success', 'Success');
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/test-cases/' + this.testCase.projectId);
       },
       error: (e) => {
         console.log(e);

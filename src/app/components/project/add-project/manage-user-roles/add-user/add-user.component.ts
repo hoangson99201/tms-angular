@@ -46,7 +46,7 @@ export class AddUserComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.toastr.success('Add user success', 'Success');
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/users-roles');
       },
       error: (e) => {
         console.log(e);
