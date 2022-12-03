@@ -74,6 +74,11 @@
               </div>
             </div>
           </div>
+          <mat-paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
+            [disabled]="disabled" [showFirstLastButtons]="showFirstLastButtons"
+            [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []" [hidePageSize]="hidePageSize"
+            [pageIndex]="pageIndex" aria-label="Select page">
+          </mat-paginator>
         </div>
 
       </div>
@@ -101,18 +106,10 @@
       <div class="sidebar-inner">
         <a id="sidebar-projects-add" class="sidebar-button" routerLink="project/add">
           Add Project </a>
-        <p class="top"><strong class="text-softer">{{activeProject}}</strong> active and <strong
-            class="text-softer">{{completedProject}}</strong>
-          completed
-          projects.</p>
-        <div class="sidebar-h1 top">
-          Todos <span id="todosBusy" style="display: none;">
-            <div class="icon-progress-inline"></div>
-          </span>
-        </div>
-        <div id="todos" class="hidden" style="display: block;">
-          <p class="top">None.</p>
-        </div>
+        <p class="top">
+          <strong class="text-softer">{{activeProject}}</strong> active and <strong
+            class="text-softer">{{completedProject}}</strong> completed projects.
+        </p>
       </div>
     </div>
   </div>

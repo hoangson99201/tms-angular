@@ -1,3 +1,4 @@
+import { BasePaginator } from './../../../core/base-paginator';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TestRun } from 'src/app/models/test-run';
@@ -8,8 +9,13 @@ import { TestRunService } from 'src/app/services/test-run.service';
   templateUrl: './test-run.component.html',
   styleUrls: ['./test-run.component.scss']
 })
-export class TestRunComponent {
-  constructor(private route: ActivatedRoute, private testRunService: TestRunService) { }
+export class TestRunComponent extends BasePaginator {
+  refresh(): void {
+    throw new Error('Method not implemented.');
+  }
+  constructor(private route: ActivatedRoute, private testRunService: TestRunService) {
+    super();
+  }
 
   public projectId: string = '';
   public incompleteTestRuns: TestRun[] = [];

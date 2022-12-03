@@ -7,59 +7,10 @@
 
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result"></div>
-          <span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
-              class="link-tooltip" tooltip-header="Compact View"
-              tooltip-text="Displays the test runs and plans as a compact list. Useful if you have many runs/plans."
-              onclick="this.blur(); var link = this; var i = document.createElement('input');
-                                i.setAttribute('type', 'hidden');
-                                i.setAttribute('name', '_token');
-                                i.setAttribute('value', 'kyqRSAYnPxiKjL7HwuCW');
-                                var f = document.createElement('form');
-                                f.style.display = 'none';
-                                link.parentNode.appendChild(f);
-                                f.method = 'POST';
-                                f.action = '#compactView';
-                                f.appendChild(i);
-                                f.submit(); ; return false;">
-              <div class="icon-display-small-inactive"></div>
-            </a></span><span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
-              class="link-tooltip" tooltip-header="Medium View"
-              tooltip-text="Displays the test runs and plans in a medium-sized way." onclick="this.blur(); var link = this; var i = document.createElement('input');
-                                    i.setAttribute('type', 'hidden');
-                                    i.setAttribute('name', '_token');
-                                    i.setAttribute('value', 'kyqRSAYnPxiKjL7HwuCW');
-                                    var f = document.createElement('form');
-                                    f.style.display = 'none';
-                                    link.parentNode.appendChild(f);
-                                    f.method = 'POST';
-                                    f.action = '#mediumView';
-                                    f.appendChild(i);
-                                    f.submit(); ; return false;">
-              <div class="icon-display-medium-inactive"></div>
-            </a></span><span class="content-header-icon"><a routerLink="javascript:void(0)" class="link-tooltip"
-              tooltip-header="Detail View"
-              tooltip-text="Displays the test runs and plans with many details. Useful if you have just a few runs/plans."
-              onclick="this.blur(); var link = this; var i = document.createElement('input');
-                                        i.setAttribute('type', 'hidden');
-                                        i.setAttribute('name', '_token');
-                                        i.setAttribute('value', 'kyqRSAYnPxiKjL7HwuCW');
-                                        var f = document.createElement('form');
-                                        f.style.display = 'none';
-                                        link.parentNode.appendChild(f);
-                                        f.method = 'POST';
-                                        f.action = 'testerTestRun.jsp';
-                                        f.appendChild(i);
-                                        f.submit(); ; return false;">
-              <div class="icon-display-large"></div>
-            </a></span>
           <div class="content-header-title page_title">
             Test Runs &amp; Results </div>
         </div>
       </div>
-      <script type="text/javascript">
-        $("#sites").prop("selectedIndex", 0);
-      </script>
       <div id="content-inner" class="content-inner goals-clear">
         <div *ngIf="!incompleteTestRuns.length && !completedTestRuns.length; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
@@ -88,18 +39,9 @@
             <h1 class="top width-4">
               Open </h1>
             <div id="open">
-              <span class="select-checkbox select-checkbox-details">
-                <input name="select_all" type="checkbox" onchange="SelectAllEntity(this);">
-              </span>
-              <span class="select-checkbox-label">Select all</span>
-
               <div id="active">
                 <div class="table" style="margin-top: 1.2em;">
                   <div *ngFor="let testRun of incompleteTestRuns" id="run-24" class="row flex-runs-row">
-                    <div
-                      class="column summary-column summary-column-checkbox-first select-checkbox-flex summary-column-first summary-column-last">
-                      <input type="checkbox" name="entity_run" value="24">
-                    </div>
                     <div
                       class="column summary-column summary-column-icon flex-runs-1 icon-run-64 summary-column-first summary-column-last">
                     </div>

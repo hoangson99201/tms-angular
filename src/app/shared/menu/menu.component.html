@@ -1,69 +1,75 @@
 <header>
-    <div id="menu">
-        <div id="top">
-            <div id="top-logo">
-                <a href="javascript:void(0)" id="bannerLink"><img
-                        src="https://static.testrail.io/7.5.4.2008/images/layout/testrail-logo.svg"></a>
+  <div id="menu">
+    <div id="top">
+      <div id="top-logo">
+        <a href="javascript:void(0)" id="bannerLink"><img
+            src="https://static.testrail.io/7.5.4.2008/images/layout/testrail-logo.svg"></a>
+      </div>
+      <div class="bubble estimate-bubble" id="enterpriseBubble">
+        <a class="close close-hover" href="javascript: void(0);"
+          onclick="App.Dialogs.trEnterpriseBannerConfirmNew('logo')">×</a>
+        <div class="modules modules_tab_fullsection">
+          <div class="modules_tab_lefthalf">
+            <img src="https://static.testrail.io/7.5.4.2008/images/banner/editionsimage.png">
+          </div>
+          <div class="modules_tab_righthalf">
+            <div id="logo_confirm"></div>
+            <div id="logo_banner_desc">
+              <div class="hd_sb_txt">
+                <span style="color: #979797;">Your edition:</span>
+                Test Management System Professional
+              </div>
+              <div class="hd_sb_txt">
+                Enable enterprise-grade <strong>security</strong>
+                and <strong>performance.</strong> </div>
+              <a href="index.php?/enterprise" class="button-enterprise button-arrow button-discover">
+                Explore Enterprise </a>
             </div>
-            <div class="bubble estimate-bubble" id="enterpriseBubble">
-                <a class="close close-hover" href="javascript: void(0);"
-                    onclick="App.Dialogs.trEnterpriseBannerConfirmNew('logo')">×</a>
-                <div class="modules modules_tab_fullsection">
-                    <div class="modules_tab_lefthalf">
-                        <img src="https://static.testrail.io/7.5.4.2008/images/banner/editionsimage.png">
-                    </div>
-                    <div class="modules_tab_righthalf">
-                        <div id="logo_confirm"></div>
-                        <div id="logo_banner_desc">
-                            <div class="hd_sb_txt">
-                                <span style="color: #979797;">Your edition:</span>
-                                Test Management System Professional
-                            </div>
-                            <div class="hd_sb_txt">
-                                Enable enterprise-grade <strong>security</strong>
-                                and <strong>performance.</strong> </div>
-                            <a href="index.php?/enterprise" class="button-enterprise button-arrow button-discover">
-                                Explore Enterprise </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="top-panel">
-                <div class="top-panel-inner">
-                    <div class="top-social">
-
-                    </div>
-                    <ul class="top-menu pull-right">
-                        <li class="top-menu-item"><a id="inProgressLink" href="javascript:void(0)"
-                                onclick="this.blur(); App.Tests.showInProgress(); return false;">Working On <span
-                                    class="caret" style="vertical-align: 2px"></span></a>
-                        </li>
-                        <li class="top-menu-item"><a class="dropdownLink" id="navigation-user" href="#userDropdown"
-                                title="sessionScope.LOGIN_USERS.fullName"><span
-                                    class="navigation-username">sessionScope.LOGIN_USERS.fullName</span> <span
-                                    class="caret" style="vertical-align: 2px"></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="top-section text-ppp">
-                Test Management System </div>
+          </div>
         </div>
-
-        <form id="newsletterForm" target="_blank"
-            action="https://secure.gurock.com/customers/testrail/newsletter?email=" method="post">
-            <input name="cm-ahdml-ahdml" id="newsletter" type="hidden" />
-        </form>
-
-        <div id="header">
-            <ul class="header-menu">
-                <!-- <li class="header-menu-item header-menu-item-right"><a tabindex="-1" href="adminOverview.jsp"
-                        id="navigation-admin">Administration</a></li> -->
-                <li *ngFor="let item of menu" class="header-menu-item"><a tabindex="-1"
-                        [routerLink]="item.routerLink">{{item.label}}</a></li>
-                <!-- <li class="header-menu-item header-menu-item-selected"><a tabindex="-1" href="adminDashboard.jsp"
-                        id="navigation-dashboard">Dashboard</a></li> -->
-            </ul>
+      </div>
+      <div class="top-panel">
+        <div class="top-panel-inner">
+          <ul class="top-menu pull-right">
+            <li class="top-menu-item"><a id="inProgressLink" routerLink="javascript:void(0)"
+                onclick="this.blur(); App.Tests.showInProgress(); return false;">Working On <span class="caret"
+                  style="vertical-align: 2px"></span></a>
+            </li>
+            <li class="top-menu-item"><a class="dropdownLink" id="navigation-user" routerLink="#userDropdown"
+                title="Nguyen Tien Khoa"><span class="navigation-username">Nguyen Tien Khoa</span> <span class="caret"
+                  style="vertical-align: 2px"></span></a>
+            </li>
+            <li class="top-menu-item"><a class="dropdownLink top-menu-highlight" id="navigation-menu"
+                routerLink="#helpDropdown" tabindex="-1">Help &amp; Feedback <span class="caret top-menu-highlight"
+                  style="vertical-align: 2px"></span></a>
+            </li>
+          </ul>
+          <div class="top-search">
+            <form action="index.php?/search/index/1" style="display: inline" method="post"> <input type="hidden"
+                name="_token" value="qGt3kRwAo24ugb2redt4"> <input class="top-search-control" type="text" name="query"
+                tabindex="-1">
+            </form>
+          </div>
         </div>
+      </div>
+      <div class="top-section text-ppp">
+        Test Management System </div>
     </div>
+
+    <form id="newsletterForm" target="_blank" action="https://secure.gurock.com/customers/testrail/newsletter?email="
+      method="post">
+      <input name="cm-ahdml-ahdml" id="newsletter" type="hidden" />
+    </form>
+
+    <div id="header">
+      <ul class="header-menu">
+        <!-- <li class="header-menu-item header-menu-item-right"><a tabindex="-1" href="adminOverview.jsp"
+                        id="navigation-admin">Administration</a></li> -->
+        <li *ngFor="let item of menu" class="header-menu-item"><a tabindex="-1"
+            [routerLink]="item.routerLink">{{item.label}}</a></li>
+        <!-- <li class="header-menu-item header-menu-item-selected"><a tabindex="-1" href="adminDashboard.jsp"
+                        id="navigation-dashboard">Dashboard</a></li> -->
+      </ul>
+    </div>
+  </div>
 </header>
