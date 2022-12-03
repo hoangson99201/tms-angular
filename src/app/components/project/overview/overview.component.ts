@@ -4,6 +4,7 @@ import { MilestoneService } from 'src/app/services/milestone.service';
 import { Milestone } from 'src/app/models/milestone';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-overview',
@@ -15,6 +16,9 @@ export class OverviewComponent implements OnInit {
   public projectId: string = '';
   public milestones: Milestone[] = [];
   public testRuns: TestRun[] = [];
+  public project: Project = {
+    projectName: ''
+  };
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -41,5 +45,9 @@ export class OverviewComponent implements OnInit {
         }
       });
     });
+  }
+
+  getProject(project: Project) {
+    this.project = project;
   }
 }

@@ -20,4 +20,8 @@ export class ProjectService {
       responseType: 'text'
     });
   }
+
+  findByProjectId(projectId: number): Observable<Project> {
+    return this._http.get<Project>(`/tms/api/v1/project/${projectId}`);
+  }
 }

@@ -1,4 +1,4 @@
-<app-menu-project [projectId]="projectId"></app-menu-project>
+<app-menu-project [projectId]="projectId" (getProject)="getProject($event)"></app-menu-project>
 
 <div id="separator"></div>
 <div id="body-container" class="">
@@ -16,7 +16,8 @@
               class="toolbar-button toolbar-button-last content-header-button button-report dropdownLink toolbar-button-first"
               routerLink="#reportDropdown">Reports<span class="caret button-caret"></span></a></div>
           <div class="content-header-title page_title">
-            aaaa </div>
+            {{project.projectName}}
+          </div>
         </div>
       </div>
       <script type="text/javascript">
@@ -719,7 +720,7 @@
     class='attachment-block attachment-attachment_icon attachment_selected_class lazy'
     id='libraryAttachment-attachment_id' onclick="App.Attachments.showInfoDialog('attachment_id');"
     title='attachment_name'>
-    <div class='attachment-icon' style=''></div>
+    <div class='attachment-icon'></div>
     <div class='attachment-name'>
       attachment_truncated_name
     </div>
@@ -728,14 +729,6 @@
       onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
   </div>
 </div>
-<!-- <div id='libraryAttachmentsAddItemTemplate' style='display: none;'>
-          <div id='element_id' class='attachment-library-add'>
-              <div class='attachment-library-add-icon'></div>
-          </div>
-      </div> -->
-
-
-
 
 <div id="projectGoalHelp" class="tooltip tooltip-goal">
   <div class="tooltip-goal-title">
