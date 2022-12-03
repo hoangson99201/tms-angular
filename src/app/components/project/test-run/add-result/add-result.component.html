@@ -18,7 +18,7 @@
           <div class="column result-dialog-column-left">
             <div class="form-group">
               <label for="addResultStatus">Status <span class="form-required">*</span></label>
-              <select [(ngModel)]="result.status"
+              <select [(ngModel)]="result.status" (change)="onChange($event)"
                 class="form-control form-control-small form-select searchable chzn-done" name="addResultStatus"
                 id="addResultStatus">
                 <option value="Passed">Passed</option>

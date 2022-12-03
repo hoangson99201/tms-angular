@@ -17,12 +17,25 @@ export class AddResultComponent implements OnInit {
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
   ngOnInit(): void {
     // this.color =
     this.result.status =
       this.data.status == 'Untested' ? 'Passed' : this.data.status;
+    this.switchColor(this.result.status);
+    this.result.resultId = this.data.id;
+  }
+  public result: Result = {
+    resultId: 2,
+    status: 'Blocked',
+  };
 
-    switch (this.result.status) {
+  close() {
+    this.sectionDialog.close();
+  }
+
+  switchColor(status: any) {
+    switch (status) {
       case 'Passed':
         this.color = '#338a41';
         break;
@@ -36,16 +49,10 @@ export class AddResultComponent implements OnInit {
         this.color = '#a9093a';
         break;
     }
-
-    this.result.resultId = this.data.id;
   }
-  public result: Result = {
-    resultId: 2,
-    status: 'Blocked',
-  };
 
-  close() {
-    this.sectionDialog.close();
+  onChange(e: any) {
+    this.switchColor(e.target.value);
   }
 
   submit() {
