@@ -11,6 +11,7 @@ import { TestRunService } from 'src/app/services/test-run.service';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
+import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
 
 @Component({
   selector: 'app-add-test-run',
@@ -27,7 +28,7 @@ export class AddTestRunComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   userId = 2;
   testRun: TestRun = {
@@ -43,7 +44,9 @@ export class AddTestRunComponent implements OnInit {
   Mode = Mode;
 
   ngOnInit(): void {
-    this.currentMode = this.router.url.startsWith('/test-runs-edit/') ? Mode.Update : Mode.Create;
+    this.currentMode = this.router.url.startsWith('/test-runs-edit/')
+      ? Mode.Update
+      : Mode.Create;
     console.log('Current mode: ' + this.currentMode);
 
     this.route.params.subscribe((params) => {
@@ -54,11 +57,12 @@ export class AddTestRunComponent implements OnInit {
           this.getMilestonesByProjectId(this.testRun.projectId);
           break;
         case Mode.Update:
-          this.testRunService.findByTestRunId(params['id'])
-            .subscribe(testRun => {
+          this.testRunService
+            .findByTestRunId(params['id'])
+            .subscribe((testRun) => {
               this.testRun = testRun;
               this.getMilestonesByProjectId(this.testRun.projectId);
-            })
+            });
           break;
         default:
           break;
@@ -76,10 +80,12 @@ export class AddTestRunComponent implements OnInit {
       console.error('projectId is undefined');
       return;
     }
-    this.milestoneService.findAllByProjectId(projectId).subscribe((milestones) => {
-      this.milestones = milestones;
-      console.log(milestones);
-    });
+    this.milestoneService
+      .findAllByProjectId(projectId)
+      .subscribe((milestones) => {
+        this.milestones = milestones;
+        console.log(milestones);
+      });
   }
 
   cancel() {
@@ -128,16 +134,23 @@ export class AddTestRunComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if(result && result.event != 'Cancel') {
-        this.testCasesIdIncluded = [...result.data]
+      if (result && result.event != 'Cancel') {
+        this.testCasesIdIncluded = [...result.data];
       }
       console.log(this.testCasesIdIncluded);
     });
   }
 
   close() {
-    this.testRun.isCompleted = true;
-    this.update();
+    this.dialog
+      .open(ConfirmCloseDialogComponent)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result && result.event == 'Close') {
+          this.testRun.isCompleted = true;
+          this.update();
+        }
+      });
   }
 
   update() {

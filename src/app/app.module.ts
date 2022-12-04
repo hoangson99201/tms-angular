@@ -30,6 +30,7 @@ import { MenuProjectComponent } from './shared/menu-project/menu-project.compone
 import { MenuComponent } from './shared/menu/menu.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SelectCaseDialogComponent } from './components/project/test-run/add-test-run/select-case-dialog/select-case-dialog.component';
+import { ConfirmCloseDialogComponent } from './components/project/test-run/confirm-close-dialog/confirm-close-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,9 +65,10 @@ import { SelectCaseDialogComponent } from './components/project/test-run/add-tes
     DetailTestRunComponent,
     AddResultComponent,
     StatusDropdownComponent,
-    SelectCaseDialogComponent
+    SelectCaseDialogComponent,
+    ConfirmCloseDialogComponent
   ],
-  entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent],
+  entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [
     MatDialogModule,
     BrowserModule,
@@ -83,7 +85,7 @@ import { SelectCaseDialogComponent } from './components/project/test-run/add-tes
     MatSelectModule,
     MatPaginatorModule
   ],
-  providers: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent],
+  providers: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
