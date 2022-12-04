@@ -40,6 +40,10 @@ const routes: Routes = [
     component: AddTestRunComponent,
   },
   {
+    path: 'test-runs-edit/:id',
+    component: AddTestRunComponent,
+  },
+  {
     path: 'test-runs/:id/detail/:subId',
     component: DetailTestRunComponent,
   },
@@ -77,4 +81,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

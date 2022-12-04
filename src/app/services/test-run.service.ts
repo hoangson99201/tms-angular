@@ -10,13 +10,23 @@ export class TestRunService {
 
   constructor(private _http: HttpClient) { }
 
-  addTestRun(testRun: TestRun): Observable<string> {
+  create(testRun: TestRun): Observable<string> {
     return this._http.post("/tms/api/v1/test-run", testRun, {
       responseType: 'text'
     });
   }
 
   findAllByProjectId(projectId: number): Observable<TestRun[]> {
-    return this._http.get<TestRun[]>("/tms/api/v1/test-run/" + projectId);
+    return this._http.get<TestRun[]>("/tms/api/v1/project/" + projectId + "/test-run");
+  }
+
+  findByTestRunId(testRunId: number): Observable<TestRun> {
+    return this._http.get<TestRun>("/tms/api/v1/test-run/" + testRunId);
+  }
+
+  update(testRun: TestRun): Observable<string> {
+    return this._http.put("/tms/api/v1/test-run", testRun, {
+      responseType: 'text'
+    });
   }
 }

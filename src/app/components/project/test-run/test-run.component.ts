@@ -29,6 +29,9 @@ export class TestRunComponent extends BasePaginator {
       this.testRunService.findAllByProjectId(parseInt(this.projectId)).subscribe(testRuns => {
         for (const testRun of testRuns) {
           if (testRun.isCompleted) {
+            if (testRun.completedOn instanceof Array) {
+              testRun.completedOn = testRun.completedOn[2] + "/" + testRun.completedOn[1] + "/" + testRun.completedOn[0];
+            }
             this.completedTestRuns.push(testRun);
           } else {
             if (testRun.createdOn instanceof Array) {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Mode } from 'src/app/core/mode';
 import { Milestone } from 'src/app/models/milestone';
 import { TestRun } from 'src/app/models/test-run';
 import { User } from 'src/app/models/user';
@@ -26,7 +27,7 @@ export class AddTestRunComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   userId = 2;
   testRun: TestRun = {
@@ -38,26 +39,46 @@ export class AddTestRunComponent implements OnInit {
   milestones: Milestone[] = [];
   users: User[] = [];
   testCasesIdIncluded: string[] = [];
+  currentMode: Mode = Mode.Create;
+  Mode = Mode;
 
   ngOnInit(): void {
+    this.currentMode = this.router.url.startsWith('/test-runs-edit/') ? Mode.Update : Mode.Create;
+    console.log('Current mode: ' + this.currentMode);
+
     this.route.params.subscribe((params) => {
       console.log(params);
-      this.testRun.projectId = params['id'];
-      if (!this.testRun.projectId) {
-        return;
+      switch (this.currentMode) {
+        case Mode.Create:
+          this.testRun.projectId = params['id'];
+          this.getMilestonesByProjectId(this.testRun.projectId);
+          break;
+        case Mode.Update:
+          this.testRunService.findByTestRunId(params['id'])
+            .subscribe(testRun => {
+              this.testRun = testRun;
+              this.getMilestonesByProjectId(this.testRun.projectId);
+            })
+          break;
+        default:
+          break;
       }
-      console.log(this.testRun.projectId);
 
-      this.milestoneService
-        .findAllByProjectId(this.testRun.projectId)
-        .subscribe((milestones) => {
-          this.milestones = milestones;
-          console.log(milestones);
-        });
       this.userService.getUsers().subscribe((users) => {
         this.users = users;
         console.log(users);
       });
+    });
+  }
+
+  getMilestonesByProjectId(projectId: number | undefined) {
+    if (!projectId) {
+      console.error('projectId is undefined');
+      return;
+    }
+    this.milestoneService.findAllByProjectId(projectId).subscribe((milestones) => {
+      this.milestones = milestones;
+      console.log(milestones);
     });
   }
 
@@ -66,7 +87,7 @@ export class AddTestRunComponent implements OnInit {
   }
 
   submit() {
-    this.testRunService.addTestRun(this.testRun).subscribe({
+    this.testRunService.create(this.testRun).subscribe({
       next: (res) => {
         console.log(res);
         this.toastr.success('Add test run success', 'Success');
@@ -111,6 +132,25 @@ export class AddTestRunComponent implements OnInit {
         this.testCasesIdIncluded = [...result.data]
       }
       console.log(this.testCasesIdIncluded);
+    });
+  }
+
+  close() {
+    this.testRun.isCompleted = true;
+    this.update();
+  }
+
+  update() {
+    this.testRunService.update(this.testRun).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Update test run success', 'Success');
+        this.router.navigateByUrl('/test-runs/' + this.testRun.projectId);
+      },
+      error: (e) => {
+        console.log(e);
+        this.toastr.error('Update test run failed', 'Error');
+      },
     });
   }
 }

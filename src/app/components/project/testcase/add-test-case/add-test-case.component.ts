@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Mode } from 'src/app/core/mode';
 import { Priority } from 'src/app/models/priority';
 import { Section } from 'src/app/models/section';
 import { TestCase } from 'src/app/models/test-case';
@@ -22,6 +23,7 @@ export class AddTestCaseComponent implements OnInit {
   };
   sections: Section[] = [];
   priorities: Priority[] = [];
+  mode: Mode = Mode.Create;
 
   constructor(
     private sectionService: SectionService,
@@ -31,13 +33,25 @@ export class AddTestCaseComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.mode = this.router.url.startsWith('/test-cases-edit/') ? Mode.Update : Mode.Create;
+    console.log('Current mode: ' + this.mode);
+
     this.route.params.subscribe((params) => {
       console.log(params);
-      this.testCase.projectId = params['id'];
-      console.log(this.testCase.projectId);
+      switch (this.mode) {
+        case Mode.Create:
+          this.testCase.projectId = params['id'];
+          break;
+        case Mode.Update:
+
+          break;
+        default:
+          break;
+      }
+      console.log('Test case data: ' + this.testCase);
       this.sectionService
         .findAllByProjectId(this.testCase.projectId)
         .subscribe((sections) => {

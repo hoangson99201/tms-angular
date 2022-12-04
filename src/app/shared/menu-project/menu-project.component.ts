@@ -19,10 +19,12 @@ export class MenuProjectComponent implements OnInit {
 
   @Input() set projectId(value: string) {
     this.project.projectId = parseInt(value);
-    this.projectService.findByProjectId(parseInt(this.projectId)).subscribe(project => {
-      this.project.projectName = project.projectName;
-      this.getProject.emit(this.project);
-    });
+    if (this.project.projectId) {
+      this.projectService.findByProjectId(parseInt(this.projectId)).subscribe(project => {
+        this.project.projectName = project.projectName;
+        this.getProject.emit(this.project);
+      });
+    }
   }
 
   @Output() getProject = new EventEmitter<Project>();

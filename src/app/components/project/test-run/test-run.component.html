@@ -51,7 +51,7 @@
                       </div>
                       <div class="summary-links text-secondary">
                         By {{testRun.fullname}} on {{testRun.createdOn}} | <a class="link"
-                          href="index.php?/runs/edit/24">Edit</a>
+                          [routerLink]="['/test-runs-edit', testRun.runId]">Edit</a>
                       </div>
                       <div class="summary-description">
                         {{testRun.passedCount}} Passed, {{testRun.blockedCount}} Blocked, {{testRun.untestedCount}}
