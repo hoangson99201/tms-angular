@@ -28,7 +28,7 @@
           <div class="table">
             <div class="column column-p2 column-pad-right">
               <h1 class="top"><a id="navigation-overview-viewmilestones" class="nolink"
-                  href="index.php?/milestones/overview/2">Milestones</a></h1>
+                  >Milestones</a></h1>
               <div *ngIf="milestones.length == 0; then thenMilestoneBlock else elseMilestoneBlock"></div>
               <ng-template #thenMilestoneBlock>
                 <p>This project doesn't have any active milestones.
@@ -48,7 +48,7 @@
                     <div class="column summary-column  flex-milestones-2-compact summary-column-first ">
                       <div class="summary-title summary-title-compact text-ppp">
                         <a id="navigation-overview-viewmilestones"
-                          href="index.php?/milestones/view/3">{{milestone.milestoneName}}</a>
+                          >{{milestone.milestoneName}}</a>
                       </div>
                       <div class="summary-description-compact text-secondary text-ppp">
                         {{milestone.endDate ? "Due on " + milestone.endDate : "No due date"}}
@@ -79,7 +79,7 @@
                     </div>
                     <div class="column summary-column flex-runs-2-compact summary-column-first ">
                       <div class="summary-title summary-title-compact text-ppp">
-                        <a id="navigation-overview-viewruns" href="index.php?/runs/view/24">{{testRun.runName}}</a>
+                        <a id="navigation-overview-viewruns" >{{testRun.runName}}</a>
                       </div>
                       <div class="summary-description-compact text-secondary text-ppp">
                         By {{testRun.fullname}} on {{testRun.createdOn}}
@@ -443,7 +443,7 @@
     <li class="dropdown-menu-separator"></li>
     <li>
       <a class="dropdown-menu-link" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Help.showAbout(); return false;">
+        >
         About Test Management System </a>
     </li>
   </ul>
@@ -632,7 +632,7 @@
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
       <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        >
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -681,7 +681,7 @@
         class="goal-next" />
       <map name="goalsNextMap">
         <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;" />
+           />
         <area shape="rect" coords="64,305,254,339" target="_blank"
           routerLink="http://www.gurock.com/testrail/support" />
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/" />
@@ -718,7 +718,7 @@
 <div id='newAttachmentTemplate' style='display: none;'>
   <div style='width: 150px; height: 150px; '
     class='attachment-block attachment-attachment_icon attachment_selected_class lazy'
-    id='libraryAttachment-attachment_id' onclick="App.Attachments.showInfoDialog('attachment_id');"
+    id='libraryAttachment-attachment_id'
     title='attachment_name'>
     <div class='attachment-icon'></div>
     <div class='attachment-name'>
@@ -726,7 +726,7 @@
     </div>
     <img attachment_src_tag='attachment_imgurl' attachment_onerror_tag='attachment_img_onerror' class='hidden-image' />
     <div class='attachment-selection attachment_selected_class'
-      onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
+      ></div>
   </div>
 </div>
 
@@ -843,7 +843,7 @@
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
       <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        >
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -892,7 +892,7 @@
         class="goal-next" />
       <map name="goalsNextMap">
         <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;" />
+           />
         <area shape="rect" coords="64,305,254,339" target="_blank"
           routerLink="http://www.gurock.com/testrail/support" />
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/" />
@@ -1110,7 +1110,7 @@
         <a id='libraryAddAttachment' class="button button-left button-add">Add New</a>
         <a id='libraryDeleteAttachment' style='display: none;' class="button button-left button-negative button-delete"
           routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Dialogs.remove('This action &lt;strong&gt;deletes selected attachment/s and all their instances across your projects&lt;/strong&gt; (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); }); ; return false;">Delete</a>
+          >Delete</a>
       </div>
 
       <div style='float: right'>
@@ -1125,14 +1125,14 @@
           </span>
           &nbsp;|&nbsp;
           Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
-            onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
+
             id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
               id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
           <span id="attachmentFilterByBusy" class="busy">
             <div class="icon-progress-inline"></div>
           </span>
           <span id="attachmentFilterByReset" class="hidden">
-            <a routerLink="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
+            <a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-text="Reset filters">
               <div class="icon-orderreset"></div>
             </a>
@@ -1144,13 +1144,13 @@
         <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown" style="position: fixed; width: 100px">
           <ul>
             <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
+                >Date</a>
             </li>
             <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a>
+                >Name</a>
             </li>
             <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a>
+                >Size</a>
             </li>
           </ul>
         </div>

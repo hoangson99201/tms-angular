@@ -25,7 +25,7 @@
                 section.</p>
               <div class="button-group">
                 <a id="addSectionInline" class="button button-left button-add" routerLink="javascript:void(0)"
-                  onclick="this.blur(); App.Sections.add(2); return false;">
+                  >
                   Add Section </a>
                 <a [routerLink]="['/test-cases-add', projectId]" class="button button-left button-add">
                   Add Test Case </a>
@@ -41,12 +41,12 @@
                   <div class="grid-title">
                     <span class="title" id="sectionName-4">{{section.key}}</span>
                     <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                    <a style="margin-left: 5px" href="javascript:void(0)"
-                      onclick="this.blur(); App.Sections.edit(4, 1); return false;">
+                    <a style="margin-left: 5px"
+                      >
                       <div class="icon-small-edit icon-small-inline"></div>
                     </a>
-                    <a style="margin-left: 5px" href="javascript:void(0)"
-                      onclick="this.blur(); App.Dialogs.remove('l:suites_sections_confirm_delete', 'l:suites_sections_confirm_delete_checkbox', null, function() { App.Sections.removeInit(4); }, function() { App.Sections.remove(4); });; return false;">
+                    <a style="margin-left: 5px"
+                      >
                       <div class="icon-small-delete hidden action-hover"></div>
                     </a>
                     <span id="sectionBusy-4" class="busy" style="display: none;">
@@ -73,24 +73,24 @@
                           <div class="icon-dragnoblue"></div>
                         </th>
                         <th class="checkbox"><input type="checkbox" class="selectionCheckbox"
-                            onclick="App.Cases.onToggleAllClick(this)"></th>
+                            ></th>
                         <th>
-                          <a class="link-noline" title="ID" href="javascript:void(0)"
-                            onclick="this.blur(); App.Suites.setCaseGrouping('cases:id'); return false;"><span>ID</span></a>
+                          <a class="link-noline" title="ID"
+                            ><span>ID</span></a>
                           <div class="column-actions">
                           </div>
                         </th>
                         <th>
-                          <a class="link-noline" title="Title" href="javascript:void(0)"
-                            onclick="this.blur(); App.Suites.setCaseGrouping('cases:title'); return false;"><span>Title</span></a>
+                          <a class="link-noline" title="Title"
+                            ><span>Title</span></a>
                           <div class="column-actions">
                           </div>
                         </th>
                         <th class="action"></th>
                         <th class="action"></th>
                         <th class="action columns" id="selectColumns-4">
-                          <span class="select"><a href="javascript:void(0)"
-                              onclick="this.blur(); App.Suites.selectCaseColumns(4, 1); return false;">
+                          <span class="select"><a
+                              >
                               <div class="icon-columns"></div>
                             </a></span><span class="busy">
                             <div class="icon-progress-inline"></div>
@@ -103,15 +103,15 @@
                           <div class="caseDraggable dragdrop-action"></div>
                         </td>
                         <td class="checkbox"><input type="checkbox" value="36" class="selectionCheckbox"
-                            name="selected-36" onclick="App.Cases.onRowClick(this)"></td>
+                            name="selected-36" ></td>
                         <td class="id">
-                          <a class="link-noline" rel="keep-get" href="index.php?/cases/view/36">
+                          <a class="link-noline" rel="keep-get" >
                             {{testCase.caseId}}
                           </a>
                         </td>
                         <td>
                           <span class="case-deleted case-deleted-hidden" title="Test Case Deleted"></span>
-                          <a rel="keep-get" href="index.php?/cases/view/36">
+                          <a rel="keep-get" >
                             <span class="title">{{testCase.caseName}}</span>
                           </a>
                         </td>
@@ -121,8 +121,8 @@
                           </a>
                         </td>
                         <td class="action">
-                          <a class="deleteLink" href="javascript:void(0)"
-                            onclick="this.blur(); App.Cases.openDeletionDialog(36, false, true, false, false, ''); return false;">
+                          <a class="deleteLink"
+                            >
                             <div class="icon-small-delete hidden action-hover"></div>
                           </a>
                           <span class="busy deleteBusy">
@@ -131,8 +131,8 @@
                         </td>
 
                         <td class="action">
-                          <a href="javascript:void(0)"
-                            onclick="this.blur(); App.QPane.toggleRow(36); return false;"><span class="action-expand">
+                          <a
+                            ><span class="action-expand">
                               <div class="icon-small-expandrow hidden action-hover"></div>
                             </span>
                             <span class="action-collapse hidden">
@@ -189,7 +189,7 @@
             and <a class="link link-dashed" id="estimatesLink" routerLink="javascript:void(0)"><strong
                 class="text-softer">0</strong>
               <span>cases</span></a>. <a id="sidebar-milestones-editdescription" routerLink="javascript:void(0)"
-              onclick="this.blur(); App.Suites.editDescription(2); return false;">
+              >
               Edit description</a>
           </p>
           <div id="editDescriptionBusy" class="busy">
@@ -828,7 +828,7 @@
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
       <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        >
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -876,7 +876,7 @@
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
         <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+          >
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -912,7 +912,7 @@
 <div id="newAttachmentTemplate" style="display: none;">
   <div style="width: 150px; height: 150px; "
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-    id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
+    id="libraryAttachment-attachment_id"
     title="attachment_name">
     <div class="attachment-icon"></div>
     <div class="attachment-name">
@@ -920,7 +920,7 @@
     </div>
     <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
     <div class="attachment-selection attachment_selected_class"
-      onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
+      ></div>
   </div>
 </div>
 <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
@@ -1030,7 +1030,7 @@
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
       <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        >
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -1078,7 +1078,7 @@
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
         <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+          >
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"

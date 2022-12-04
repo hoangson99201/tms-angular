@@ -350,51 +350,6 @@
 
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <!--  <div class="content-header-result" style=""></div>
-          <span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
-              class="link-tooltip" tooltip-header="Compact View"
-              tooltip-text="Displays the milestones as a compact list. Useful if you have many milestones." onclick="this.blur(); var link = this; var i = document.createElement('input');
-                        i.setAttribute('type', 'hidden');
-                        i.setAttribute('name', '_token');
-                        i.setAttribute('value', 'kyqRSAYnPxiKjL7HwuCW');
-                        var f = document.createElement('form');
-                        f.style.display = 'none';
-                        link.parentNode.appendChild(f);
-                        f.method = 'POST';
-                        f.action = '#compactView';
-                        f.appendChild(i);
-                        f.submit(); ; return false;">
-              <div class="icon-display-small-inactive"></div>
-            </a></span><span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
-              class="link-tooltip" tooltip-header="Medium View"
-              tooltip-text="Displays the milestones in a medium-sized way." onclick="this.blur(); var link = this; var i = document.createElement('input');
-                            i.setAttribute('type', 'hidden');
-                            i.setAttribute('name', '_token');
-                            i.setAttribute('value', 'kyqRSAYnPxiKjL7HwuCW');
-                            var f = document.createElement('form');
-                            f.style.display = 'none';
-                            link.parentNode.appendChild(f);
-                            f.method = 'POST';
-                            f.action = '#mediumView';
-                            f.appendChild(i);
-                            f.submit(); ; return false;">
-              <div class="icon-display-medium-inactive"></div>
-            </a></span><span class="content-header-icon"><a routerLink="javascript:void(0)" class="link-tooltip"
-              tooltip-header="Detail View"
-              tooltip-text="Displays the milestones with many details. Useful if you have just a few milestones."
-              onclick="this.blur(); var link = this; var i = document.createElement('input');
-                                i.setAttribute('type', 'hidden');
-                                i.setAttribute('name', '_token');
-                                i.setAttribute('value', 'kyqRSAYnPxiKjL7HwuCW');
-                                var f = document.createElement('form');
-                                f.style.display = 'none';
-                                link.parentNode.appendChild(f);
-                                f.method = 'POST';
-                                f.action = 'adminMilestone.jsp';
-                                f.appendChild(i);
-                                f.submit(); ; return false;">
-              <div class="icon-display-large"></div>
-            </a></span> -->
           <div class="content-header-title page_title">
             Milestones </div>
         </div>
@@ -781,7 +736,7 @@
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
       <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        >
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -829,7 +784,7 @@
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
         <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+          >
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -843,7 +798,7 @@
 <div id="newAttachmentTemplate" style="display: none;">
   <div style="width: 150px; height: 150px; "
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-    id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
+    id="libraryAttachment-attachment_id"
     title="attachment_name">
     <div class="attachment-icon" style=""></div>
     <div class="attachment-name">
@@ -851,7 +806,7 @@
     </div>
     <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
     <div class="attachment-selection attachment_selected_class"
-      onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
+      ></div>
   </div>
 </div>
 <!-- <div id="libraryAttachmentsAddItemTemplate" style="">
@@ -957,7 +912,7 @@
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
       <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+        >
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -1005,7 +960,7 @@
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
         <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+          >
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -1045,7 +1000,7 @@
         <a id="libraryAddAttachment" class="button button-left button-add">Add New</a>
         <a id="libraryDeleteAttachment" style="display: none;" class="button button-left button-negative button-delete"
           routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Dialogs.remove('This action <strong>deletes selected attachment/s and all their instances across your projects</strong> (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); }); ; return false;">Delete</a>
+          >Delete</a>
       </div>
 
       <div style="float: right">
@@ -1060,14 +1015,14 @@
           </span>
           &nbsp;|&nbsp;
           Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
-            onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
+
             id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
               id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
           <span id="attachmentFilterByBusy" class="busy">
             <div class="icon-progress-inline"></div>
           </span>
           <span id="attachmentFilterByReset" class="hidden">
-            <a routerLink="javascript:void(0)" onclick="this.blur(); App.Attachments.filterReset(); return false;"
+            <a routerLink="javascript:void(0)"
               class="link-tooltip" tooltip-text="Reset filters">
               <div class="icon-orderreset"></div>
             </a>
@@ -1079,13 +1034,13 @@
         <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown" style="position: fixed; width: 100px">
           <ul>
             <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
+                >Date</a>
             </li>
             <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a>
+                >Name</a>
             </li>
             <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a>
+                >Size</a>
             </li>
           </ul>
         </div>

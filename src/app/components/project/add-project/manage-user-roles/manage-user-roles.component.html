@@ -69,25 +69,18 @@
 
         <div id="activeDropdown" class="dropdown dropdown-menu activeDropdown" rel="" style="width: 100px">
           <ul>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setActive(true); return false;">Active</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setActive(false); return false;">Inactive</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Active</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Inactive</a></li>
           </ul>
         </div>
 
         <div id="roleDropdown" class="dropdown dropdown-menu roleDropdown" rel="" style="width: 125px">
           <ul>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setRole(5); return false;">No Access</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setRole(4); return false;">Read-only</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setRole(3); return false;">Tester</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setRole(2); return false;">Designer</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                onclick="this.blur(); App.Admin.setRole(1); return false;">Lead</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">No Access</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Read-only</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Tester</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Designer</a></li>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Lead</a></li>
           </ul>
         </div>
 
@@ -101,11 +94,11 @@
 
         <div class="tabs tabs-users">
           <div class="tab-header">
-            <a routerLink="#" class="current tab1" onclick="App.Tabs.activate(this)" rel="1" id="navigation-user-users">
+            <a routerLink="#" class="current tab1">
               Users </a>
-            <a routerLink="#" class=" tab2" onclick="App.Tabs.activate(this)" rel="2" id="navigation-user-groups">
+            <a routerLink="#" class=" tab2">
               Groups </a>
-            <a routerLink="#" class=" tab3" onclick="App.Tabs.activate(this)" rel="3" id="navigation-user-roles">
+            <a routerLink="#" class=" tab3">
               Roles </a>
 
           </div>
@@ -125,8 +118,7 @@
                           placeholder="Search name or email address">
                         <ul class="toolbar-menu text-ppp">
                           <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
-                            Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
-                              onclick="this.blur(); App.Users.filterUsers(event); return false;" id="filterByChange">
+                            Filter: <a class="link link-dashed" routerLink="javascript:void(0)" id="filterByChange">
                               <span id="filterByEmpty" class="">
                                 None </span>
                               <span id="filterByInfo" class="hidden toolbar-highlighted">
@@ -139,7 +131,6 @@
                         </ul>
                         <span id="filterByReset" class="hidden">
                           <a id="filterCasesReset" class="link-tooltip" routerLink="javascript:void(0)"
-                            onclick="this.blur(); App.Users.filterUsersReset(); return false;"
                             tooltip-text="Remove filter and show all users.">
                             <div class="icon-orderreset"></div>
                           </a>
@@ -155,14 +146,13 @@
                   <li id="bulk-toolbar-list">
                     <a id="editBulkSelected" routerLink="javascript:void(0)"
                       class="dropdown-menu-link link-tooltip cursor-pointer" tooltip-text="Edit all selected users."
-                      tooltip-position="left" rel="keep-get" onclick="SelectRedirect('EditSelected')">
+                      tooltip-position="left" rel="keep-get">
                       Edit selected </a>
                   </li>
                   <li class="dropdown-menu-separator"></li>
                   <li>
                     <a class="dropdown-menu-link link-tooltip cursor-pointer" routerLink="javascript:void(0)"
-                      tooltip-text="Edit all users in current view." tooltip-position="left" rel="keep-get"
-                      onclick="SelectRedirect('Editallinfilter')">
+                      tooltip-text="Edit all users in current view." tooltip-position="left" rel="keep-get">
                       Edit all in view </a>
                   </li>
                 </ul>
@@ -185,42 +175,36 @@
                   <tbody>
                     <tr class="header">
                       <th>
-                        <input type="checkbox" name="col1" id="selectall" onclick="selectAll(this)">
+                        <input type="checkbox" name="col1" id="selectall">
                       </th>
                       <th>
-                        <a class="link-noline" title="User" routerLink="javascript:void(0)"
-                          onclick="App.Users.setUserGrouping('users.name');">
+                        <a class="link-noline" title="User" routerLink="javascript:void(0)">
                           <div>User </div>
                         </a>
                       </th>
                       <th>
-                        <a class="link-noline" title="Email Address" routerLink="javascript:void(0)"
-                          onclick="App.Users.setUserGrouping('users.email');">
+                        <a class="link-noline" title="Email Address" routerLink="javascript:void(0)">
                           <div>Email Address </div>
                         </a>
                       </th>
                       <th>
                       </th>
                       <th>
-                        <a class="link-noline" title="Last Active " routerLink="javascript:void(0)"
-                          onclick="App.Users.setUserGrouping('users.last_activity');">
+                        <a class="link-noline" title="Last Active " routerLink="javascript:void(0)">
                         </a>
-                        <div><a class="link-noline" title="Last Active " routerLink="javascript:void(0)"
-                            onclick="App.Users.setUserGrouping('users.last_activity');">Last
+                        <div><a class="link-noline" title="Last Active " routerLink="javascript:void(0)">Last
                             Active <div class="link-tooltip va-bottom icon-help"
                               tooltip-text="Gurock does not monitor this timestamp for billing purposes">
                             </div>
                           </a> </div>
                       </th>
                       <th>
-                        <a class="link-noline" title="Status" routerLink="javascript:void(0)"
-                          onclick="App.Users.setUserGrouping('users.is_active');">
+                        <a class="link-noline" title="Status" routerLink="javascript:void(0)">
                           <div>Status </div>
                         </a>
                       </th>
                       <th>
-                        <a class="link-noline" title="Role" routerLink="javascript:void(0)"
-                          onclick="App.Users.setUserGrouping('roles.name');">
+                        <a class="link-noline" title="Role" routerLink="javascript:void(0)">
                           <div>Role </div>
                         </a>
                       </th>
@@ -230,7 +214,7 @@
                   <tbody>
                     <tr class="even" id="user-1">
                       <td>
-                        <input type="checkbox" name="color" class="source" value="1" onclick="checkboxState(this)">
+                        <input type="checkbox" name="color" class="source" value="1">
                       </td>
                       <td>
                         <a routerLink="index.php?/admin/users/edit/1" class="user-name-col" title="Doan Khoa Bao">
@@ -262,7 +246,7 @@
                     </tr>
                     <tr class="even" id="user-2">
                       <td>
-                        <input type="checkbox" name="color" class="source" value="2" onclick="checkboxState(this)">
+                        <input type="checkbox" name="color" class="source" value="2">
                       </td>
                       <td>
                         <a routerLink="index.php?/admin/users/edit/2" class="user-name-col" title="Do Thanh Tu">
@@ -378,17 +362,7 @@
                       </a>
                     </td>
                     <td class="action">
-                      <a routerLink="javascript:void(0)" onclick="this.blur(); var link = this; App.Dialogs.remove('Really delete role <strong>Read-only</strong>? Users with this role will be assigned the default role <em>(no users are deleted)</em>.', 'Yes, delete this role (cannot be undone)', null, null, function() { var i = document.createElement('input');
-                                                        i.setAttribute('type', 'hidden');
-                                                        i.setAttribute('name', '_token');
-                                                        i.setAttribute('value', 'iU.KFuAiJ8LuprOCNYor');
-                                                        var f = document.createElement('form');
-                                                        f.style.display = 'none';
-                                                        link.parentNode.appendChild(f);
-                                                        f.method = 'POST';
-                                                        f.action = 'index.php?/admin/roles/delete/4';
-                                                        f.appendChild(i);
-                                                        f.submit(); ; }); ; return false;">
+                      <a routerLink="javascript:void(0)">
                         <div class="icon-small-delete"></div>
                       </a>
                     </td>
@@ -403,17 +377,7 @@
                       </a>
                     </td>
                     <td class="action">
-                      <a routerLink="javascript:void(0)" onclick="this.blur(); var link = this; App.Dialogs.remove('Really delete role <strong>Tester</strong>? Users with this role will be assigned the default role <em>(no users are deleted)</em>.', 'Yes, delete this role (cannot be undone)', null, null, function() { var i = document.createElement('input');
-                                                        i.setAttribute('type', 'hidden');
-                                                        i.setAttribute('name', '_token');
-                                                        i.setAttribute('value', 'iU.KFuAiJ8LuprOCNYor');
-                                                        var f = document.createElement('form');
-                                                        f.style.display = 'none';
-                                                        link.parentNode.appendChild(f);
-                                                        f.method = 'POST';
-                                                        f.action = 'index.php?/admin/roles/delete/3';
-                                                        f.appendChild(i);
-                                                        f.submit(); ; }); ; return false;">
+                      <a routerLink="javascript:void(0)">
                         <div class="icon-small-delete"></div>
                       </a>
                     </td>
@@ -428,17 +392,7 @@
                       </a>
                     </td>
                     <td class="action">
-                      <a routerLink="javascript:void(0)" onclick="this.blur(); var link = this; App.Dialogs.remove('Really delete role <strong>Designer</strong>? Users with this role will be assigned the default role <em>(no users are deleted)</em>.', 'Yes, delete this role (cannot be undone)', null, null, function() { var i = document.createElement('input');
-                                                        i.setAttribute('type', 'hidden');
-                                                        i.setAttribute('name', '_token');
-                                                        i.setAttribute('value', 'iU.KFuAiJ8LuprOCNYor');
-                                                        var f = document.createElement('form');
-                                                        f.style.display = 'none';
-                                                        link.parentNode.appendChild(f);
-                                                        f.method = 'POST';
-                                                        f.action = 'index.php?/admin/roles/delete/2';
-                                                        f.appendChild(i);
-                                                        f.submit(); ; }); ; return false;">
+                      <a routerLink="javascript:void(0)">
                         <div class="icon-small-delete"></div>
                       </a>
                     </td>
@@ -902,8 +856,7 @@
     </li>
     <li class="dropdown-menu-separator"></li>
     <li>
-      <a class="dropdown-menu-link" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Help.showAbout(); return false;">
+      <a class="dropdown-menu-link" routerLink="javascript:void(0)">
         About Test Management System </a>
     </li>
   </ul>
@@ -1070,8 +1023,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+      <a class="link-noline nolink" routerLink="javascript:void(0)">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -1118,8 +1070,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -1155,15 +1106,13 @@
 <div id="newAttachmentTemplate" style="display: none;">
   <div style="width: 150px; height: 150px; "
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-    id="libraryAttachment-attachment_id" onclick="App.Attachments.showInfoDialog('attachment_id');"
-    title="attachment_name">
+    id="libraryAttachment-attachment_id" title="attachment_name">
     <div class="attachment-icon" style=""></div>
     <div class="attachment-name">
       attachment_truncated_name
     </div>
     <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
-    <div class="attachment-selection attachment_selected_class"
-      onclick="App.Attachments.toggleSelection('attachment_id', event);"></div>
+    <div class="attachment-selection attachment_selected_class"></div>
   </div>
 </div>
 <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
@@ -1271,8 +1220,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" routerLink="javascript:void(0)"
-        onclick="this.blur(); App.Users.hideGoals(false); return false;">
+      <a class="link-noline nolink" routerLink="javascript:void(0)">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -1319,8 +1267,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          onclick="this.blur(); App.Users.hideGoalsNext(); return false;">
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"

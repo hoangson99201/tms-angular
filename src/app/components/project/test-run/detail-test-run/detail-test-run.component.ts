@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Result } from 'src/app/models/result';
 import { ResultService } from 'src/app/services/result.service';
 import { AddResultComponent } from '../add-result/add-result.component';
-import { StatusDropdownComponent } from './status-dropdown/status-dropdown.component';
 
 @Component({
   selector: 'app-detail-test-run',

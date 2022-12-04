@@ -126,17 +126,17 @@
         <div id="selectionDropdown" class="dropdown dropdown-menu" rel="itemPrev" style="width: 165px; z-index: 10000">
           <ul>
             <li>
-              <a id="selectCasesFilterSet" class="dropdown-menu-link" rel="1" href="javascript:void(0)">Set
+              <a id="selectCasesFilterSet" class="dropdown-menu-link" rel="1" >Set
                 Selection</a>
             </li>
             <li class="dropdown-menu-separator"></li>
             <li>
-              <a id="selectCasesFilterAdd" class="dropdown-menu-link" rel="2" href="javascript:void(0)">Add To
+              <a id="selectCasesFilterAdd" class="dropdown-menu-link" rel="2" >Add To
                 Selection</a>
             </li>
             <li class="dropdown-menu-separator"></li>
             <li>
-              <a id="selectCasesFilterRemove" class="dropdown-menu-link" rel="3" href="javascript:void(0)">Remove From
+              <a id="selectCasesFilterRemove" class="dropdown-menu-link" rel="3" >Remove From
                 Selection</a>
             </li>
           </ul>
@@ -196,17 +196,7 @@
           <p class="">Delete this test run to remove it from your project.</p>
           <div class="sidebar-action">
             <span class="button button-negative button-delete">
-              <a href="javascript:void(0)" class="link-noline" onclick="this.blur(); var link = this; App.Dialogs.remove('Really delete this test run? This also deletes all tests and results in this run and cannot be undone.', 'Yes, delete this test run (cannot be undone)', 'You will irrevocably delete at least <strong>226</strong> tests and the related test results &amp;amp; comments.', null, function() { var i = document.createElement('input');
-            i.setAttribute('type', 'hidden');
-            i.setAttribute('name', '_token');
-            i.setAttribute('value', '8dCHAMtMVIoPTTn9zlnB');
-            var f = document.createElement('form');
-            f.style.display = 'none';
-            link.parentNode.appendChild(f);
-            f.method = 'POST';
-            f.action = 'index.php?/runs/delete/30';
-            f.appendChild(i);
-            f.submit();; });; return false;">Delete this test run</a> </span>
+              <a  class="link-noline" >Delete this test run</a> </span>
           </div>
         </ng-template>
       </div>
@@ -241,12 +231,12 @@
                   <div id="selectCasesGroupContainer" class="select-dialog-group select-dialog-group-with-splitter"
                     style="min-width: 350px">
                     <div class="toolbar select-dialog-toolbar">
-                      <a id="selectCasesColumns" href="javascript:void(0)" style="margin-left: 8px"
+                      <a id="selectCasesColumns"  style="margin-left: 8px"
                         class="toolbar-button button-columns">
                         Columns</a>
                       <div class="toolbar-inner">
-                        Select <a id="selectCasesGroupAll" class="link" href="javascript:void(0)">All</a> |
-                        <a id="selectCasesGroupNone" class="link" href="javascript:void(0)">None</a>
+                        Select <a id="selectCasesGroupAll" class="link" >All</a> |
+                        <a id="selectCasesGroupNone" class="link" >None</a>
                       </div>
                     </div>
                     <div id="selectCasesGroup">
@@ -268,84 +258,84 @@
                             <tr class="row odd">
                               <td class="checkbox"><input name="selected-1" class="selectionCheckbox" value="1"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/1"><span class="title">Verify space and
+                              <td><a target="_blank" >Verify space and
                                     indentation calculations of inline tables</span></a>
                               </td>
                             </tr>
                             <tr class="row even">
                               <td class="checkbox"><input name="selected-2" class="selectionCheckbox" value="2"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/2"><span class="title">Add watermark to
+                              <td><a target="_blank" >Add watermark to
                                     document and verify print output</span></a>
                               </td>
                             </tr>
                             <tr class="row odd">
                               <td class="checkbox"><input name="selected-3" class="selectionCheckbox" value="3"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/3"><span class="title">Add numbered
+                              <td><a target="_blank" >Add numbered
                                     list to inline table within an document</span></a>
                               </td>
                             </tr>
                             <tr class="row even">
                               <td class="checkbox"><input name="selected-4" class="selectionCheckbox" value="4"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/4"><span class="title">Verify Mail
+                              <td><a target="_blank" >Verify Mail
                                     Merge functionality with test database mmdb1</span></a>
                               </td>
                             </tr>
                             <tr class="row odd">
                               <td class="checkbox"><input name="selected-5" class="selectionCheckbox" value="5"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/5"><span class="title">Add numbered
+                              <td><a target="_blank" >Add numbered
                                     list to inline table within an document</span></a>
                               </td>
                             </tr>
                             <tr class="row even">
                               <td class="checkbox"><input name="selected-6" class="selectionCheckbox" value="6"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/6"><span class="title">Add and verify
+                              <td><a target="_blank" >Add and verify
                                     Tables of Contents with multi-page document</span></a>
                               </td>
                             </tr>
                             <tr class="row odd">
                               <td class="checkbox"><input name="selected-7" class="selectionCheckbox" value="7"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/7"><span class="title">Test add-in
+                              <td><a target="_blank" >Test add-in
                                     installation and verify menu appearance</span></a>
                               </td>
                             </tr>
                             <tr class="row even">
                               <td class="checkbox"><input name="selected-8" class="selectionCheckbox" value="8"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/8"><span class="title">Change document
+                              <td><a target="_blank" >Change document
                                     attributes (author, title, organization)</span></a>
                               </td>
                             </tr>
                             <tr class="row odd">
                               <td class="checkbox"><input name="selected-9" class="selectionCheckbox" value="9"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/9"><span class="title">Verify formula
+                              <td><a target="_blank" >Verify formula
                                     rendering with built-in print preview driver</span></a>
                               </td>
                             </tr>
                             <tr class="row even">
                               <td class="checkbox"><input name="selected-10" class="selectionCheckbox" value="10"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/10"><span class="title">Verify
+                              <td><a target="_blank" >Verify
                                     interoperability with system file dialogs</span></a>
                               </td>
                             </tr>
                             <tr class="row odd">
                               <td class="checkbox"><input name="selected-11" class="selectionCheckbox" value="11"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/11"><span class="title">Apply sort
+                              <td><a target="_blank" >Apply sort
                                     routine to complex table with different currencies</span></a>
                               </td>
                             </tr>
                             <tr class="row even">
                               <td class="checkbox"><input name="selected-12" class="selectionCheckbox" value="12"
                                   type="checkbox"></td>
-                              <td><a target="_blank" href="index.php?/cases/view/12"><span class="title">Test
+                              <td><a target="_blank" >Test
                                     conditional formatting with basic value range</span></a>
                               </td>
                             </tr>
@@ -362,8 +352,8 @@
                 <div class="select-dialog-tree">
                   <div class="toolbar select-dialog-toolbar">
                     <div class="toolbar-inner">
-                      Select <a id="selectCasesTreeAll" class="link" href="javascript:void(0)">All</a> |
-                      <a id="selectCasesTreeNone" class="link" href="javascript:void(0)">None</a>
+                      Select <a id="selectCasesTreeAll" class="link" >All</a> |
+                      <a id="selectCasesTreeNone" class="link" >None</a>
                     </div>
                   </div>
                   <div class="jstree jstree-default">
@@ -578,14 +568,14 @@
                   <div class="filter-group filter" id="filter-cases:custom_automation_type"
                     rel="cases:custom_automation_type">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:custom_automation_type'); return false;">Automation
+                      <a class="link-noline"
+                        >Automation
                         Type</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:custom_automation_type'); return false;">
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:custom_automation_type'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -604,13 +594,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:created_by" rel="cases:created_by">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:created_by'); return false;">Created By</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:created_by'); return false;">
+                      <a class="link-noline"
+                        >Created By</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:created_by'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -629,13 +619,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:created_on" rel="cases:created_on">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:created_on'); return false;">Created On</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:created_on'); return false;">
+                      <a class="link-noline"
+                        >Created On</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:created_on'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -690,13 +680,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:estimate" rel="cases:estimate">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:estimate'); return false;">Estimate</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:estimate'); return false;">
+                      <a class="link-noline"
+                        >Estimate</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:estimate'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -740,15 +730,15 @@
                                 <input type="text" class="form-control form-control-full " value="" maxlength="250">
                               </td>
                               <td class="action">
-                                <a class="add" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.addLine('3ca4b3b3-d985-446c-bcb8-49b34961bdd2'); return false;">
+                                <a class="add"
+                                  >
                                   <div class="icon-small-add"></div>
                                 </a>
                                 <div class="addBusy hidden icon-animation-busy"></div>
                               </td>
                               <td class="action">
-                                <a class="deleteEnabled hidden" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.removeLine('3ca4b3b3-d985-446c-bcb8-49b34961bdd2'); return false;">
+                                <a class="deleteEnabled hidden"
+                                  >
                                   <div class="icon-small-remove"></div>
                                 </a>
                                 <div class="deleteDisabled icon-small-remove-disabled "></div>
@@ -761,13 +751,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:estimate_forecast" rel="cases:estimate_forecast">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:estimate_forecast'); return false;">Forecast</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:estimate_forecast'); return false;">
+                      <a class="link-noline"
+                        >Forecast</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:estimate_forecast'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -812,15 +802,15 @@
                                 <input type="text" class="form-control form-control-full " value="" maxlength="250">
                               </td>
                               <td class="action">
-                                <a class="add" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.addLine('92a8a0cf-74b1-4cdc-81e2-6de175f95637'); return false;">
+                                <a class="add"
+                                  >
                                   <div class="icon-small-add"></div>
                                 </a>
                                 <div class="addBusy hidden icon-animation-busy"></div>
                               </td>
                               <td class="action">
-                                <a class="deleteEnabled hidden" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.removeLine('92a8a0cf-74b1-4cdc-81e2-6de175f95637'); return false;">
+                                <a class="deleteEnabled hidden"
+                                  >
                                   <div class="icon-small-remove"></div>
                                 </a>
                                 <div class="deleteDisabled icon-small-remove-disabled "></div>
@@ -833,13 +823,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:priority_id" rel="cases:priority_id">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:priority_id'); return false;">Priority</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:priority_id'); return false;">
+                      <a class="link-noline"
+                        >Priority</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:priority_id'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -864,13 +854,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:refs" rel="cases:refs">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:refs'); return false;">References</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:refs'); return false;">
+                      <a class="link-noline"
+                        >References</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:refs'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -914,15 +904,15 @@
                                 <input type="text" class="form-control form-control-full " value="" maxlength="250">
                               </td>
                               <td class="action">
-                                <a class="add" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.addLine('b39556bb-8c12-412b-9698-7719fad97f71'); return false;">
+                                <a class="add"
+                                  >
                                   <div class="icon-small-add"></div>
                                 </a>
                                 <div class="addBusy hidden icon-animation-busy"></div>
                               </td>
                               <td class="action">
-                                <a class="deleteEnabled hidden" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.removeLine('b39556bb-8c12-412b-9698-7719fad97f71'); return false;">
+                                <a class="deleteEnabled hidden"
+                                  >
                                   <div class="icon-small-remove"></div>
                                 </a>
                                 <div class="deleteDisabled icon-small-remove-disabled "></div>
@@ -935,13 +925,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:section_id" rel="cases:section_id">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:section_id'); return false;">Section</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:section_id'); return false;">
+                      <a class="link-noline"
+                        >Section</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:section_id'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -1023,13 +1013,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:template_id" rel="cases:template_id">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:template_id'); return false;">Template</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:template_id'); return false;">
+                      <a class="link-noline"
+                        >Template</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:template_id'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -1051,13 +1041,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:title" rel="cases:title">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:title'); return false;">Title</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:title'); return false;">
+                      <a class="link-noline"
+                        >Title</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:title'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -1101,15 +1091,15 @@
                                 <input type="text" class="form-control form-control-full " value="" maxlength="250">
                               </td>
                               <td class="action">
-                                <a class="add" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.addLine('b5f36a37-10ac-4b34-8b89-6df7afd6fc8f'); return false;">
+                                <a class="add"
+                                  >
                                   <div class="icon-small-add"></div>
                                 </a>
                                 <div class="addBusy hidden icon-animation-busy"></div>
                               </td>
                               <td class="action">
-                                <a class="deleteEnabled hidden" href="javascript:void(0)"
-                                  onclick="this.blur(); App.Filters.removeLine('b5f36a37-10ac-4b34-8b89-6df7afd6fc8f'); return false;">
+                                <a class="deleteEnabled hidden"
+                                  >
                                   <div class="icon-small-remove"></div>
                                 </a>
                                 <div class="deleteDisabled icon-small-remove-disabled "></div>
@@ -1122,13 +1112,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:type_id" rel="cases:type_id">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:type_id'); return false;">Type</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:type_id'); return false;">
+                      <a class="link-noline"
+                        >Type</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:type_id'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -1177,13 +1167,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:updated_by" rel="cases:updated_by">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:updated_by'); return false;">Updated By</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:updated_by'); return false;">
+                      <a class="link-noline"
+                        >Updated By</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:updated_by'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
@@ -1202,13 +1192,13 @@
                   </div>
                   <div class="filter-group filter" id="filter-cases:updated_on" rel="cases:updated_on">
                     <div class="filter-name">
-                      <a class="link-noline" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:updated_on'); return false;">Updated On</a>
-                      <a class="filterExpand " href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:updated_on'); return false;">
+                      <a class="link-noline"
+                        >Updated On</a>
+                      <a class="filterExpand "
+                        >
                         <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden" href="javascript:void(0)"
-                        onclick="this.blur(); App.Filters.toggle('cases:updated_on'); return false;">
+                      </a><a class="filterCollapse hidden"
+                        >
                         <div class="icon-collapse"></div>
                       </a>
                     </div>
