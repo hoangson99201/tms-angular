@@ -29,6 +29,7 @@ import { TestcaseComponent } from './components/project/testcase/testcase.compon
 import { MenuProjectComponent } from './shared/menu-project/menu-project.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SelectCaseDialogComponent } from './components/project/test-run/add-test-run/select-case-dialog/select-case-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,9 +63,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     SectionDialogComponent,
     DetailTestRunComponent,
     AddResultComponent,
-    StatusDropdownComponent
+    StatusDropdownComponent,
+    SelectCaseDialogComponent
   ],
-  entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent],
+  entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent],
   imports: [
     MatDialogModule,
     BrowserModule,
@@ -81,7 +83,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     MatSelectModule,
     MatPaginatorModule
   ],
-  providers: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent],
+  providers: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,289 @@
+<!-- <div class="ui-dialog ui-widget ui-widget-content ui-corner-all dialog ui-draggable ui-resizable" tabindex="-1"
+  role="dialog" aria-labelledby="ui-dialog-title-selectCasesDialog"
+  style="display: block; z-index: 1002; outline: 0px; height: auto; width: 850px; position: absolute; top: 310px; left: 534px;"
+  id="dialog-ident-selectCasesDialog"> -->
+<div style=" height: auto; width: 850px; display: block; z-index: 1002; outline: 0px; position: inherit !important;"
+  class="ui-dialog " role="dialog" id="dialog-ident-selectCasesDialog"
+  aria-labelledby="ui-dialog-title-selectCasesDialog" tabindex="-1">
+  <div class="ui-dialog-titlebar ui-widget-header" style="display: flex; justify-content: space-between;padding: 10px;">
+    <span class="ui-dialog-title" id="ui-dialog-title-selectCasesDialog">Select Cases</span>
+    <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
+      <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>
+    </a>
+  </div>
+  <div class="dialog ui-dialog-content ui-widget-content" id="selectCasesDialog"
+    style="width: auto; height: 661px; display: block; min-height: 0px;">
+    <div class="dialog-title">Select Cases</div>
+    <form id="selectCasesForm">
+      <div class="dialog-body" style="padding: 0px; height: 602px;">
+        <div id="selectCasesContainer" class="select-dialog-container">
+          <div id="selectCasesContent" class="select-dialog-content"><input type="hidden" name="can_move" id="can_move"
+              value="1">
+            <div class="select-dialog-column select-dialog-column-main-container">
+              <div id="selectCasesMain" class="select-dialog-column select-dialog-column-main" min-width="400">
+                <div id="selectCasesSplitter1" class="select-dialog-column select-dialog-column-splitter"
+                  name="splitter1"></div>
+                <div class="select-dialog-scroll">
+                  <div id="selectCasesGroupContainer" class="select-dialog-group select-dialog-group-with-splitter"
+                    style="min-width: 350px">
+                    <div class="toolbar select-dialog-toolbar">
+                      <a id="selectCasesColumns" href="javascript:void(0)" style="margin-left: 8px"
+                        class="toolbar-button button-columns">
+                        Columns</a>
+                      <div class="toolbar-inner">
+                        Select <a id="selectCasesGroupAll" class="link" href="javascript:void(0)">All</a> |
+                        <a id="selectCasesGroupNone" class="link" href="javascript:void(0)">None</a>
+                      </div>
+                    </div>
+                    <div id="selectCasesGroup">
+                      <!-- <div class="grid-container  bottom">
+                        <div class="grid-title">
+                          <span class="title">Prerequisites</span>
+                        </div>
+                        <table class="grid selectable">
+                          <colgroup>
+                            <col class="checkbox">
+                            <col>
+                          </colgroup>
+                          <tbody>
+                            <tr class="header">
+                              <th class="checkbox"><input type="checkbox" class="selectionCheckbox" rel="all"></th>
+                              <th>Title</th>
+                            </tr>
+                            <tr class="row odd">
+                              <td class="checkbox"><input name="selected-1" class="selectionCheckbox" value="1"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/1"><span class="title">Verify space and
+                                    indentation calculations of inline tables</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row even">
+                              <td class="checkbox"><input name="selected-2" class="selectionCheckbox" value="2"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/2"><span class="title">Add watermark to
+                                    document and verify print output</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row odd">
+                              <td class="checkbox"><input name="selected-3" class="selectionCheckbox" value="3"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/3"><span class="title">Add numbered
+                                    list to inline table within an document</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row even">
+                              <td class="checkbox"><input name="selected-4" class="selectionCheckbox" value="4"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/4"><span class="title">Verify Mail
+                                    Merge functionality with test database mmdb1</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row odd">
+                              <td class="checkbox"><input name="selected-5" class="selectionCheckbox" value="5"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/5"><span class="title">Add numbered
+                                    list to inline table within an document</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row even">
+                              <td class="checkbox"><input name="selected-6" class="selectionCheckbox" value="6"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/6"><span class="title">Add and verify
+                                    Tables of Contents with multi-page document</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row odd">
+                              <td class="checkbox"><input name="selected-7" class="selectionCheckbox" value="7"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/7"><span class="title">Test add-in
+                                    installation and verify menu appearance</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row even">
+                              <td class="checkbox"><input name="selected-8" class="selectionCheckbox" value="8"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/8"><span class="title">Change document
+                                    attributes (author, title, organization)</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row odd">
+                              <td class="checkbox"><input name="selected-9" class="selectionCheckbox" value="9"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/9"><span class="title">Verify formula
+                                    rendering with built-in print preview driver</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row even">
+                              <td class="checkbox"><input name="selected-10" class="selectionCheckbox" value="10"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/10"><span class="title">Verify
+                                    interoperability with system file dialogs</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row odd">
+                              <td class="checkbox"><input name="selected-11" class="selectionCheckbox" value="11"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/11"><span class="title">Apply sort
+                                    routine to complex table with different currencies</span></a>
+                              </td>
+                            </tr>
+                            <tr class="row even">
+                              <td class="checkbox"><input name="selected-12" class="selectionCheckbox" value="12"
+                                  type="checkbox"></td>
+                              <td><a target="_blank" href="index.php?/cases/view/12"><span class="title">Test
+                                    conditional formatting with basic value range</span></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div> -->
+                      <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
+                        <div class="grid-title">
+                          <span class="title" id="sectionName-4">{{section.key}}</span>
+                          <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
+                          <a style="margin-left: 5px" href="javascript:void(0)"
+                            onclick="this.blur(); App.Sections.edit(4, 1); return false;">
+                            <div class="icon-small-edit icon-small-inline"></div>
+                          </a>
+                          <a style="margin-left: 5px" href="javascript:void(0)"
+                            onclick="this.blur(); App.Dialogs.remove('l:suites_sections_confirm_delete', 'l:suites_sections_confirm_delete_checkbox', null, function() { App.Sections.removeInit(4); }, function() { App.Sections.remove(4); });; return false;">
+                            <div class="icon-small-delete hidden action-hover"></div>
+                          </a>
+                          <span id="sectionBusy-4" class="busy" style="display: none;">
+                            <div class="icon-progress-inline"></div>
+                          </span>
+                        </div>
+                        <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
+                          <div class="scroll-auto-inner markdown">
+                          </div>
+                        </div>
+                        <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
+                          <colgroup>
+                            <col class="drag-no">
+                            <col class="checkbox">
+                            <col style="width: 65px">
+                            <col>
+                            <col class="action-edit">
+                            <col class="action-delete">
+                            <col class="action columns">
+                          </colgroup>
+                          <tbody>
+                            <tr class="header sectionRow caseDroppable">
+                              <th class="drag-no">
+                                <div class="icon-dragnoblue"></div>
+                              </th>
+                              <th class="checkbox"><input type="checkbox" class="selectionCheckbox"
+                                  (click)="onSelectAll($event, section.value)"></th>
+                              <th>
+                                <a class="link-noline" title="ID"><span>ID</span></a>
+                                <div class="column-actions">
+                                </div>
+                              </th>
+                              <th>
+                                <a class="link-noline" title="Title" href="javascript:void(0)"
+                                  onclick="this.blur(); App.Suites.setCaseGrouping('cases:title'); return false;"><span>Title</span></a>
+                                <div class="column-actions">
+                                </div>
+                              </th>
+                              <th class="action"></th>
+                              <th class="action"></th>
+                              <th class="action columns" id="selectColumns-4">
+                                <span class="select"><a href="javascript:void(0)"
+                                    onclick="this.blur(); App.Suites.selectCaseColumns(4, 1); return false;">
+                                    <div class="icon-columns"></div>
+                                  </a></span><span class="busy">
+                                  <div class="icon-progress-inline"></div>
+                                </span>
+                              </th>
+                            </tr>
+                            <tr *ngFor="let testCase of section.value" class="caseRow row odd caseDroppable ">
+                              <td class="drag">
+                                <div class="caseDraggable dragdrop-action"></div>
+                              </td>
+                              <td class="checkbox">
+                                <input type="checkbox" value="{{testCase.caseId}}" class="selectionCheckbox"
+                                  name="{{testCase.caseId}}" id="testcase-{{testCase.caseId}}"
+                                  (change)="onSelectCase($event)">
+                              </td>
+                              <td class="id">
+                                <a class="link-noline" rel="keep-get">
+                                  {{testCase.caseId}}
+                                </a>
+                              </td>
+                              <td>
+                                <span class="case-deleted case-deleted-hidden" title="Test Case Deleted"></span>
+                                <a rel="keep-get" href="index.php?/cases/view/36">
+                                  <span class="title">{{testCase.caseName}}</span>
+                                </a>
+
+                                <a href="javascript:void(0)"
+                                  onclick="this.blur(); App.Cases.editTitle(36); return false;">
+                                  <div class="icon-small-edit action-hover hidden"></div>
+                                </a>
+                              </td>
+                              <td class="action">
+                                <a href="index.php?/cases/edit/36" rel="keep-get" class="editLink">
+                                  <div class="icon-small-edit hidden action-hover"></div>
+                                </a>
+                              </td>
+                              <td class="action">
+                                <a class="deleteLink" href="javascript:void(0)"
+                                  onclick="this.blur(); App.Cases.openDeletionDialog(36, false, true, false, false, ''); return false;">
+                                  <div class="icon-small-delete hidden action-hover"></div>
+                                </a>
+                                <span class="busy deleteBusy">
+                                  <div class="icon-progress-inline"></div>
+                                </span>
+                              </td>
+
+                              <td class="action">
+                                <a href="javascript:void(0)"
+                                  onclick="this.blur(); App.QPane.toggleRow(36); return false;"><span
+                                    class="action-expand">
+                                    <div class="icon-small-expandrow hidden action-hover"></div>
+                                  </span>
+                                  <span class="action-collapse hidden">
+                                    <div class="icon-small-collapserow"></div>
+                                  </span><span class="action-expanding busy">
+                                    <div class="icon-progress-inline"></div>
+                                  </span></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div id="selectCasesProgress" class="select-dialog-progress" style="display: none; padding-top: 241px;">
+            <div class="icon-progress-large" title="Loading..."></div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="dialog-buttons-pane-container">
+    <div class="button-group dialog-buttons-highlighted">
+      <button id="selectCasesSubmit" type="submit" (click)="submit()"
+        class="button button-left button-positive button-ok dialog-action-default">
+        OK </button>
+      <a id="selectCasesClose" (click)="close()"
+        class="button button-left button-negative button-cancel dialog-action-close">
+        Cancel </a>
+    </div>
+  </div>
+  <div class="ui-resizable-handle ui-resizable-n"></div>
+  <div class="ui-resizable-handle ui-resizable-e"></div>
+  <div class="ui-resizable-handle ui-resizable-s"></div>
+  <div class="ui-resizable-handle ui-resizable-w"></div>
+  <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se"
+    style="z-index: 1001;"></div>
+  <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div>
+  <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div>
+  <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div>
+</div>

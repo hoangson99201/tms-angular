@@ -24,32 +24,31 @@ export class TestcaseComponent {
       console.log(params);
       this.projectId = params['id'];
       console.log(this.projectId);
-    });
-    let id = 1;
-    this.testCaseService.findAllByProjectId(id).subscribe((testCases) => {
-      this.testCases = testCases;
-      this.map = new Map<string, TestCase[]>();
-      for (const testCase of testCases) {
-        if (!testCase.sectionName) continue;
-        let testCases = this.map.get(testCase.sectionName);
-        if (!testCases) {
-          this.map.set(testCase.sectionName, [testCase]);
-        } else {
-          testCases.push(testCase);
-        }
-      }
-      console.log(testCases);
-      console.log(this.map);
+      this.testCaseService
+        .findAllByProjectId(+this.projectId)
+        .subscribe((testCases) => {
+          this.testCases = testCases;
+          this.map = new Map<string, TestCase[]>();
+          for (const testCase of testCases) {
+            if (!testCase.sectionName) continue;
+            let testCases = this.map.get(testCase.sectionName);
+            if (!testCases) {
+              this.map.set(testCase.sectionName, [testCase]);
+            } else {
+              testCases.push(testCase);
+            }
+          }
+          console.log(testCases);
+          console.log(this.map);
+        });
     });
   }
 
   openDialog() {
-    console.log('here');
-
     const dialogRef = this.dialog.open(SectionDialogComponent, {
       data: {
-        type: 'add'
-      }
-    })
+        type: 'add',
+      },
+    });
   }
 }

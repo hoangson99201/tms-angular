@@ -8,6 +8,8 @@ import { User } from 'src/app/models/user';
 import { MilestoneService } from 'src/app/services/milestone.service';
 import { TestRunService } from 'src/app/services/test-run.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
 
 @Component({
   selector: 'app-add-test-run',
@@ -22,7 +24,8 @@ export class AddTestRunComponent implements OnInit {
     private toastr: ToastrService,
     private userService: UserService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   userId = 2;
@@ -34,6 +37,7 @@ export class AddTestRunComponent implements OnInit {
   };
   milestones: Milestone[] = [];
   users: User[] = [];
+  testCasesIdIncluded: string[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -94,5 +98,19 @@ export class AddTestRunComponent implements OnInit {
       result += '' + mm;
     }
     return result + '/' + yyyy;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(SelectCaseDialogComponent, {
+      data: {
+        id: this.testRun.projectId,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result && result.event != 'Cancel') {
+        this.testCasesIdIncluded = [...result.data]
+      }
+      console.log(this.testCasesIdIncluded);
+    });
   }
 }
