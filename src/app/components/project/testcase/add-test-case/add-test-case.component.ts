@@ -23,7 +23,8 @@ export class AddTestCaseComponent implements OnInit {
   };
   sections: Section[] = [];
   priorities: Priority[] = [];
-  mode: Mode = Mode.Create;
+  currentMode: Mode = Mode.Create;
+  Mode = Mode;
 
   constructor(
     private sectionService: SectionService,
@@ -36,17 +37,22 @@ export class AddTestCaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.mode = this.router.url.startsWith('/test-cases-edit/') ? Mode.Update : Mode.Create;
-    console.log('Current mode: ' + this.mode);
+    this.currentMode = this.router.url.startsWith('/test-cases-edit/') ? Mode.Update : Mode.Create;
+    console.log('Current mode: ' + this.currentMode);
 
     this.route.params.subscribe((params) => {
       console.log(params);
-      switch (this.mode) {
+      switch (this.currentMode) {
         case Mode.Create:
           this.testCase.projectId = params['id'];
+          this.getSectionsByProjectId(this.testCase.projectId);
           break;
         case Mode.Update:
-
+          this.testCaseService.findByTestCaseId(params['id'])
+            .subscribe(testCase => {
+              this.testCase = testCase;
+              this.getSectionsByProjectId(this.testCase.projectId);
+            })
           break;
         default:
           break;
@@ -60,6 +66,16 @@ export class AddTestCaseComponent implements OnInit {
       this.priorityService.findAll().subscribe((priorities) => {
         this.priorities = priorities;
       });
+    });
+  }
+
+  getSectionsByProjectId(projectId: number | undefined) {
+    if (!projectId) {
+      console.error('projectId is undefined');
+      return;
+    }
+    this.sectionService.findAllByProjectId(projectId).subscribe((sections) => {
+      this.sections = sections;
     });
   }
 
@@ -77,6 +93,20 @@ export class AddTestCaseComponent implements OnInit {
       error: (e) => {
         console.log(e);
         this.toastr.error('Add testcase failed', 'Error');
+      },
+    });
+  }
+
+  update() {
+    this.testCaseService.update(this.testCase).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Update test case success', 'Success');
+        this.router.navigateByUrl('/test-cases/' + this.testCase.projectId);
+      },
+      error: (e) => {
+        console.log(e);
+        this.toastr.error('Update test case failed', 'Error');
       },
     });
   }

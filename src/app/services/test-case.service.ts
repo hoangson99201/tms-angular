@@ -17,6 +17,16 @@ export class TestCaseService {
   }
 
   findAllByProjectId(projectId: number): Observable<TestCase[]> {
-    return this._http.get<TestCase[]>("/tms/api/v1/test-case/" + projectId);
+    return this._http.get<TestCase[]>("/tms/api/v1/project/" + projectId + "/test-case");
+  }
+
+  findByTestCaseId(testCaseId: number): Observable<TestCase> {
+    return this._http.get<TestCase>("/tms/api/v1/test-case/" + testCaseId);
+  }
+
+  update(testCase: TestCase): Observable<string> {
+    return this._http.put("/tms/api/v1/test-case", testCase, {
+      responseType: 'text'
+    });
   }
 }

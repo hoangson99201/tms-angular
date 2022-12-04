@@ -114,13 +114,9 @@
                           <a rel="keep-get" href="index.php?/cases/view/36">
                             <span class="title">{{testCase.caseName}}</span>
                           </a>
-
-                          <a href="javascript:void(0)" onclick="this.blur(); App.Cases.editTitle(36); return false;">
-                            <div class="icon-small-edit action-hover hidden"></div>
-                          </a>
                         </td>
                         <td class="action">
-                          <a href="index.php?/cases/edit/36" rel="keep-get" class="editLink">
+                          <a [routerLink]="['/test-cases-edit', testCase.caseId]" rel="keep-get" class="editLink">
                             <div class="icon-small-edit hidden action-hover"></div>
                           </a>
                         </td>
