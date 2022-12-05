@@ -49,11 +49,8 @@
       </div>
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result" style=""></div>
-          <span class="content-header-icon"><a class="dropdownLink link-tooltip" routerLink="#exportDropdown"
-              tooltip-header="Export Users" tooltip-text="Exports the Users into Excel/CSV format.">
-              <div class="icon-export"></div>
-            </a></span>
+          <div class="content-header-result"></div>
+
           <div class="content-header-title page_title">
             Users &amp; Roles </div>
         </div>
@@ -69,89 +66,43 @@
 
         <div id="activeDropdown" class="dropdown dropdown-menu activeDropdown" rel="" style="width: 100px">
           <ul>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Active</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Inactive</a></li>
+            <li><a class="dropdown-menu-link">Active</a></li>
+            <li><a class="dropdown-menu-link">Inactive</a></li>
           </ul>
         </div>
 
         <div id="roleDropdown" class="dropdown dropdown-menu roleDropdown" rel="" style="width: 125px">
           <ul>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">No Access</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Read-only</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Tester</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Designer</a></li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Lead</a></li>
+            <li><a class="dropdown-menu-link">No Access</a></li>
+            <li><a class="dropdown-menu-link">Read-only</a></li>
+            <li><a class="dropdown-menu-link">Tester</a></li>
+            <li><a class="dropdown-menu-link">Designer</a></li>
+            <li><a class="dropdown-menu-link">Lead</a></li>
           </ul>
         </div>
-
-        <div class="message message-help">
-          Learn more about <a routerLink="https://www.gurock.com/testrail/docs/user-guide/howto/permissions"
-            target="_blank">managing users, groups and permissions</a> and controlling project access.
-        </div>
-
 
         <input type="hidden" name="tab" id="tab">
 
         <div class="tabs tabs-users">
           <div class="tab-header">
-            <a routerLink="#" class="current tab1">
+            <a class=" tab1" [class]="displayTab == 'user' ? 'current' : ''" (click)="switchTab('user')">
               Users </a>
-            <a routerLink="#" class=" tab2">
-              Groups </a>
-            <a routerLink="#" class=" tab3">
+            <a class="tab3" [class]="displayTab == 'role' ? 'current' : ''" (click)="switchTab('role')">
               Roles </a>
 
           </div>
           <div class="tab-body tab-frame" id="users-tab-frame">
-            <div class="tab tab1 ">
-              <div class="users-overview-list">
-                <div style="height: 28px;">
-                  <div id="contentSticky">
-                    <div class="toolbar " id="contentToolbar">
-                      <a routerLink="#editDropdown" id="bulk-toolbar"
-                        class="toolbar-button button-responsive button-edit dropdownLink">
-                        <span class="button-text">Edit</span><span class="caret button-caret"></span>
-                      </a>
-                      <div class="toolbar-inner" id="contentToolbar">
-                        <input type="text" name="search" id="search_txt"
-                          class="form-control toolbar-search-box search-box-align"
-                          placeholder="Search name or email address">
-                        <ul class="toolbar-menu text-ppp">
-                          <li id="filterBy" class="toolbar-menu-item toolbar-menu-item-last text-ppp">
-                            Filter: <a class="link link-dashed" routerLink="javascript:void(0)" id="filterByChange">
-                              <span id="filterByEmpty" class="">
-                                None </span>
-                              <span id="filterByInfo" class="hidden toolbar-highlighted">
-                                [No filter set] </span>
-                            </a>
-                            <span class="busy">
-                              <div class="icon-progress-inline"></div>
-                            </span>
-                          </li>
-                        </ul>
-                        <span id="filterByReset" class="hidden">
-                          <a id="filterCasesReset" class="link-tooltip" routerLink="javascript:void(0)"
-                            tooltip-text="Remove filter and show all users.">
-                            <div class="icon-orderreset"></div>
-                          </a>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+            <div class="tab tab1 " *ngIf="displayTab == 'user'">
               <div id="editDropdown" class="dropdown dropdown-menu" style="width: 175px">
                 <ul>
                   <li id="bulk-toolbar-list">
-                    <a id="editBulkSelected" routerLink="javascript:void(0)"
-                      class="dropdown-menu-link link-tooltip cursor-pointer" tooltip-text="Edit all selected users."
-                      tooltip-position="left" rel="keep-get">
+                    <a id="editBulkSelected" class="dropdown-menu-link link-tooltip cursor-pointer"
+                      tooltip-text="Edit all selected users." tooltip-position="left" rel="keep-get">
                       Edit selected </a>
                   </li>
                   <li class="dropdown-menu-separator"></li>
                   <li>
-                    <a class="dropdown-menu-link link-tooltip cursor-pointer" routerLink="javascript:void(0)"
+                    <a class="dropdown-menu-link link-tooltip cursor-pointer"
                       tooltip-text="Edit all users in current view." tooltip-position="left" rel="keep-get">
                       Edit all in view </a>
                   </li>
@@ -163,118 +114,52 @@
               <div id="usersTable">
                 <table class="grid" id="example">
                   <colgroup>
-                    <col class="width-4">
                     <col class="width-24">
                     <col class="width-20">
-                    <col class="width-10">
-                    <col class="width-15">
-                    <col class="width-10">
+                    <!-- <col class="width-10"> -->
                     <col class="width-13">
-                    <col class="width-4">
                   </colgroup>
                   <tbody>
                     <tr class="header">
                       <th>
-                        <input type="checkbox" name="col1" id="selectall">
-                      </th>
-                      <th>
-                        <a class="link-noline" title="User" routerLink="javascript:void(0)">
+                        <a class="link-noline" title="User">
                           <div>User </div>
                         </a>
                       </th>
                       <th>
-                        <a class="link-noline" title="Email Address" routerLink="javascript:void(0)">
+                        <a class="link-noline" title="Email Address">
                           <div>Email Address </div>
                         </a>
                       </th>
-                      <th>
-                      </th>
-                      <th>
-                        <a class="link-noline" title="Last Active " routerLink="javascript:void(0)">
-                        </a>
-                        <div><a class="link-noline" title="Last Active " routerLink="javascript:void(0)">Last
-                            Active <div class="link-tooltip va-bottom icon-help"
-                              tooltip-text="Gurock does not monitor this timestamp for billing purposes">
-                            </div>
-                          </a> </div>
-                      </th>
-                      <th>
-                        <a class="link-noline" title="Status" routerLink="javascript:void(0)">
+                      <!-- <th>
+                        <a class="link-noline" title="Status">
                           <div>Status </div>
                         </a>
-                      </th>
+                      </th> -->
                       <th>
-                        <a class="link-noline" title="Role" routerLink="javascript:void(0)">
+                        <a class="link-noline" title="Role">
                           <div>Role </div>
                         </a>
                       </th>
-                      <th></th>
                     </tr>
                   </tbody>
                   <tbody>
-                    <tr class="even" id="user-1">
+                    <tr class="even" id="user-1" *ngFor="let user of usersArray">
                       <td>
-                        <input type="checkbox" name="color" class="source" value="1">
-                      </td>
-                      <td>
-                        <a routerLink="index.php?/admin/users/edit/1" class="user-name-col" title="Doan Khoa Bao">
-                          <span class="name">Doan Khoa Bao</span>
+                        <a routerLink="index.php?/admin/users/edit/1" class="user-name-col">
+                          <span class="name">{{user.fullname}}</span>
                         </a>
-                        <span class="text-highlighted">(Admin)</span>
+                        <span *ngIf="user.isProjectAdmin" class="text-highlighted"> (Admin)</span>
                       </td>
                       <td class="nolink">
-                        <span class="email" title="baodkse140180@fpt.edu.vn">doankhoabao@gmail.com </span>
+                        <span class="email">{{user.email}}</span>
                       </td>
-                      <td class="nolink">
-                      </td>
-                      <td class="nolink">
-                        <span class="last-active" title=""></span>
-                      </td>
-                      <td class="nolink">
-                        Active </td>
-
+                      <!-- <td class="nolink">
+                        Active
+                      </td> -->
                       <td class="nolink">
                         <a routerLink="#roleDropdown" rel="1" class="dropdownLink">
                           <span class="dropdown-icon-black"><span class="role">Lead</span></span>
-                        </a>
-                      </td>
-                      <td class="action">
-                        <a routerLink="editProfileUsers.jsp">
-                          <div class="icon-small-edit"></div>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="even" id="user-2">
-                      <td>
-                        <input type="checkbox" name="color" class="source" value="2">
-                      </td>
-                      <td>
-                        <a routerLink="index.php?/admin/users/edit/2" class="user-name-col" title="Do Thanh Tu">
-                          <span class="name">Do Thanh Tu</span>
-                        </a>
-                      </td>
-                      <td class="nolink">
-                        <span class="email" title="doankhoabao@gmail.com">thanhtudo@gmail.com </span>
-                      </td>
-                      <td class="nolink">
-                      </td>
-                      <td class="nolink">
-                        <span class="last-active" title=""></span>
-                      </td>
-                      <td class="nolink">
-                        <a routerLink="#activeDropdown" rel="2" class="dropdownLink">
-                          <span class="dropdown-icon-black"><span class="active">Active</span></span>
-                        </a>
-                      </td>
-
-                      <td class="nolink">
-                        <a routerLink="#roleDropdown" rel="2" class="dropdownLink">
-                          <span class="dropdown-icon-black"><span class="role">Tester</span></span>
-                        </a>
-                      </td>
-                      <td class="action">
-                        <a routerLink="editProfileUsers.jsp">
-                          <div class="icon-small-edit"></div>
                         </a>
                       </td>
                     </tr>
@@ -292,41 +177,11 @@
               </div>
               <div class="button-group grid-buttons">
                 <a routerLink="/user-role/add" class="button button-left button-add">
-                  Add User </a>
-                <a routerLink="#addManyUsers" class="button button-left button-add btn-left">
-                  Add Multiple Users </a>
+                  Add User
+                </a>
               </div>
             </div>
-
-            <div class="tab tab2 hidden">
-
-              <table class="grid">
-                <colgroup>
-                  <col class="users-groups-col-1">
-                  <col class="users-groups-col-2">
-                  <col class="action">
-                  <col class="action">
-                </colgroup>
-                <tbody>
-                  <tr class="header">
-                    <th>Group</th>
-                    <th>Users</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                  <tr>
-                    <td colspan="4">No user groups.</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="button-group grid-buttons">
-                <a routerLink="index.php?/admin/groups/add" class="button button-left button-add">
-                  Add Group </a>
-              </div>
-            </div>
-
-            <div class="tab tab3 hidden">
+            <div class="tab tab3" *ngIf="displayTab == 'role'">
               <table class="grid">
                 <colgroup>
                   <col>
@@ -339,83 +194,24 @@
                     <th></th>
                     <th></th>
                   </tr>
-                  <tr class="odd" id="role-5">
+                  <tr *ngFor="let role of rolesArray">
                     <td>
-                      <a routerLink="index.php?/admin/roles/edit/5"><span class="name">No
-                          Access</span></a>
+                      <a><span class="name">{{role.roleName}}</span></a>
                     </td>
                     <td class="action">
-                      <a routerLink="index.php?/admin/roles/edit/5">
+                      <!-- <a routerLink="index.php?/admin/roles/edit/5">
                         <div class="icon-small-edit"></div>
-                      </a>
-                    </td>
-                    <td class="action">
-                    </td>
-                  </tr>
-                  <tr class="even" id="role-4">
-                    <td>
-                      <a routerLink="index.php?/admin/roles/edit/4"><span class="name">Read-only</span></a>
-                    </td>
-                    <td class="action">
-                      <a routerLink="index.php?/admin/roles/edit/4">
-                        <div class="icon-small-edit"></div>
-                      </a>
-                    </td>
-                    <td class="action">
-                      <a routerLink="javascript:void(0)">
-                        <div class="icon-small-delete"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="odd" id="role-3">
-                    <td>
-                      <a routerLink="index.php?/admin/roles/edit/3"><span class="name">Tester</span></a>
-                    </td>
-                    <td class="action">
-                      <a routerLink="index.php?/admin/roles/edit/3">
-                        <div class="icon-small-edit"></div>
-                      </a>
-                    </td>
-                    <td class="action">
-                      <a routerLink="javascript:void(0)">
-                        <div class="icon-small-delete"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="even" id="role-2">
-                    <td>
-                      <a routerLink="index.php?/admin/roles/edit/2"><span class="name">Designer</span></a>
-                    </td>
-                    <td class="action">
-                      <a routerLink="index.php?/admin/roles/edit/2">
-                        <div class="icon-small-edit"></div>
-                      </a>
-                    </td>
-                    <td class="action">
-                      <a routerLink="javascript:void(0)">
-                        <div class="icon-small-delete"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="odd" id="role-1">
-                    <td>
-                      <a routerLink="index.php?/admin/roles/edit/1"><span class="name">Lead</span></a>
-                      <span class="text-highlighted">(Default)</span>
-                    </td>
-                    <td class="action">
-                      <a routerLink="index.php?/admin/roles/edit/1">
-                        <div class="icon-small-edit"></div>
-                      </a>
+                      </a> -->
                     </td>
                     <td class="action">
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <div class="button-group grid-buttons bottom">
+              <!-- <div class="button-group grid-buttons bottom">
                 <a routerLink="index.php?/admin/roles/add" class="button button-left button-add">
                   Add Role </a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -443,17 +239,6 @@
     <div id="sidebar" class="column sidebar" style="width: 250px">
 
       <app-sidebar></app-sidebar>
-      <div class="sidebar-inner">
-        <p class="top">
-          You have <strong class="text-softer">2</strong> active and <strong class="text-softer">0</strong> inactive
-          users. </p>
-        <div class="button-group grid-buttons" id="sidebar-add-users">
-          <a routerLink="/user-role/add" class="button button-left button-add add-white">
-            Add User </a>
-          <a routerLink="index.php?/admin/users/add_many" class="button button-left button-add add-white">
-            Add Multiple Users </a>
-        </div>
-      </div>
 
 
       <script type="text/javascript">
@@ -856,7 +641,7 @@
     </li>
     <li class="dropdown-menu-separator"></li>
     <li>
-      <a class="dropdown-menu-link" routerLink="javascript:void(0)">
+      <a class="dropdown-menu-link">
         About Test Management System </a>
     </li>
   </ul>
@@ -1023,7 +808,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" routerLink="javascript:void(0)">
+      <a class="link-noline nolink">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -1070,7 +855,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
+        <area shape="rect" coords="691,13,726,48">
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -1107,7 +892,7 @@
   <div style="width: 150px; height: 150px; "
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
     id="libraryAttachment-attachment_id" title="attachment_name">
-    <div class="attachment-icon" style=""></div>
+    <div class="attachment-icon"></div>
     <div class="attachment-name">
       attachment_truncated_name
     </div>
@@ -1220,7 +1005,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" routerLink="javascript:void(0)">
+      <a class="link-noline nolink">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -1267,7 +1052,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
+        <area shape="rect" coords="691,13,726,48">
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
