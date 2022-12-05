@@ -100,8 +100,11 @@
               style="margin-top: 5px; margin-left: 20px; padding-bottom: 15px;">
               <div class="form-message">
                 <span id="includeSpecificInfo">
-                  <strong>{{testCasesIdIncluded.length}}</strong> test cases included (<a class="" (click)="openDialog()">change
-                    selection</a>) </span>
+                  <strong>{{testCasesIdIncluded.length}}</strong> test cases included (<span
+                    style="color: #5993bc; text-decoration: none; background-color: transparent; cursor: pointer;"
+                    (click)="openDialog()">change
+                    selection</span>)
+                </span>
               </div>
             </div>
           </div>
@@ -126,17 +129,17 @@
         <div id="selectionDropdown" class="dropdown dropdown-menu" rel="itemPrev" style="width: 165px; z-index: 10000">
           <ul>
             <li>
-              <a id="selectCasesFilterSet" class="dropdown-menu-link" rel="1" >Set
+              <a id="selectCasesFilterSet" class="dropdown-menu-link" rel="1">Set
                 Selection</a>
             </li>
             <li class="dropdown-menu-separator"></li>
             <li>
-              <a id="selectCasesFilterAdd" class="dropdown-menu-link" rel="2" >Add To
+              <a id="selectCasesFilterAdd" class="dropdown-menu-link" rel="2">Add To
                 Selection</a>
             </li>
             <li class="dropdown-menu-separator"></li>
             <li>
-              <a id="selectCasesFilterRemove" class="dropdown-menu-link" rel="3" >Remove From
+              <a id="selectCasesFilterRemove" class="dropdown-menu-link" rel="3">Remove From
                 Selection</a>
             </li>
           </ul>
@@ -196,7 +199,7 @@
           <p class="">Delete this test run to remove it from your project.</p>
           <div class="sidebar-action">
             <span class="button button-negative button-delete">
-              <a  class="link-noline" >Delete this test run</a> </span>
+              <a class="link-noline">Delete this test run</a> </span>
           </div>
         </ng-template>
       </div>

@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
 import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
+import { Result } from 'src/app/models/result';
 
 @Component({
   selector: 'app-add-test-run',
@@ -28,7 +29,7 @@ export class AddTestRunComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   userId = 2;
   testRun: TestRun = {
@@ -39,7 +40,7 @@ export class AddTestRunComponent implements OnInit {
   };
   milestones: Milestone[] = [];
   users: User[] = [];
-  testCasesIdIncluded: string[] = [];
+  testCasesIdIncluded: number[] = [];
   currentMode: Mode = Mode.Create;
   Mode = Mode;
 
@@ -93,6 +94,14 @@ export class AddTestRunComponent implements OnInit {
   }
 
   submit() {
+    if (this.testCasesIdIncluded.length) {
+      let results: Result[] = this.testCasesIdIncluded.map(
+        caseId => ({
+          caseId: caseId
+        })
+      );
+      this.testRun.testRunResults = results;
+    }
     this.testRunService.create(this.testRun).subscribe({
       next: (res) => {
         console.log(res);
@@ -128,13 +137,15 @@ export class AddTestRunComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(SelectCaseDialogComponent, {
+    const dialogRef = this.dialog.open<SelectCaseDialogComponent, any, {
+      event: string, data?: number[]
+    }>(SelectCaseDialogComponent, {
       data: {
         id: this.testRun.projectId,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.event != 'Cancel') {
+      if (result && result.event != 'Cancel' && result.data) {
         this.testCasesIdIncluded = [...result.data];
       }
       console.log(this.testCasesIdIncluded);

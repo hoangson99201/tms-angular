@@ -27,12 +27,11 @@
                   <div id="selectCasesGroupContainer" class="select-dialog-group select-dialog-group-with-splitter"
                     style="min-width: 350px">
                     <div class="toolbar select-dialog-toolbar">
-                      <a id="selectCasesColumns"  style="margin-left: 8px"
-                        class="toolbar-button button-columns">
+                      <a id="selectCasesColumns" style="margin-left: 8px" class="toolbar-button button-columns">
                         Columns</a>
                       <div class="toolbar-inner">
-                        Select <a id="selectCasesGroupAll" class="link" >All</a> |
-                        <a id="selectCasesGroupNone" class="link" >None</a>
+                        Select <a id="selectCasesGroupAll" class="link">All</a> |
+                        <a id="selectCasesGroupNone" class="link">None</a>
                       </div>
                     </div>
                     <div id="selectCasesGroup">
@@ -141,12 +140,10 @@
                         <div class="grid-title">
                           <span class="title" id="sectionName-4">{{section.key}}</span>
                           <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                          <a style="margin-left: 5px"
-                            >
+                          <a style="margin-left: 5px">
                             <div class="icon-small-edit icon-small-inline"></div>
                           </a>
-                          <a style="margin-left: 5px"
-                            >
+                          <a style="margin-left: 5px">
                             <div class="icon-small-delete hidden action-hover"></div>
                           </a>
                           <span id="sectionBusy-4" class="busy" style="display: none;">
@@ -180,16 +177,14 @@
                                 </div>
                               </th>
                               <th>
-                                <a class="link-noline" title="Title"
-                                  ><span>Title</span></a>
+                                <a class="link-noline" title="Title"><span>Title</span></a>
                                 <div class="column-actions">
                                 </div>
                               </th>
                               <th class="action"></th>
                               <th class="action"></th>
                               <th class="action columns" id="selectColumns-4">
-                                <span class="select"><a
-                                    >
+                                <span class="select"><a>
                                     <div class="icon-columns"></div>
                                   </a></span><span class="busy">
                                   <div class="icon-progress-inline"></div>
@@ -212,23 +207,21 @@
                               </td>
                               <td>
                                 <span class="case-deleted case-deleted-hidden" title="Test Case Deleted"></span>
-                                <a rel="keep-get" >
+                                <a rel="keep-get">
                                   <span class="title">{{testCase.caseName}}</span>
                                 </a>
 
-                                <a
-                                  >
+                                <a>
                                   <div class="icon-small-edit action-hover hidden"></div>
                                 </a>
                               </td>
                               <td class="action">
-                                <a >
+                                <a>
                                   <div class="icon-small-edit hidden action-hover"></div>
                                 </a>
                               </td>
                               <td class="action">
-                                <a class="deleteLink"
-                                  >
+                                <a class="deleteLink">
                                   <div class="icon-small-delete hidden action-hover"></div>
                                 </a>
                                 <span class="busy deleteBusy">
@@ -237,9 +230,7 @@
                               </td>
 
                               <td class="action">
-                                <a
-                                  ><span
-                                    class="action-expand">
+                                <a><span class="action-expand">
                                     <div class="icon-small-expandrow hidden action-hover"></div>
                                   </span>
                                   <span class="action-collapse hidden">
@@ -272,9 +263,9 @@
       <button id="selectCasesSubmit" type="submit" (click)="submit()"
         class="button button-left button-positive button-ok dialog-action-default">
         OK </button>
-      <a id="selectCasesClose" (click)="close()"
+      <button id="selectCasesClose" (click)="close()"
         class="button button-left button-negative button-cancel dialog-action-close">
-        Cancel </a>
+        Cancel </button>
     </div>
   </div>
   <div class="ui-resizable-handle ui-resizable-n"></div>

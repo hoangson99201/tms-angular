@@ -15,9 +15,9 @@ export class SelectCaseDialogComponent implements OnInit {
     private testCaseService: TestCaseService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) document: Document
-  ) {}
+  ) { }
 
-  public selectedTestCases: string[] = [];
+  public selectedTestCases: number[] = [];
   public testCases: TestCase[] = [];
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public action: string = '';
@@ -57,9 +57,12 @@ export class SelectCaseDialogComponent implements OnInit {
   }
 
   onSelectAll(event: any, section_value: TestCase[]) {
-    let arrayTemp = section_value.map((a) => {
-      return a.caseId + '';
-    });
+    let arrayTemp: number[] = [];
+    for (const testCase of section_value) {
+      if (testCase.caseId) {
+        arrayTemp.push(testCase.caseId);
+      }
+    }
     if (event.target.checked) {
       this.selectedTestCases = arrayTemp;
       arrayTemp.forEach((a) => {

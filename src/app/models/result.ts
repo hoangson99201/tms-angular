@@ -3,5 +3,6 @@ export interface Result {
   status?: string,
   comment?: string,
   caseName?: string,
-  sectionName?: string
+  sectionName?: string,
+  caseId?: number
 }
