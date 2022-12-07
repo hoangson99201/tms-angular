@@ -101,62 +101,6 @@
     </div>
     <div id="sidebar" class="column sidebar" style="width: 250px">
 
-      <div class="sidebar-inner">
-
-        <input id="attachmentsToDelete" type="hidden">
-        <div id="entityAttachmentListWrapper-893b43d7-d4c4-4ef4-9541-62ac99a56a22" class="attachment-list-wrapper"
-          deleteids="">
-          <div id="entityAttachmentList" class="attachment-list dz-persistent">
-            <div id="entityAttachmentListAdd" style="display: none;" class="attachment-list-add"
-              >
-              <div class="attachment-list-add-icon"></div>
-            </div>
-            <div id="entityAttachmentListRemove" style="display: none;" class="attachment-list-delete"
-
-              >
-              <div class="attachment-list-delete-icon"></div>
-              <span>Delete</span>
-            </div>
-            <div id="entityAttachmentListEmptyIcon" class="attachment-list-empty-add"
-              >
-            </div>
-          </div>
-
-          <div id="entityAttachmentListDropzoneText" class="attachment-list-dropzone-text">
-            <span>Drop files here to attach,<br>or click on "+" to browse</span>
-          </div>
-          <div id="entityAttachmentListRemoveBottom" class="attachment-list-delete-text" style="display: none;"
-
-            >
-            <div class="attachment-list-delete-icon-red"></div><span>Delete</span>
-          </div>
-        </div>
-
-        <script type="text/javascript">
-          $(function () {
-            App.Attachments.init({
-              selector: '#entityAttachmentListWrapper-893b43d7-d4c4-4ef4-9541-62ac99a56a22 #entityAttachmentList',
-              itemsParent: '#entityAttachmentListWrapper-893b43d7-d4c4-4ef4-9541-62ac99a56a22',
-              inputParent: '#form',
-              project_id: 2,
-              entity_id: '',
-              entity_type: 'milestone',
-              clickable: false
-            });
-          }
-          );
-        </script>
-
-        <script type="text/javascript">
-          $(function () {
-            var wrapperParent = '#entityAttachmentListWrapper-893b43d7-d4c4-4ef4-9541-62ac99a56a22';
-            $(wrapperParent).attr('deleteIds', '');
-            App.Attachments.lazyLoad(wrapperParent + ' #entityAttachmentList', 0.35);
-            App.Attachments.dontShowEntityDeleteDialog = false;
-          });
-        </script>
-      </div>
-
       <script type="text/javascript">
         $(document).ready(function () {
           $('#start_on').datepicker({
@@ -278,13 +222,7 @@
 </script>
 
 
-<div id="userDropdown" class="dropdown dropdown-menu user-menu" rel="helpMenu" style="width: 125px">
-  <ul>
-    <li><a class="dropdown-menu-link" id="navigation-user-settings" href="mySettings.jsp">
-        My Settings</a></li>
-    <li><a class="dropdown-menu-link" id="navigation-user-logout" href="logout">Logout</a></li>
-  </ul>
-</div>
+
 <div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
   <div class="dialog-title"></div>
   <div class="dialog-body">
@@ -452,56 +390,6 @@
   });
 </script>
 
-
-<div id="helpDropdown" class="dropdown dropdown-menu help-menu" rel="helpMenu" style="width: 175px">
-  <ul>
-    <li>
-      <a class="dropdown-menu-link" target="_blank"
-        href="https://www.gurock.com/testrail/docs/user-guide/getting-started">
-        Test Management System User Guide </a>
-    </li>
-    <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/support">
-        Support &amp; Videos </a>
-    </li>
-    <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://forum.gurock.com/">
-        Community Forum </a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link" target="_blank"
-        href="https://www.gurock.com/testrail/docs/user-guide/howto/keyboard-shortcuts-hotkeys">
-        Keyboard Shortcuts </a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://blog.gurock.com/">
-        Gurock Blog </a>
-    </li>
-    <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://twitter.com/testrail">
-        Test Management System on Twitter </a>
-    </li>
-    <li>
-      <a class="dropdown-menu-link" target="_blank" href="http://www.gurock.com/testrail/">
-        Test Management System on the Web </a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link dropdown-menu-link-highlighted" target="_blank"
-        href="https://secure.gurock.com/customers/testrail/newsletter?email=baodkse140180@fpt.edu.vn">
-        Subscribe to Newsletter </a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link"
-        >
-        About Test Management System </a>
-    </li>
-  </ul>
-</div>
-
 <script type="text/javascript">
   $(document).ready(function () {
     $('#bannerLink').bubble({
@@ -663,8 +551,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink"
-        >
+      <a class="link-noline nolink">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -711,8 +598,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48"
-          >
+        <area shape="rect" coords="691,13,726,48">
         <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -748,15 +634,13 @@
 <div id="newAttachmentTemplate" style="display: none;">
   <div style="width: 150px; height: 150px; "
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-    id="libraryAttachment-attachment_id"
-    title="attachment_name">
+    id="libraryAttachment-attachment_id" title="attachment_name">
     <div class="attachment-icon"></div>
     <div class="attachment-name">
       attachment_truncated_name
     </div>
     <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
-    <div class="attachment-selection attachment_selected_class"
-      ></div>
+    <div class="attachment-selection attachment_selected_class"></div>
   </div>
 </div>
 <!-- <div id="libraryAttachmentsAddItemTemplate" style="display: none;">
@@ -864,8 +748,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink"
-        >
+      <a class="link-noline nolink">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -912,8 +795,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48"
-          >
+        <area shape="rect" coords="691,13,726,48">
         <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"

@@ -31,6 +31,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SelectCaseDialogComponent } from './components/project/test-run/add-test-run/select-case-dialog/select-case-dialog.component';
 import { ConfirmCloseDialogComponent } from './components/project/test-run/confirm-close-dialog/confirm-close-dialog.component';
+import { NewMenuComponent } from './shared/new-menu/new-menu.component';
+import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-project.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { ConfirmCloseDialogComponent } from './components/project/test-run/confi
     AddResultComponent,
     StatusDropdownComponent,
     SelectCaseDialogComponent,
-    ConfirmCloseDialogComponent
+    ConfirmCloseDialogComponent,
+    NewMenuComponent,
+    NewMenuProjectComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [

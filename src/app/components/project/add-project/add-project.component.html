@@ -1,8 +1,21 @@
-<app-menu></app-menu>
+<div class="page-side" style="height: -webkit-fill-available;">
+  <app-new-menu></app-new-menu>
 
-<div id="separator"></div>
-<div id="body-container" class="">
-  <div id="body" class="table" style="display: table;">
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+    media="all" />
+  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+
+  <div class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
@@ -16,7 +29,7 @@
           method="post">
           <div class="tabs">
             <div class="tab-header">
-              <a id="projects-tabs-project" class="tab1    hidden current" >
+              <a id="projects-tabs-project" class="tab1    hidden current">
                 Project </a>
             </div>
             <div class="tab-body tab-frame">
@@ -31,16 +44,6 @@
                 <div class="form-group">
                   <label for="announcement">
                     <span class="form-toolbar" style="padding-top: 0px">
-                      <a routerLink="javascript:void(0)"
-
-                        class="link-tooltip" tooltip-text="Add a table to this text field." tabindex="-1">
-                        <div class="icon-markdown-table"></div>
-                      </a>
-                      <a routerLink="https://www.gurock.com/testrail/docs/user-guide/getting-started/editor"
-                        class="link-tooltip" tooltip-text="Open the editor formatting reference." target="_blank"
-                        tabindex="-1">
-                        <div class="icon-markdown-help"></div>
-                      </a>
                     </span>
                     Announcement </label>
                   <div class="textarea-resizable">
@@ -75,7 +78,7 @@
     <div id="sidebar-splitter" class="column splitter sidebar-splitter">
     </div>
     <div id="sidebar" class="column sidebar" style="width: 250px">
-      <app-sidebar></app-sidebar>
+      <app-sidebar style="white-space:normal;"></app-sidebar>
     </div>
   </div>
 

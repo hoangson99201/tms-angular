@@ -1,19 +1,26 @@
-<app-menu></app-menu>
-<div id="separator"></div>
-<div id="body-container" class="">
-  <div id="body" class="table" style="display: table;">
+<!-- <app-menu></app-menu> -->
+
+<div class="page-side" style="height: -webkit-fill-available;">
+  <app-new-menu></app-new-menu>
+
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+    media="all" />
+  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+
+  <div class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
-          <div class="content-header-result"></div>
-          <span class="content-header-icon content-header-icon-combined"><a routerLink="javascript:void(0)"
-              class="link-tooltip" tooltip-header="Compact View"
-              tooltip-text="Displays the active projects as a compact list. Useful if you have many projects." >
-              <div class="icon-display-small-inactive"></div>
-            </a></span><span class="content-header-icon"><a routerLink="javascript:void(0)" class="link-tooltip"
-              tooltip-header="Detail View" tooltip-text="Displays the active projects with many details." >
-              <div class="icon-display-large"></div>
-            </a></span>
           <div class="content-header-title page_title">
             All Projects </div>
         </div>
@@ -24,10 +31,6 @@
       <div id="content-inner" class="content-inner ">
         <div id="content_container">
           <h1 class="top">Projects</h1>
-          <div id="favs" class="hidden">
-            <div class="table summary summary-auto">
-            </div>
-          </div>
           <h2 id="activeHeader" class="hidden">
             Active </h2>
           <div class="table summary summary-auto">
@@ -61,22 +64,6 @@
           </mat-paginator>
         </div>
 
-      </div>
-    </div>
-    <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-    </div>
-    <div id="qpane" class="column qpane" style="width: 600px; display: none">
-      <div id="qpane-empty" class="qpane-empty hidden">
-        <div class="qpane-empty-header">
-          No test case selected. </div>
-        <div class="qpane-empty-body">
-          You can select a different group or change the filters. </div>
-      </div>
-      <div id="qpane-inner">
-        <div id="qpaneSticky">
-          <div id="qpane-content">
-          </div>
-        </div>
       </div>
     </div>
     <div id="sidebar-splitter" class="column splitter sidebar-splitter">
