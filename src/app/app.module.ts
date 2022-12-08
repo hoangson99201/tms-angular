@@ -1,5 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -31,6 +31,9 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SelectCaseDialogComponent } from './components/project/test-run/add-test-run/select-case-dialog/select-case-dialog.component';
 import { ConfirmCloseDialogComponent } from './components/project/test-run/confirm-close-dialog/confirm-close-dialog.component';
+import { AuthInterceptor } from './core/authenticator';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/login/login.component';
 import { NewMenuComponent } from './shared/new-menu/new-menu.component';
 import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-project.component';
 
@@ -69,6 +72,7 @@ import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-proj
     StatusDropdownComponent,
     SelectCaseDialogComponent,
     ConfirmCloseDialogComponent,
+    LoginComponent,
     NewMenuComponent,
     NewMenuProjectComponent
   ],
@@ -89,7 +93,17 @@ import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-proj
     MatSelectModule,
     MatPaginatorModule
   ],
-  providers: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: AuthService.authServiceFactory,
+    deps: [AuthService],
+    multi: true
+  }, SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

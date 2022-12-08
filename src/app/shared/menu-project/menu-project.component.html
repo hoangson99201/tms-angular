@@ -8,17 +8,13 @@
       <div class="top-panel">
         <div class="top-panel-inner">
           <ul class="top-menu pull-right">
-            <li class="top-menu-item"><a id="inProgressLink" routerLink="javascript:void(0)"
-                >Working On <span class="caret"
-                  style="vertical-align: 2px"></span></a>
+            <li class="top-menu-item">
+              <a class="dropdownLink" id="navigation-user" routerLink="#userDropdown">
+                <span class="navigation-username">{{getFullname()}}</span>
+              </a>
             </li>
-            <li class="top-menu-item"><a class="dropdownLink" id="navigation-user" routerLink="#userDropdown"
-                title="Nguyen Tien Khoa"><span class="navigation-username">Nguyen Tien Khoa</span> <span class="caret"
-                  style="vertical-align: 2px"></span></a>
-            </li>
-            <li class="top-menu-item"><a class="dropdownLink top-menu-highlight" id="navigation-menu"
-                routerLink="#helpDropdown" tabindex="-1">Help &amp; Feedback <span class="caret top-menu-highlight"
-                  style="vertical-align: 2px"></span></a>
+            <li class="top-menu-item">
+              <span style="cursor: pointer;" class="navigation-username">Logout</span>
             </li>
           </ul>
           <div class="top-search">

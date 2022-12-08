@@ -1,0 +1,87 @@
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/auth-modern-combined.css"
+  media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/font.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/drilldown.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/brand/style.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/brand/brand-modern.css"
+  media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/assembla.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/banner-enterprise-modern.css"
+  media="all" />
+<link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.6.3001/css/autocomplete.css" media="all" />
+
+<div id="form" class="loginpage-form" style="margin: auto; padding-left: 0;">
+  <div class="logo loginpage-logo">
+    <a href="http://www.gurock.com/testrail/" target="_blank" class="logo-loginpage"></a>
+  </div>
+  <div id="form-inner">
+    <h1 class="loginpage-installationname">TestRail QA</h1>
+    <style>
+      input:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px white inset;
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+      }
+    </style>
+    <div id="content">
+      <h1 class="loginpage-login-text">Log into Your Account</h1>
+      <br />
+      <noscript>
+        <div class="loginpage-message-title-hint">
+          <div class="hint-alert"><img
+              src="https://static.testrail.io/7.5.6.3001/images/theme-modern/layout/warning-icon.svg" align="left"
+              height="18" width="16" />
+            <span class="hint-on-top">Warning!</span>
+          </div>
+          <div class="error-text"> Javascript is disabled in your web browser. Please enable Javascript, as Javascript
+            is required to use TestRail.</div>
+        </div>
+      </noscript>
+
+      <form
+        action="index.php?/auth/login/L21pbGVzdG9uZXMvb3ZlcnZpZXcvMS1iNTk1YmU1YmQxMTdjNjQ3ZmFmMDRiN2JkYTI1NDcyZjNkMmY0NTdjZWM1MWQ0MzlhZTdmY2NmM2JhNWRhZmMz"
+        method="post">
+
+
+        <div style="min-height:24px;"></div>
+
+        <div class="form-group" style='padding-bottom:10px'>
+          <div class='login-inputx'>
+            <input [(ngModel)]="user.email" id='name' class="login-input " type='text' name="name" id="name">
+
+            <label for='name' class="login-label">Email</label>
+          </div>
+        </div>
+
+
+        <div class="form-group" style='padding-bottom:10px; margin-top: -9px;'>
+          <div class=' login-inputx'>
+            <input [(ngModel)]="user.password" id='password' class="login-input " type='password' name="password"
+              id="password" autocomplete=off>
+            <label for='password' class="login-label">Password</label>
+          </div>
+        </div>
+        <div class='display-flex' style=" margin-bottom:40px;">
+          <div style="float:left;">
+          </div>
+        </div>
+
+        <button id='button_primary' (click)="submit()"
+          class="loginpage-button-sso-disable loginpage-button-sso-disable-hover  loginpage-button-sso-disable-active">
+          <span class="single-sign-on"> Log In</span>
+        </button>
+
+      </form>
+    </div>
+  </div>
+  <br />
+  <span class="loginpage-version">v7.5.6 Default (3001)</span>
+</div>
+
+
+<script type="text/javascript" src="https://static.testrail.io/7.5.6.3001/js/extensions-combined.js"></script>
+<script type="text/javascript" src="https://static.testrail.io/7.5.6.3001/js/application-combined.js"></script>
+
+<script type="text/javascript" id="js-js-indicator"
+  src="https://static.testrail.io/7.5.6.3001/js/indicator.js"></script>
+<script type="text/javascript" id="js-js-autocomplete"
+  src="https://static.testrail.io/7.5.6.3001/js/autocomplete.js"></script>

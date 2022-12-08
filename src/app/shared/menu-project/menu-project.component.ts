@@ -1,3 +1,5 @@
+import { User } from 'src/app/models/user';
+import { AuthService } from './../../services/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/services/project.service';
@@ -33,7 +35,10 @@ export class MenuProjectComponent implements OnInit {
     return this.project.projectName;
   }
 
-  public ngOnInit() {
-    console.log(this.projectId);
+  public ngOnInit() { }
+
+  public getFullname() {
+    console.log('activeUser' + AuthService.activeUser);
+    return AuthService.activeUser.fullname;
   }
 }

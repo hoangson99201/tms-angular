@@ -13,6 +13,7 @@ import { TestcaseComponent } from './components/project/testcase/testcase.compon
 import { AddUserComponent } from './components/project/add-project/manage-user-roles/add-user/add-user.component';
 import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
 import { DetailTestRunComponent } from './components/project/test-run/detail-test-run/detail-test-run.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,10 @@ const routes: Routes = [
     path: 'user-role/add',
     component: AddUserComponent,
   },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({
