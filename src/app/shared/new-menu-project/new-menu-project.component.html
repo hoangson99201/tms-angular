@@ -27,17 +27,19 @@
               data-content="Milestones">
               <i class="fad fa-paste icon-sidebar-milestone fa-fw"></i><span> Milestones</span></a></li>
 
-          <li class=""><a [routerLink]="['/test-runs', projectId]" data-content="Test
+          <li [class]="selectedMenu == 'test-runs' ? 'sidebar__menu__nav__item--selected' : '' ">
+            <a [routerLink]="['/test-runs', projectId]" data-content="Test
             Runs
             &amp;
             Results">
-              <i class="fad fa-th-large icon-sidebar-test fa-fw"></i><span> Test
-                Runs
-                &amp;
-                Results</span></a></li>
+              <i class="fad fa-th-large icon-sidebar-test fa-fw"></i><span> Test Runs &amp; Results</span>
+            </a>
+          </li>
 
-          <li class=""><a [routerLink]="['/test-cases', projectId]" dusk="workflowsLink" data-content="Workflows">
-              <i class="fad fa-project-diagram icon-sidebar-workflows fa-fw"></i><span> Test Cases</span></a></li>
+          <li [class]="selectedMenu == 'test-cases' ? 'sidebar__menu__nav__item--selected' : '' ">
+            <a [routerLink]="['/test-cases', projectId]" dusk="workflowsLink" data-content="Workflows">
+              <i class="fad fa-project-diagram icon-sidebar-workflows fa-fw"></i><span> Test Cases</span></a>
+          </li>
           <!--
           <li class=""><a href="https://csascas.testmo.net/admin/statuses" dusk="statusesLink" data-content="Statuses">
               <i class="fad fa-check-circle icon-sidebar-statuses fa-fw"></i><span> Statuses</span></a></li>

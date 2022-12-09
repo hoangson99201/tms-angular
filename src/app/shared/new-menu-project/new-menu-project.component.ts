@@ -8,8 +8,8 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./new-menu-project.component.scss'],
 })
 export class NewMenuProjectComponent {
-  constructor(private projectService: ProjectService) {}
-  public selectedMenu = 'overview';
+  constructor(private projectService: ProjectService) { }
+  @Input() public selectedMenu = 'overview';
   private project: Project = {
     projectName: '',
   };
@@ -36,7 +36,7 @@ export class NewMenuProjectComponent {
     return this.project.projectName;
   }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
 
   public getFullname() {
     console.log('activeUser' + AuthService.activeUser);
