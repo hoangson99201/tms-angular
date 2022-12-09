@@ -4,3 +4,15 @@
 .sidebar.sidebar--collapsed {
   width: 56px;
 }
+/* You can add global styles to this file, and also import other style files */
+::ng-deep .overlay-container {
+  overscroll-behavior: unset !important;
+  display: unset !important;
+  position: unset !important;
+  height: unset !important ;
+  width: unset !important;
+  background: unset !important;
+  overflow: unset !important;
+  opacity: unset !important;
+  transition: unset !important;
+}
