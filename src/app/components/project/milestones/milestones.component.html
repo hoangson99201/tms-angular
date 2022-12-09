@@ -1,352 +1,21 @@
-<app-menu-project [projectId]="projectId"></app-menu-project>
-<div id="separator"></div>
+<div class="page-side" style="height: -webkit-fill-available;">
+  <app-new-menu-project [projectId]="projectId"></app-new-menu-project>
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+    media="all" />
+  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
 
-<script type="text/javascript">
-  $(document).ready(function () {
-    App.Hotkeys.register(
-      'd',
-      function () {
-        App.Dialogs.message(
-          'No defect plugin configured for this installation.',
-          'Push New Defect'
-        );
-      }
-    );
-  });
-
-  $(document).ready(function () {
-    App.Translations.add(
-      "attachments_drop",
-      "Drop files here to attach, or click to browse.");
-    App.Translations.add(
-      "attachments_drop_image",
-      "Drop images here to embed, or click to browse.");
-    App.Translations.add(
-      "attachments_drop_image_nobrowse",
-      "Drop images here to embed.");
-    App.Translations.add(
-      "attachments_drop_notype",
-      "You can only add images to this text field (example: PNG or JPG files).");
-    App.Translations.add(
-      "attachments_drop_notype_canattach",
-      "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs.");
-    App.Translations.add(
-      "attachments_file_here",
-      "Drop file here, or click to browse.");
-    App.Translations.add(
-      "attachments_remove_image",
-      "Remove");
-    App.Translations.add(
-      "attachments_drop_notype_canattach_jira",
-      "You can only add images to this text field (example: PNG or JPG files).");
-    App.Translations.add(
-      "attachments_confirm_replace",
-      "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?");
-    App.Translations.add(
-      "attachments_replace_title",
-      "Replace?");
-    App.Translations.add(
-      "attachments_loading_error_title",
-      "Loading error");
-    App.Translations.add(
-      "attachments_loading_error_generic",
-      "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!");
-    App.Translations.add(
-      "attachment_info_all_projects",
-      "All Projects");
-    App.Translations.add(
-      "attachments_confirm_delete",
-      "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.");
-    App.Translations.add(
-      "attachments_delete",
-      "Delete");
-    App.Translations.add(
-      "attachment_upload_name_allowed",
-      "");
-  });
-</script>
-<script type="text/javascript">
-  $(document).ready(
-    function () {
-      App.Dropzone.init();
-    }
-  );
-
-  var Consts = {};
-  Consts.ajaxBaseUrl = 'index.php?';
-  Consts.ajaxErrorMessage = 'An error occurred during the last operation or your installation is currently in maintenance mode. Please try again or refresh the current page.';
-  Consts.ajaxCsrf = 'kyqRSAYnPxiKjL7HwuCW';
-  Consts.ajaxVersion = '7.5.5.2003';
-  Consts.resourceBaseUrl = 'https://static.testrail.io/7.5.5.2003/';
-  Consts.dialogTitleError = 'Error';
-  Consts.statusFailed = 5;
-  Consts.statusRetest = 4;
-  Consts.statusBlocked = 2;
-  Consts.statusPassed = 1;
-  Consts.statusUntested = 3;
-  Consts.statusDefault = 1;
-  Consts.minWidth = 700;
-  Consts.minWidthOffset = 300;
-  Consts.minWidthVariable = 50;
-
-  $(function () {
-    $(document).delegate('.dialog-buttons-highlighted .delete-entity-attachment-button-submit', 'click', function (evt) {
-      App.Attachments.dontShowEntityDeleteDialog = $('#deleteDontShowAgain').prop('checked');
-      App.Ajax.call({
-        target: '/mysettings/ajax_delete_entity_attachment_setting',
-        arguments: {
-          dont_show: $('#deleteDontShowAgain').prop('checked')
-        },
-        error: function error(data) {
-          App.Ajax.handleError(data);
-        }
-      });
-    });
-  });
-
-  $(document).ready(function () {
-    $('#bannerLink').bubble({
-      bubble: '#enterpriseBubble',
-      inContainer: true
-    });
-    $('#content').on('change', 'input:checkbox[name="entity_run"]', function () {
-      delselectAll(this, 'run')
-    });
-    $('#content').on('change', 'input:checkbox[name="entity_milestones"]', function () {
-      delselectAll(this, 'milestones')
-    });
-  });
-  function delselectAll(type, entity) {
-    let parent = $(type).data('option');
-    if (parent === undefined) {
-      $('input:checkbox[name=select_all]').each(function () {
-        let select = $(this).parent().closest('div').attr('id');
-        if ($('#' + select).find(type).length > 0) {
-          parent = select;
-        }
-      });
-    }
-    let selector = '#' + parent;
-    $(selector)
-      .find('input:checkbox[name="select_all"]')
-      .prop(
-        'checked',
-        $(selector + ' input:checked[name="entity_' + entity + '"]').length ===
-        $(selector + ' input:checkbox[name="entity_' + entity + '"]').length
-      );
-    $('#delete-' + entity).css(
-      'display',
-      $('input:checked[name="entity_' + entity + '"]').length > 0
-        ? 'block'
-        : 'none'
-    );
-  }
-
-  function SelectAllEntity(type) {
-    let parent = $(type).parent().closest('div').attr('id');
-    let checked_status = $(type).is(':checked');
-    $('#' + parent).find('input[type=checkbox]')
-      .attr('data-option', parent)
-      .not(':disabled')
-      .prop(
-        'checked',
-        checked_status
-      );
-    let selector = $('#' + parent).find('input:checkbox[name="entity_milestones"]').length
-      ? 'milestones'
-      : 'run';
-    $('#delete-' + selector).css(
-      'display',
-      checked_status && $('input:checked[name="entity_' + selector + '"]').length
-        ? 'block'
-        : 'none'
-    );
-  }
-
-
-  $(document).ready(
-    function () {
-      $('#integrationGoalToggle').unbind('click').click(
-        function () {
-          App.Users.setGoal(6, this.checked);
-        }
-      );
-    }
-  );
-
-  $(document).ready(
-    function () {
-      var timer = null;
-      $('#goals').unbind('mouseenter').bind('mouseenter', function () {
-        timer = setTimeout(
-          function () {
-            $('#goals-cancel').fadeTo(250, 1);
-          },
-          2500
-        );
-      });
-      $('#goals').unbind('mouseleave').bind('mouseleave', function () {
-        $('#goals-cancel').hide();
-        if (timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-      });
-    }
-  );
-
-  $(document).ready(
-    function () {
-      $('#integrationGoalToggle').unbind('click').click(
-        function () {
-          App.Users.setGoal(6, this.checked);
-        }
-      );
-    }
-  );
-
-  $(document).ready(
-    function () {
-      var timer = null;
-      $('#goals').unbind('mouseenter').bind('mouseenter', function () {
-        timer = setTimeout(
-          function () {
-            $('#goals-cancel').fadeTo(250, 1);
-          },
-          2500
-        );
-      });
-      $('#goals').unbind('mouseleave').bind('mouseleave', function () {
-        $('#goals-cancel').hide();
-        if (timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-      });
-    }
-  );
-  $(document).ready(function () {
-    App.Translations.add(
-      "timespans_hour_short",
-      "h");
-    App.Translations.add(
-      "timespans_minute_short",
-      "m");
-    App.Translations.add(
-      "timespans_second_short",
-      "s");
-  });
-
-  (function (apiKey) { // <-- passed in at the bottom
-    (function (p, e, n, d, o) {
-      var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
-      v = ['initialize', 'identify', 'updateOptions', 'pageLoad']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
-        o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
-      })(v[w]);
-      // Create a `<script>` tag linked to your application-specific Agent build from our CDN...
-      y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
-      z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
-    })(window, document, 'script', 'pendo');
-    pendo.initialize({
-      sanitizeUrl: function (url) {
-        return url.replace('index.php?', 'index.php')
-      },
-      visitor: {
-        id: '728981-1',
-        is_admin: true,
-        is_active: true
-      },
-      account: {
-        id: '728981'
-      }
-    });
-  })('1c20428c-1995-4c00-6e1c-daff12af9c00');
-
-  $(function () {
-    App.Sidebar.init();
-  });
-
-  $(document).ready(function () {
-    App.Translations.add(
-      "attachments_drop",
-      "Drop files here to attach, or click to browse.");
-    App.Translations.add(
-      "attachments_drop_image",
-      "Drop images here to embed, or click to browse.");
-    App.Translations.add(
-      "attachments_drop_image_nobrowse",
-      "Drop images here to embed.");
-    App.Translations.add(
-      "attachments_drop_notype",
-      "You can only add images to this text field (example: PNG or JPG files).");
-    App.Translations.add(
-      "attachments_drop_notype_canattach",
-      "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs.");
-    App.Translations.add(
-      "attachments_file_here",
-      "Drop file here, or click to browse.");
-    App.Translations.add(
-      "attachments_remove_image",
-      "Remove");
-    App.Translations.add(
-      "attachments_drop_notype_canattach_jira",
-      "You can only add images to this text field (example: PNG or JPG files).");
-    App.Translations.add(
-      "attachments_confirm_replace",
-      "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?");
-    App.Translations.add(
-      "attachments_replace_title",
-      "Replace?");
-    App.Translations.add(
-      "attachments_loading_error_title",
-      "Loading error");
-    App.Translations.add(
-      "attachments_loading_error_generic",
-      "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!");
-    App.Translations.add(
-      "attachment_info_all_projects",
-      "All Projects");
-    App.Translations.add(
-      "attachments_confirm_delete",
-      "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently.");
-    App.Translations.add(
-      "attachments_delete",
-      "Delete");
-    App.Translations.add(
-      "attachment_upload_name_allowed",
-      "");
-  });
-
-  $(document).ready(
-    function () {
-      App.Dropzone.init();
-    }
-  );
-
-  $(document).ready(function () {
-    App.Attachments.orderByOptions = { "created_on": "Date", "name": "Name", "size": "Size" };
-    var defaultTimeout = null;
-    $('#libraryAttachmentsSearch').keyup(function () {
-      if (defaultTimeout != null) clearTimeout(defaultTimeout);
-      defaultTimeout = setTimeout(
-        function () {
-          defaultTimeout = null;
-          App.Attachments.reloadRepository();
-        },
-        500
-      );
-    });
-  });
-</script>
-
-<script type="text/javascript">
-  $("#sites").prop("selectedIndex", 0);
-</script>
-
-<div id="body-container" class="">
-  <div id="body" class="table" style="display: table;">
+  <div class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
-
 
       <div id="content-header" class="content-header content-header-default">
         <div class="content-header-inner">
@@ -355,15 +24,6 @@
         </div>
       </div>
       <div id="content-inner" class="content-inner goals-clear">
-
-        <!-- <div id="defectDropdown" class="dropdown dropdown-menu dropdown-menu-grouped dropdown-menu-defect">
-          <ul>
-
-
-          </ul>
-        </div> -->
-
-
 
         <div id="upcomingHelp" class="tooltip tooltip-help">
           <div class="tooltip-help-body">
@@ -726,8 +386,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" routerLink="javascript:void(0)"
-        >
+      <a class="link-noline nolink" routerLink="javascript:void(0)">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -774,8 +433,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          >
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -789,15 +447,13 @@
 <div id="newAttachmentTemplate" style="display: none;">
   <div style="width: 150px; height: 150px; "
     class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-    id="libraryAttachment-attachment_id"
-    title="attachment_name">
-    <div class="attachment-icon" ></div>
+    id="libraryAttachment-attachment_id" title="attachment_name">
+    <div class="attachment-icon"></div>
     <div class="attachment-name">
       attachment_truncated_name
     </div>
     <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror" class="hidden-image">
-    <div class="attachment-selection attachment_selected_class"
-      ></div>
+    <div class="attachment-selection attachment_selected_class"></div>
   </div>
 </div>
 <!-- <div id="libraryAttachmentsAddItemTemplate" >
@@ -902,8 +558,7 @@
 <div id="goals" class="goals">
   <div id="goals-banner" class="goals-banner ">
     <span id="goals-cancel" class="goals-cancel hidden">
-      <a class="link-noline nolink" routerLink="javascript:void(0)"
-        >
+      <a class="link-noline nolink" routerLink="javascript:void(0)">
         <div class="icon-cancel"></div>
       </a>
     </span>
@@ -950,8 +605,7 @@
     <div id="goals-next" class="goals-next hidden">
       <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap" class="goal-next">
       <map name="goalsNextMap">
-        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)"
-          >
+        <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
         <area shape="rect" coords="64,305,254,339" target="_blank" routerLink="http://www.gurock.com/testrail/support">
         <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
         <area shape="rect" coords="496,305,686,339" target="_blank"
@@ -990,8 +644,7 @@
         <strong class="attachment-library-title">Media Library</strong>
         <a id="libraryAddAttachment" class="button button-left button-add">Add New</a>
         <a id="libraryDeleteAttachment" style="display: none;" class="button button-left button-negative button-delete"
-          routerLink="javascript:void(0)"
-          >Delete</a>
+          routerLink="javascript:void(0)">Delete</a>
       </div>
 
       <div style="float: right">
@@ -1005,16 +658,14 @@
             <div class="icon-desc"></div>
           </span>
           &nbsp;|&nbsp;
-          Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
-
-            id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
-              id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
+          Filter: <a class="link link-dashed" routerLink="javascript:void(0)" id="attachmentFilterByChange"><span
+              id="attachmentFilterByEmpty" class="">None</span><span id="attachmentFilterByInfo"
+              class="hidden toolbar-highlighted"></span></a>
           <span id="attachmentFilterByBusy" class="busy">
             <div class="icon-progress-inline"></div>
           </span>
           <span id="attachmentFilterByReset" class="hidden">
-            <a routerLink="javascript:void(0)"
-              class="link-tooltip" tooltip-text="Reset filters">
+            <a routerLink="javascript:void(0)" class="link-tooltip" tooltip-text="Reset filters">
               <div class="icon-orderreset"></div>
             </a>
           </span>
@@ -1024,14 +675,11 @@
 
         <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown" style="position: fixed; width: 100px">
           <ul>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                >Date</a>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Date</a>
             </li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                >Name</a>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Name</a>
             </li>
-            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)"
-                >Size</a>
+            <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Size</a>
             </li>
           </ul>
         </div>
