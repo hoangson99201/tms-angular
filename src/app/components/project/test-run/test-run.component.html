@@ -1,8 +1,20 @@
-<app-menu-project [projectId]="projectId"></app-menu-project>
+<div class="page-side" style="height: -webkit-fill-available;">
+  <app-new-menu-project [projectId]="projectId"></app-new-menu-project>
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
+    media="all" />
+  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+    media="all" />
+  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
 
-<div id="separator"></div>
-<div id="body-container" class="">
-  <div id="body" class="table" style="display: table;">
+  <div class="table" style="display: table;">
     <div id="content" class="column content overflow-content">
 
       <div id="content-header" class="content-header content-header-default">
@@ -79,7 +91,7 @@
                   <tbody>
                     <tr class="odd hoverSensitive" id="run-22">
                       <td>
-                        <a >Test Run 11/18/2022</a>
+                        <a>Test Run 11/18/2022</a>
                       </td>
                       <td class="sub right">
                         0%
@@ -87,7 +99,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-16">
                       <td>
-                        <a >Release 1.1: Run 1 (smoke test)</a>
+                        <a>Release 1.1: Run 1 (smoke test)</a>
                       </td>
                       <td class="sub right">
                         30%
@@ -108,7 +120,7 @@
                   <tbody>
                     <tr class="odd hoverSensitive" id="run-9">
                       <td>
-                        <a >Release 1.0: Run 1 (smoke test)</a>
+                        <a>Release 1.0: Run 1 (smoke test)</a>
                       </td>
                       <td class="sub right">
                         52%
@@ -116,7 +128,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-6">
                       <td>
-                        <a >Beta 1.0: Run 1 (alpha fixes)</a>
+                        <a>Beta 1.0: Run 1 (alpha fixes)</a>
                       </td>
                       <td class="sub right">
                         29%
@@ -124,7 +136,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-5">
                       <td>
-                        <a >Beta 1.0: Run 2 (feature freeze)</a>
+                        <a>Beta 1.0: Run 2 (feature freeze)</a>
                       </td>
                       <td class="sub right">
                         28%
@@ -132,7 +144,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-4">
                       <td>
-                        <a >Beta 1.0: Run 3 (final run)</a>
+                        <a>Beta 1.0: Run 3 (final run)</a>
                       </td>
                       <td class="sub right">
                         61%
@@ -140,7 +152,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-3">
                       <td>
-                        <a >Alpha 1.0: Run 1 (smoke test)</a>
+                        <a>Alpha 1.0: Run 1 (smoke test)</a>
                       </td>
                       <td class="sub right">
                         46%
@@ -148,7 +160,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-2">
                       <td>
-                        <a >Alpha 1.0: Run 2</a>
+                        <a>Alpha 1.0: Run 2</a>
                       </td>
                       <td class="sub right">
                         59%
@@ -156,7 +168,7 @@
                     </tr>
                     <tr class="odd hoverSensitive" id="run-1">
                       <td>
-                        <a >Alpha 1.0: Run 3 (final run)</a>
+                        <a>Alpha 1.0: Run 3 (final run)</a>
                       </td>
                       <td class="sub right">
                         58%
@@ -188,10 +200,10 @@
     </div>
     <div id="sidebar-splitter" class="column splitter sidebar-splitter">
     </div>
-    <div id="sidebar" class="column sidebar" style="width: 250px">
+    <div id="sidebar" class="column sidebar" style="width: 250px; white-space: unset;">
       <div class="dialog bulk-delete-dialog" id="bulkDeleteDialog">
         <div class="dialog-title">Confirmation</div>
-        <div class="dialog-body">
+        <div class="dialog-body">`
           <p class="top bottom dialog-message"><strong>Really delete these test runs?</strong>
             This also deletes all tests &amp; <br> results in these runs and cannot be undone.
           </p>
