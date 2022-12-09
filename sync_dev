@@ -1,0 +1,4 @@
+rm -fr dist
+ng build --base-href=/tms/ --configuration production
+
+rsync -av --progress --delete --rsh='ssh' dist/tms/ root@35.225.210.195:/opt/tms-angular/
