@@ -1,18 +1,32 @@
-.sidebar{
+.sidebar {
   width: 220px;
 }
+
 .sidebar.sidebar--collapsed {
   width: 56px;
 }
+
 /* You can add global styles to this file, and also import other style files */
 ::ng-deep .overlay-container {
   overscroll-behavior: unset !important;
   display: unset !important;
   position: unset !important;
-  height: unset !important ;
+  height: unset !important;
   width: unset !important;
   background: unset !important;
   overflow: unset !important;
   opacity: unset !important;
   transition: unset !important;
+}
+
+.sidebar__menu__nav>ul>li>a:active,
+.sidebar__menu__nav>ul>li>a:focus,
+.sidebar__menu__nav>ul>li>a:hover,
+.sidebar__footer>a:hover,
+.sidebar__menu__nav>ul>li.sidebar__menu__nav__item--selected {
+  background: #ffc68c;
+}
+
+.sidebar__footer {
+  border-top: 1px solid #ffc68c;
 }
