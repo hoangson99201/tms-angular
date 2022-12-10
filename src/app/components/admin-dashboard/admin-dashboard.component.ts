@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { BasePaginator } from 'src/app/core/base-paginator';
 import { Project } from 'src/app/models/project';
@@ -22,11 +23,15 @@ export class AdminDashboardComponent extends BasePaginator implements OnInit {
   activeProject = 0;
   completedProject = 0;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private authService: AuthService) {
     super();
   }
 
   ngOnInit(): void {
     this.refresh();
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

@@ -46,6 +46,10 @@ export class AuthService {
     );
   }
 
+  isActive(functionalityName: string): boolean {
+    return AuthService.activeUser.functionalities?.find(f => f.functionalityName?.toUpperCase() === functionalityName.toUpperCase()) ? true : false;
+  }
+
   static authServiceFactory(authService: AuthService): Function {
     return () => authService.load();
   }

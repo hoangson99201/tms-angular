@@ -31,7 +31,7 @@
         $("#sites").prop("selectedIndex", 0);
       </script>
       <div id="content-inner" class="content-inner ">
-        <div id="content_container">
+        <div id="content_container" *ngIf="isActive('DASHBOARD')">
           <h1 class="top">Projects</h1>
           <h2 id="activeHeader" class="hidden">
             Active </h2>
@@ -73,8 +73,9 @@
     <div id="sidebar" class="column sidebar" style="width: 250px">
 
       <div class="sidebar-inner">
-        <a id="sidebar-projects-add" class="sidebar-button" routerLink="project/add">
-          Add Project </a>
+        <a id="sidebar-projects-add" class="sidebar-button" routerLink="project/add" *ngIf="isActive('ADD_PROJECT')">
+          Add Project
+        </a>
         <p class="top">
           <strong class="text-softer">{{activeProject}}</strong> active and <strong
             class="text-softer">{{completedProject}}</strong> completed projects.
