@@ -37,6 +37,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewMenuComponent } from './shared/new-menu/new-menu.component';
 import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-project.component';
 import { SearchComponent } from './shared/search/search.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { SearchComponent } from './shared/search/search.component';
     LoginComponent,
     NewMenuComponent,
     NewMenuProjectComponent,
-    SearchComponent
+    SearchComponent,
+    HeaderComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [

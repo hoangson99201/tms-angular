@@ -4,80 +4,7 @@
   <app-new-menu></app-new-menu>
   <div>
     <section>
-      <header>
-        <div class="navbar" data-controller="layout--navbar" dusk="navbar">
-          <div class="navbar__branding">
-            <a tabindex="-1" href="https://csascas.testmo.net" class="navbar__branding__logo" dusk="logoLink"><img
-                src="https://static.testmo.net/v1-6263-a41366a/images/branding/logo-light.svg"></a>
-            <a tabindex="-1" href="https://csascas.testmo.net" class="navbar__branding__mark"><img
-                src="https://static.testmo.net/v1-6263-a41366a/images/branding/mark.svg"></a>
-          </div>
-
-          <div class="navbar__menu">
-            <ul>
-              <li class=""><a href="https://csascas.testmo.net" data-content="Projects"
-                  dusk="projectsLink"><span>Projects</span><i class="fad fa-paste icon-navbar-projects fa-fw"></i></a>
-              </li>
-
-
-              <li class=""><a href="https://csascas.testmo.net/todos" data-content="My work" dusk="todosLink"><span>My
-                    work</span><i class="fad fa-check-square icon-navbar-todos fa-fw"></i></a></li>
-
-            </ul>
-
-            <ul>
-              <li class="navbar__menu__item--selected"><a href="https://csascas.testmo.net/admin" data-content="Admin"
-                  dusk="adminLink"><span>Admin</span><i class="fad fa-cog icon-navbar-admin fa-fw"></i></a></li>
-            </ul>
-          </div>
-
-
-          <div class="navbar__trial">
-            <a class="navbar__trial__button help" data-inline="true" dusk="trialNoticeButton" data-ui-tooltip="true">
-              <span class="navbar__trial__button__main">Trial</span>
-              <span class="navbar__trial__button__secondary">(11 days left)</span>
-            </a>
-
-            <div class="tooltip-content">
-              <div class="navbar-trial-popup">
-                <div class="popup__tooltip__title">
-                  Testmo Trial
-                  <span class="popup__tooltip__title__secondary">(11 days left)</span>
-                </div>
-                <div class="popup__tooltip__content">
-                  Thank you for trying Testmo. You can manage your trial &amp; subscription below. Have any questions?
-                  Please
-                  just <u><a href="https://www.testmo.com/support" target="_blank" data-turbolinks="false"
-                      rel="noopener">contact us</a></u>. </div>
-                <div class="popup__tooltip__actions"><a class="ui button popup-hide" dusk="manageSubscriptionButton"
-                    href="https://csascas.testmo.net/admin/subscription">Manage subscription</a></div>
-              </div>
-            </div>
-
-          </div>
-          <div class="navbar__user">
-            <div class="navbar__user__icon">
-              <div class="navbar__user__icon__link
-                      " data-target="layout--navbar.notificationMenu" dusk="notificationMenuIcon"><i
-                  class="fas fa-bell icon-navbar-notification fa-fw"></i></div>
-            </div>
-            <div class="navbar__user__icon">
-              <div class="navbar__user__icon__link" data-target="layout--navbar.helpMenu" dusk="helpMenuIcon"><i
-                  class="far fa-question-circle icon-navbar-help fa-fw"></i></div>
-            </div>
-            <div class="navbar__user__avatar">
-              <div class="navbar__user__avatar__link" data-target="layout--navbar.userMenu" dusk="userMenuIcon">
-                <div class="avatar avatar--person  avatar--32         ">
-                  <div class="avatar__text avatar__text--color2">
-                    <div class="avatar__text__identifier">a</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <app-header></app-header>
       <div>
         <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
           media="all" />
@@ -105,7 +32,6 @@
                 <div class="content-header-title page_title">
                   All Projects
                 </div>
-                <app-search></app-search>
               </div>
             </div>
             <script type="text/javascript">

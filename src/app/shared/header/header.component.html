@@ -1,0 +1,26 @@
+<header>
+    <div class="navbar" data-controller="layout--navbar" dusk="navbar">
+        <div class="navbar__menu">
+            <ul>
+                <li class="navbar__menu__item--selected"><a href="https://csascas.testmo.net/admin" data-content="Admin"
+                        dusk="adminLink"><span>Admin</span><i class="fad fa-cog icon-navbar-admin fa-fw"></i></a></li>
+            </ul>
+        </div>
+
+
+        <div class="navbar__trial">
+            <app-search></app-search>
+        </div>
+        <div class="navbar__user">
+            <div class="navbar__user__avatar">
+                <div class="navbar__user__avatar__link" data-target="layout--navbar.userMenu" dusk="userMenuIcon">
+                    <div class="avatar avatar--person  avatar--32         ">
+                        <div class="avatar__text avatar__text--color2">
+                            <div class="avatar__text__identifier">a</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
