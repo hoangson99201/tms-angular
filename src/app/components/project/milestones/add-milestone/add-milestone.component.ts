@@ -18,7 +18,7 @@ export class AddMilestoneComponent implements OnInit {
     private toastr: ToastrService,
     private location: Location,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -32,12 +32,6 @@ export class AddMilestoneComponent implements OnInit {
     projectId: 0,
     milestoneName: '',
     completed: false,
-  };
-  configStartDate: IDatePickerDirectiveConfig = {
-    format: 'YYYY-MM-DD',
-  };
-  configEndDate: IDatePickerDirectiveConfig = {
-    format: 'YYYY-MM-DD',
   };
 
   cancel() {
