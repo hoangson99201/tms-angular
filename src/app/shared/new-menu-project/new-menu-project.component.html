@@ -19,11 +19,6 @@
               <i class="fad fa-chart-bar icon-sidebar-overview fa-fw"></i>
               <span> Dashboard</span></a></li>
         </ul>
-        <div class="sidebar__menu__nav__header">Security</div>
-        <ul>
-          <li class=""><a routerLink="/users-roles" data-content="Users & roles">
-              <i class="fad fa-users icon-sidebar-users fa-fw"></i><span> Users & roles</span></a></li>
-        </ul>
         <div class="sidebar__menu__nav__header">Project</div>
         <ul>
           <li [class]="selectedMenu == 'overview' ? 'sidebar__menu__nav__item--selected' : '' "><a
@@ -49,31 +44,18 @@
             <a [routerLink]="['/test-cases', projectId]" dusk="workflowsLink" data-content="Workflows">
               <i class="fad fa-project-diagram icon-sidebar-workflows fa-fw"></i><span> Test Cases</span></a>
           </li>
-          <!--
-          <li class=""><a href="https://csascas.testmo.net/admin/statuses" dusk="statusesLink" data-content="Statuses">
-              <i class="fad fa-check-circle icon-sidebar-statuses fa-fw"></i><span> Statuses</span></a></li>
-
-          <li class=""><a href="https://csascas.testmo.net/admin/milestones" dusk="milestonesLink"
-              data-content="Milestones">
-              <i class="fad fa-flag icon-sidebar-milestones fa-fw"></i><span> Milestones</span></a></li>
-
-          <li class=""><a href="https://csascas.testmo.net/admin/configs" dusk="configurationsLink"
-              data-content="Configurations">
-              <i class="fad fa-layer-group icon-sidebar-configurations fa-fw"></i><span> Configurations</span></a>
-          </li>
-
-          <li class=""><a href="https://csascas.testmo.net/admin/integrations" dusk="integrationsLink"
-              data-content="Integrations">
-              <i class="fad fa-puzzle-piece icon-sidebar-integrations fa-fw"></i><span> Integrations</span></a></li>
-
-          <li class=""><a href="https://csascas.testmo.net/admin/automation" dusk="automationLink"
-              data-content="Automation">
-              <i class="fad fa-cogs icon-sidebar-automation fa-fw"></i><span> Automation</span></a></li> -->
         </ul>
 
-
+        <div class="sidebar__menu__nav__header">Security</div>
+        <ul>
+          <li class=""><a routerLink="/users-roles" data-content="Users & roles">
+              <i class="fad fa-users icon-sidebar-users fa-fw"></i><span> Users & roles</span></a></li>
+        </ul>
+        <ul>
+          <li class=""><a data-content="Logout">
+              <i class="fad fa-sign-out icon-sidebar-users fa-fw"></i><span> Logout</span></a></li>
+        </ul>
       </div>
-
       <div class="sidebar__menu__nav sidebar__menu__nav--compact">
         <ul>
           <li>
