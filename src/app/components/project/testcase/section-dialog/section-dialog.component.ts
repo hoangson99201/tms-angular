@@ -1,8 +1,8 @@
-import { ToastrService } from 'ngx-toastr';
-import { SectionService } from 'src/app/services/section.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Section } from 'src/app/models/section';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'app-section-dialog',
@@ -24,6 +24,7 @@ export class SectionDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
     this.dialogType = this.data && this.data.type ? this.data.type : '';
+    this.section.projectId = this.data?.projectId;
   }
   close() {
     this.sectionDialog.close();

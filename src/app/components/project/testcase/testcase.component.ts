@@ -15,7 +15,7 @@ export class TestcaseComponent {
     private route: ActivatedRoute,
     private testCaseService: TestCaseService,
     public dialog: MatDialog
-  ) {}
+  ) { }
   public projectId: string = '';
   public testCases: TestCase[] = [];
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
@@ -48,6 +48,7 @@ export class TestcaseComponent {
     const dialogRef = this.dialog.open(SectionDialogComponent, {
       data: {
         type: 'add',
+        projectId: parseInt(this.projectId)
       },
     });
   }
