@@ -19,6 +19,11 @@
               <i class="fad fa-chart-bar icon-sidebar-overview fa-fw"></i>
               <span> Dashboard</span></a></li>
         </ul>
+        <div class="sidebar__menu__nav__header">Security</div>
+        <ul>
+          <li class=""><a routerLink="/users-roles" data-content="Users & roles">
+              <i class="fad fa-users icon-sidebar-users fa-fw"></i><span> Users & roles</span></a></li>
+        </ul>
         <div class="sidebar__menu__nav__header">Project</div>
         <ul>
           <li [class]="selectedMenu == 'overview' ? 'sidebar__menu__nav__item--selected' : '' "><a
@@ -66,29 +71,7 @@
               <i class="fad fa-cogs icon-sidebar-automation fa-fw"></i><span> Automation</span></a></li> -->
         </ul>
 
-        <div class="sidebar__menu__nav__header">Security</div>
-        <ul>
-          <li class=""><a dusk="usersLink" data-content="Users & roles">
-              <i class="fad fa-users icon-sidebar-users fa-fw"></i><span> Users & roles</span></a></li>
 
-          <li class=""><a dusk="authLink" data-content="Authentication">
-              <i class="fad fa-lock-alt icon-sidebar-auth fa-fw"></i><span> Authentication</span></a></li>
-
-          <li class=""><a dusk="auditingLink" data-content="Auditing">
-              <i class="fad fa-list-alt icon-sidebar-auditing fa-fw"></i><span> Auditing</span></a></li>
-        </ul>
-
-        <div class="sidebar__menu__nav__header">System</div>
-        <ul>
-          <li class=""><a dusk="subscriptionLink" data-content="Subscription">
-              <i class="fad fa-credit-card icon-sidebar-subscription fa-fw"></i><span> Subscription</span></a></li>
-
-          <li class=""><a dusk="exportsLink" data-content="Exports">
-              <i class="fad fa-database icon-sidebar-exports fa-fw"></i><span> Exports</span></a></li>
-
-          <li class=""><a dusk="settingsLink" data-content="Settings">
-              <i class="fad fa-wrench icon-sidebar-settings fa-fw"></i><span> Settings</span></a></li>
-        </ul>
       </div>
 
       <div class="sidebar__menu__nav sidebar__menu__nav--compact">
