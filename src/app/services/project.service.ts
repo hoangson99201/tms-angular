@@ -15,10 +15,8 @@ export class ProjectService {
     return this._http.get<PagingResponse<Project>>(`/tms/api/v1/project?pageIndex=${params.pageIndex}&pageSize=${params.pageSize}`);
   }
 
-  addProject(project: Project): Observable<string> {
-    return this._http.post("/tms/api/v1/project", project, {
-      responseType: 'text'
-    });
+  addProject(project: Project): Observable<Project> {
+    return this._http.post<Project>("/tms/api/v1/project", project);
   }
 
   findByProjectId(projectId: number): Observable<Project> {
