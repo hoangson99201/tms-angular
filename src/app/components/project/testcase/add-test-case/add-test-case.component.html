@@ -1,151 +1,162 @@
-<div class="page-side" style="height: -webkit-fill-available;">
+<div style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="testCase.projectId + ''" [selectedMenu]="'milestone'"></app-new-menu-project>
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
-    media="all" />
-  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
-  <div class="table" style="display: table;">
-    <div id="content" class="column content overflow-content">
+  <div>
+    <section>
+      <app-header></app-header>
+      <div>
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet"
+          href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+          media="all" />
+        <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+        <div class="table" style="height: 100%;">
+          <div id="content" class="column content overflow-content">
 
-      <div id="content-header" class="content-header content-header-default">
-        <div class="content-header-inner">
-          <div *ngIf="currentMode == Mode.Create" class="content-header-title page_title">
-            Add Test Case
-          </div>
-          <ng-template [ngIf]="currentMode == Mode.Update">
-            <div class="content-header-id">C{{testCase.caseId}}</div>
-            <div class="content-header-title page_title">
-              {{testCase.caseName}}
+            <div id="content-header" class="content-header content-header-default">
+              <div class="content-header-inner">
+                <div *ngIf="currentMode == Mode.Create" class="content-header-title page_title">
+                  Add Test Case
+                </div>
+                <ng-template [ngIf]="currentMode == Mode.Update">
+                  <div class="content-header-id">C{{testCase.caseId}}</div>
+                  <div class="content-header-title page_title">
+                    {{testCase.caseName}}
+                  </div>
+                </ng-template>
+              </div>
             </div>
-          </ng-template>
+            <div id="content-inner" class="content-inner goals-clear">
+              <form action="index.php?/cases/add/1" id="form" method="post"><input type="hidden" name="_token"
+                  value="kyqRSAYnPxiKjL7HwuCW">
+
+                <input type="hidden" id="attachments" name="attachments" value="">
+                <input type="hidden" id="js_test" name="js_test" value="0">
+
+                <div id="form-controls">
+
+                  <div class="form-group form-group-main">
+                    <label for="title">Title <span class="form-required">*</span></label>
+                    <input [(ngModel)]="testCase.caseName" class="form-control form-control-full form-fields "
+                      type="text" name="title" id="title" maxlength="250" value="">
+                  </div>
+
+                  <div class="io-container io-framed form-group table">
+
+                    <div class="column-p4 column">
+                      <label class="io-label" for="section_id">Section <span class="form-required">*</span></label>
+                      <select [(ngModel)]="testCase.sectionId" name="section_id" id="section_id"
+                        class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
+                        <option *ngFor="let section of sections" value="{{section.sectionId}}">
+                          {{section.sectionName}}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="column-p4 column">
+                      <label class="io-label" for="priority_id">Priority <span class="form-required">*</span></label>
+                      <select [(ngModel)]="testCase.priorityId" name="priority_id" id="priority_id"
+                        class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
+                        <option *ngFor="let priority of priorities" value="{{priority.prioritiesId}}">
+                          {{priority.priorityName}}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="column-p4 column">
+                      <label class="io-label" for="estimate">
+                        Estimate </label>
+                      <input class="form-control form-control-full form-fields" type=" text" name="estimate"
+                        id="estimate" maxlength="250" value="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="custom_preconds">
+                      Preconditions </label>
+                    <div class="textarea-resizable">
+                      <textarea [(ngModel)]="testCase.preconditions"
+                        class="form-control form-control-full  processed textarea-with-grippie" rows="6"
+                        name="preconditions" id="preconditions"></textarea>
+                      <div class="textarea-grippie"></div>
+                    </div>
+                    <div class="form-description form-description-full">The preconditions of this test case.
+                      Reference other test cases with [C#] (e.g. [C17]).</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="custom_steps">
+                      Steps </label>
+                    <div class="textarea-resizable">
+                      <textarea [(ngModel)]="testCase.steps"
+                        class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="steps"
+                        id="steps"></textarea>
+                      <div class="textarea-grippie"></div>
+                    </div>
+                    <div class="form-description form-description-full">The required steps to execute the
+                      test case.</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="custom_expected">
+                      Expected Result
+                    </label>
+                    <div class="textarea-resizable">
+                      <textarea [(ngModel)]="testCase.expectedResult"
+                        class="form-control form-control-full  processed textarea-with-grippie" rows="6"
+                        name="expectedResult" id="expectedResult"></textarea>
+                      <div class="textarea-grippie"></div>
+                    </div>
+
+                    <div id="custom_expected_display_drop" class="dropzone dz-clickable" rel="custom_expected_display"
+                      dialog="" data-project-id="1">
+                      <div class="dz-default dz-message"><span>Drop images here to embed.</span></div>
+                    </div>
+
+                    <div class="form-description form-description-full">The expected result after executing
+                      the test case.</div>
+                  </div>
+                </div>
+
+                <div class="button-group">
+                  <button *ngIf="currentMode == Mode.Update" id="accept" type="button" (click)="update()"
+                    class="button button-left button-positive button-ok"
+                    [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId || !testCase.projectId">
+                    Save Test Case </button>
+                  <ng-template [ngIf]="currentMode == Mode.Create">
+                    <button id="accept" type="button" (click)="submit()"
+                      class="button button-left button-positive button-ok"
+                      [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId || !testCase.projectId">
+                      Add Test Case </button>
+                    <button
+                      [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId"
+                      id="accept_and_next" type="button" (click)="submit()" name="save_and_next" value="1"
+                      class="button button-left button-positive button-ok">
+                      Add &amp; Next </button>
+                  </ng-template>
+                  <button type="button" (click)="backClicked()"
+                    class="button button-left button-negative button-cancel leave case-form-cancel">
+                    Cancel
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+          </div>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
+          </div>
         </div>
       </div>
-      <div id="content-inner" class="content-inner goals-clear">
-        <form action="index.php?/cases/add/1" id="form" method="post"><input type="hidden" name="_token"
-            value="kyqRSAYnPxiKjL7HwuCW">
-
-          <input type="hidden" id="attachments" name="attachments" value="">
-          <input type="hidden" id="js_test" name="js_test" value="0">
-
-          <div id="form-controls">
-
-            <div class="form-group form-group-main">
-              <label for="title">Title <span class="form-required">*</span></label>
-              <input [(ngModel)]="testCase.caseName" class="form-control form-control-full form-fields " type="text"
-                name="title" id="title" maxlength="250" value="">
-            </div>
-
-            <div class="io-container io-framed form-group table">
-
-              <div class="column-p4 column">
-                <label class="io-label" for="section_id">Section <span class="form-required">*</span></label>
-                <select [(ngModel)]="testCase.sectionId" name="section_id" id="section_id"
-                  class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
-                  <option *ngFor="let section of sections" value="{{section.sectionId}}">
-                    {{section.sectionName}}
-                  </option>
-                </select>
-              </div>
-
-              <div class="column-p4 column">
-                <label class="io-label" for="priority_id">Priority <span class="form-required">*</span></label>
-                <select [(ngModel)]="testCase.priorityId" name="priority_id" id="priority_id"
-                  class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
-                  <option *ngFor="let priority of priorities" value="{{priority.prioritiesId}}">
-                    {{priority.priorityName}}
-                  </option>
-                </select>
-              </div>
-
-              <div class="column-p4 column">
-                <label class="io-label" for="estimate">
-                  Estimate </label>
-                <input class="form-control form-control-full form-fields" type=" text" name="estimate" id="estimate"
-                  maxlength="250" value="">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="custom_preconds">
-                Preconditions </label>
-              <div class="textarea-resizable">
-                <textarea [(ngModel)]="testCase.preconditions"
-                  class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="preconditions"
-                  id="preconditions"></textarea>
-                <div class="textarea-grippie"></div>
-              </div>
-              <div class="form-description form-description-full">The preconditions of this test case.
-                Reference other test cases with [C#] (e.g. [C17]).</div>
-            </div>
-            <div class="form-group">
-              <label for="custom_steps">
-                Steps </label>
-              <div class="textarea-resizable">
-                <textarea [(ngModel)]="testCase.steps"
-                  class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="steps"
-                  id="steps"></textarea>
-                <div class="textarea-grippie"></div>
-              </div>
-              <div class="form-description form-description-full">The required steps to execute the
-                test case.</div>
-            </div>
-            <div class="form-group">
-              <label for="custom_expected">
-                Expected Result
-              </label>
-              <div class="textarea-resizable">
-                <textarea [(ngModel)]="testCase.expectedResult"
-                  class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="expectedResult"
-                  id="expectedResult"></textarea>
-                <div class="textarea-grippie"></div>
-              </div>
-
-              <div id="custom_expected_display_drop" class="dropzone dz-clickable" rel="custom_expected_display"
-                dialog="" data-project-id="1">
-                <div class="dz-default dz-message"><span>Drop images here to embed.</span></div>
-              </div>
-
-              <div class="form-description form-description-full">The expected result after executing
-                the test case.</div>
-            </div>
-          </div>
-
-          <div class="button-group">
-            <button *ngIf="currentMode == Mode.Update" id="accept" type="button" (click)="update()"
-              class="button button-left button-positive button-ok"
-              [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId || !testCase.projectId">
-              Save Test Case </button>
-            <ng-template [ngIf]="currentMode == Mode.Create">
-              <button id="accept" type="button" (click)="submit()" class="button button-left button-positive button-ok"
-                [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId || !testCase.projectId">
-                Add Test Case </button>
-              <button [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId"
-                id="accept_and_next" type="button" (click)="submit()" name="save_and_next" value="1"
-                class="button button-left button-positive button-ok">
-                Add &amp; Next </button>
-            </ng-template>
-            <button type="button" (click)="backClicked()"
-              class="button button-left button-negative button-cancel leave case-form-cancel">
-              Cancel
-            </button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-    </div>
-    <div id="sidebar" class="column sidebar" style="width: 250px">
-    </div>
+    </section>
   </div>
-
 </div>

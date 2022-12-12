@@ -1,85 +1,95 @@
-<div class="page-side" style="height: -webkit-fill-available;">
+<div style="display: flex; height: 100%;">
   <app-new-menu></app-new-menu>
+  <div>
+    <section>
+      <app-header></app-header>
+      <div>
 
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
-    media="all" />
-  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet"
+          href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+          media="all" />
+        <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
 
-  <div class="table" style="display: table;">
-    <div id="content" class="column content overflow-content">
-      <div id="content-header" class="content-header content-header-default">
-        <div class="content-header-inner">
-          <div class="content-header-result"></div>
-          <div class="content-header-title page_title">
-            Add Project </div>
-        </div>
-      </div>
-      <div id="content-inner" class="content-inner goals-clear">
-        <form action="index.php?/admin/projects/add/1" id="form" onsubmit="return App.Users.onFormSubmit( - 1);"
-          method="post">
-          <div class="tabs">
-            <div class="tab-header">
-              <a id="projects-tabs-project" class="tab1    hidden current">
-                Project </a>
-            </div>
-            <div class="tab-body tab-frame">
-              <div class="tab tab1  dirty-trackable" style="display: block;">
-                <div class="form-group">
-                  <label for="name">Name <span class="form-required">*</span></label>
-                  <input class="form-control" [(ngModel)]="project.projectName" type="text" name="name" id="name"
-                    maxlength="250" value="">
-                  <div class="form-description">Ex: <em>New Widget</em>, <em>Intranet</em>
-                    or <em>Payroll Software</em></div>
-                </div>
-                <div class="form-group">
-                  <label for="announcement">
-                    <span class="form-toolbar" style="padding-top: 0px">
-                    </span>
-                    Announcement </label>
-                  <div class="textarea-resizable">
-                    <textarea [(ngModel)]="project.announcement"
-                      class="form-control form-control-full  processed textarea-with-grippie" rows="6"
-                      name="announcement" id="announcement"></textarea>
-                    <div class="textarea-grippie"></div>
-                  </div>
-                  <div class="form-description form-description-full">You can post an
-                    announcement to the project overview page.
-                    This could include links to the project's issue tracker or knowledge
-                    base, for example.</div>
-                </div>
+        <div class="table" style="height: 100%;">
+          <div id="content" class="column content overflow-content">
+            <div id="content-header" class="content-header content-header-default">
+              <div class="content-header-inner">
+                <div class="content-header-result"></div>
+                <div class="content-header-title page_title">
+                  Add Project </div>
               </div>
             </div>
-          </div>
+            <div id="content-inner" class="content-inner goals-clear">
+              <form action="index.php?/admin/projects/add/1" id="form" onsubmit="return App.Users.onFormSubmit( - 1);"
+                method="post">
+                <div class="tabs">
+                  <div class="tab-header">
+                    <a id="projects-tabs-project" class="tab1    hidden current">
+                      Project </a>
+                  </div>
+                  <div class="tab-body tab-frame">
+                    <div class="tab tab1  dirty-trackable" style="display: block;">
+                      <div class="form-group">
+                        <label for="name">Name <span class="form-required">*</span></label>
+                        <input class="form-control" [(ngModel)]="project.projectName" type="text" name="name" id="name"
+                          maxlength="250" value="">
+                        <div class="form-description">Ex: <em>New Widget</em>, <em>Intranet</em>
+                          or <em>Payroll Software</em></div>
+                      </div>
+                      <div class="form-group">
+                        <label for="announcement">
+                          <span class="form-toolbar" style="padding-top: 0px">
+                          </span>
+                          Announcement </label>
+                        <div class="textarea-resizable">
+                          <textarea [(ngModel)]="project.announcement"
+                            class="form-control form-control-full  processed textarea-with-grippie" rows="6"
+                            name="announcement" id="announcement"></textarea>
+                          <div class="textarea-grippie"></div>
+                        </div>
+                        <div class="form-description form-description-full">You can post an
+                          announcement to the project overview page.
+                          This could include links to the project's issue tracker or knowledge
+                          base, for example.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div class="button-group form-buttons">
-            <button id="accept" class="button button-left button-positive button-ok"
-              [disabled]="project.projectName.trim().length == 0" type="button" (click)="submit()">
-              Add Project </button>
-            <a routerLink="javascript:void(0)" (click)="backClicked()"
-              class="button button-left button-negative button-cancel save-cancel-button"
-              id="admin-integration-form-cancel">
-              Cancel </a>
-          </div>
+                <div class="button-group form-buttons">
+                  <button id="accept" class="button button-left button-positive button-ok"
+                    [disabled]="project.projectName.trim().length == 0" type="button" (click)="submit()">
+                    Add Project </button>
+                  <a routerLink="javascript:void(0)" (click)="backClicked()"
+                    class="button button-left button-negative button-cancel save-cancel-button"
+                    id="admin-integration-form-cancel">
+                    Cancel </a>
+                </div>
 
-        </form>
+              </form>
+
+            </div>
+          </div>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+          </div>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
+            <app-sidebar style="white-space:normal;"></app-sidebar>
+          </div>
+        </div>
 
       </div>
-    </div>
-    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-    </div>
-    <div id="sidebar" class="column sidebar" style="width: 250px">
-      <app-sidebar style="white-space:normal;"></app-sidebar>
-    </div>
+    </section>
   </div>
-
 </div>

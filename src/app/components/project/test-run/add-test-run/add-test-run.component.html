@@ -1,1308 +1,215 @@
-<div class="page-side" style="height: -webkit-fill-available;">
+<div style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="testRun.projectId + ''" [selectedMenu]="'milestone'"></app-new-menu-project>
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
-    media="all" />
-  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
-  <div class="table" style="display: table;">
-    <div id="content" class="column content overflow-content">
-      <div id="content-header" class="content-header content-header-default">
-        <div class="content-header-inner">
-          <div *ngIf="currentMode == Mode.Create" class="content-header-title page_title">
-            Add Test Run
-          </div>
-          <ng-template [ngIf]="currentMode == Mode.Update">
-            <div class="content-header-id">R{{testRun.runId}}</div>
-            <div class="content-header-title page_title">
-              {{testRun.runName}}
+  <div>
+    <section>
+      <app-header></app-header>
+      <div>
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet"
+          href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+          media="all" />
+        <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+        <div class="table" style="height: 100%;">
+          <div id="content" class="column content overflow-content">
+            <div id="content-header" class="content-header content-header-default">
+              <div class="content-header-inner">
+                <div *ngIf="currentMode == Mode.Create" class="content-header-title page_title">
+                  Add Test Run
+                </div>
+                <ng-template [ngIf]="currentMode == Mode.Update">
+                  <div class="content-header-id">R{{testRun.runId}}</div>
+                  <div class="content-header-title page_title">
+                    {{testRun.runName}}
+                  </div>
+                </ng-template>
+              </div>
             </div>
-          </ng-template>
-        </div>
-      </div>
-      <div id="content-inner" class="content-inner">
-        <form action="index.php?/runs/add/2" id="form" method="post"><input type="hidden" name="_token"
-            value="kyqRSAYnPxiKjL7HwuCW">
+            <div id="content-inner" class="content-inner">
+              <form action="index.php?/runs/add/2" id="form" method="post"><input type="hidden" name="_token"
+                  value="kyqRSAYnPxiKjL7HwuCW">
 
-          <div class="form-group form-group-main">
-            <label for="name">Name <span class="form-required">*</span></label>
-            <input [(ngModel)]="testRun.runName" class="form-control " type="text" name="name" id="name"
-              maxlength="250">
-            <div class="form-description">
-              Ex: <em>Test Run 2014-08-01</em>, <em>Build 240</em> or <em>Version 3.0</em>
-            </div>
-          </div>
-          <div class="form-separator">
-          </div>
-          <div class="form-group">
-            <label for="milestone_id">Milestone</label>
-            <div class="dropdown-size">
-              <select [(ngModel)]="testRun.milestoneId" name="milestone_id" id="milestone_id"
-                class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
-                <option *ngFor="let milestone of milestones" value="{{milestone.milestoneId}}">
-                  {{milestone.milestoneName}}
-                </option>
-              </select>
-            </div>
-            <div class="form-description">The milestone this test run belongs to.</div>
-          </div>
-          <div class="searchable-wrapper">
-            <div class="form-group dropdown-size">
-              <label for="assignedto_id">Assign To</label>
-              <select [(ngModel)]="testRun.assignedToId" name="user_id" id="user_id"
-                class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
-                <option *ngFor="let user of users" value="{{user.userId}}">
-                  {{user.fullname}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="form-separator">
-          </div>
-          <div class="form-group">
-            <label for="description"> Description </label>
+                <div class="form-group form-group-main">
+                  <label for="name">Name <span class="form-required">*</span></label>
+                  <input [(ngModel)]="testRun.runName" class="form-control " type="text" name="name" id="name"
+                    maxlength="250">
+                  <div class="form-description">
+                    Ex: <em>Test Run 2014-08-01</em>, <em>Build 240</em> or <em>Version 3.0</em>
+                  </div>
+                </div>
+                <div class="form-separator">
+                </div>
+                <div class="form-group">
+                  <label for="milestone_id">Milestone</label>
+                  <div class="dropdown-size">
+                    <select [(ngModel)]="testRun.milestoneId" name="milestone_id" id="milestone_id"
+                      class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
+                      <option *ngFor="let milestone of milestones" value="{{milestone.milestoneId}}">
+                        {{milestone.milestoneName}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-description">The milestone this test run belongs to.</div>
+                </div>
+                <div class="searchable-wrapper">
+                  <div class="form-group dropdown-size">
+                    <label for="assignedto_id">Assign To</label>
+                    <select [(ngModel)]="testRun.assignedToId" name="user_id" id="user_id"
+                      class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
+                      <option *ngFor="let user of users" value="{{user.userId}}">
+                        {{user.fullname}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-separator">
+                </div>
+                <div class="form-group">
+                  <label for="description"> Description </label>
 
-            <div class="textarea-resizable">
-              <textarea [(ngModel)]="testRun.description"
-                class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="description"
-                id="description"></textarea>
-              <div class="textarea-grippie"></div>
-            </div>
-            <div class="form-description form-description-full">
-              Use this description to describe the purpose of this test run. </div>
-          </div>
+                  <div class="textarea-resizable">
+                    <textarea [(ngModel)]="testRun.description"
+                      class="form-control form-control-full  processed textarea-with-grippie" rows="6"
+                      name="description" id="description"></textarea>
+                    <div class="textarea-grippie"></div>
+                  </div>
+                  <div class="form-description form-description-full">
+                    Use this description to describe the purpose of this test run. </div>
+                </div>
 
-          <input type="hidden" id="case_ids" name="case_ids" class="dirty-trackable" value="">
-          <input type="hidden" id="rerun_id" name="rerun_id" value="0">
-          <input type="hidden" id="copy_assignedto" name="copy_assignedto" value="">
+                <input type="hidden" id="case_ids" name="case_ids" class="dirty-trackable" value="">
+                <input type="hidden" id="rerun_id" name="rerun_id" value="0">
+                <input type="hidden" id="copy_assignedto" name="copy_assignedto" value="">
 
-          <div class="form-separator">
-          </div>
-          <div class="form-group form-control-default">
-            <div class="radio" style="margin-bottom: 15px">
-              <label>
-                <strong>Include all test cases</strong>
-                <input [(ngModel)]="testRun.includeAll" type="radio" class="radio" name="include_all" [value]="true"
-                  id="includeAll" checked="checked">
-                <p>
-                  Select this option to include all test cases in this test run. If new
-                  test cases are added to the repository, they are also automatically
-                  included in this run. </p>
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <strong>Select specific test cases</strong>
-                <input [(ngModel)]="testRun.includeAll" type="radio" class="radio" name="include_all" [value]="false"
-                  id="includeSpecific">
-                <p>You can alternatively select the test cases to include in this test run.
-                  New test cases are not automatically added to this run in this case.</p>
-              </label>
-            </div>
-            <div *ngIf="!testRun.includeAll" id="includeSpecificContainer"
-              style="margin-top: 5px; margin-left: 20px; padding-bottom: 15px;">
-              <div class="form-message">
-                <span id="includeSpecificInfo">
-                  <strong>{{testCasesIdIncluded.length}}</strong> test cases included (<span
-                    style="color: #5993bc; text-decoration: none; background-color: transparent; cursor: pointer;"
-                    (click)="openDialog()">change
-                    selection</span>)
-                </span>
+                <div class="form-separator">
+                </div>
+                <div class="form-group form-control-default">
+                  <div class="radio" style="margin-bottom: 15px">
+                    <label>
+                      <strong>Include all test cases</strong>
+                      <input [(ngModel)]="testRun.includeAll" type="radio" class="radio" name="include_all"
+                        [value]="true" id="includeAll" checked="checked">
+                      <p>
+                        Select this option to include all test cases in this test run. If new
+                        test cases are added to the repository, they are also automatically
+                        included in this run. </p>
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <strong>Select specific test cases</strong>
+                      <input [(ngModel)]="testRun.includeAll" type="radio" class="radio" name="include_all"
+                        [value]="false" id="includeSpecific">
+                      <p>You can alternatively select the test cases to include in this test run.
+                        New test cases are not automatically added to this run in this case.</p>
+                    </label>
+                  </div>
+                  <div *ngIf="!testRun.includeAll" id="includeSpecificContainer"
+                    style="margin-top: 5px; margin-left: 20px; padding-bottom: 15px;">
+                    <div class="form-message">
+                      <span id="includeSpecificInfo">
+                        <strong>{{testCasesIdIncluded.length}}</strong> test cases included (<span
+                          style="color: #5993bc; text-decoration: none; background-color: transparent; cursor: pointer;"
+                          (click)="openDialog()">change
+                          selection</span>)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-group form-buttons">
+                  <button *ngIf="currentMode == Mode.Create" (click)="submit()" id="accept"
+                    class="button button-left button-positive button-ok" type="button"
+                    [disabled]="testRun.runName.trim().length == 0 || !testRun.projectId">
+                    Add Test Run
+                  </button>
+                  <button *ngIf="currentMode == Mode.Update" (click)="update()" id="accept"
+                    class="button button-left button-positive button-ok" type="button"
+                    [disabled]="testRun.runName.trim().length == 0 || !testRun.projectId">
+                    Save Test Run
+                  </button>
+                  <button (click)="cancel()" type="button"
+                    class="button button-left button-negative button-cancel run-form-cancel">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+
+              <div class="dialog" id="selectCasesDialog" style="width: 850px; height: 700px">
+                <div class="dialog-title">Select Cases</div>
+                <form id="selectCasesForm">
+                  <div class="dialog-body" style="padding: 0">
+                    <div id="selectCasesContainer" class="select-dialog-container">
+                      <div id="selectCasesContent" class="select-dialog-content" style="display: none">
+                      </div>
+                      <div id="selectCasesProgress" class="select-dialog-progress">
+                        <div class="icon-progress-large" title="Loading..."></div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="dialog-buttons-pane-container">
+                  <div class="button-group dialog-buttons-highlighted">
+                    <button id="selectCasesSubmit" type="submit"
+                      class="button button-left button-positive button-ok dialog-action-default">
+                      OK </button>
+                    <a id="selectCasesClose"
+                      class="button button-left button-negative button-cancel dialog-action-close">
+                      Cancel </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="button-group form-buttons">
-            <button *ngIf="currentMode == Mode.Create" (click)="submit()" id="accept"
-              class="button button-left button-positive button-ok" type="button"
-              [disabled]="testRun.runName.trim().length == 0 || !testRun.projectId">
-              Add Test Run
-            </button>
-            <button *ngIf="currentMode == Mode.Update" (click)="update()" id="accept"
-              class="button button-left button-positive button-ok" type="button"
-              [disabled]="testRun.runName.trim().length == 0 || !testRun.projectId">
-              Save Test Run
-            </button>
-            <button (click)="cancel()" type="button"
-              class="button button-left button-negative button-cancel run-form-cancel">
-              Cancel
-            </button>
+          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
           </div>
-        </form>
-
-        <div class="dialog" id="selectCasesDialog" style="width: 850px; height: 700px">
-          <div class="dialog-title">Select Cases</div>
-          <form id="selectCasesForm">
-            <div class="dialog-body" style="padding: 0">
-              <div id="selectCasesContainer" class="select-dialog-container">
-                <div id="selectCasesContent" class="select-dialog-content" style="display: none">
-                </div>
-                <div id="selectCasesProgress" class="select-dialog-progress">
-                  <div class="icon-progress-large" title="Loading..."></div>
+          <div id="qpane" class="column qpane" style="width: 600px; display: none">
+            <div id="qpane-empty" class="qpane-empty hidden">
+              <div class="qpane-empty-header">
+                No test case selected. </div>
+              <div class="qpane-empty-body">
+                You can select a different group or change the filters. </div>
+            </div>
+            <div id="qpane-inner">
+              <div id="qpaneSticky">
+                <div id="qpane-content">
                 </div>
               </div>
             </div>
-          </form>
-          <div class="dialog-buttons-pane-container">
-            <div class="button-group dialog-buttons-highlighted">
-              <button id="selectCasesSubmit" type="submit"
-                class="button button-left button-positive button-ok dialog-action-default">
-                OK </button>
-              <a id="selectCasesClose" class="button button-left button-negative button-cancel dialog-action-close">
-                Cancel </a>
+          </div>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+          </div>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
+            <div class="sidebar-inner">
+              <ng-template [ngIf]="currentMode == Mode.Update">
+                <div class="sidebar-h1 top">Actions</div>
+                <p>Archive this test run to prevent future modifications to its tests and results.</p>
+                <div class="sidebar-action">
+                  <button class="button button-close" type="button" (click)="close()">Close this test run</button>
+                </div>
+                <p class="">Delete this test run to remove it from your project.</p>
+                <div class="sidebar-action">
+                  <span class="button button-negative button-delete">
+                    <a class="link-noline">Delete this test run</a> </span>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
+
       </div>
-    </div>
-    <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-    </div>
-    <div id="qpane" class="column qpane" style="width: 600px; display: none">
-      <div id="qpane-empty" class="qpane-empty hidden">
-        <div class="qpane-empty-header">
-          No test case selected. </div>
-        <div class="qpane-empty-body">
-          You can select a different group or change the filters. </div>
-      </div>
-      <div id="qpane-inner">
-        <div id="qpaneSticky">
-          <div id="qpane-content">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-    </div>
-    <div id="sidebar" class="column sidebar" style="width: 250px">
-      <div class="sidebar-inner">
-        <ng-template [ngIf]="currentMode == Mode.Update">
-          <div class="sidebar-h1 top">Actions</div>
-          <p>Archive this test run to prevent future modifications to its tests and results.</p>
-          <div class="sidebar-action">
-            <button class="button button-close" type="button" (click)="close()">Close this test run</button>
-          </div>
-          <p class="">Delete this test run to remove it from your project.</p>
-          <div class="sidebar-action">
-            <span class="button button-negative button-delete">
-              <a class="link-noline">Delete this test run</a> </span>
-          </div>
-        </ng-template>
-      </div>
-    </div>
+    </section>
+
   </div>
+
 </div>
-
-
-<!--
-<div class="ui-dialog ui-widget ui-widget-content ui-corner-all dialog ui-draggable ui-resizable" tabindex="-1"
-  role="dialog" aria-labelledby="ui-dialog-title-selectCasesDialog"
-  style="display: block; z-index: 1002; outline: 0px; height: auto; width: 850px; position: absolute; top: 310px; left: 534px;"
-  id="dialog-ident-selectCasesDialog">
-  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title"
-      id="ui-dialog-title-selectCasesDialog">Select Cases</span><a href="#"
-      class="ui-dialog-titlebar-close ui-corner-all" role="button"><span
-        class="ui-icon ui-icon-closethick">close</span></a></div>
-  <div class="dialog ui-dialog-content ui-widget-content" id="selectCasesDialog"
-    style="width: auto; height: 661px; display: block; min-height: 0px;">
-    <div class="dialog-title">Select Cases</div>
-    <form id="selectCasesForm">
-      <div class="dialog-body" style="padding: 0px; height: 602px;">
-        <div id="selectCasesContainer" class="select-dialog-container">
-          <div id="selectCasesContent" class="select-dialog-content" ><input type="hidden" name="can_move"
-              id="can_move" value="1">
-            <div class="select-dialog-column select-dialog-column-main-container">
-              <div id="selectCasesMain" class="select-dialog-column select-dialog-column-main"
-                style="margin-left: 250px; margin-right: 250px" min-width="400">
-                <div id="selectCasesSplitter1" class="select-dialog-column select-dialog-column-splitter"
-                  name="splitter1"></div>
-                <div class="select-dialog-scroll">
-                  <div id="selectCasesGroupContainer" class="select-dialog-group select-dialog-group-with-splitter"
-                    style="min-width: 350px">
-                    <div class="toolbar select-dialog-toolbar">
-                      <a id="selectCasesColumns"  style="margin-left: 8px"
-                        class="toolbar-button button-columns">
-                        Columns</a>
-                      <div class="toolbar-inner">
-                        Select <a id="selectCasesGroupAll" class="link" >All</a> |
-                        <a id="selectCasesGroupNone" class="link" >None</a>
-                      </div>
-                    </div>
-                    <div id="selectCasesGroup">
-                      <div class="grid-container  bottom">
-                        <div class="grid-title">
-                          <span class="title">Prerequisites</span>
-                        </div>
-
-                        <table class="grid selectable">
-                          <colgroup>
-                            <col class="checkbox">
-                            <col >
-                          </colgroup>
-                          <tbody>
-                            <tr class="header">
-                              <th class="checkbox"><input type="checkbox" class="selectionCheckbox" rel="all"></th>
-                              <th>Title</th>
-                            </tr>
-                            <tr class="row odd">
-                              <td class="checkbox"><input name="selected-1" class="selectionCheckbox" value="1"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Verify space and
-                                    indentation calculations of inline tables</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row even">
-                              <td class="checkbox"><input name="selected-2" class="selectionCheckbox" value="2"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Add watermark to
-                                    document and verify print output</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row odd">
-                              <td class="checkbox"><input name="selected-3" class="selectionCheckbox" value="3"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Add numbered
-                                    list to inline table within an document</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row even">
-                              <td class="checkbox"><input name="selected-4" class="selectionCheckbox" value="4"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Verify Mail
-                                    Merge functionality with test database mmdb1</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row odd">
-                              <td class="checkbox"><input name="selected-5" class="selectionCheckbox" value="5"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Add numbered
-                                    list to inline table within an document</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row even">
-                              <td class="checkbox"><input name="selected-6" class="selectionCheckbox" value="6"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Add and verify
-                                    Tables of Contents with multi-page document</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row odd">
-                              <td class="checkbox"><input name="selected-7" class="selectionCheckbox" value="7"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Test add-in
-                                    installation and verify menu appearance</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row even">
-                              <td class="checkbox"><input name="selected-8" class="selectionCheckbox" value="8"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Change document
-                                    attributes (author, title, organization)</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row odd">
-                              <td class="checkbox"><input name="selected-9" class="selectionCheckbox" value="9"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Verify formula
-                                    rendering with built-in print preview driver</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row even">
-                              <td class="checkbox"><input name="selected-10" class="selectionCheckbox" value="10"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Verify
-                                    interoperability with system file dialogs</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row odd">
-                              <td class="checkbox"><input name="selected-11" class="selectionCheckbox" value="11"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Apply sort
-                                    routine to complex table with different currencies</span></a>
-                              </td>
-                            </tr>
-                            <tr class="row even">
-                              <td class="checkbox"><input name="selected-12" class="selectionCheckbox" value="12"
-                                  type="checkbox"></td>
-                              <td><a target="_blank" >Test
-                                    conditional formatting with basic value range</span></a>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="selectCasesTree" class="select-dialog-column select-dialog-column-tree" style="width: 250px">
-              <div class="select-dialog-scroll">
-                <div class="select-dialog-tree">
-                  <div class="toolbar select-dialog-toolbar">
-                    <div class="toolbar-inner">
-                      Select <a id="selectCasesTreeAll" class="link" >All</a> |
-                      <a id="selectCasesTreeNone" class="link" >None</a>
-                    </div>
-                  </div>
-                  <div class="jstree jstree-default">
-                    <ul id="selectCasesSections" class="jstree jstree-0 jstree-focused jstree-default">
-
-                      <li id="selectCasesNode-1" rel="1" class="section jstree-open">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="1" class="checkbox-tree">
-                        <a href="" class="jstree-clicked"><ins class="jstree-icon">&nbsp;</ins>
-                          Prerequisites </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-1"
-                          style="vertical-align: top; display: none;"></span>
-                        <ul class="">
-
-                          <li id="selectCasesNode-2" rel="2" class="section jstree-closed jstree-leaf">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="2" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Software &amp; Versions </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-2"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-
-                          <li id="selectCasesNode-3" rel="3" class="section jstree-closed jstree-leaf jstree-last">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="3" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Hardware </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-3"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li id="selectCasesNode-4" rel="4" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="4" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Installation </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-4"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-5" rel="5" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="5" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Updates </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-5"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-6" rel="6" class="section jstree-open">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="6" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Tutorial </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-6"
-                          style="vertical-align: top; display: none;"></span>
-                        <ul class="">
-
-                          <li id="selectCasesNode-7" rel="7" class="section jstree-closed jstree-leaf">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="7" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Goals </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-7"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-
-                          <li id="selectCasesNode-8" rel="8" class="section jstree-closed jstree-leaf jstree-last">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="8" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Metrics </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-8"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li id="selectCasesNode-9" rel="9" class="section jstree-open">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="9" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Login &amp; Account </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-9"
-                          style="vertical-align: top; display: none;"></span>
-                        <ul class="">
-
-                          <li id="selectCasesNode-10" rel="10" class="section jstree-closed jstree-leaf jstree-last">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="10" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Reset Password </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-10"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li id="selectCasesNode-11" rel="11" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="11" class="checkbox-tree">
-                        <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                          Feature 1 </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-11"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-12" rel="12" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="12" class="checkbox-tree">
-                        <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                          Feature 2 </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-12"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-13" rel="13" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="13" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Feature 3 </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-13"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-14" rel="14" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="14" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Feature 4 </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-14"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-15" rel="15" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="15" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Feature 5 </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-15"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-16" rel="16" class="section jstree-open">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="16" class="checkbox-tree">
-                        <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                          Administration </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-16"
-                          style="vertical-align: top; display: none;"></span>
-                        <ul class="">
-
-                          <li id="selectCasesNode-17" rel="17" class="section jstree-closed jstree-leaf">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="17" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Projects </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-17"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-
-                          <li id="selectCasesNode-18" rel="18" class="section jstree-closed jstree-leaf">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="18" class="checkbox-tree">
-                            <a href="" class=""><ins class="jstree-icon">&nbsp;</ins>
-                              Settings </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-18"
-                              style="vertical-align: top; display: none;"></span>
-                          </li>
-
-                          <li id="selectCasesNode-19" rel="19" class="section jstree-open jstree-last">
-                            <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="19" class="checkbox-tree">
-                            <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                              Users &amp; Roles </a>
-                            <span class="text-secondary hidden" id="selectCasesCount-19"
-                              style="vertical-align: top; display: none;"></span>
-                            <ul class="">
-
-                              <li id="selectCasesNode-20" rel="20" class="section jstree-closed jstree-leaf">
-                                <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="20"
-                                  class="checkbox-tree">
-                                <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                                  Permissions </a>
-                                <span class="text-secondary hidden" id="selectCasesCount-20"
-                                  style="vertical-align: top; display: none;"></span>
-                              </li>
-
-                              <li id="selectCasesNode-21" rel="21"
-                                class="section jstree-closed jstree-leaf jstree-last">
-                                <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="21"
-                                  class="checkbox-tree">
-                                <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                                  Groups </a>
-                                <span class="text-secondary hidden" id="selectCasesCount-21"
-                                  style="vertical-align: top; display: none;"></span>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li id="selectCasesNode-22" rel="22" class="section jstree-closed jstree-leaf">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="22" class="checkbox-tree">
-                        <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                          Search </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-22"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-
-                      <li id="selectCasesNode-23" rel="23" class="section jstree-closed jstree-leaf jstree-last">
-                        <ins class="jstree-icon">&nbsp;</ins><input type="checkbox" rel="23" class="checkbox-tree">
-                        <a href=""><ins class="jstree-icon">&nbsp;</ins>
-                          Help &amp; Documentation </a>
-                        <span class="text-secondary hidden" id="selectCasesCount-23"
-                          style="vertical-align: top; display: none;"></span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="selectCasesFilter" class="select-dialog-column select-dialog-column-filter"
-              style="width: 250px; margin-left: -250px">
-              <div class="select-dialog-scroll">
-                <div class="select-dialog-filter">
-                  <div class="sidebar-h1 top select-dialog-filter-h1">Selection Filter</div>
-                  <div class="filter-group filter" id="filter-cases:custom_automation_type"
-                    rel="cases:custom_automation_type">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Automation
-                        Type</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="0">
-                          None </option>
-
-                        <option value="1">
-                          Ranorex </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:created_by" rel="cases:created_by">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Created By</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="1">
-                          Đỗ Tú </option>
-
-                        <option value="2">
-                          Thang </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:created_on" rel="cases:created_on">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Created On</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="daterange">
-
-
-                      <select id="filterDateRangeType-e9da0ae5-d7e9-4792-bdf7-da551d508fe6" rel="items"
-                        class="form-control form-control-full form-select item" style="margin-bottom: 0.75em">
-                        <option value="3" selected="selected">Today</option>
-                        <option value="4">Yesterday</option>
-                        <option value="5">This week</option>
-                        <option value="7">Last week</option>
-                        <option value="9">This month</option>
-                        <option value="11">Last month</option>
-                        <option value="14">Last 24 hours</option>
-                        <option value="15">Last 48 hours</option>
-                        <option value="6">Last 7 days</option>
-                        <option value="8">Last 14 days</option>
-                        <option value="10">Last 30 days</option>
-                        <option value="12">Last 60 days</option>
-                        <option value="13">Last 90 days</option>
-                        <option value="2">Custom</option>
-                      </select>
-
-
-                      <div class="hidden" id="filterDateRangeCustom-e9da0ae5-d7e9-4792-bdf7-da551d508fe6"
-                        style="margin-bottom: 8px">
-                        <table class="filter-list">
-                          <colgroup>
-                            <col style="width: 50px">
-                            <col >
-                          </colgroup>
-                          <tbody>
-                            <tr class="filterLine">
-                              <td class="text">From:</td>
-                              <td class="value" style="padding-right: 2px"><input type="text"
-                                  class="custom_from form-control datepicker hasDatepicker" style="width: 150px"
-                                  value="" id="dp1670084717523"></td>
-                            </tr>
-                            <tr>
-                              <td class="text" style="padding-bottom: 0">To:</td>
-                              <td class="value" style="padding-right: 2px; padding-bottom: 0"><input type="text"
-                                  class="custom_to form-control form-control-full datepicker hasDatepicker"
-                                  style="width: 150px" value="" id="dp1670084717524"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:estimate" rel="cases:estimate">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Estimate</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="timespan">
-
-                      <div class="radio form-radio" style="margin-top: 10px">
-                        <label>
-                          Match only of the following <input type="radio" class="radio" rel="1"
-                            name="filter-cases:estimate_mode" id="filter-cases:estimate_mode_and" checked="checked">
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          Match any of the following <input type="radio" class="radio" rel="2"
-                            name="filter-cases:estimate_mode" id="filter-cases:estimate_mode_or">
-                        </label>
-                      </div>
-
-                      <div style="margin: 10px 0 5px 0">
-
-
-
-                        <table class="filter-list">
-                          <colgroup>
-                            <col class="op">
-                            <col class="value">
-                            <col class="action">
-                            <col class="action">
-                          </colgroup>
-                          <tbody>
-                            <tr class="filterLine" id="filterLine-3ca4b3b3-d985-446c-bcb8-49b34961bdd2">
-                              <td class="op">
-                                <select class="form-control form-control-full form-select">
-                                  <option value="1" selected="selected">Is</option>
-                                  <option value="2">Is Not</option>
-                                  <option value="7">Is Less</option>
-                                  <option value="8">Is More</option>
-                                </select>
-                              </td>
-                              <td class="value">
-                                <input type="text" class="form-control form-control-full " value="" maxlength="250">
-                              </td>
-                              <td class="action">
-                                <a class="add"
-                                  >
-                                  <div class="icon-small-add"></div>
-                                </a>
-                                <div class="addBusy hidden icon-animation-busy"></div>
-                              </td>
-                              <td class="action">
-                                <a class="deleteEnabled hidden"
-                                  >
-                                  <div class="icon-small-remove"></div>
-                                </a>
-                                <div class="deleteDisabled icon-small-remove-disabled "></div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:estimate_forecast" rel="cases:estimate_forecast">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Forecast</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="timespan">
-
-                      <div class="radio form-radio" style="margin-top: 10px">
-                        <label>
-                          Match only of the following <input type="radio" class="radio" rel="1"
-                            name="filter-cases:estimate_forecast_mode" id="filter-cases:estimate_forecast_mode_and"
-                            checked="checked">
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          Match any of the following <input type="radio" class="radio" rel="2"
-                            name="filter-cases:estimate_forecast_mode" id="filter-cases:estimate_forecast_mode_or">
-                        </label>
-                      </div>
-
-                      <div style="margin: 10px 0 5px 0">
-
-
-
-                        <table class="filter-list">
-                          <colgroup>
-                            <col class="op">
-                            <col class="value">
-                            <col class="action">
-                            <col class="action">
-                          </colgroup>
-                          <tbody>
-                            <tr class="filterLine" id="filterLine-92a8a0cf-74b1-4cdc-81e2-6de175f95637">
-                              <td class="op">
-                                <select class="form-control form-control-full form-select">
-                                  <option value="1" selected="selected">Is</option>
-                                  <option value="2">Is Not</option>
-                                  <option value="7">Is Less</option>
-                                  <option value="8">Is More</option>
-                                </select>
-                              </td>
-                              <td class="value">
-                                <input type="text" class="form-control form-control-full " value="" maxlength="250">
-                              </td>
-                              <td class="action">
-                                <a class="add"
-                                  >
-                                  <div class="icon-small-add"></div>
-                                </a>
-                                <div class="addBusy hidden icon-animation-busy"></div>
-                              </td>
-                              <td class="action">
-                                <a class="deleteEnabled hidden"
-                                  >
-                                  <div class="icon-small-remove"></div>
-                                </a>
-                                <div class="deleteDisabled icon-small-remove-disabled "></div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:priority_id" rel="cases:priority_id">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Priority</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="4">
-                          Critical </option>
-
-                        <option value="3">
-                          High </option>
-
-                        <option value="2">
-                          Medium </option>
-
-                        <option value="1">
-                          Low </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:refs" rel="cases:refs">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >References</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="string">
-
-                      <div class="radio form-radio" style="margin-top: 10px">
-                        <label>
-                          Match only of the following <input type="radio" class="radio" rel="1"
-                            name="filter-cases:refs_mode" id="filter-cases:refs_mode_and" checked="checked">
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          Match any of the following <input type="radio" class="radio" rel="2"
-                            name="filter-cases:refs_mode" id="filter-cases:refs_mode_or">
-                        </label>
-                      </div>
-
-                      <div style="margin: 10px 0 5px 0">
-
-
-
-                        <table class="filter-list">
-                          <colgroup>
-                            <col class="op">
-                            <col class="value">
-                            <col class="action">
-                            <col class="action">
-                          </colgroup>
-                          <tbody>
-                            <tr class="filterLine" id="filterLine-b39556bb-8c12-412b-9698-7719fad97f71">
-                              <td class="op">
-                                <select class="form-control form-control-full form-select">
-                                  <option value="1" selected="selected">Is</option>
-                                  <option value="2">Is Not</option>
-                                  <option value="5">Contains</option>
-                                  <option value="6">Doesn't Contain</option>
-                                </select>
-                              </td>
-                              <td class="value">
-                                <input type="text" class="form-control form-control-full " value="" maxlength="250">
-                              </td>
-                              <td class="action">
-                                <a class="add"
-                                  >
-                                  <div class="icon-small-add"></div>
-                                </a>
-                                <div class="addBusy hidden icon-animation-busy"></div>
-                              </td>
-                              <td class="action">
-                                <a class="deleteEnabled hidden"
-                                  >
-                                  <div class="icon-small-remove"></div>
-                                </a>
-                                <div class="deleteDisabled icon-small-remove-disabled "></div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:section_id" rel="cases:section_id">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Section</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="1">
-                          Prerequisites </option>
-
-                        <option value="2">
-                          &nbsp;&nbsp;Software &amp; Versions </option>
-
-                        <option value="3">
-                          &nbsp;&nbsp;Hardware </option>
-
-                        <option value="4">
-                          Installation </option>
-
-                        <option value="5">
-                          Updates </option>
-
-                        <option value="6">
-                          Tutorial </option>
-
-                        <option value="7">
-                          &nbsp;&nbsp;Goals </option>
-
-                        <option value="8">
-                          &nbsp;&nbsp;Metrics </option>
-
-                        <option value="9">
-                          Login &amp; Account </option>
-
-                        <option value="10">
-                          &nbsp;&nbsp;Reset Password </option>
-
-                        <option value="11">
-                          Feature 1 </option>
-
-                        <option value="12">
-                          Feature 2 </option>
-
-                        <option value="13">
-                          Feature 3 </option>
-
-                        <option value="14">
-                          Feature 4 </option>
-
-                        <option value="15">
-                          Feature 5 </option>
-
-                        <option value="16">
-                          Administration </option>
-
-                        <option value="17">
-                          &nbsp;&nbsp;Projects </option>
-
-                        <option value="18">
-                          &nbsp;&nbsp;Settings </option>
-
-                        <option value="19">
-                          &nbsp;&nbsp;Users &amp; Roles </option>
-
-                        <option value="20">
-                          &nbsp;&nbsp;&nbsp;&nbsp;Permissions </option>
-
-                        <option value="21">
-                          &nbsp;&nbsp;&nbsp;&nbsp;Groups </option>
-
-                        <option value="22">
-                          Search </option>
-
-                        <option value="23">
-                          Help &amp; Documentation </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:template_id" rel="cases:template_id">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Template</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="3">
-                          Exploratory Session </option>
-
-                        <option value="2">
-                          Test Case (Steps) </option>
-
-                        <option value="1">
-                          Test Case (Text) </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:title" rel="cases:title">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Title</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="string">
-
-                      <div class="radio form-radio" style="margin-top: 10px">
-                        <label>
-                          Match only of the following <input type="radio" class="radio" rel="1"
-                            name="filter-cases:title_mode" id="filter-cases:title_mode_and" checked="checked">
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          Match any of the following <input type="radio" class="radio" rel="2"
-                            name="filter-cases:title_mode" id="filter-cases:title_mode_or">
-                        </label>
-                      </div>
-
-                      <div style="margin: 10px 0 5px 0">
-
-
-
-                        <table class="filter-list">
-                          <colgroup>
-                            <col class="op">
-                            <col class="value">
-                            <col class="action">
-                            <col class="action">
-                          </colgroup>
-                          <tbody>
-                            <tr class="filterLine" id="filterLine-b5f36a37-10ac-4b34-8b89-6df7afd6fc8f">
-                              <td class="op">
-                                <select class="form-control form-control-full form-select">
-                                  <option value="1" selected="selected">Is</option>
-                                  <option value="2">Is Not</option>
-                                  <option value="5">Contains</option>
-                                  <option value="6">Doesn't Contain</option>
-                                </select>
-                              </td>
-                              <td class="value">
-                                <input type="text" class="form-control form-control-full " value="" maxlength="250">
-                              </td>
-                              <td class="action">
-                                <a class="add"
-                                  >
-                                  <div class="icon-small-add"></div>
-                                </a>
-                                <div class="addBusy hidden icon-animation-busy"></div>
-                              </td>
-                              <td class="action">
-                                <a class="deleteEnabled hidden"
-                                  >
-                                  <div class="icon-small-remove"></div>
-                                </a>
-                                <div class="deleteDisabled icon-small-remove-disabled "></div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:type_id" rel="cases:type_id">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Type</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="1">
-                          Acceptance </option>
-
-                        <option value="2">
-                          Accessibility </option>
-
-                        <option value="3">
-                          Automated </option>
-
-                        <option value="4">
-                          Compatibility </option>
-
-                        <option value="5">
-                          Destructive </option>
-
-                        <option value="6">
-                          Functional </option>
-
-                        <option value="7">
-                          Other </option>
-
-                        <option value="8">
-                          Performance </option>
-
-                        <option value="9">
-                          Regression </option>
-
-                        <option value="10">
-                          Security </option>
-
-                        <option value="11">
-                          Smoke &amp; Sanity </option>
-
-                        <option value="12">
-                          Usability </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:updated_by" rel="cases:updated_by">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Updated By</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="dropdown">
-                      <select multiple="multiple" rel="items" class="form-control form-select items"
-                        style="width: 100%; height: 150px; margin-bottom: 10px">
-                        <option value="all">Any</option>
-
-                        <option value="1">
-                          Đỗ Tú </option>
-
-                        <option value="2">
-                          Thang </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="filter-group filter" id="filter-cases:updated_on" rel="cases:updated_on">
-                    <div class="filter-name">
-                      <a class="link-noline"
-                        >Updated On</a>
-                      <a class="filterExpand "
-                        >
-                        <div class="icon-expand"></div>
-                      </a><a class="filterCollapse hidden"
-                        >
-                        <div class="icon-collapse"></div>
-                      </a>
-                    </div>
-                    <div class="filterContent hidden" rel="daterange">
-
-
-                      <select id="filterDateRangeType-f9168ab2-a9ba-410b-af66-573f2a8fb78e" rel="items"
-                        class="form-control form-control-full form-select item" style="margin-bottom: 0.75em">
-                        <option value="3" selected="selected">Today</option>
-                        <option value="4">Yesterday</option>
-                        <option value="5">This week</option>
-                        <option value="7">Last week</option>
-                        <option value="9">This month</option>
-                        <option value="11">Last month</option>
-                        <option value="14">Last 24 hours</option>
-                        <option value="15">Last 48 hours</option>
-                        <option value="6">Last 7 days</option>
-                        <option value="8">Last 14 days</option>
-                        <option value="10">Last 30 days</option>
-                        <option value="12">Last 60 days</option>
-                        <option value="13">Last 90 days</option>
-                        <option value="2">Custom</option>
-                      </select>
-
-
-                      <div class="hidden" id="filterDateRangeCustom-f9168ab2-a9ba-410b-af66-573f2a8fb78e"
-                        style="margin-bottom: 8px">
-                        <table class="filter-list">
-                          <colgroup>
-                            <col style="width: 50px">
-                            <col >
-                          </colgroup>
-                          <tbody>
-                            <tr class="filterLine">
-                              <td class="text">From:</td>
-                              <td class="value" style="padding-right: 2px"><input type="text"
-                                  class="custom_from form-control datepicker hasDatepicker" style="width: 150px"
-                                  value="" id="dp1670084717525"></td>
-                            </tr>
-                            <tr>
-                              <td class="text" style="padding-bottom: 0">To:</td>
-                              <td class="value" style="padding-right: 2px; padding-bottom: 0"><input type="text"
-                                  class="custom_to form-control form-control-full datepicker hasDatepicker"
-                                  style="width: 150px" value="" id="dp1670084717526"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-
-                    </div>
-                  </div>
-
-                  <div class="filter-mode select-dialog-filter-mode">
-                    <div class="radio form-radio" style="margin-bottom: 2px">
-                      <label>
-                        Match only of the above <input type="radio" class="radio" rel="1" name="filterMode"
-                          id="filterMode_and" checked="checked">
-                      </label>
-                    </div>
-                    <div class="radio">
-                      <label>
-                        Match any of the above <input type="radio" class="radio" rel="2" name="filterMode"
-                          id="filterMode_or">
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="button-group select-dialog-filter-buttons">
-                    <a id="selectCasesFilterApply" class="button button-droppie-parent button-left button-view" rel="1">
-                      Set Selection </a><a class="link-noline button button-droppie button-left dropdownLink"
-                      href="#selectionDropdown" rel="bottomLeft">
-                      <span class="caret"></span>
-                    </a>
-                  </div>
-
-                  <div id="selectCasesMatches" class="message message-success hidden"></div>
-
-
-                </div>
-              </div>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div id="selectCasesProgress" class="select-dialog-progress" style="display: none; padding-top: 241px;">
-            <div class="icon-progress-large" title="Loading..."></div>
-          </div>
-        </div>
-      </div>
-    </form>
-
-  </div>
-  <div class="dialog-buttons-pane-container">
-    <div class="button-group dialog-buttons-highlighted">
-      <button id="selectCasesSubmit" type="submit"
-        class="button button-left button-positive button-ok dialog-action-default">
-        OK </button>
-      <a id="selectCasesClose" class="button button-left button-negative button-cancel dialog-action-close">
-        Cancel </a>
-    </div>
-  </div>
-  <div class="ui-resizable-handle ui-resizable-n"></div>
-  <div class="ui-resizable-handle ui-resizable-e"></div>
-  <div class="ui-resizable-handle ui-resizable-s"></div>
-  <div class="ui-resizable-handle ui-resizable-w"></div>
-  <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se"
-    style="z-index: 1001;"></div>
-  <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div>
-  <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div>
-  <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div>
-</div> -->
