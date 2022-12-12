@@ -16,7 +16,7 @@ export class AddProjectComponent {
     private projectService: ProjectService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   project: Project = {
     projectName: '',
@@ -32,7 +32,7 @@ export class AddProjectComponent {
       next: (res) => {
         console.log(res);
         this.toastr.success('Add project success', 'Success');
-        this.router.navigateByUrl('');
+        this.router.navigate(['/overview', res.projectId]);
       },
       error: (e) => {
         console.log(e);
