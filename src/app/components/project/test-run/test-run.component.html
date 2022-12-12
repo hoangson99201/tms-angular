@@ -31,7 +31,7 @@
               </div>
             </div>
             <div id="content-inner" class="content-inner goals-clear">
-              <div *ngIf="!incompleteTestRuns.length && !completedTestRuns.length; then thenBlock else elseBlock"></div>
+              <div *ngIf="!incompleteTestRuns.length && !completedTestRuns.size; then thenBlock else elseBlock"></div>
               <ng-template #thenBlock>
                 <div class="empty empty-with-explanation">
                   <div class="empty-explanation">
@@ -66,8 +66,9 @@
                           </div>
                           <div class="column summary-column flex-runs-2 summary-column-first summary-column-last">
                             <div class="summary-title text-ppp">
-                              <a
-                                [routerLink]="['/test-runs', projectId, 'detail', testRun.runId]">{{testRun.runName}}</a>
+                              <a [routerLink]="['/test-runs', projectId, 'detail', testRun.runId]">
+                                {{testRun.runName}}
+                              </a>
                             </div>
                             <div class="summary-links text-secondary">
                               By {{testRun.fullname}} on {{testRun.createdOn}} | <a class="link"
@@ -84,103 +85,25 @@
                   </div>
                 </ng-template>
 
-                <ng-template [ngIf]="completedTestRuns.length">
+                <ng-template [ngIf]="completedTestRuns.size">
                   <h1 style="margin-top: 2em" class="width-6">
-                    Completed </h1>
+                    Completed
+                  </h1>
                   <div id="completed">
-                    <div id="run-600807682">
+                    <div *ngFor="let entry of completedTestRuns | keyvalue">
                       <h3>
-                        <span class="title">Friday, November 18, 2022</span>
+                        <span class="title">{{entry.key}}</span>
                       </h3>
                       <table class="run-grid grid">
                         <colgroup>
                           <col>
-                          <col class="percent">
                         </colgroup>
                         <tbody>
-                          <tr class="odd hoverSensitive" id="run-22">
+                          <tr *ngFor="let testRun of entry.value" class="odd hoverSensitive">
                             <td>
-                              <a>Test Run 11/18/2022</a>
-                            </td>
-                            <td class="sub right">
-                              0%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-16">
-                            <td>
-                              <a>Release 1.1: Run 1 (smoke test)</a>
-                            </td>
-                            <td class="sub right">
-                              30%
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div id="run-874776202">
-                      <h3>
-                        <span class="title">Thursday, November 17, 2022</span>
-                      </h3>
-                      <table class="run-grid grid">
-                        <colgroup>
-                          <col>
-                          <col class="percent">
-                        </colgroup>
-                        <tbody>
-                          <tr class="odd hoverSensitive" id="run-9">
-                            <td>
-                              <a>Release 1.0: Run 1 (smoke test)</a>
-                            </td>
-                            <td class="sub right">
-                              52%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-6">
-                            <td>
-                              <a>Beta 1.0: Run 1 (alpha fixes)</a>
-                            </td>
-                            <td class="sub right">
-                              29%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-5">
-                            <td>
-                              <a>Beta 1.0: Run 2 (feature freeze)</a>
-                            </td>
-                            <td class="sub right">
-                              28%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-4">
-                            <td>
-                              <a>Beta 1.0: Run 3 (final run)</a>
-                            </td>
-                            <td class="sub right">
-                              61%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-3">
-                            <td>
-                              <a>Alpha 1.0: Run 1 (smoke test)</a>
-                            </td>
-                            <td class="sub right">
-                              46%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-2">
-                            <td>
-                              <a>Alpha 1.0: Run 2</a>
-                            </td>
-                            <td class="sub right">
-                              59%
-                            </td>
-                          </tr>
-                          <tr class="odd hoverSensitive" id="run-1">
-                            <td>
-                              <a>Alpha 1.0: Run 3 (final run)</a>
-                            </td>
-                            <td class="sub right">
-                              58%
+                              <a [routerLink]="['/test-runs', projectId, 'detail', testRun.runId]">
+                                {{testRun.runName}}
+                              </a>
                             </td>
                           </tr>
                         </tbody>
@@ -250,12 +173,12 @@
                 <span>Add Test Plan</span>
               </a>
 
-              <p *ngIf="!completedTestRuns.length && !incompleteTestRuns.length; else elseCountBlock" class="top">
+              <p *ngIf="!completedTestRuns.size && !incompleteTestRuns.length; else elseCountBlock" class="top">
                 There are no test runs.
               </p>
               <ng-template #elseCountBlock>
                 <p class="top"><strong class="text-softer">{{incompleteTestRuns.length}}</strong> open and <strong
-                    class="text-softer">{{completedTestRuns.length}}</strong>
+                    class="text-softer">{{completedTestRuns.size}}</strong>
                   completed
                   test runs in this project.</p>
               </ng-template>

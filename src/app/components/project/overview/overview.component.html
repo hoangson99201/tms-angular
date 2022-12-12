@@ -93,7 +93,8 @@
                           </div>
                           <div class="column summary-column flex-runs-2-compact summary-column-first ">
                             <div class="summary-title summary-title-compact text-ppp">
-                              <a id="navigation-overview-viewruns">{{testRun.runName}}</a>
+                              <a [routerLink]="['/test-runs', projectId, 'detail', testRun.runId]"
+                                id="navigation-overview-viewruns">{{testRun.runName}}</a>
                             </div>
                             <div class="summary-description-compact text-secondary text-ppp">
                               By {{testRun.fullname}} on {{testRun.createdOn}}
