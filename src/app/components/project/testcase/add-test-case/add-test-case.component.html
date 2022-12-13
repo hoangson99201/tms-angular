@@ -1,5 +1,5 @@
 <div style="display: flex; height: 100%;">
-  <app-new-menu-project [projectId]="testCase.projectId + ''" [selectedMenu]="'milestone'"></app-new-menu-project>
+  <app-new-menu-project [projectId]="testCase.projectId + ''" [selectedMenu]="'test-cases'"></app-new-menu-project>
   <div>
     <section>
       <app-header></app-header>
@@ -76,8 +76,8 @@
                     <div class="column-p4 column">
                       <label class="io-label" for="estimate">
                         Estimate </label>
-                      <input class="form-control form-control-full form-fields" type=" text" name="estimate"
-                        id="estimate" maxlength="250" value="">
+                      <input [(ngModel)]="testCase.estimate" class="form-control form-control-full form-fields"
+                        type=" text" name="estimate" id="estimate" maxlength="250" value="">
                     </div>
                   </div>
 

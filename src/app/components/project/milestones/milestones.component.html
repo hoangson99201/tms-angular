@@ -31,107 +31,99 @@
               </div>
             </div>
             <div id="content-inner" class="content-inner goals-clear">
-
-              <div id="upcomingHelp" class="tooltip tooltip-help">
-                <div class="tooltip-help-body">
-                  <p style="margin: 0">Milestones with a start date (in the future or past) are shown in this
-                    <em>Upcoming</em> section.
-                    Starting a milestone will move it from <em>upcoming</em> to <em>active</em>.
-                  </p>
-                </div>
+              <div *ngIf="!incompleteMilestones.length && !completedMilestones.size; then thenBlock else elseBlock">
               </div>
-
-
-              <div class="empty empty-with-explanation">
-                <div class="empty-explanation">
-                  <div class="empty-explanation-title">What's a milestone?</div>
-                  <div class="empty-explanation-body">Add project milestones (such as software releases) to
-                    Test
-                    Management System to manage and track multiple test runs for a single milestone.</div>
-                </div>
-                <div class="empty-content empty-info">
-                  <div class="empty-title">This project doesn't have any milestones, yet.</div>
-                  <div class="empty-body">
-                    <p>No milestones have been defined for this project yet. Use the following button to
-                      create
-                      the first milestone.</p>
-                    <div class="button-group">
-                      <a [routerLink]="['/milestones-add', projectId]" class="button button-left button-add">
-                        Add Milestone </a>
+              <ng-template #thenBlock>
+                <div class="empty empty-with-explanation">
+                  <div class="empty-explanation">
+                    <div class="empty-explanation-title">What's a milestone?</div>
+                    <div class="empty-explanation-body">Add project milestones (such as software releases) to
+                      Test
+                      Management System to manage and track multiple test runs for a single milestone.</div>
+                  </div>
+                  <div class="empty-content empty-info">
+                    <div class="empty-title">This project doesn't have any milestones, yet.</div>
+                    <div class="empty-body">
+                      <p>No milestones have been defined for this project yet. Use the following button to
+                        create
+                        the first milestone.</p>
+                      <div class="button-group">
+                        <a [routerLink]="['/milestones-add', projectId]" class="button button-left button-add">
+                          Add Milestone </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-          </div>
-          <div id="qpane" class="column qpane" style="width: 600px; display: none">
-            <div id="qpane-empty" class="qpane-empty hidden">
-              <div class="qpane-empty-header">
-                No test case selected. </div>
-              <div class="qpane-empty-body">
-                You can select a different group or change the filters. </div>
-            </div>
-            <div id="qpane-inner">
-              <div id="qpaneSticky">
-                <div id="qpane-content">
-                </div>
-              </div>
+              </ng-template>
+              <ng-template #elseBlock>
+                <ng-template [ngIf]="incompleteMilestones.length">
+                  <h1 class="top width-4">
+                    Open
+                  </h1>
+                  <div id="active">
+                    <div style="margin-top: 1.2em;">
+                      <div *ngFor="let milestone of incompleteMilestones" id="run-24" class="table table-fixed">
+                        <div id="milestone-3" class="row flex-milestones-row">
+                          <div
+                            class="column summary-column summary-column-icon flex-milestones-1 icon-milestone-64 summary-column-first ">
+                          </div>
+                          <div class="column summary-column summary-column-first" style="flex-grow: 1;">
+                            <div class="summary-title text-ppp">
+                              <a href="index.php?/milestones/view/3">{{milestone.milestoneName}}</a>
+                            </div>
+                            <div class="summary-links text-secondary">
+                              Due on {{milestone.endDate}} | <a class="link"
+                                href="index.php?/milestones/edit/3">Edit</a>
+                            </div>
+                            <div class="summary-description">
+                              <div *ngIf="milestone.activeTestRun; then thenSummaryBlock else elseSummaryBlock"></div>
+                              <ng-template #thenSummaryBlock>
+                                Has <strong>{{milestone.activeTestRun}}</strong> active test runs.
+                              </ng-template>
+                              <ng-template #elseSummaryBlock>
+                                No active test runs.
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+                <ng-template [ngIf]="completedMilestones.size">
+                  <h1 style="margin-top: 2em" class="width-6">
+                    Completed
+                  </h1>
+                  <div id="completed">
+                    <div *ngFor="let entry of completedMilestones | keyvalue">
+                      <h3>
+                        <span class="title">{{entry.key}}</span>
+                      </h3>
+                      <table class="run-grid grid">
+                        <colgroup>
+                          <col>
+                        </colgroup>
+                        <tbody>
+                          <tr *ngFor="let milestone of entry.value" class="odd hoverSensitive">
+                            <td>
+                              <a [routerLink]="['/test-runs', projectId, 'detail', milestone.milestoneId]">
+                                {{milestone.milestoneName}}
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-template>
             </div>
           </div>
           <div id="sidebar-splitter" class="column splitter sidebar-splitter">
           </div>
           <div id="sidebar" class="column sidebar" style="width: 250px">
-
-            <div class="dialog" id="startMilestoneDialog" style="width: 450px">
-              <div class="dialog-title">Start Milestone</div>
-              <form id="startMilestoneForm" class="dialogFormDefault">
-                <div class="dialog-body">
-                  <div class="message message-error validationError" id="startMilestoneErrors"></div>
-                  <div id="startMilestoneControls">
-                  </div>
-                </div>
-                <div class="button-group dialog-buttons-highlighted">
-                  <button class="button button-left button-positive button-ok dialog-action-default"
-                    id="startMilestoneSubmit" type="submit">
-                    Start Milestone </button>
-                  <a class="button button-left button-negative button-cancel dialog-action-close">
-                    Cancel </a>
-                </div>
-              </form>
-            </div>
-            <div class="dialog bulk-delete-dialog" id="bulkDeleteDialog">
-              <div class="dialog-title">Confirmation</div>
-              <div class="dialog-body">
-                <p class="top bottom dialog-message"><strong>Delete these test milestones?</strong> This also
-                  unlinks the <br> milestones from all test runs and plans and cannot be <br>undone (no test
-                  runs
-                  and plans are deleted).</p>
-                <p class="dialog-extra text-delete"></p>
-                <div class="message message-delete bottom delete-confirm-container confirm-container">
-                  <div class="checkbox">
-                    <label>
-                      <span class="dialog-confirm"><span style="color:red">Yes, delete the selected
-                          milestones
-                          (cannot be <br>undone)</span></span>
-                      <span class="dialog-confirm-busy"></span>
-                      <input id="confirm-check" type="checkbox" value="1" name="deleteCheckbox">
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="button-group dialog-buttons-highlighted">
-                <a
-                  class="button button-black button-black-disabled button-left button-positive button-disabled dialog-action-default">
-                  Delete </a>
-                <a
-                  class="button button-left button-delete button-disabled button-hidden button-no-margin-right dialog-action-secondary">
-                </a>
-                <a class="button button-cancel button-left button-negative dialog-action-close">
-                  Cancel </a>
-              </div>
-            </div>
 
             <div class="sidebar-inner">
               <a id="navigation-milestones-add" class="sidebar-button" [routerLink]="['/milestones-add', projectId]">
@@ -140,590 +132,8 @@
               <p class="top">There are no milestones.</p>
             </div>
 
-
           </div>
         </div>
-
-
-        <div class="dialog" id="messageDialog" style="width: 350px; word-wrap: break-word">
-          <div class="dialog-title"></div>
-          <div class="dialog-body">
-            <p style="margin: 0" class="dialog-message"></p>
-          </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a class="button button-ok button-left button-positive dialog-action-default">
-              OK </a>
-          </div>
-        </div>
-        <div class="dialog" id="confirmDialog" style="width: 350px">
-          <div class="dialog-title">Confirmation</div>
-          <div class="dialog-body">
-            <p style="margin: 0" class="dialog-message"></p>
-          </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a class="button button-ok button-left button-positive dialog-action-default">
-              Yes </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-              No </a>
-          </div>
-        </div>
-
-        <div id="confirmDialogOkCancel" class="dialog">
-          <div class="dialog-title">Confirmation</div>
-          <div class="dialog-body">
-            <p class="dialog-message"></p>
-          </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a class="button button-ok button-left button-positive dialog-action-default">
-              OK </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-              Cancel </a>
-          </div>
-        </div>
-        <div id="tooltip" class="tooltip" style="display: none;">
-          <div class="tooltip-pointer-up"></div>
-          <div class="tooltip-pointer-down"></div>
-          <div class="tooltip-pointer-right"></div>
-          <div class="tooltip-header"></div>
-          <p style="margin: 0"></p>
-        </div>
-        <div class="dialog" id="deleteDialog" style="width: 425px">
-          <div class="dialog-title">Confirmation</div>
-          <div class="dialog-body">
-            <p class="top bottom dialog-message"></p>
-            <p class="dialog-extra text-delete"></p>
-            <div class="message message-delete bottom delete-confirm-container"
-              style="margin-top: 12px; line-height: 1">
-              <div class="checkbox">
-                <label>
-                  <span class="dialog-confirm"></span>
-                  <span class="dialog-confirm-busy">
-                    <div class="icon-progress-inline"></div>
-                  </span>
-                  <input type="checkbox" value="1" name="deleteCheckbox">
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a
-              class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
-              OK </a>
-            <a
-              class="button button-left button-positive button-disabled button-hidden button-no-margin-right dialog-action-secondary">
-            </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-              Cancel </a>
-          </div>
-        </div>
-        <div class="dialog" id="dpaDialog" style="max-width: 725px">
-          <div class="dialog-title">Confirmation</div>
-          <div class="dialog-body">
-            <p class="top bottom dialog-message"></p>
-            <p class="dialog-extra text-delete"></p>
-
-            <form action="index.php?/admin/users/accept_data_processing_agreement" id="dpa_form" method="post"> <input
-                type="hidden" name="_token" value="kyqRSAYnPxiKjL7HwuCW">
-              <div class="form-group">
-                <label for="name">Please enter your full name:<span class="form-required">*</span></label>
-                <input class="form-control " type="text" name="full_name" id="full_name" maxlength="250" value="">
-              </div>
-
-            </form>
-            <div class="message message-delete bottom delete-confirm-container"
-              style="margin-top: 12px; line-height: 1; padding-bottom: 50px">
-              <div class="checkbox">
-                <label>
-                  <span class="dialog-confirm"></span>
-                  <input type="checkbox" value="1" name="deleteCheckbox">
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a
-              class="button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default">
-              Submit </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-              Cancel </a>
-          </div>
-        </div>
-        <div class="dialog" id="trEnterpriseDialog" style="width: 350px; word-wrap: break-word">
-          <div class="dialog-title"></div>
-          <form action="index.php?/mysettings/tr_enterprise_banner_setting" id="tr_enterprise_form" method="post">
-            <input type="hidden" name="_token" value="kyqRSAYnPxiKjL7HwuCW">
-            <div class="dialog-body">
-              <p style="margin: 0" class="dialog-message"></p>
-              <div class="form-group">
-                <div class="radio">
-                  <label>
-                    <input type="radio" class="radio" name="tr_enterprise_banner_display" value="0" checked="">
-                    Remove for this Session </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" class="radio" name="tr_enterprise_banner_display" value="1">
-                    Remove forever </label>
-                </div>
-              </div>
-            </div>
-            <div class="button-group dialog-buttons-highlighted">
-              <input type="submit" value="Submit"
-                class="button button-ok button-left button-positive dialog-action-default">
-              <a class="button button-cancel button-left button-negative dialog-action-close">
-                Cancel </a>
-            </div>
-          </form>
-        </div>
-
-        <div class="dialog" id="deleteEntityAttachmentDialog" style="width: 425px">
-          <div class="dialog-title">Confirmation</div>
-          <div class="dialog-body">
-            <p class="top bottom dialog-message"></p>
-            <p class="dialog-extra text-delete"></p>
-            <div class="message message-delete bottom delete-confirm-container"
-              style="margin-top: 12px; line-height: 1">
-              <div class="checkbox">
-                <label>
-                  <span class="dialog-confirm">Don’t show me this again</span>
-                  <input id="deleteDontShowAgain" type="checkbox" value="1" name="deleteCheckbox">
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a
-              class="button button-ok button-left button-positive dialog-action-default delete-entity-attachment-button-submit">
-              Delete </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-              Cancel </a>
-          </div>
-        </div>
-
-
-
-
-        <div id="projectGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">1/6</span>
-            Create a Project
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Welcome! Start by creating your first project. Projects in TestRail usually represent a
-              product
-              or software project and serve as organizational unit for cases, results and milestones. You can create
-              as
-              many projects as you like.</p>
-            <div class="tooltip-goal-image goal-project-help"></div>
-          </div>
-        </div>
-        <div id="casesGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">2/6</span>
-            Add Test Cases
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test. They
-              often
-              contain a description, a list of steps and expected results. Cases are organized in sections to make it
-              easy
-              to group related cases together.</p>
-            <div class="tooltip-goal-image goal-cases-help"></div>
-          </div>
-        </div>
-        <div id="runGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">3/6</span>
-            Start a Test Run
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
-              multiple
-              test runs over time and reuse your test cases across runs. A test run has a status and you can easily
-              follow
-              its progress and test activity.</p>
-            <div class="tooltip-goal-image goal-run-help"></div>
-          </div>
-        </div>
-        <div id="resultsGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">4/6</span>
-            Add Test Results
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Once you've added a test run, you can start testing and record results. A result has a status
-              such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different colors. Adding
-              results
-              contributes to the overall status and progress of the test run.</p>
-            <div class="tooltip-goal-image goal-results-help"></div>
-          </div>
-        </div>
-        <div id="usersGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">5/6</span>
-            Invite Team Members
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">TestRail is especially useful when used with a team. Invite other team members and build your
-              test case repository, assign test runs and record results together. Easily track the workload and
-              progress
-              from the Todo tab for your entire team.</p>
-            <div class="tooltip-goal-image goal-users-help"></div>
-          </div>
-        </div>
-
-
-        <div id="integrationGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">6/6</span>
-            Set up Integration
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Integrate TestRail with your issue/bug tracker (such as JIRA, Redmine &amp; more),
-              requirement
-              tool and test automation. Start by configuring your issue integration to collaborate with your dev team,
-              run
-              coverage reports and link issues to results.</p>
-            <div class="tooltip-goal-image goal-integration-help"></div>
-            <div class="checkbox" style="margin-top: 1em">
-              <label>
-                I don't plan to integrate TestRail with other tools for now <input type="checkbox"
-                  id="integrationGoalToggle">
-              </label>
-            </div>
-          </div>
-        </div>
-
-
-        <div id="goals" class="goals">
-          <div id="goals-banner" class="goals-banner ">
-            <span id="goals-cancel" class="goals-cancel hidden">
-              <a class="link-noline nolink" routerLink="javascript:void(0)">
-                <div class="icon-cancel"></div>
-              </a>
-            </span>
-            <div class="goals-banner-inner">
-              <ol class="goals-progress">
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Create a project</span>
-                  <div class="goals-progress-marker link-tooltip goal-project-checked" tooltip-id="#projectGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Add cases</span>
-                  <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Start a run</span>
-                  <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step ">
-                  <span class="goals-progress-title">Add results</span>
-                  <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Invite users</span>
-                  <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step ">
-                  <span class="goals-progress-title">Set up integration</span>
-                  <div class="goals-progress-marker link-tooltip goal-integration" tooltip-id="#integrationGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-              </ol>
-            </div>
-            <div id="goals-start" class="goals-start hidden">
-              <div class="goal-start"></div>
-            </div>
-            <div id="goals-finish" class="goals-finish hidden">
-              <div class="goal-finish"></div>
-            </div>
-            <div id="goals-next" class="goals-next hidden">
-              <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap"
-                class="goal-next">
-              <map name="goalsNextMap">
-                <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
-                <area shape="rect" coords="64,305,254,339" target="_blank"
-                  routerLink="http://www.gurock.com/testrail/support">
-                <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
-                <area shape="rect" coords="496,305,686,339" target="_blank"
-                  routerLink="http://www.gurock.com/testrail/videos/introduction-projects/">
-              </map>
-            </div>
-          </div>
-        </div>
-
-        <div class="dialog dialog_attachment" id="attachmentInfoDialog" style="width: 900px; height: 531px;"></div>
-        <div id="newAttachmentTemplate" style="display: none;">
-          <div style="width: 150px; height: 150px; "
-            class="attachment-block attachment-attachment_icon attachment_selected_class lazy"
-            id="libraryAttachment-attachment_id" title="attachment_name">
-            <div class="attachment-icon"></div>
-            <div class="attachment-name">
-              attachment_truncated_name
-            </div>
-            <img attachment_src_tag="attachment_imgurl" attachment_onerror_tag="attachment_img_onerror"
-              class="hidden-image">
-            <div class="attachment-selection attachment_selected_class"></div>
-          </div>
-        </div>
-        <!-- <div id="libraryAttachmentsAddItemTemplate" >
-        <div id="element_id" class="attachment-library-add">
-            <div class="attachment-library-add-icon"></div>
-        </div>
-    </div> -->
-
-
-
-
-        <div id="projectGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">1/6</span>
-            Create a Project
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Welcome! Start by creating your first project. Projects in TestRail usually represent a
-              product
-              or software project and serve as organizational unit for cases, results and milestones. You can create
-              as
-              many projects as you like.</p>
-            <div class="tooltip-goal-image goal-project-help"></div>
-          </div>
-        </div>
-        <div id="casesGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">2/6</span>
-            Add Test Cases
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test. They
-              often
-              contain a description, a list of steps and expected results. Cases are organized in sections to make it
-              easy
-              to group related cases together.</p>
-            <div class="tooltip-goal-image goal-cases-help"></div>
-          </div>
-        </div>
-        <div id="runGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">3/6</span>
-            Start a Test Run
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
-              multiple
-              test runs over time and reuse your test cases across runs. A test run has a status and you can easily
-              follow
-              its progress and test activity.</p>
-            <div class="tooltip-goal-image goal-run-help"></div>
-          </div>
-        </div>
-        <div id="resultsGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">4/6</span>
-            Add Test Results
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Once you've added a test run, you can start testing and record results. A result has a status
-              such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different colors. Adding
-              results
-              contributes to the overall status and progress of the test run.</p>
-            <div class="tooltip-goal-image goal-results-help"></div>
-          </div>
-        </div>
-        <div id="usersGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">5/6</span>
-            Invite Team Members
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">TestRail is especially useful when used with a team. Invite other team members and build your
-              test case repository, assign test runs and record results together. Easily track the workload and
-              progress
-              from the Todo tab for your entire team.</p>
-            <div class="tooltip-goal-image goal-users-help"></div>
-          </div>
-        </div>
-
-
-        <div id="integrationGoalHelp" class="tooltip tooltip-goal">
-          <div class="tooltip-goal-title">
-            <span class="tooltip-goal-step">6/6</span>
-            Set up Integration
-          </div>
-          <div class="tooltip-goal-body">
-            <p class="top">Integrate TestRail with your issue/bug tracker (such as JIRA, Redmine &amp; more),
-              requirement
-              tool and test automation. Start by configuring your issue integration to collaborate with your dev team,
-              run
-              coverage reports and link issues to results.</p>
-            <div class="tooltip-goal-image goal-integration-help"></div>
-            <div class="checkbox" style="margin-top: 1em">
-              <label>
-                I don't plan to integrate TestRail with other tools for now <input type="checkbox"
-                  id="integrationGoalToggle">
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div id="goals" class="goals">
-          <div id="goals-banner" class="goals-banner ">
-            <span id="goals-cancel" class="goals-cancel hidden">
-              <a class="link-noline nolink" routerLink="javascript:void(0)">
-                <div class="icon-cancel"></div>
-              </a>
-            </span>
-            <div class="goals-banner-inner">
-              <ol class="goals-progress">
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Create a project</span>
-                  <div class="goals-progress-marker link-tooltip goal-project-checked" tooltip-id="#projectGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Add cases</span>
-                  <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Start a run</span>
-                  <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step ">
-                  <span class="goals-progress-title">Add results</span>
-                  <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step goals-progress-step-done">
-                  <span class="goals-progress-title">Invite users</span>
-                  <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-                <li class="goals-progress-step ">
-                  <span class="goals-progress-title">Set up integration</span>
-                  <div class="goals-progress-marker link-tooltip goal-integration" tooltip-id="#integrationGoalHelp"
-                    tooltip-position="top" tooltip-width="400"></div>
-                </li>
-              </ol>
-            </div>
-            <div id="goals-start" class="goals-start hidden">
-              <div class="goal-start"></div>
-            </div>
-            <div id="goals-finish" class="goals-finish hidden">
-              <div class="goal-finish"></div>
-            </div>
-            <div id="goals-next" class="goals-next hidden">
-              <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap"
-                class="goal-next">
-              <map name="goalsNextMap">
-                <area shape="rect" coords="691,13,726,48" routerLink="javascript:void(0)">
-                <area shape="rect" coords="64,305,254,339" target="_blank"
-                  routerLink="http://www.gurock.com/testrail/support">
-                <area shape="rect" coords="280,305,470,339" target="_blank" routerLink="http://blog.gurock.com/">
-                <area shape="rect" coords="496,305,686,339" target="_blank"
-                  routerLink="http://www.gurock.com/testrail/videos/introduction-projects/">
-              </map>
-            </div>
-          </div>
-        </div>
-
-        <script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/extensions-combined.js"></script>
-        <script type="text/javascript" src="https://static.testrail.io/7.5.5.2003/js/application-combined.js"></script>
-
-        <script type="text/javascript" id="js-js-indicator"
-          src="https://static.testrail.io/7.5.5.2003/js/indicator.js"></script>
-        <script type="text/javascript" id="js-js-autocomplete"
-          src="https://static.testrail.io/7.5.5.2003/js/autocomplete.js"></script>
-
-
-
-
-        <div class="attachments-new-dialog dialog dialog_attachment" id="attachmentNewDialogFile">
-          <div class="dialog-title">
-            <span class="addAttachment">Attach file</span>
-          </div>
-
-          <div class="attachments-filter bubble filter-bubble hidden" id="filterAttachmentsBubble">
-            <div id="filterAttachmentsContent" class="filter-bubble-inner">
-            </div>
-          </div>
-
-          <input id="newAttachments" type="hidden">
-          <input id="projectId" type="hidden" value="">
-          <div class="attachments-library attachment-library-dialog">
-            <div>
-              <div style="float: left">
-                <strong class="attachment-library-title">Media Library</strong>
-                <a id="libraryAddAttachment" class="button button-left button-add">Add New</a>
-                <a id="libraryDeleteAttachment" style="display: none;"
-                  class="button button-left button-negative button-delete" routerLink="javascript:void(0)">Delete</a>
-              </div>
-
-              <div style="float: right">
-                <span class="h1-additional">
-                  Sort: <a id="attachments-library-sortby" routerLink="#sortDropdown"
-                    class="link link-dashed dropdownLink">
-                    <span id="attachmentsByName">Date</span></a>
-                  <span id="orderByAsc" class="hidden">
-                    <div class="icon-asc"></div>
-                  </span>
-                  <span id="orderByDesc" class="">
-                    <div class="icon-desc"></div>
-                  </span>
-                  &nbsp;|&nbsp;
-                  Filter: <a class="link link-dashed" routerLink="javascript:void(0)"
-                    id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
-                      id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a>
-                  <span id="attachmentFilterByBusy" class="busy">
-                    <div class="icon-progress-inline"></div>
-                  </span>
-                  <span id="attachmentFilterByReset" class="hidden">
-                    <a routerLink="javascript:void(0)" class="link-tooltip" tooltip-text="Reset filters">
-                      <div class="icon-orderreset"></div>
-                    </a>
-                  </span>
-
-                  <input type="text" name="search" id="libraryAttachmentsSearch" class="attachment-library-search">
-                </span>
-
-                <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown"
-                  style="position: fixed; width: 100px">
-                  <ul>
-                    <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Date</a>
-                    </li>
-                    <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Name</a>
-                    </li>
-                    <li><a class="dropdown-menu-link" routerLink="javascript:void(0)">Size</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-
-            <div style="margin-top: 40px; clear: both; background-color: white; height: 361px; overflow-y: auto;"
-              id="attachmentsNewList">
-            </div>
-            <div id="attachmentsPagination" style="margin-bottom: 10px;"></div>
-          </div>
-
-          <div id="attachmentNewButtons" class="dialog-buttons-highlighted button-group">
-            <div style="margin-top: 6px; float: left;">Maximum file size: 256 MB.</div>
-            <button id="attachmentNewSubmit" type="submit" class="button button-right button-positive button-ok"
-              style="margin-left: 7px">
-              <span class="addAttachment">Attach</span>
-            </button>
-            <a class="button button-right button-negative button-cancel dialog-action-close">
-              Cancel </a>
-          </div>
-        </div>
-
       </div>
     </section>
   </div>
