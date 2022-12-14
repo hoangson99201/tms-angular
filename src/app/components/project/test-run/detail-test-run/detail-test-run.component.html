@@ -135,47 +135,46 @@
                         </a>
                       </td>
                       <td class="js-status" rel="4">
-                        <!-- <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Untested'" rel="4086"
-                          class="dropdownLink status hidden-xs"
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
                           style="background: #737373; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Passed'" rel="4086"
-                          class="dropdownLink status hidden-xs"
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
                           style="background: #338a41; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Blocked'" rel="4086"
-                          class="dropdownLink status hidden-xs"
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
                           style="background: #474747; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Retest'" rel="4086"
-                          class="dropdownLink status hidden-xs"
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
                           style="background: #b99109; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a>
-                        <a #button (click)="openDropDown($event)" *ngIf="result.status == 'Failed'" rel="4086"
-                          class="dropdownLink status hidden-xs"
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
+                          style="background: #a9093a; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <!-- <a #button (click)="openDialog(result.status, result.resultId)"
+                          *ngIf="result.status == 'Untested'"  class="dropdownLink status hidden-xs"
+                          style="background: #737373; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog(result.status, result.resultId)"
+                          *ngIf="result.status == 'Passed'"  class="dropdownLink status hidden-xs"
+                          style="background: #338a41; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog(result.status, result.resultId)"
+                          *ngIf="result.status == 'Blocked'"  class="dropdownLink status hidden-xs"
+                          style="background: #474747; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog(result.status, result.resultId)"
+                          *ngIf="result.status == 'Retest'"  class="dropdownLink status hidden-xs"
+                          style="background: #b99109; color: #ffffff">{{result.status}}<span
+                            class="caret button-caret"></span></a>
+                        <a #button (click)="openDialog(result.status, result.resultId)"
+                          *ngIf="result.status == 'Failed'"  class="dropdownLink status hidden-xs"
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
                             class="caret button-caret"></span></a> -->
-
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Untested'" rel="4086" class="dropdownLink status hidden-xs"
-                          style="background: #737373; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Passed'" rel="4086" class="dropdownLink status hidden-xs"
-                          style="background: #338a41; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Blocked'" rel="4086" class="dropdownLink status hidden-xs"
-                          style="background: #474747; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Retest'" rel="4086" class="dropdownLink status hidden-xs"
-                          style="background: #b99109; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Failed'" rel="4086" class="dropdownLink status hidden-xs"
-                          style="background: #a9093a; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
                       </td>
                       <td class="action">
                       </td>
@@ -262,220 +261,6 @@
           </div>
         </div>
       </div>
-
-      <script type="text/javascript">
-        $(document).ready(function () {
-          App.Tables.columns_for_user = {};
-          App.Tables.columns_for_user['tests:id'] = 65;
-          App.Tables.columns_for_user['cases:title'] = 0;
-          App.Tables.columns_for_user['tests:assignedto_id'] = 125;
-
-          App.Tables.columns = {};
-          App.Tables.columns['tests:assignedto_id'] = 'Assigned To';
-          App.Tables.columns['cases:custom_automation_type'] = 'Automation Type';
-          App.Tables.columns['tests:original_case_id'] = 'Case ID';
-          App.Tables.columns['tests:defects'] = 'Defects';
-          App.Tables.columns['tests:defects_all'] = 'Defects All';
-          App.Tables.columns['tests:elapsed'] = 'Elapsed';
-          App.Tables.columns['tests:elapsed_all'] = 'Elapsed All';
-          App.Tables.columns['cases:estimate'] = 'Estimate';
-          App.Tables.columns['cases:estimate_forecast'] = 'Forecast';
-          App.Tables.columns['tests:id'] = 'ID';
-          App.Tables.columns['tests:in_progress_by'] = 'In Progress';
-          App.Tables.columns['cases:priority_id'] = 'Priority';
-          App.Tables.columns['cases:refs'] = 'References';
-          App.Tables.columns['cases:section_id'] = 'Section';
-          App.Tables.columns['tests:status_id'] = 'Status';
-          App.Tables.columns['cases:template_id'] = 'Template';
-          App.Tables.columns['tests:tested_by'] = 'Tested By';
-          App.Tables.columns['tests:tested_on'] = 'Tested On';
-          App.Tables.columns['cases:title'] = 'Title';
-          App.Tables.columns['cases:type_id'] = 'Type';
-          App.Tables.columns['tests:version'] = 'Version';
-          App.Tables.columns['tests:version_all'] = 'Version All';
-
-          App.Tables.group_by = 'cases:section_id';
-          App.Tables.group_order = 'asc';
-
-
-          App.Tables.runsColumns = {};
-
-        });
-      </script>
-
-      <script type="text/javascript">
-        $(document).ready(function () {
-          App.Storage.init();
-
-          App.Runs.columns_for_qpane = {};
-          App.Runs.columns_for_qpane['tests:id'] = 65;
-          App.Runs.columns_for_qpane['cases:title'] = 0;
-
-          $('#contentSticky').sticky(
-            {
-              topPadding: 15,
-              height: 28,
-              className: 'content-sticky',
-              container: '#content-inner'
-            });
-
-          $('#qpaneSticky').sticky(
-            {
-              className: 'qpane-sticky',
-              container: '#qpane-inner'
-            });
-
-          $('#sidebarSticky').sticky(
-            {
-              topSpacing: 15,
-              className: 'sidebar-sticky',
-              container: '#sidebar-inner'
-            });
-
-          App.Runs.project_id = 1;
-          App.Runs.run_id = 24;
-          App.Runs.display = 'tree';
-          App.Runs.user_ids = [];
-          App.Runs.page_type = 'view';
-
-
-          App.Runs.scroll_offset = 58;
-
-          App.Runs.applyActions();
-          App.Runs.applyResponsive();
-          App.Runs.applyQPane(0);
-          App.Runs.initialized = true;
-
-          App.Runs.showInitial();
-        });
-      </script>
-
-      <script type="text/javascript">
-        $(document).ready(function () {
-          App.Translations.add(
-            "tests_status",
-            "Status");
-        });
-      </script>
-      <script type="text/javascript">
-        $(document).ready(function () {
-          App.Hotkeys.registerAlt(
-            'r',
-            function () {
-              if (App.QPane.isVisible()) {
-                App.Tests.addResultQPane(
-                  1,
-                  App.QPane.getCurrentRowID()
-                );
-              }
-            }
-          );
-
-          App.References.applyLookup(1);
-        });
-      </script>
-
-
-
-      <script type="text/javascript">
-        var isFilter = 0;
-
-        $('#filterTestsContent, #exportCsvSectionsSelection').click(function () {
-          isFilter = 1;
-        });
-
-        $('body').on('click', '#filterTestsCancel, #filterTestsApply, .button-cancel', function () {
-          isFilter = 0;
-        });
-
-        $('body').keyup(function (e) {
-          if (!$(e.target).is('input')) {
-            var DKey = 68;
-            var EKey = 69;
-            var RKey = 82;
-            var PKey = 80;
-            var MKey = 77;
-            var AKey = 65;
-            var JKey = 74;
-            var KKey = 75;
-            var QKey = 81;
-
-            if ($('#dialog-ident-exportCsvDialog').css('display') === 'none') {
-              isFilter = 0;
-            }
-
-            if (e.which === DKey && !e.ctrlKey && isFilter === 0) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                App.Defects.preparePush(1, 0, 'runs/view', 24);
-              }
-            }
-
-            if (e.which === EKey && isFilter === 0) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                App.Page.load('runs/edit/24/1');
-              }
-            }
-
-            if (e.which === RKey && !e.ctrlKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                App.Tests.massAddResult(1);
-              }
-            }
-
-            if (e.which === PKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                if (App.QPane.isVisible()) {
-                  App.Runs.passRowAndNext(
-                    App.QPane.getCurrentRowID()
-                  );
-                }
-              }
-            }
-
-            if (e.which === MKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                if (App.QPane.isVisible()) {
-                  App.Tests.addCommentNoDialogActivate(
-                    App.QPane.getCurrentRowID()
-                  );
-                }
-              }
-            }
-
-            if (e.which === AKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                App.Tests.massAssignTo();
-              }
-            }
-
-            if (e.which === JKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                if (App.QPane.isVisible()) {
-                  App.Runs.nextRow();
-                }
-              }
-            }
-
-            if (e.which === KKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                if (App.QPane.isVisible()) {
-                  App.Runs.prevRow();
-                }
-              }
-            }
-
-            if (e.which === QKey) {
-              if (!$(e.target).hasClass('form-control-full') && !$(e.target).attr('contenteditable')) {
-                if (!App.Ajax.isBusy()) {
-                  App.QPane.tryToggleRow();
-                }
-              }
-            }
-          }
-        });
-      </script>
-
-
     </div>
   </div>
 

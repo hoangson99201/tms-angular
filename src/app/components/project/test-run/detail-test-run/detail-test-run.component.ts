@@ -32,23 +32,23 @@ export class DetailTestRunComponent implements OnInit {
     private resultService: ResultService,
     private renderer: Renderer2,
   ) {
-    // this.renderer.listen('window', 'click', (e: Event) => {
-    //   console.log(this.statusDropdown);
-    //   console.log(this.button);
-    //   if (
-    //     e.target !== this.statusDropdown.nativeElement &&
-    //     e.target !== this.button.nativeElement
-    //   ) {
-    //     console.log('if');
-    //     console.log(e.target);
-    //     this.top = ''
-    //     this.left = ''
-    //   } else {
-    //     console.log('else');
-    //     console.log(e.target);
-    //   }
-    // }
-    // );
+    this.renderer.listen('window', 'click', (e: Event) => {
+      console.log(this.statusDropdown);
+      console.log(this.button);
+      if (
+        e.target !== this.statusDropdown.nativeElement &&
+        e.target !== this.button.nativeElement
+      ) {
+        console.log('if');
+        console.log(e.target);
+        this.top = ''
+        this.left = ''
+      } else {
+        console.log('else');
+        console.log(e.target);
+      }
+    }
+    );
   }
 
   ngOnInit(): void {
