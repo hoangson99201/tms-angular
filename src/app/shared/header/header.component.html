@@ -1,69 +1,25 @@
 <header>
-    <div class="navbar" data-controller="layout--navbar" dusk="navbar">
-        <div class="navbar__menu">
-            <ul>
-                <li class="navbar__menu__item--selected"><a><span>{{getFullname()}}</span><i
-                            class="fad fa-cog icon-navbar-admin fa-fw"></i></a></li>
-            </ul>
-        </div>
-
-
-        <div class="navbar__trial">
-            <app-search></app-search>
-        </div>
-        <div class="navbar__user">
-            <!-- <div class="navbar__user__avatar">
-                <div class="navbar__user__avatar__link" data-target="layout--navbar.userMenu" dusk="userMenuIcon">
-                    <div class="avatar avatar--person  avatar--32         ">
-                        <div class="avatar__text avatar__text--color2">
-                            <div class="avatar__text__identifier">a</div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <ul>
-                <li class=""><a id="logout" data-content="Logout">
-                    <i class="fad fa-sign-out icon-sidebar-users fa-fw"></i><span> Logout</span></a></li>
-              </ul>
-        </div>
+  <div class="navbar" data-controller="layout--navbar" dusk="navbar">
+    <div class="navbar__menu">
+      <ul>
+        <li class="navbar__menu__item--selected"><a><span>{{getFullname()}}</span><i
+              class="fad fa-cog icon-navbar-admin fa-fw"></i></a></li>
+      </ul>
     </div>
 
-    <div class="popup-container" style="z-index: 101; background: unset"
-        [ngStyle]="{'display': left ? 'block' : 'none'}">
-        <div class="popup-container__inner">
-            <div class="popup popup--with-pointer popup--bottom-right popup--visible" style="z-index: 100; "
-                [ngStyle]="{'inset': left + ' auto auto ' + top}" dusk="userMenu">
-                <div class="popup__border">
-                    <div class="popup__menu">
-                        <a class="popup__menu__link-item" href="https://aaa1212.testmo.net/users/profile">
-                            <div class="popup__menu__item__text">
-                                <div class="navbar__user__avatar__profile">
-                                    <div class="navbar__user__avatar__profile__image">
-                                        <div class="avatar avatar--person  avatar--48         ">
-                                            <div class="avatar__text avatar__text--color2">
-                                                <div class="avatar__text__identifier">a</div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <div class="navbar__user__avatar__profile__description">
-                                        <div class="navbar__user__avatar__profile__description__header">aaa</div>
-                                        <p>My profile &amp; settings</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="popup__menu__divider"></div>
-                        <a class="popup__menu__action-item" data-action="logout">
-                            <div class="popup__menu__item__icon"><i class="far fa-sign-out icon-navbar-logout"></i>
-                            </div>
-                            <div class="popup__menu__item__text">Log out</div>
-                        </a>
-                    </div>
-
-                    <div class="popup__pointer"></div>
-                </div>
-            </div>
-        </div>
+    <div class="navbar__trial">
+      <app-search></app-search>
     </div>
+    <div class="navbar__user">
+      <ul>
+        <li class="">
+          <span id="logout" data-content="Logout" (click)="logout()"
+            style="color: #fff; text-decoration: none; background-color: transparent; cursor: pointer; border: 0;">
+            <i class="fad fa-sign-out icon-sidebar-users fa-fw"></i>Logout
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </header>

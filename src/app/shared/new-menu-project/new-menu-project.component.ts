@@ -36,14 +36,8 @@ export class NewMenuProjectComponent {
     return this.project.projectName;
   }
 
-  public ngOnInit() { }
-
   public getFullname() {
     console.log('activeUser' + AuthService.activeUser);
     return AuthService.activeUser.fullname;
-  }
-
-  classSelected(value: any) {
-    this.selectedMenu = value;
   }
 }

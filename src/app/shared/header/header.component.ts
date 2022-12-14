@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  constructor(private router: Router) { }
+
   public top: string = '';
   public left: string = '';
 
@@ -26,4 +29,9 @@ export class HeaderComponent {
     return AuthService.activeUser.fullname;
   }
 
+  logout() {
+    document.cookie = 'token=;path=/tms;Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    AuthService.activeUser = {};
+    return this.router.navigateByUrl('/login');
+  }
 }

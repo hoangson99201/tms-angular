@@ -21,27 +21,24 @@
         </ul>
         <div class="sidebar__menu__nav__header">Project</div>
         <ul>
-          <li [class]="selectedMenu == 'overview' ? 'sidebar__menu__nav__item--selected' : '' "><a
-              (click)="classSelected('overview')" [routerLink]="['/overview', projectId]" dusk="overviewLink"
-              data-content="Overview">
-              <i class="fad fa-home icon-sidebar-overview fa-fw"></i><span> Overview</span></a></li>
+          <li [class]="selectedMenu == 'overview' ? 'sidebar__menu__nav__item--selected' : '' ">
+            <a [routerLink]="['/overview', projectId]">
+              <i class="fad fa-home icon-sidebar-overview fa-fw"></i><span> Overview</span></a>
+          </li>
 
-          <li [class]="selectedMenu == 'milestone' ? 'sidebar__menu__nav__item--selected' : '' "><a
-              (click)="classSelected('milestone')" [routerLink]="['/milestones', projectId]" dusk="projectsLink"
-              data-content="Milestones">
-              <i class="fad fa-paste icon-sidebar-milestone fa-fw"></i><span> Milestones</span></a></li>
+          <li [class]="selectedMenu == 'milestone' ? 'sidebar__menu__nav__item--selected' : '' ">
+            <a [routerLink]="['/milestones', projectId]">
+              <i class="fad fa-paste icon-sidebar-milestone fa-fw"></i><span> Milestones</span></a>
+          </li>
 
           <li [class]="selectedMenu == 'test-runs' ? 'sidebar__menu__nav__item--selected' : '' ">
-            <a [routerLink]="['/test-runs', projectId]" data-content="Test
-            Runs
-            &amp;
-            Results">
+            <a [routerLink]="['/test-runs', projectId]">
               <i class="fad fa-th-large icon-sidebar-test fa-fw"></i><span> Test Runs &amp; Results</span>
             </a>
           </li>
 
           <li [class]="selectedMenu == 'test-cases' ? 'sidebar__menu__nav__item--selected' : '' ">
-            <a [routerLink]="['/test-cases', projectId]" dusk="workflowsLink" data-content="Workflows">
+            <a [routerLink]="['/test-cases', projectId]">
               <i class="fad fa-project-diagram icon-sidebar-workflows fa-fw"></i><span> Test Cases</span></a>
           </li>
         </ul>

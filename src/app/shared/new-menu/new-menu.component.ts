@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-menu',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-menu.component.scss']
 })
 export class NewMenuComponent {
-
+  @Input() public selectedMenu = 'dashboard';
 }

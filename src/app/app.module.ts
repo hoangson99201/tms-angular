@@ -39,6 +39,7 @@ import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-proj
 import { SearchComponent } from './shared/search/search.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { StatusSelectComponent } from './components/project/test-run/detail-test-run/status-select/status-select.component';
+import { DetailMilestoneComponent } from './components/project/milestones/detail-milestone/detail-milestone.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { StatusSelectComponent } from './components/project/test-run/detail-test
     NewMenuProjectComponent,
     SearchComponent,
     HeaderComponent,
-    StatusSelectComponent
+    StatusSelectComponent,
+    DetailMilestoneComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [
