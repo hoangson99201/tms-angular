@@ -1,0 +1,41 @@
+<h1>
+  Activity
+</h1>
+<div id="history">
+  <h3 style="margin-top: 1.5em">
+    <span class="title">Saturday, December 03, 2022</span>
+  </h3>
+  <table class="grid">
+    <colgroup>
+      <col class="box">
+      <col>
+      <col class="comment-compact">
+    </colgroup>
+    <tbody>
+      <tr class="odd">
+        <td class="box">
+          <span class="status entity-run">Test Run</span>
+        </td>
+        <td>
+          <a href="index.php?/runs/view/21">Test Run 11/20/2022</a>
+          <span class="text-secondary">(completed)</span>
+        </td>
+        <td class="right">
+          <span class="text-soft">Closed by Thang</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="showHistory" style="margin-top: 0.75em">
+    <span class="showMore pull-right text-secondary">
+      <a id="navigation-activity-showmore" class="link" href="javascript:void(0)"
+        onclick="this.blur(); App.Projects.loadHistory(1); return false;">Show More</a>
+    </span>
+    <span class="busy pull-right">
+      <div class="icon-progress-inline"></div>
+    </span>
+  </div>
+</div>
+<div id="activities" class="hidden">
+  <p id="noActivities" class="hidden">No activity yet.</p>
+</div>
