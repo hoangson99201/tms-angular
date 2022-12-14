@@ -1,293 +1,224 @@
-<div class="page-side" style="height: -webkit-fill-available;">
+<div style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="projectId" [selectedMenu]="'test-runs'"></app-new-menu-project>
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
-    media="all" />
-  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
-  <div class="table" style=" height: 100%; display: table;">
-    <div id="content" class="column content overflow-content">
-      <div id="notificationbar" class="notificationbar notificationbar-hidden">
-      </div>
-      <div class="notificationbar notificationbar-local">
-      </div>
-      <div id="content-header" class="content-header content-header-default">
-        <div class="content-header-inner">
-          <div class="content-header-result"></div>
-          <div class="content-header-id">R24</div>
-          <div class="toolbar content-header-toolbar"><a
-              class="toolbar-button content-header-button button-responsive button-edit toolbar-button-last"
-              rel="keep-get"><span class="button-text">Edit</span></a><a
-              class="toolbar-button content-header-button button-responsive button-start"><span
-                class="button-text">Rerun</span></a><a
-              class="toolbar-button toolbar-button-last content-header-button button-responsive button-report dropdownLink"
-              href="#reportDropdown"><span class="button-text">Reports</span><span
-                class="caret button-caret"></span></a><a
-              class="toolbar-button toolbar-button-first content-header-button button-defect dropdownLink"
-              href="#defectDropdown">Defects<span class="caret button-caret"></span></a></div><span
-            class="content-header-icon"><a class="link-tooltip" tooltip-header="Close Run"
-              tooltip-text="Closes this test run to archive its tests and results. Prevents future modifications.">
-              <div class="icon-close"></div>
-            </a></span><span class="content-header-icon"><a id="printPopupLink" class="popupLink link-tooltip"
-              rel="print" tooltip-text="Opens a print view of this test run.">
-              <div class="icon-print"></div>
-            </a></span><span class="content-header-icon"><a class="dropdownLink link-tooltip" href="#exportDropdown"
-              tooltip-header="Export Run" tooltip-text="Exports this test run into different formats (XML, Excel/CSV).">
-              <div class="icon-export"></div>
-            </a></span><span id="unsubscribed" class="content-header-icon ">
-            <a class="subscribe link-tooltip"
-              tooltip-text="Subscribe to receive emails on test changes for this test run.">
-              <div class="icon-subscribe"></div>
-            </a>
-            <span class="hidden busy">
-              <div class="icon-progress-standard"></div>
-            </span>
-          </span>
-          <span id="subscribed" class="content-header-icon hidden">
-            <a class="unsubscribe link-tooltip"
-              tooltip-text="Unsubscribe from email updates on test changes for this test run.">
-              <div class="icon-unsubscribe"></div>
-            </a>
-            <span class="hidden busy">
-              <div class="icon-progress-standard"></div>
-            </span>
-          </span>
-          <div class="content-header-title page_title">
-            Test Run 11/25/2022 </div>
-        </div>
-      </div>
-      <script type="text/javascript">
-        $("#sites").prop("selectedIndex", 0);
-      </script>
-      <div id="content-inner" class="content-inner goals-clear">
-        <div id="groupContainer" style="margin-top: 1.5em; display: block;">
-          <div id="groupContent">
-            <div id="groups">
-              <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
-                <div class="grid-title">
-                  <span class="title" id="sectionName-4">{{section.key}}</span>
-                  <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                  <a style="margin-left: 5px">
-                    <div class="icon-small-edit icon-small-inline"></div>
+  <div>
+    <section>
+      <app-header></app-header>
+      <div>
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet"
+          href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+          media="all" />
+        <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+        <div class="table" style="height: 100%;">
+          <div id="content" class="column content overflow-content">
+            <div id="notificationbar" class="notificationbar notificationbar-hidden">
+            </div>
+            <div class="notificationbar notificationbar-local">
+            </div>
+            <div id="content-header" class="content-header content-header-default">
+              <div class="content-header-inner">
+                <div class="content-header-result"></div>
+                <div class="content-header-id">{{testRunId}}</div>
+                <span id="subscribed" class="content-header-icon hidden">
+                  <a class="unsubscribe link-tooltip"
+                    tooltip-text="Unsubscribe from email updates on test changes for this test run.">
+                    <div class="icon-unsubscribe"></div>
                   </a>
-                  <a style="margin-left: 5px">
-                    <div class="icon-small-delete hidden action-hover"></div>
-                  </a>
-                  <span id="sectionBusy-4" class="busy" style="display: none;">
-                    <div class="icon-progress-inline"></div>
+                  <span class="hidden busy">
+                    <div class="icon-progress-standard"></div>
                   </span>
-                </div>
-                <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
-                  <div class="scroll-auto-inner markdown">
-                  </div>
-                </div>
-                <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
-                  <colgroup>
-                    <col class="checkbox">
-                    <col style="width: 65px">
-                    <col>
-                    <col style="width: 125px">
-                    <col class="action columns">
-                  </colgroup>
-                  <tbody>
-                    <tr class="header">
-                      <th class="checkbox"><input type="checkbox" class="selectionCheckbox"></th>
-                      <th>
-                        <a class="link-noline" title="ID"><span>ID</span></a>
-                        <div class="column-actions">
-                        </div>
-                      </th>
-                      <th>
-                        <a class="link-noline" title="Title"><span>Title</span></a>
-                        <div class="column-actions">
-                        </div>
-                      </th>
-                      <th>
-                        <a class="link-noline">
-                          <span class="hidden-xs">Status</span>
-                          <span class="visible-xs hidden" style="display: none;">St.</span>
-                        </a>
-                      </th>
-                      <th class="action columns" id="selectColumns-1">
-                        <span class="select"><a>
-                            <div class="icon-columns"></div>
-                          </a></span><span class="busy">
+                </span>
+                <div class="content-header-title page_title">{{testRunName}}</div>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $("#sites").prop("selectedIndex", 0);
+            </script>
+            <div id="content-inner" class="content-inner goals-clear">
+              <div id="groupContainer" style="margin-top: 1.5em; display: block;">
+                <div id="groupContent">
+                  <div id="groups">
+                    <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
+                      <div class="grid-title">
+                        <span class="title" id="sectionName-4">{{section.key}}</span>
+                        <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
+                        <span id="sectionBusy-4" class="busy" style="display: none;">
                           <div class="icon-progress-inline"></div>
                         </span>
-                      </th>
-                    </tr>
-                    <tr *ngFor="let result of section.value" id="row-{{result.resultId}}" class="row odd">
-                      <td class="checkbox"><input name="selected-4086" type="checkbox" value="4086"
-                          class="selectionCheckbox"></td>
-                      <td class="id"><a class="link-noline" rel="keep-get">{{result.resultId}}</a>
-                      </td>
-                      <td>
-                        <a>
-                          {{result.caseName}}
-                        </a>
-                      </td>
-                      <td class="js-status" rel="4">
-                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
+                      </div>
+                      <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
+                        <div class="scroll-auto-inner markdown">
+                        </div>
+                      </div>
+                      <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
+                        <tbody>
+                          <tr class="header">
+                            <th>
+                              <span>ID</span>
+                              <div class="column-actions">
+                              </div>
+                            </th>
+                            <th><span>Title</span>
+                              <div class="column-actions">
+                              </div>
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                              <span style="float: right;" class="hidden-xs">Status</span>
+                            </th>
+                          </tr>
+                          <tr *ngFor="let result of section.value" id="row-{{result.resultId}}" class="row odd">
+                            <td class="id">
+                              {{result.resultId}}
+                            </td>
+                            <td>
+                              {{result.caseName}}
+                            <td class="js-status" rel="4">
+                            </td>
+                            <td class="js-status" rel="4">
+                              <!-- <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Untested'" class="custom-dropdown dropdownLink status hidden-xs"
                           style="background: #737373; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
+                            class="custom-dropdown caret button-caret"></span></a>
                         <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
+                          *ngIf="result.status == 'Passed'" class="custom-dropdown dropdownLink status hidden-xs"
                           style="background: #338a41; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
+                            class="custom-dropdown caret button-caret"></span></a>
                         <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
+                          *ngIf="result.status == 'Blocked'" class="custom-dropdown dropdownLink status hidden-xs"
                           style="background: #474747; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
+                            class="custom-dropdown caret button-caret"></span></a>
                         <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
+                          *ngIf="result.status == 'Retest'" class="custom-dropdown dropdownLink status hidden-xs"
                           style="background: #b99109; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
+                            class="custom-dropdown caret button-caret"></span></a>
                         <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
+                          *ngIf="result.status == 'Failed'" class="custom-dropdown dropdownLink status hidden-xs"
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <!-- <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Untested'"  class="dropdownLink status hidden-xs"
-                          style="background: #737373; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Passed'"  class="dropdownLink status hidden-xs"
-                          style="background: #338a41; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Blocked'"  class="dropdownLink status hidden-xs"
-                          style="background: #474747; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Retest'"  class="dropdownLink status hidden-xs"
-                          style="background: #b99109; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a>
-                        <a #button (click)="openDialog(result.status, result.resultId)"
-                          *ngIf="result.status == 'Failed'"  class="dropdownLink status hidden-xs"
-                          style="background: #a9093a; color: #ffffff">{{result.status}}<span
-                            class="caret button-caret"></span></a> -->
-                      </td>
-                      <td class="action">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                            class="custom-dropdown caret button-caret"></span></a> -->
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #737373; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #338a41; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #474747; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #b99109; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #a9093a; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
 
 
 
 
-    <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-    </div>
-    <div id="qpane" class="column qpane" style="width: 600px; display: none">
-      <div id="qpane-empty" class="qpane-empty hidden">
-        <div class="qpane-empty-header">
-          No test case selected. </div>
-        <div class="qpane-empty-body">
-          You can select a different group or change the filters. </div>
-      </div>
-      <div id="qpane-inner">
-        <div id="qpaneSticky">
-          <div id="qpane-content">
+          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
+          </div>
+          <div id="qpane" class="column qpane" style="width: 600px; display: none">
+            <div id="qpane-empty" class="qpane-empty hidden">
+              <div class="qpane-empty-header">
+                No test case selected. </div>
+              <div class="qpane-empty-body">
+                You can select a different group or change the filters. </div>
+            </div>
+            <div id="qpane-inner">
+              <div id="qpaneSticky">
+                <div id="qpane-content">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+          </div>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
+
+            <div class="sidebar-inner">
+              <p style="margin: 0">
+                Created on {{createDate}}
+              </p>
+            </div>
+
+            <div class="sidebar-menu">
+              <ul>
+                <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected">
+                  <a id="navigation-runs-testsresults">
+                    Tests &amp; Results</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sidebar-inner">
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-    </div>
-    <div id="sidebar" class="column sidebar" style="width: 250px">
 
-      <div class="sidebar-inner">
-        <p style="margin: 0">
-          Created by Thắng on 11/25/2022. <br>
-          References
-        </p>
       </div>
 
-      <div class="sidebar-menu">
+      <div id="statusDropdown" #statusDropdown class="dropdown dropdown-menu"
+        [ngStyle]="{'top': top, 'left': left, 'width': '175px', 'display': 'block', 'position': 'absolute' }"
+        *ngIf="top && left">
         <ul>
-          <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected">
-            <a id="navigation-runs-testsresults">
-              Tests &amp; Results</a>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
           </li>
-          <li class="sidebar-menu-item ">
-            <a id="navigation-runs-activity">
-              Activity</a>
+          <li class="dropdown-menu-separator"></li>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
           </li>
-          <li class="sidebar-menu-item ">
-            <a id="navigation-runs-progress">
-              Progress</a>
+          <li class="dropdown-menu-separator"></li>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
           </li>
-          <li class="sidebar-menu-item ">
-            <a id="navigation-runs-defects">
-              Defects</a>
+          <li class="dropdown-menu-separator"></li>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
           </li>
         </ul>
       </div>
-      <div class="sidebar-inner">
-
-      </div>
-
-      <div id="sidebar-inner" class="sidebar-inner">
-        <div id="sidebarSticky">
-          <div class="toolbar " id="sidebarToolbar">
-            <div class="toolbar-inner">
-              <a href="#displayDropdown" class="link dropdownLink toolbar-dropdown">
-                <span class="toolbar-dropdown-icon">
-                  <div class="icon-display-tree-inactive"></div>
-                </span>
-                <span class="toolbar-dropdown-text link-dashed">All</span>
-                <div class="icon-desc"></div>
-              </a>
-            </div>
-          </div>
-          <div class="clear"></div>
-          <div id="groupTreeContainer">
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
-
-</div>
-
-<div id="statusDropdown" #statusDropdown class="dropdown dropdown-menu"
-  [ngStyle]="{'top': top, 'left': left, 'width': '175px', 'display': 'block', 'position': 'absolute' }"
-  *ngIf="top && left">
-  <ul>
-    <li>
-      <a class="dropdown-menu-link">
-        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link">
-        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link">
-        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
-    </li>
-    <li class="dropdown-menu-separator"></li>
-    <li>
-      <a class="dropdown-menu-link">
-        <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
-    </li>
-  </ul>
 </div>

@@ -1,14 +1,9 @@
-import {
-  Component,
-  OnInit,
-  Renderer2,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Result } from 'src/app/models/result';
 import { ResultService } from 'src/app/services/result.service';
+import { TestRunService } from 'src/app/services/test-run.service';
 import { AddResultComponent } from '../add-result/add-result.component';
 
 @Component({
@@ -19,6 +14,9 @@ import { AddResultComponent } from '../add-result/add-result.component';
 export class DetailTestRunComponent implements OnInit {
   public projectId: string = '';
   public testRunId: string = '';
+  public testRunName: string = '';
+  public createDate: string = '';
+  public isCompleted: boolean = false;
   public results: Result[] = [];
   public map: Map<string, Result[]> = new Map<string, Result[]>();
   public top: string = '';
@@ -29,27 +27,9 @@ export class DetailTestRunComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private resultService: ResultService,
-    private renderer: Renderer2,
-  ) {
-    this.renderer.listen('window', 'click', (e: Event) => {
-      console.log(this.statusDropdown);
-      console.log(this.button);
-      if (
-        e.target !== this.statusDropdown.nativeElement &&
-        e.target !== this.button.nativeElement
-      ) {
-        console.log('if');
-        console.log(e.target);
-        this.top = ''
-        this.left = ''
-      } else {
-        console.log('else');
-        console.log(e.target);
-      }
-    }
-    );
-  }
+    private testRunService: TestRunService,
+    private resultService: ResultService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -59,6 +39,27 @@ export class DetailTestRunComponent implements OnInit {
       console.log(this.projectId);
       console.log(this.testRunId);
       this.refreshResult(parseInt(this.testRunId));
+      this.testRunService
+        .findByTestRunId(parseInt(this.testRunId))
+        .subscribe((results) => {
+          this.testRunName = results.runName;
+          this.isCompleted = results.isCompleted ? results.isCompleted : false;
+          this.createDate = results.createdOn
+            ? results.createdOn[2] +
+              '/' +
+              results.createdOn[1] +
+              '/' +
+              results.createdOn[0]
+            : '';
+        });
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target instanceof Element) {
+        if (!e.target.className.startsWith('custom-dropdown')) {
+          this.top = '';
+          this.left = '';
+        }
+      }
     });
   }
 
