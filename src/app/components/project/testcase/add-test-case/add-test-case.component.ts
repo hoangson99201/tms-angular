@@ -16,15 +16,6 @@ import { TestCaseService } from 'src/app/services/test-case.service';
   styleUrls: ['./add-test-case.component.scss'],
 })
 export class AddTestCaseComponent implements OnInit {
-  testCase: TestCase = {
-    caseName: '',
-    projectId: 0,
-    userId: 2,
-  };
-  sections: Section[] = [];
-  priorities: Priority[] = [];
-  currentMode: Mode = Mode.Create;
-  Mode = Mode;
 
   constructor(
     private sectionService: SectionService,
@@ -35,6 +26,15 @@ export class AddTestCaseComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute
   ) { }
+
+  testCase: TestCase = {
+    caseName: '',
+    projectId: 0,
+  };
+  sections: Section[] = [];
+  priorities: Priority[] = [];
+  currentMode: Mode = Mode.Create;
+  Mode = Mode;
 
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-cases-edit/') ? Mode.Update : Mode.Create;

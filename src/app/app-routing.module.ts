@@ -29,6 +29,10 @@ const routes: Routes = [
     component: AddMilestoneComponent,
   },
   {
+    path: 'milestones-edit/:id',
+    component: AddMilestoneComponent,
+  },
+  {
     path: 'overview/:id',
     component: OverviewComponent,
   },

@@ -31,11 +31,9 @@ export class AddTestRunComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  userId = 2;
   testRun: TestRun = {
     runName: 'Test Run ' + this.getToday(),
     projectId: 0,
-    userId: this.userId,
     includeAll: true,
   };
   milestones: Milestone[] = [];

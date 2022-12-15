@@ -73,7 +73,7 @@
                             </div>
                             <div class="summary-links text-secondary">
                               Due on {{milestone.endDate}} | <a class="link"
-                                href="index.php?/milestones/edit/3">Edit</a>
+                                [routerLink]="['/milestones-edit', milestone.milestoneId]">Edit</a>
                             </div>
                             <div class="summary-description">
                               <div *ngIf="milestone.activeTestRun; then thenSummaryBlock else elseSummaryBlock"></div>
@@ -108,7 +108,7 @@
                         <tbody>
                           <tr *ngFor="let milestone of entry.value" class="odd hoverSensitive">
                             <td>
-                              <a [routerLink]="['/test-runs', projectId, 'detail', milestone.milestoneId]">
+                              <a [routerLink]="['/milestones', projectId, 'detail', milestone.milestoneId]">
                                 {{milestone.milestoneName}}
                               </a>
                             </td>

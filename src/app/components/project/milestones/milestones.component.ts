@@ -23,7 +23,7 @@ export class MilestonesComponent {
       console.log(this.projectId);
       this.milestoneService.findAllByProjectId(parseInt(this.projectId)).subscribe(milestones => {
         for (const milestone of milestones) {
-          if (milestone.completed) {
+          if (milestone.isCompleted) {
             if (!milestone.completedOn) {
               continue;
             }

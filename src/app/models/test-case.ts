@@ -7,7 +7,7 @@ export interface TestCase {
   preconditions?: string,
   steps?: string,
   expectedResult?: string,
-  userId: number,
+  userId?: number,
   projectId: number,
   sectionName?: string,
   fullname?: string
