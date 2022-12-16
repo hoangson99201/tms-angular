@@ -9,7 +9,12 @@
 
 
     <div class="navbar__trial">
-      <app-search></app-search>
+      <div style="background: green; padding: 1px;">
+        <form (submit)="onSearch.emit(name)" style="display: inline" method="post">
+          <input [(ngModel)]="name" style="background-color: white;" class="top-search-control" type="text"
+            name="query" tabindex="-1">
+        </form>
+      </div>
     </div>
     <div class="navbar__user">
       <ul>

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent {
   constructor(private router: Router) { }
 
+  @Output() onSearch = new EventEmitter<string>();
+  public name: string = '';
   public top: string = '';
   public left: string = '';
 

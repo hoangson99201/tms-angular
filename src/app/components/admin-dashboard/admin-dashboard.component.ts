@@ -10,8 +10,9 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent extends BasePaginator implements OnInit {
-  refresh(): void {
-    this.projectService.getProjects(this.getParams()).subscribe(reponse => {
+  refresh(projectName: string): void {
+    this.projectName = projectName;
+    this.projectService.getProjects(this.getParams(), projectName).subscribe(reponse => {
       this.projects = reponse.list;
       this.length = reponse.length;
       this.activeProject = this.projects.filter(x => !x.completed).length;
@@ -22,13 +23,14 @@ export class AdminDashboardComponent extends BasePaginator implements OnInit {
   projects: Project[] = [];
   activeProject = 0;
   completedProject = 0;
+  projectName: string = '';
 
   constructor(private projectService: ProjectService, private authService: AuthService) {
     super();
   }
 
   ngOnInit(): void {
-    this.refresh();
+    this.refresh(this.projectName);
   }
 
   isActive(functionalityName: string) {

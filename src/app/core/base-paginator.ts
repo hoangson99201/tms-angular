@@ -14,11 +14,11 @@ export abstract class BasePaginator {
   showFirstLastButtons = true;
   disabled = false;
 
-  handlePageEvent(e: PageEvent) {
+  handlePageEvent(e: PageEvent, extraParams: any) {
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
-    this.refresh();
+    this.refresh(extraParams);
   }
 
   getParams() {
@@ -29,7 +29,7 @@ export abstract class BasePaginator {
     return params;
   }
 
-  abstract refresh(): void;
+  abstract refresh(extraParams: any): void;
 }
 
 export interface PagingResponse<T> {

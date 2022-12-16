@@ -11,8 +11,8 @@ export class ProjectService {
 
   constructor(private _http: HttpClient) { }
 
-  getProjects(params: PagingParams): Observable<PagingResponse<Project>> {
-    return this._http.get<PagingResponse<Project>>(`/tms/api/v1/project?pageIndex=${params.pageIndex}&pageSize=${params.pageSize}`);
+  getProjects(params: PagingParams, projectName: string): Observable<PagingResponse<Project>> {
+    return this._http.get<PagingResponse<Project>>(`/tms/api/v1/project?pageIndex=${params.pageIndex}&pageSize=${params.pageSize}&projectName=${projectName}`);
   }
 
   addProject(project: Project): Observable<Project> {

@@ -36,7 +36,6 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { NewMenuComponent } from './shared/new-menu/new-menu.component';
 import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-project.component';
-import { SearchComponent } from './shared/search/search.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { StatusSelectComponent } from './components/project/test-run/detail-test-run/status-select/status-select.component';
 import { DetailMilestoneComponent } from './components/project/milestones/detail-milestone/detail-milestone.component';
@@ -80,7 +79,6 @@ import { ActivityComponent } from './components/project/overview/activity/activi
     LoginComponent,
     NewMenuComponent,
     NewMenuProjectComponent,
-    SearchComponent,
     HeaderComponent,
     StatusSelectComponent,
     DetailMilestoneComponent,
