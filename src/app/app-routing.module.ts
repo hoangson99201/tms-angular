@@ -6,6 +6,7 @@ import { AddProjectComponent } from './components/project/add-project/add-projec
 import { AddUserComponent } from './components/project/add-project/manage-user-roles/add-user/add-user.component';
 import { ManageUserRolesComponent } from './components/project/add-project/manage-user-roles/manage-user-roles.component';
 import { AddMilestoneComponent } from './components/project/milestones/add-milestone/add-milestone.component';
+import { DetailMilestoneComponent } from './components/project/milestones/detail-milestone/detail-milestone.component';
 import { MilestonesComponent } from './components/project/milestones/milestones.component';
 import { OverviewComponent } from './components/project/overview/overview.component';
 import { ReportComponent } from './components/project/report/report.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'milestones/:id',
     component: MilestonesComponent,
+  },
+  {
+    path: 'milestones/:id/detail/:subId',
+    component: DetailMilestoneComponent,
   },
   {
     path: 'milestones-add/:id',

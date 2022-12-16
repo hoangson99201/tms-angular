@@ -53,14 +53,14 @@ export class DetailTestRunComponent implements OnInit {
             : '';
         });
     });
-    document.addEventListener('click', (e) => {
-      if (e.target instanceof Element) {
-        if (!e.target.className.startsWith('custom-dropdown')) {
-          this.top = '';
-          this.left = '';
-        }
-      }
-    });
+    // document.addEventListener('click', (e) => {
+    //   if (e.target instanceof Element) {
+    //     if (!e.target.className.startsWith('custom-dropdown')) {
+    //       this.top = '';
+    //       this.left = '';
+    //     }
+    //   }
+    // });
   }
 
   refreshResult(testRunId: number) {

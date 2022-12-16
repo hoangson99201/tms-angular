@@ -69,7 +69,8 @@
                           </div>
                           <div class="column summary-column summary-column-first" style="flex-grow: 1;">
                             <div class="summary-title text-ppp">
-                              <a href="index.php?/milestones/view/3">{{milestone.milestoneName}}</a>
+                              <a
+                                [routerLink]="['/milestones', projectId, 'detail', milestone.milestoneId]">{{milestone.milestoneName}}</a>
                             </div>
                             <div class="summary-links text-secondary">
                               Due on {{milestone.endDate}} | <a class="link"

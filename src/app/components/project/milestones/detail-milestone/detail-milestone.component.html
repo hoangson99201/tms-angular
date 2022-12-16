@@ -1,1264 +1,224 @@
-<div class="page-side" style="height: -webkit-fill-available;">
+<div style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="projectId" [selectedMenu]="'milestone'"></app-new-menu-project>
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
-    media="all" />
-  <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
-    media="all" />
-  <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
-  <div class="table" style=" height: 100%; display: table;">
-    <div id="content" class="column content overflow-content">
-
-
-      <div id="content-header" class="content-header content-header-default">
-        <div class="content-header-inner">
-          <div class="content-header-result" style=""></div>
-          <div class="content-header-id">M3</div>
-          <div class="toolbar content-header-toolbar"><a
-              class="toolbar-button toolbar-button-last content-header-button button-edit"
-              href="index.php?/milestones/edit/3/1">Edit</a><a
-              class="toolbar-button toolbar-button-last content-header-button button-report dropdownLink"
-              href="#reportDropdown">Reports<span class="caret button-caret"></span></a><a
-              class="toolbar-button toolbar-button-first content-header-button button-defect dropdownLink"
-              href="#defectDropdown">Defects<span class="caret button-caret"></span></a></div><span
-            class="content-header-icon"><a class="popupLink link-tooltip" rel="print"
-              href="index.php?/milestones/plot/3&amp;format=outline" tooltip-header="Print Milestone"
-              tooltip-text="Opens a print view of this milestone.">
-              <div class="icon-print"></div>
-            </a></span><span class="content-header-icon"><a class="dropdownLink link-tooltip" href="#exportDropdown"
-              tooltip-header="Export Milestone"
-              tooltip-text="Exports this milestone into different formats (XML, Excel/CSV).">
-              <div class="icon-export"></div>
-            </a></span>
-          <div class="content-header-title page_title">
-            Release 1.0 </div>
-        </div>
-      </div>
-      <script type="text/javascript">
-        $("#sites").prop("selectedIndex", 0);
-      </script>
-      <div id="content-inner" class="content-inner ">
-
-
-        <div id="reportDropdown" class="dropdown dropdown-menu dropdown-menu-grouped" style="width: 225px">
-          <div class="dropdown-menu-title top">Defects</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a summary of found defects for this milestone.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=defects_summary&amp;milestone_ids=3">
-                Summary </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a summary of found defects for this milestone per test case &amp; test.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=cases_defect_summary&amp;milestone_ids=3">
-                Summary for Cases </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a summary of found defects for the references (requirements, user stories, etc.) in this milestone.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=references_defect_summary&amp;milestone_ids=3">
-                Summary for References </a>
-            </li>
-          </ul>
-          <div class="dropdown-menu-title">Milestone</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows a full summary &amp; overview of this milestone with statistics as well as activity and progress details.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=milestones_summary&amp;milestone_id=3">
-                Summary </a>
-            </li>
-          </ul>
-          <div class="dropdown-menu-title">Results</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the results in this milestone per test case (result coverage &amp; comparison).">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=cases_result_coverage&amp;milestone_ids=3">
-                Comparison for Cases </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the results for the references (requirements, user stories, etc.) in this milestone (result coverage &amp; comparison).">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=references_result_coverage&amp;milestone_ids=3">
-                Comparison for References </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the distribution and groups for a specific test attribute (e.g. priority, type or status) for this milestone.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=tests_property_groups&amp;milestone_ids=3">
-                Property Distribution </a>
-            </li>
-          </ul>
-          <div class="dropdown-menu-title">Users</div>
-          <ul>
-            <li class="link-tooltip" tooltip-position="left"
-              tooltip-text="Shows the workload summary, estimates and forecasts for users in this milestone.">
-              <a class="dropdown-menu-link dropdown-menu-link-report"
-                href="index.php?/reports/add_job/1&amp;plugin=users_workload_summary&amp;milestone_ids=3">
-                Workload Summary </a>
-            </li>
-          </ul>
-        </div>
-        <div id="defectDropdown" class="dropdown dropdown-menu dropdown-menu-grouped dropdown-menu-defect">
-          <ul>
-
-            <li class="link-tooltip" tooltip-position="left" tooltip-text="Submit a new defect to your external tool.">
-              <a class="dropdown-menu-link dropdown-menu-link-defect" tabindex="-1" href="javascript:void(0)"
-                onclick="this.blur(); App.Defects.preparePush(1, 0, 'milestones/view', 3); return false;">
-                Push New Defect </a>
-            </li>
-
-          </ul>
-        </div>
-
-
-
-        <div id="statsContainer">
-
-
-          <div class="chart-pie" rel="4">
-            <div class="table-extended" id="tablechart_testun">
-              <div id="statusChartContainer">
-                <div id="statusChart" class="column chart-pie-status"><span id="chartobject-1"
-                    class="fusioncharts-container"
-                    style="position: relative; text-align: left; line-height: normal; display: inline-block; zoom: 1; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: none; direction: ltr; transform: none; width: 100%; height: 100%;"><svg
-                      height="190" version="1.1" width="200" xmlns="http://www.w3.org/2000/svg" id="raphael-paper-3"
-                      style="overflow: hidden; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); user-select: none; cursor: default; vertical-align: middle; position: relative; background-color: rgb(255, 255, 255);">
-                      <desc></desc>
-                      <defs>
-                        <clipPath id="rr-D15F3C32-FA7A-43AB-945D-BBF37AEC78A7">
-                          <rect x="0" y="0" width="200" height="190" transform="matrix(1,0,0,1,0,0)"></rect>
-                        </clipPath>
-                        <clipPath id="rr-F8F25893-4421-461C-B18C-301B60D886F7">
-                          <rect x="0" y="0" width="200" height="190" transform="matrix(1,0,0,1,0,0)"></rect>
-                        </clipPath>
-                        <radialGradient id="rr-3-xr___74_100_95__rgba_89_89_89_1__0-rgba_89_89_89_1__100" r="74"
-                          cx="100" cy="95" fx="100" fy="95">
-                          <stop offset="0%" stop-color="#595959" stop-opacity="1"></stop>
-                          <stop offset="100%" stop-color="#595959" stop-opacity="1"></stop>
-                        </radialGradient>
-                        <radialGradient id="rr-3-xr___74_100_95__rgba_252_194_0_1__0-rgba_252_194_0_1__100" r="74"
-                          cx="100" cy="95" fx="100" fy="95">
-                          <stop offset="0%" stop-color="#fcc200" stop-opacity="1"></stop>
-                          <stop offset="100%" stop-color="#fcc200" stop-opacity="1"></stop>
-                        </radialGradient>
-                        <radialGradient id="rr-3-xr___74_100_95__rgba_228_0_70_1__0-rgba_228_0_70_1__100" r="74"
-                          cx="100" cy="95" fx="100" fy="95">
-                          <stop offset="0%" stop-color="#e40046" stop-opacity="1"></stop>
-                          <stop offset="100%" stop-color="#e40046" stop-opacity="1"></stop>
-                        </radialGradient>
-                        <radialGradient id="rr-3-xr___74_100_95__rgba_60_184_80_1__0-rgba_60_184_80_1__100" r="74"
-                          cx="100" cy="95" fx="100" fy="95">
-                          <stop offset="0%" stop-color="#3cb850" stop-opacity="1"></stop>
-                          <stop offset="100%" stop-color="#3cb850" stop-opacity="1"></stop>
-                        </radialGradient>
-                        <radialGradient id="rr-3-xr___74_100_95__rgba_151_151_151_1__0-rgba_151_151_151_1__100" r="74"
-                          cx="100" cy="95" fx="100" fy="95">
-                          <stop offset="0%" stop-color="#979797" stop-opacity="1"></stop>
-                          <stop offset="100%" stop-color="#979797" stop-opacity="1"></stop>
-                        </radialGradient>
-                      </defs>
-                      <g class="raphael-group-4-parentgroup">
-                        <g class="raphael-group-5-background">
-                          <rect x="0" y="0" width="200" height="190" stroke="none" fill-opacity="1" fill="#ffffff"
-                            ry="0" rx="0"></rect>
-                          <rect x="0" y="0" width="200" height="190" stroke="#767575" stroke-opacity="0.5"
-                            stroke-width="0" stroke-dasharray="none" fill="none" ry="0" rx="0"></rect>
-                        </g>
-                        <g class="raphael-group-26-canvas"></g>
-                        <g class="raphael-group-6-axisbottom"></g>
-                        <g class="raphael-group-28-axisReferenceVisualsFloor"
-                          clip-path="url('#rr-D15F3C32-FA7A-43AB-945D-BBF37AEC78A7')"></g>
-                        <g class="raphael-group-27-axisReferenceVisualsBottom"></g>
-                        <g class="raphael-group-7-belowplot"></g>
-                        <g class="raphael-group-29-crossline"></g>
-                        <g class="raphael-group-30-crosslineBottom"></g>
-                        <g class="raphael-group-33-axisReferenceVisualsMiddle"
-                          clip-path="url('#rr-F8F25893-4421-461C-B18C-301B60D886F7')"></g>
-                        <g class="raphael-group-35-quadrant"></g>
-                        <g class="raphael-group-8-plots">
-                          <g class="raphael-group-37-column-shadow-group"></g>
-                          <g class="raphael-group-38-column"></g>
-                          <g class="raphael-group-39-area-shadow-group"></g>
-                          <g class="raphael-group-40-area"></g>
-                          <g class="raphael-group-41-line-shadow-group"></g>
-                          <g class="raphael-group-42-line"></g>
-                          <g class="raphael-group-43-default-shadow-group"></g>
-                          <g class="raphael-group-44-default"></g>
-                        </g>
-                        <g class="raphael-group-9-scrollbar-container"></g>
-                        <g class="raphael-group-10-axistop"></g>
-                        <g class="raphael-group-11-sumlabels fusioncharts-datalabels"></g>
-                        <g class="raphael-group-34-axisReferenceVisualsTop"></g>
-                        <g class="raphael-group-36-axisReferenceVisualsCeil"></g>
-                        <g class="raphael-group-12-datalabel" font-family="Source Sans Pro" font-size="14px"
-                          font-weight="normal" font-style="normal"
-                          style="font-family: 'Source Sans Pro'; font-size: 14px; font-weight: normal; font-style: normal;">
-                          <g class="raphael-group-32-canvasdatalabel"></g>
-                          <g class="raphael-group-45-pie">
-                            <g class="raphael-group-46-pie-plot">
-                              <g class="raphael-group-49-plot-shadows"></g>
-                              <g class="raphael-group-48-plots">
-                                <path d="M29.75005484052261,71.74177123918464A74,74,0,0,1,174,95L100,95Z"
-                                  fill="url('#rr-3-xr___74_100_95__rgba_60_184_80_1__0-rgba_60_184_80_1__100')"
-                                  stroke="#cfeed4" stroke-linecap="round" fill-opacity="1"
-                                  transform="matrix(1,0,0,1,0,0)" stroke-width="0" stroke-opacity="0"
-                                  stroke-dasharray="none" style="cursor: pointer;"></path>
-                                <path
-                                  d="M27.15922517651552,108.04689706843847A74,74,0,0,1,29.75005484052261,71.74177123918464L100,95Z"
-                                  fill="url('#rr-3-xr___74_100_95__rgba_89_89_89_1__0-rgba_89_89_89_1__100')"
-                                  stroke="#d6d6d6" stroke-linecap="round" fill-opacity="1"
-                                  transform="matrix(1,0,0,1,0,0)" stroke-width="0" stroke-opacity="0"
-                                  stroke-dasharray="none" style="cursor: pointer;"></path>
-                                <path
-                                  d="M155.49461166559638,143.95250837377645A74,74,0,0,1,27.15922517651552,108.04689706843847L100,95Z"
-                                  fill="url('#rr-3-xr___74_100_95__rgba_151_151_151_1__0-rgba_151_151_151_1__100')"
-                                  stroke="#e5e5e5" stroke-linecap="round" fill-opacity="1"
-                                  transform="matrix(1,0,0,1,0,0)" stroke-width="0" stroke-opacity="0"
-                                  stroke-dasharray="none" style="cursor: pointer;"></path>
-                                <path
-                                  d="M171.50064964827158,114.06979548592801A74,74,0,0,1,155.49461166559638,143.95250837377645L100,95Z"
-                                  fill="url('#rr-3-xr___74_100_95__rgba_252_194_0_1__0-rgba_252_194_0_1__100')"
-                                  stroke="#fff0c0" stroke-linecap="round" fill-opacity="1"
-                                  transform="matrix(1,0,0,1,0,0)" stroke-width="0" stroke-opacity="0"
-                                  stroke-dasharray="none" style="cursor: pointer;"></path>
-                                <path
-                                  d="M174,94.99999999999996A74,74,0,0,1,171.50064964827158,114.06979548592801L100,95Z"
-                                  fill="url('#rr-3-xr___74_100_95__rgba_228_0_70_1__0-rgba_228_0_70_1__100')"
-                                  stroke="#f9c0d1" stroke-linecap="round" fill-opacity="1"
-                                  transform="matrix(1,0,0,1,0,0)" stroke-width="0" stroke-opacity="0"
-                                  stroke-dasharray="none" style="cursor: pointer;"></path>
-                              </g>
-                            </g>
-                            <g class="raphael-group-47-pie-label">
-                              <g class="raphael-group-50-labels" font-family="Source Sans Pro" font-size="14px"
-                                font-weight="normal" font-style="normal"
-                                style="border-radius: 0px; font-family: 'Source Sans Pro'; font-size: 14px; font-weight: normal; font-style: normal;">
-                              </g>
-                              <g class="raphael-group-51-connector-shadows"></g>
-                              <g class="raphael-group-52-anchor-shadows"></g>
-                            </g>
-                          </g>
-                        </g>
-                        <g class="raphael-group-31-crosslineTop"></g>
-                        <g class="raphael-group-13-aboveplot"></g>
-                        <g class="raphael-group-14-caption"></g>
-                        <g class="raphael-group-15-chartdefault"></g>
-                        <g class="raphael-group-16-chartdefault-shadow"></g>
-                        <g class="raphael-group-17-tracker"></g>
-                        <g class="raphael-group-18-logo"></g>
-                        <g class="raphael-group-19-selectorGroup"></g>
-                        <g class="raphael-group-20-legend"></g>
-                        <g class="raphael-group-21-toolbar-master">
-                          <g class="raphael-group-24-toolbar">
-                            <rect fill-opacity="0" fill="#eeeeee" stroke="#eeeeee" stroke-opacity="0" stroke-width="1"
-                              width="0" height="0" x="190" y="6" ry="0" rx="0"></rect>
-                          </g>
-                        </g>
-                      </g>
-                    </svg>
-                    <div type="div"
-                      style="left: auto; top: 0px; padding: 5px 3px; border: 1px solid rgb(100, 100, 100); margin: 0px; outline: none; position: absolute; z-index: 50; right: auto; overflow: hidden; background: rgb(255, 255, 255); box-shadow: rgb(153, 153, 153) 2px 2px 5px; display: none;">
-                    </div>
-                    <div class="fc__tooltip fusioncharts-div"
-                      style="color: rgb(90, 90, 90); padding: 6px; font-size: 14px; overflow: hidden; border-width: 1px; border-color: rgb(225, 225, 225); white-space: nowrap; position: absolute; border-style: solid; background-color: rgb(255, 255, 255); user-select: none; top: 74px; left: 11px; visibility: hidden; pointer-events: none; box-shadow: none; border-radius: 2px; font-family: 'Source Sans Pro'; will-change: auto; max-width: 188px;">
-                    </div>
-                  </span></div>
-
-
-                <div class="column chart-pie-column-legend" id="legend-">
-                  <div class="chart-legend" style="padding: 20px 10px 0 40px">
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #3cb850">
+  <div>
+    <section>
+      <app-header></app-header>
+      <div>
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet"
+          href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+          media="all" />
+        <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+        <div class="table" style="height: 100%;">
+          <div id="content" class="column content overflow-content">
+            <div id="notificationbar" class="notificationbar notificationbar-hidden">
+            </div>
+            <div class="notificationbar notificationbar-local">
+            </div>
+            <div id="content-header" class="content-header content-header-default">
+              <div class="content-header-inner">
+                <div class="content-header-result"></div>
+                <div class="content-header-id">{{testRunId}}</div>
+                <span id="subscribed" class="content-header-icon hidden">
+                  <a class="unsubscribe link-tooltip"
+                    tooltip-text="Unsubscribe from email updates on test changes for this test run.">
+                    <div class="icon-unsubscribe"></div>
+                  </a>
+                  <span class="hidden busy">
+                    <div class="icon-progress-standard"></div>
+                  </span>
+                </span>
+                <div class="content-header-title page_title">{{milestoneName}}</div>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $("#sites").prop("selectedIndex", 0);
+            </script>
+            <div id="content-inner" class="content-inner goals-clear">
+              <div id="groupContainer" style="margin-top: 1.5em; display: block;">
+                <div id="groupContent">
+                  <div id="groups">
+                    <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
+                      <div class="grid-title">
+                        <span class="title" id="sectionName-4">{{section.key}}</span>
+                        <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
+                        <span id="sectionBusy-4" class="busy" style="display: none;">
+                          <div class="icon-progress-inline"></div>
+                        </span>
+                      </div>
+                      <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
+                        <div class="scroll-auto-inner markdown">
                         </div>
                       </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">812 Passed</div>
-                        <div class="chart-legend-description text-ppp">45% set to Passed</div>
-                      </div>
+                      <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
+                        <tbody>
+                          <tr class="header">
+                            <th>
+                              <span>ID</span>
+                              <div class="column-actions">
+                              </div>
+                            </th>
+                            <th><span>Title</span>
+                              <div class="column-actions">
+                              </div>
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                              <span style="float: right;" class="hidden-xs">Status</span>
+                            </th>
+                          </tr>
+                          <tr *ngFor="let result of section.value" id="row-{{result.resultId}}" class="row odd">
+                            <td class="id">
+                              {{result.resultId}}
+                            </td>
+                            <td>
+                              {{result.caseName}}
+                            <td class="js-status" rel="4">
+                            </td>
+                            <td class="js-status" rel="4">
+                              <!-- <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Untested'" class="custom-dropdown dropdownLink status hidden-xs"
+                          style="background: #737373; color: #ffffff">{{result.status}}<span
+                            class="custom-dropdown caret button-caret"></span></a>
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Passed'" class="custom-dropdown dropdownLink status hidden-xs"
+                          style="background: #338a41; color: #ffffff">{{result.status}}<span
+                            class="custom-dropdown caret button-caret"></span></a>
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Blocked'" class="custom-dropdown dropdownLink status hidden-xs"
+                          style="background: #474747; color: #ffffff">{{result.status}}<span
+                            class="custom-dropdown caret button-caret"></span></a>
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Retest'" class="custom-dropdown dropdownLink status hidden-xs"
+                          style="background: #b99109; color: #ffffff">{{result.status}}<span
+                            class="custom-dropdown caret button-caret"></span></a>
+                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                          *ngIf="result.status == 'Failed'" class="custom-dropdown dropdownLink status hidden-xs"
+                          style="background: #a9093a; color: #ffffff">{{result.status}}<span
+                            class="custom-dropdown caret button-caret"></span></a> -->
+                              <!-- <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #737373; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #338a41; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #474747; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #b99109; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button>
+                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
+                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
+                                *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
+                                style="border: unset; float: right; background: #a9093a; color: #ffffff">{{result.status}}
+                                <span class="caret button-caret"></span>
+                              </button> -->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #595959">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">143 Blocked</div>
-                        <div class="chart-legend-description text-ppp">8% set to Blocked</div>
-                      </div>
-                    </div>
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #fcc200">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">133 Retest</div>
-                        <div class="chart-legend-description text-ppp">7% set to Retest</div>
-                      </div>
-                    </div>
-                    <div class="table chart-legend-item" style="height: auto">
-                      <div class="column column-valign chart-legend-column-icon">
-                        <div class="chart-legend-icon" style="background: #e40046">
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="chart-legend-name text-ppp">75 Failed</div>
-                        <div class="chart-legend-description text-ppp">4% set to Failed</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="chart-icon-download-container">
-                  <div class="link-tooltip" data-html2canvas-ignore="true" tooltip-position="left" tooltip-width="170"
-                    tooltip-text="Download chart as an image">
-                    <button id="png-download"></button>
-                  </div>
-                  <div data-html2canvas-ignore="true" class="link-tooltip" tooltip-position="left" tooltip-width="150"
-                    tooltip-text="Download chart as a CSV">
-                    <button id="csv-download"></button>
-                  </div>
-                </div>
-              </div>
-              <div class="column chart-pie-column-percent">
-                <div class="chart-pie-percent" style="padding-top: 5em">
-                  <div class="chart-pie-percent-title">45%</div>
-                  <div class="chart-pie-percent-description">passed</div>
-                  <div class="chart-pie-percent-note text-secondary" style="line-height: 130%">
-                    645 / 1808 untested (36%). </div>
-                </div>
-              </div>
-            </div>
-            <div class="chart-pie-footer-stage1">
-              <div class="chart-pie-footer-percent">
-                <strong>45%</strong>
-                Passed
-              </div>
-              <div class="text-secondary">
-                645 / 1808 untested (36%). </div>
-            </div>
-            <div class="chart-pie-footer-stage2">
-              <div class="chart-pie-footer-bar">
-                <div class="table">
-                  <div class="column">
-                    <div class="chart-bar chart-bar-lg">
-                      <div class="chart-bar-custom link-tooltip" style="background: #3cb850; width: 112px"
-                        tooltip-html="45% Passed (812/1808 tests) <div id='drilldown-icon'></div>"></div>
-                      <div class="chart-bar-custom link-tooltip" style="background: #595959; width: 20px"
-                        tooltip-html="8% Blocked (143/1808 tests) <div id='drilldown-icon'></div>"></div>
-                      <div class="chart-bar-custom link-tooltip" style="background: #979797; width: 91px"
-                        tooltip-html="36% Untested (645/1808 tests) <div id='drilldown-icon'></div>"></div>
-                      <div class="chart-bar-custom link-tooltip" style="background: #fcc200; width: 17px"
-                        tooltip-html="7% Retest (133/1808 tests) <div id='drilldown-icon'></div>"></div>
-                      <div class="chart-bar-custom link-tooltip" style="background: #e40046; width: 10px"
-                        tooltip-html="4% Failed (75/1808 tests) <div id='drilldown-icon'></div>"></div>
-                    </div>
-                  </div>
-                  <div class="column chart-bar-percent ">
-                    45%
-                  </div>
-                </div>
-              </div>
-              <div class="text-secondary center">
-                645 / 1808 untested (36%). </div>
-            </div>
-          </div>
-          <a download="TestRail-stats-1-20221214161032.png" href="#" id="dl" hidden="">download image</a>
-
-          <script type="text/javascript">
-            $(function () {
-              $(document).ready(function () {
-                App.Charts.status = new FusionCharts({
-                  type: 'pie2d',
-                  renderAt: 'statusChart',
-                  width: '100%',
-                  height: '100%',
-                  dataFormat: 'json',
-                  dataSource: {
-                    chart: {
-                      showToolTip: 1,
-                      showLegend: false,
-                      showLabels: false,
-                      showPercentageInLabel: '0',
-                      enableSmartLabels: '0',
-                      showValues: false,
-                      theme: 'fusion',
-                      bgColor: '#FFFFFF',
-                      exportEnabled: '1',
-                      exportshowmenuitem: '0',
-                      chartLeftMargin: '0',
-                      chartTopMargin: '0',
-                      chartRightMargin: '0',
-                      chartBottomMargin: '0',
-                      plotToolText: '<strong>$label</strong> <br />$value ($percentValue)<div id="drilldown-icon"></div>',
-                      animation: false,
-                      enableMultiSlicing: false
-                    },
-                    data: [{ "label": "Passed", "value": 812, "color": "3cb850", "link": "JavaScript:App.Drilldown.tests(1,812, 0, MILESTONE, 3, 1)" }, { "label": "Blocked", "value": 143, "color": "595959", "link": "JavaScript:App.Drilldown.tests(1,143, 0, MILESTONE, 3, 2)" }, { "label": "Untested", "value": 645, "color": "979797", "link": "JavaScript:App.Drilldown.tests(1,645, 0, MILESTONE, 3, 3)" }, { "label": "Retest", "value": 133, "color": "fcc200", "link": "JavaScript:App.Drilldown.tests(1,133, 0, MILESTONE, 3, 4)" }, { "label": "Failed", "value": 75, "color": "e40046", "link": "JavaScript:App.Drilldown.tests(1,75, 0, MILESTONE, 3, 5)" }]
-                  },
-                }).render();
-
-                $('#csv-download').click(function () {
-                  App.Charts.status.exportChart({
-                    exportFormat: 'csv',
-                    exportFileName: 'TestRail-stats-1-20221214161032'
-                  });
-                });
-
-                $('#png-download').click(function () {
-                  App.Charts.status.setChartAttribute('enableSlicing', '0');
-                  setTimeout(function () {
-                    html2canvas($('#statusChartContainer')[0], {
-                      height: 230,
-                      scrollY: -window.scrollY
-                    }).then(function (canvas) {
-                      var dl = document.getElementById('dl');
-                      var dt = canvas.toDataURL('image/png');
-                      dl.href = dt;
-                      dl.click();
-                    });
-                    App.Charts.status.setChartAttribute('enableSlicing', '1');
-                  }, 100);
-                });
-              });
-            });
-          </script>
-        </div>
-
-        <div id="drilldown_container"></div>
-        <div id="content_container">
-
-
-          <div id="submilestones-active">
-            <span class="select-checkbox select-checkbox-details"><input type="checkbox" name="select_all"
-                onchange="SelectAllEntity(this);"></span>
-            <h1 class="top float-left">
-              Milestones </h1>
-            <span class="delete-selected-link" id="delete-milestones">
-              <a href="javascript:void(0)" onclick="App.Milestones.BulkDelete(this);">
-                <span class="button button-negative button-delete">
-                  Delete selected </span>
-              </a>
-            </span>
-            <div style="margin-top: 1.2em;">
-
-
-              <div class="table table-fixed">
-                <div id="milestone-6" class="row flex-milestones-row hoverSensitive">
-                  <div class="column
-summary-column
-summary-column-checkbox
-flex-runs-1-medium
-select-checkbox-flex-medium
-summary-column-first				summary-column-last			">
-                    <input type="checkbox" name="entity_milestones" value="6">
-                  </div>
-                  <div class="
-column
-summary-column
-summary-column-icon-compact
-flex-milestones-1-medium
-icon-milestone-32
-summary-column-first		    summary-column-last">
-                  </div>
-                  <div class="column summary-column flex-milestones-2-medium summary-column-first summary-column-last">
-                    <div class="summary-title summary-title-compact text-ppp">
-                      <a href="index.php?/milestones/view/6">Test</a>
-                      <span class="hidden hoverAction">
-
-                        <a href="index.php?/milestones/edit/6">
-                          <div class="icon-small-edit icon-small-inline"></div>
-                        </a>
-                      </span>
-                    </div>
-                    <div class="summary-description-compact text-secondary text-ppp">
-                      No due date </div>
-                  </div>
-                  <div
-                    class="column summary-column summary-column-bar flex-milestones-3-medium summary-column-first summary-column-last">
-                    <div class="table">
-                      <div class="column">
-                        <div class="chart-bar ">
-                          <div class="chart-bar-transparent" style="width: 100%"></div>
-                        </div>
-                      </div>
-                      <div class="column chart-bar-percent ">
-                        0%
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column
-summary-column
-column-delete-medium-first				flex-milestones-3-medium
-summary-column-first				summary-column-last			">
-                    <a title="Delete this milestone" class="deleteLink" href="javascript:void(0)"
-                      onclick="this.blur(); App.Dialogs.remove('Really delete this milestone? This irrevocably deletes this milestone for all users and cannot be undone.', null, null, null, function() { App.Milestones.removeMilestone(6); });; return false;">
-                      <div class="icon-small-delete "></div>
-                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div id="submilestones-upcoming">
+
+
+
+
+          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
           </div>
-
-          <div id="submilestones-completed">
-          </div>
-
-          <div id="runs-644835173">
-            <span class="select-checkbox select-checkbox-details"><input type="checkbox"
-                onchange="SelectAllEntity(this);" name="select_all"></span>
-            <h1 class="top-milestnmargin" id="mile_heading">
-              Test Runs </h1>
-            <span class="delete-selected-link " id="delete-run">
-              <a href="javascript:void(0)" onclick="App.Runs.BulkRunDelete(this);">
-                <span class="button button-negative button-delete">
-                  Delete selected </span>
-              </a>
-            </span>
-
-            <div style="margin-top: 1.2em;">
-              <div class="table">
-                <div class="row flex-runs-row hoverSensitive" id="run-10">
-                  <div class="
-    column
-    summary-column
-    summary-column-checkbox-first                    flex-runs-1-medium
-    summary-column-first                                        select-checkbox-flex-medium
-">
-                    <input type="checkbox" name="entity_run" value="10">
-                  </div>
-                  <div
-                    class="column summary-column summary-column-icon-compact flex-runs-1-medium icon-plan-32 summary-column-first ">
-                  </div>
-                  <div class="column summary-column flex-runs-2-medium summary-column-first ">
-                    <div class="summary-title summary-title-compact text-ppp">
-                      <a href="index.php?/plans/view/10">Release 1.0: Final (all browsers)</a>
-                      <span class="hidden hoverAction">
-                        <a href="index.php?/plans/edit/10">
-                          <div class="icon-small-edit icon-small-inline"></div>
-                        </a>
-                      </span>
-                    </div>
-                    <div class="summary-description-compact text-secondary text-ppp">
-                      By Đỗ T. on 11/29/2022 </div>
-                  </div>
-                  <div class="column summary-column summary-column-bar flex-runs-3-medium summary-column-first ">
-                    <div class="table">
-                      <div class="column">
-                        <div class="chart-bar ">
-                          <a target="_blank" href="index.php?/plans/activity/10&amp;status=1">
-                            <div class="chart-bar-custom link-tooltip" tooltip-position="left"
-                              style="background: #3cb850; width: 47px"
-                              tooltip-html="38% Passed (428/1130 tests) <div id='drilldown-icon'></div>"></div>
-                          </a> <a target="_blank" href="index.php?/plans/activity/10&amp;status=2">
-                            <div class="chart-bar-custom link-tooltip" style="background: #595959; width: 12px"
-                              tooltip-html="10% Blocked (115/1130 tests) <div id='drilldown-icon'></div>"></div>
-                          </a>
-                          <div class="chart-bar-custom link-tooltip" style="background: #979797; width: 48px"
-                            tooltip-html="38% Untested (424/1130 tests) <div id='drilldown-icon'></div>"></div>
-                          <a target="_blank" href="index.php?/plans/activity/10&amp;status=4">
-                            <div class="chart-bar-custom link-tooltip" style="background: #fcc200; width: 11px"
-                              tooltip-html="9% Retest (103/1130 tests) <div id='drilldown-icon'></div>"></div>
-                          </a> <a target="_blank" href="index.php?/plans/activity/10&amp;status=5">
-                            <div class="chart-bar-custom link-tooltip" style="background: #e40046; width: 7px"
-                              tooltip-html="5% Failed (60/1130 tests) <div id='drilldown-icon'></div>"></div>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="column chart-bar-percent ">
-                        38%
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="column summary-column column-delete-run-medium-first flex-milestones-3-medium summary-column-first ">
-                    <a title="Delete this run/plan" class="deleteLink" href="javascript:void(0)"
-                      onclick="this.blur(); App.Dialogs.remove('Really delete this test run? This also deletes all tests and results in this run and cannot be undone.', null, null, null, function() { App.Runs.removeRuns(10); });; return false;">
-                      <div class="icon-small-delete"></div>
-                    </a>
-                  </div>
+          <div id="qpane" class="column qpane" style="width: 600px; display: none">
+            <div id="qpane-empty" class="qpane-empty hidden">
+              <div class="qpane-empty-header">
+                No test case selected. </div>
+              <div class="qpane-empty-body">
+                You can select a different group or change the filters. </div>
+            </div>
+            <div id="qpane-inner">
+              <div id="qpaneSticky">
+                <div id="qpane-content">
                 </div>
-                <div class="row flex-runs-row hoverSensitive" id="run-7">
-                  <div class="
-    column
-    summary-column
-    summary-column-checkbox                    flex-runs-1-medium
-                        summary-column-last                    select-checkbox-flex-medium
-">
-                    <input type="checkbox" name="entity_run" value="7">
-                  </div>
-                  <div
-                    class="column summary-column summary-column-icon-compact flex-runs-1-medium icon-run-32  summary-column-last">
-                  </div>
-                  <div class="column summary-column flex-runs-2-medium  summary-column-last">
-                    <div class="summary-title summary-title-compact text-ppp">
-                      <a href="index.php?/runs/view/7">Release 1.0: Run 3 (regressions)</a>
-                      <span class="hidden hoverAction">
-                        <a href="index.php?/runs/edit/7">
-                          <div class="icon-small-edit icon-small-inline"></div>
-                        </a>
-                      </span>
-                    </div>
-                    <div class="summary-description-compact text-secondary text-ppp">
-                      By Đỗ T. on 11/28/2022 </div>
-                  </div>
-                  <div class="column summary-column summary-column-bar flex-runs-3-medium  summary-column-last">
-                    <div class="table">
-                      <div class="column">
-                        <div class="chart-bar ">
-                          <a target="_blank" href="index.php?/runs/view/7&amp;status_ids=1">
-                            <div class="chart-bar-custom link-tooltip" tooltip-position="left"
-                              style="background: #3cb850; width: 67px"
-                              tooltip-html="54% Passed (121/226 tests) <div id='drilldown-icon'></div>"></div>
-                          </a> <a target="_blank" href="index.php?/runs/view/7&amp;status_ids=2">
-                            <div class="chart-bar-custom link-tooltip" style="background: #595959; width: 5px"
-                              tooltip-html="4% Blocked (9/226 tests) <div id='drilldown-icon'></div>"></div>
-                          </a> <a target="_blank" href="index.php?/runs/view/7&amp;status_ids=3">
-                            <div class="chart-bar-custom link-tooltip" style="background: #979797; width: 42px"
-                              tooltip-html="33% Untested (75/226 tests) <div id='drilldown-icon'></div>"></div>
-                          </a> <a target="_blank" href="index.php?/runs/view/7&amp;status_ids=4">
-                            <div class="chart-bar-custom link-tooltip" style="background: #fcc200; width: 6px"
-                              tooltip-html="5% Retest (12/226 tests) <div id='drilldown-icon'></div>"></div>
-                          </a> <a target="_blank" href="index.php?/runs/view/7&amp;status_ids=5">
-                            <div class="chart-bar-custom link-tooltip" style="background: #e40046; width: 5px"
-                              tooltip-html="4% Failed (9/226 tests) <div id='drilldown-icon'></div>"></div>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="column chart-bar-percent ">
-                        54%
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="column summary-column column-delete-run-medium flex-milestones-3-medium  summary-column-last">
-                    <a title="Delete this run/plan" class="deleteLink" href="javascript:void(0)"
-                      onclick="this.blur(); App.Dialogs.remove('Really delete this test run? This also deletes all tests and results in this run and cannot be undone.', null, null, null, function() { App.Runs.removeRuns(7); });; return false;">
-                      <div class="icon-small-delete"></div>
-                    </a>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
-
-          <div id="completed">
-            <h2 style="margin-top: 0.3em">
-              Completed </h2>
-
-
-
-            <table class="run-grid grid">
-              <colgroup>
-                <col class="icon">
-                <col>
-                <col class="date">
-                <col class="percent">
-                <col class="icon">
-              </colgroup>
-              <tbody>
-                <tr class="odd hoverSensitive" id="run-8">
-                  <td class="select-check">
-                    <input type="checkbox" name="entity_run" value="8">
-                  </td>
-                  <td>
-                    <a href="index.php?/runs/view/8">Release 1.0: Run 2 (new features)</a>
-                  </td>
-                  <td class="sub right">
-                    <span class="text-soft">12/3/2022</span>
-                  </td>
-                  <td class="sub right">
-                    58%
-                  </td>
-                  <td class="delete-icon">
-                    <a title="Delete this run/plan" class="deleteLink" href="javascript:void(0)"
-                      onclick="this.blur(); App.Dialogs.remove('Really delete this test run? This also deletes all tests and results in this run and cannot be undone.', null, null, null, function() { App.Runs.removeRuns(8); });; return false;">
-                      <div class="icon-small-delete "></div>
-                    </a>
-                  </td>
-                </tr>
-                <tr class="even hoverSensitive" id="run-9">
-                  <td class="select-check">
-                    <input type="checkbox" name="entity_run" value="9">
-                  </td>
-                  <td>
-                    <a href="index.php?/runs/view/9">Release 1.0: Run 1 (smoke test)</a>
-                  </td>
-                  <td class="sub right">
-                    <span class="text-soft">12/2/2022</span>
-                  </td>
-                  <td class="sub right">
-                    58%
-                  </td>
-                  <td class="delete-icon">
-                    <a title="Delete this run/plan" class="deleteLink" href="javascript:void(0)"
-                      onclick="this.blur(); App.Dialogs.remove('Really delete this test run? This also deletes all tests and results in this run and cannot be undone.', null, null, null, function() { App.Runs.removeRuns(9); });; return false;">
-                      <div class="icon-small-delete "></div>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
           </div>
-        </div>
-        <div id="exportDropdown" class="dropdown dropdown-menu" style="width: 150px">
-          <ul>
-            <li>
-              <a class="dropdown-menu-link" href="index.php?/milestones/export/3">
-                <div class="icon-xml-10" style="vertical-align: -1px"></div>
-                Export to XML
-              </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li><a class="dropdown-menu-link" href="javascript:void(0)"
-                onclick="this.blur(); App.Milestones.exportTestsCsv(3); return false;">
-                <div class="icon-csv-10" style="vertical-align: -1px"></div>
-                Export to CSV
-              </a>
-            </li>
-            <li class="dropdown-menu-separator"></li>
-            <li>
-              <a class="dropdown-menu-link" href="javascript:void(0)"
-                onclick="this.blur(); App.Milestones.exportTestsExcel(3); return false;">
-                <div class="icon-excel-10" style="vertical-align: -1px"></div>
-                Export to Excel
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="dialog" id="exportCsvDialog" style="width: 500px">
-          <div class="dialog-title">
-            <span class="csv">Export to CSV</span>
-            <span class="excel">Export to Excel</span>
-          </div>
-          <form id="exportCsvForm" action="post">
-            <div class="dialog-body">
-              <div class="message message-error validationError" id="exportCsvErrorNoSection">
-                You need to select at least one section (or include all sections). </div>
-              <div class="message message-error validationError" id="exportCsvErrorNoColumn">
-                You need to select at least one column to export. </div>
-              <div class="form-group">
-                <label>
-                  Layout </label>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
 
-
-
-                <div class="checkbox-list" style="height: 250px" id="exportCsvColumns_control">
-                  <div class="checkbox-list-inner">
-                    <div class="checkbox-list-toolbar toolbar toolbar-compact">
-                      <div class="toolbar-inner text-secondary">
-                        Select <a class="link" href="javascript:void(0)"
-                          onclick="this.blur(); App.Controls.Checkboxes.checkAll('exportCsvColumns'); return false;">All</a>
-                        | <a class="link" href="javascript:void(0)"
-                          onclick="this.blur(); App.Controls.Checkboxes.checkNone('exportCsvColumns'); return false;">None</a>
-                      </div>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:id">
-                      <label>
-                        <span class="checkbox-name text-ppp">ID</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:id" type="checkbox" value="tests:id"
-                          checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:title">
-                      <label>
-                        <span class="checkbox-name text-ppp">Title</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:title" type="checkbox"
-                          value="cases:title" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:assignedto_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Assigned To</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:assignedto_id" type="checkbox"
-                          value="tests:assignedto_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_automation_type">
-                      <label>
-                        <span class="checkbox-name text-ppp">Automation Type</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_automation_type"
-                          type="checkbox" value="cases:custom_automation_type" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:original_case_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Case ID</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:original_case_id" type="checkbox"
-                          value="tests:original_case_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:comment">
-                      <label>
-                        <span class="checkbox-name text-ppp">Comment</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:comment" type="checkbox"
-                          value="tests:comment" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:defects">
-                      <label>
-                        <span class="checkbox-name text-ppp">Defects</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:defects" type="checkbox"
-                          value="tests:defects" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:elapsed">
-                      <label>
-                        <span class="checkbox-name text-ppp">Elapsed</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:elapsed" type="checkbox"
-                          value="tests:elapsed" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:estimate">
-                      <label>
-                        <span class="checkbox-name text-ppp">Estimate</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:estimate" type="checkbox"
-                          value="cases:estimate" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_expected">
-                      <label>
-                        <span class="checkbox-name text-ppp">Expected Result</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_expected" type="checkbox"
-                          value="cases:custom_expected" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:estimate_forecast">
-                      <label>
-                        <span class="checkbox-name text-ppp">Forecast</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:estimate_forecast" type="checkbox"
-                          value="cases:estimate_forecast" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_goals">
-                      <label>
-                        <span class="checkbox-name text-ppp">Goals</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_goals" type="checkbox"
-                          value="cases:custom_goals" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:in_progress_by">
-                      <label>
-                        <span class="checkbox-name text-ppp">In Progress</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:in_progress_by" type="checkbox"
-                          value="tests:in_progress_by" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_mission">
-                      <label>
-                        <span class="checkbox-name text-ppp">Mission</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_mission" type="checkbox"
-                          value="cases:custom_mission" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:plan_name">
-                      <label>
-                        <span class="checkbox-name text-ppp">Plan</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:plan_name" type="checkbox"
-                          value="tests:plan_name" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:plan_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Plan ID</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:plan_id" type="checkbox"
-                          value="tests:plan_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_preconds">
-                      <label>
-                        <span class="checkbox-name text-ppp">Preconditions</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_preconds" type="checkbox"
-                          value="cases:custom_preconds" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:priority_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Priority</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:priority_id" type="checkbox"
-                          value="cases:priority_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:refs">
-                      <label>
-                        <span class="checkbox-name text-ppp">References</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:refs" type="checkbox"
-                          value="cases:refs" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:run_name">
-                      <label>
-                        <span class="checkbox-name text-ppp">Run</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:run_name" type="checkbox"
-                          value="tests:run_name" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:run_config">
-                      <label>
-                        <span class="checkbox-name text-ppp">Run Configuration</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:run_config" type="checkbox"
-                          value="tests:run_config" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:run_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Run ID</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:run_id" type="checkbox"
-                          value="tests:run_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Section</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_id" type="checkbox"
-                          value="cases:section_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_depth">
-                      <label>
-                        <span class="checkbox-name text-ppp">Section Depth</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_depth" type="checkbox"
-                          value="cases:section_depth" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_desc">
-                      <label>
-                        <span class="checkbox-name text-ppp">Section Description</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_desc" type="checkbox"
-                          value="cases:section_desc" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:section_full">
-                      <label>
-                        <span class="checkbox-name text-ppp">Section Hierarchy</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:section_full" type="checkbox"
-                          value="cases:section_full" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:status_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Status</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:status_id" type="checkbox"
-                          value="tests:status_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:custom_steps">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps" type="checkbox"
-                          value="cases:custom_steps" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_steps_separated">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated"
-                          type="checkbox" value="cases:custom_steps_separated" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:custom_step_results">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results" type="checkbox"
-                          value="tests:custom_step_results" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-tests:custom_step_results.actual">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Actual Result)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.actual"
-                          type="checkbox" value="tests:custom_step_results.actual" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.additional_info">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Additional Info)</span>
-                        <input name="exportCsvColumns[]"
-                          id="exportCsvColumns-cases:custom_steps_separated.additional_info" type="checkbox"
-                          value="cases:custom_steps_separated.additional_info" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.expected">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Expected Result)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated.expected"
-                          type="checkbox" value="cases:custom_steps_separated.expected" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-tests:custom_step_results.expected">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Expected Result)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.expected"
-                          type="checkbox" value="tests:custom_step_results.expected" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.refs">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (References)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated.refs"
-                          type="checkbox" value="cases:custom_steps_separated.refs" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.shared_step_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Shared step ID)</span>
-                        <input name="exportCsvColumns[]"
-                          id="exportCsvColumns-cases:custom_steps_separated.shared_step_id" type="checkbox"
-                          value="cases:custom_steps_separated.shared_step_id" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-tests:custom_step_results.status_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Status)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.status_id"
-                          type="checkbox" value="tests:custom_step_results.status_id" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-cases:custom_steps_separated.content">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Step)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:custom_steps_separated.content"
-                          type="checkbox" value="cases:custom_steps_separated.content" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item"
-                      id="exportCsvColumns_checkbox-tests:custom_step_results.step">
-                      <label>
-                        <span class="checkbox-name text-ppp">Steps (Step)</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:custom_step_results.step"
-                          type="checkbox" value="tests:custom_step_results.step" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:template_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Template</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:template_id" type="checkbox"
-                          value="cases:template_id" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:tested_by">
-                      <label>
-                        <span class="checkbox-name text-ppp">Tested By</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:tested_by" type="checkbox"
-                          value="tests:tested_by" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:tested_on">
-                      <label>
-                        <span class="checkbox-name text-ppp">Tested On</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:tested_on" type="checkbox"
-                          value="tests:tested_on" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-cases:type_id">
-                      <label>
-                        <span class="checkbox-name text-ppp">Type</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-cases:type_id" type="checkbox"
-                          value="cases:type_id" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                    <div class="checkbox checkbox-list-item" id="exportCsvColumns_checkbox-tests:version">
-                      <label>
-                        <span class="checkbox-name text-ppp">Version</span>
-                        <input name="exportCsvColumns[]" id="exportCsvColumns-tests:version" type="checkbox"
-                          value="tests:version" checked="checked" class="checkbox-list-input">
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <select class="form-control form-select form-control-full" id="exportCsvLayout" name="exportCsvLayout">
-                  <option value="tests" selected="selected">Export latest results only (one line per test)</option>
-                  <option value="results">Export all results and comments (multiple lines per test)</option>
-                </select>
-              </div>
-              <div id="exportCsvSeparatorHintContainer" class="form-group bottom">
-                <div class="checkbox">
-                  <label>
-                    Include separator hint for maximum Excel compatibility <input type="checkbox"
-                      id="exportCsvSeparatorHint" name="exportCsvSeparatorHint" value="1" checked="checked">
-                  </label>
-                </div>
-              </div>
-
-              <div id="exportCsvNewLinesForSeparatedStepsContainer" class="form-group bottom">
-                <div class="checkbox">
-                  <label>
-                    Include separated steps on separate rows <input type="checkbox" id="exportCsvSeparatedStepsNewLines"
-                      name="exportCsvSeparatedStepsNewLines" value="1">
-                  </label>
-                </div>
-              </div>
+            <div class="sidebar-inner">
+              <p style="margin: 0">
+                Due on {{dueDate}}
+              </p>
             </div>
-            <div class="button-group dialog-buttons-highlighted">
-              <button class="button button-left button-positive button-add dialog-action-default" id="exportSubmit"
-                type="submit">
-                Export </button>
-              <a class="button button-left button-negative button-cancel dialog-action-close">
-                Cancel </a>
+
+            <div class="sidebar-menu">
+              <ul>
+                <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected">
+                  <a id="navigation-runs-testsresults">
+                    Tests &amp; Results</a>
+                </li>
+              </ul>
             </div>
-          </form>
-          <form action="index.php?/milestones/export_csv/3" id="exportCsvExportForm" method="post"> <input type="hidden"
-              name="_token" value="XRi/bKpXUYOppNX.mftD"> <input type="hidden" id="exportCsvExportSectionIDs"
-              name="section_ids" value="">
-            <input type="hidden" id="exportCsvExportSectionInclude" name="section_include" value="">
-            <input type="hidden" id="exportCsvExportColumns" name="columns" value="">
-            <input type="hidden" id="exportCsvExportLayout" name="layout" value="">
-            <input type="hidden" id="exportCsvExportSeparatorHint" name="separator_hint" value="">
-            <input type="hidden" id="exportCsvExportSeparatedStepsNewLines" name="separated_steps_new_lines" value="">
-            <input type="hidden" id="exportCsvExportFormat" name="format" value="">
-          </form>
-        </div>
-        <div class="bubble filter-bubble hidden" id="filterTestsBubble">
-          <div id="filterTestsContent" class="filter-bubble-inner">
-          </div>
-        </div>
-        <div class="bubble integration-bubble" id="referenceBubble">
-          <div class="integration-bubble-busy busy">
-            <div class="icon-progress-large" title="Loading..."></div>
-          </div>
-          <div class="error">
-            <div class="integration-bubble-error-header">
-              An Error Occurred </div>
-            <div class="integration-bubble-error-body" id="referenceBubbleError"></div>
-          </div>
-          <div class="content"></div>
-        </div>
-        <div class="bubble filter-bubble hidden" id="filterTestsBubble">
-          <div id="filterTestsContent" class="filter-bubble-inner">
-          </div>
-        </div>
-        <script type="text/javascript">
-          var statuses = {};
-          statuses[1] = { "id": 1, "name": "passed", "system_name": "passed", "label": "Passed", "color_dark": "338a41", "color_medium": "3cb850", "color_bright": "4be663", "color_gradient_a": "2b7537", "color_gradient_b": "23602d" };
-          statuses[2] = { "id": 2, "name": "blocked", "system_name": "blocked", "label": "Blocked", "color_dark": "474747", "color_medium": "595959", "color_bright": "8c8c8c", "color_gradient_a": "3c3c3c", "color_gradient_b": "313131" };
-          statuses[3] = { "id": 3, "name": "untested", "system_name": "untested", "label": "Untested", "color_dark": "737373", "color_medium": "979797", "color_bright": "c9c9c9", "color_gradient_a": "616161", "color_gradient_b": "505050" };
-          statuses[4] = { "id": 4, "name": "retest", "system_name": "retest", "label": "Retest", "color_dark": "b99109", "color_medium": "fcc200", "color_bright": "ffd549", "color_gradient_a": "9d7b07", "color_gradient_b": "816506" };
-          statuses[5] = { "id": 5, "name": "failed", "system_name": "failed", "label": "Failed", "color_dark": "a9093a", "color_medium": "e40046", "color_bright": "fc004e", "color_gradient_a": "8f0731", "color_gradient_b": "760628" };
-          statuses[6] = { "id": 6, "name": "custom_status1", "system_name": "custom_status1", "label": "Unnamed 1", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          statuses[7] = { "id": 7, "name": "custom_status2", "system_name": "custom_status2", "label": "Unnamed 2", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          statuses[8] = { "id": 8, "name": "custom_status3", "system_name": "custom_status3", "label": "Unnamed 3", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          statuses[9] = { "id": 9, "name": "custom_status4", "system_name": "custom_status4", "label": "Unnamed 4", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          statuses[10] = { "id": 10, "name": "custom_status5", "system_name": "custom_status5", "label": "Unnamed 5", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          statuses[11] = { "id": 11, "name": "custom_status6", "system_name": "custom_status6", "label": "Unnamed 6", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          statuses[12] = { "id": 12, "name": "custom_status7", "system_name": "custom_status7", "label": "Unnamed 7", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" };
-          var status_default_id = 1;
-        </script>
-        <div class="dialog bulk-delete-dialog" id="bulkDeleteDialog">
-          <div class="dialog-title">Confirmation</div>
-          <div class="dialog-body">
-            <p class="top bottom dialog-message"><strong>Delete these test milestones?</strong> This also unlinks the
-              <br> milestones from all test runs and plans and cannot be <br>undone (no test runs and plans are
-              deleted).
-            </p>
-            <p class="dialog-extra text-delete"></p>
-            <div class="message message-delete bottom delete-confirm-container confirm-container">
-              <div class="checkbox">
-                <label>
-                  <span class="dialog-confirm"><span style="color:red">Yes, delete the selected milestones (cannot be
-                      <br>undone)</span></span>
-                  <span class="dialog-confirm-busy"></span>
-                  <input id="confirm-check" type="checkbox" value="1" name="deleteCheckbox">
-                </label>
-              </div>
+            <div class="sidebar-inner">
             </div>
           </div>
-          <div class="button-group dialog-buttons-highlighted">
-            <a
-              class="button button-black button-black-disabled button-left button-positive button-disabled dialog-action-default">
-              Delete </a>
-            <a
-              class="button button-left button-delete button-disabled button-hidden button-no-margin-right dialog-action-secondary">
-            </a>
-            <a class="button button-cancel button-left button-negative dialog-action-close">
-              Cancel </a>
-          </div>
         </div>
-      </div>
-    </div>
 
-
-
-
-
-    <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-    </div>
-    <div id="qpane" class="column qpane" style="width: 600px; display: none">
-      <div id="qpane-empty" class="qpane-empty hidden">
-        <div class="qpane-empty-header">
-          No test case selected. </div>
-        <div class="qpane-empty-body">
-          You can select a different group or change the filters. </div>
-      </div>
-      <div id="qpane-inner">
-        <div id="qpaneSticky">
-          <div id="qpane-content">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-    </div>
-    <div id="sidebar" class="column sidebar" style="width: 250px">
-
-      <div class="sidebar-inner">
-        <p class="top bottom">
-          Due on 1/1/2023. <br>
-          References
-        </p>
       </div>
 
-      <div class="sidebar-menu">
+      <!-- <div id="statusDropdown" #statusDropdown class="dropdown dropdown-menu"
+        [ngStyle]="{'top': top, 'left': left, 'width': '175px', 'display': 'block', 'position': 'absolute' }"
+        *ngIf="top && left">
         <ul>
-          <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected">
-            <a id="navigation-milestones-status" href="index.php?/milestones/view/3">
-              Status</a>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
           </li>
-          <li class="sidebar-menu-item ">
-            <a id="navigation-milestones-activity" href="index.php?/milestones/activity/3">
-              Activity</a>
+          <li class="dropdown-menu-separator"></li>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
           </li>
-          <li class="sidebar-menu-item ">
-            <a id="navigation-milestones-progress" href="index.php?/milestones/progress/3">
-              Progress</a>
+          <li class="dropdown-menu-separator"></li>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
           </li>
-          <li class="sidebar-menu-item ">
-            <a id="navigation-milestones-defects" href="index.php?/milestones/defects/3">
-              Defects</a>
+          <li class="dropdown-menu-separator"></li>
+          <li>
+            <a class="dropdown-menu-link">
+              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
           </li>
         </ul>
-      </div>
-    </div>
+      </div> -->
+    </section>
   </div>
-
 </div>
