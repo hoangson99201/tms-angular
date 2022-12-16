@@ -1,45 +1,52 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Result } from 'src/app/models/result';
+import { TestRun } from 'src/app/models/test-run';
 import { MilestoneService } from 'src/app/services/milestone.service';
 import { ResultService } from 'src/app/services/result.service';
+import { TestRunService } from 'src/app/services/test-run.service';
 
 @Component({
   selector: 'app-detail-milestone',
   templateUrl: './detail-milestone.component.html',
-  styleUrls: ['./detail-milestone.component.scss']
+  styleUrls: ['./detail-milestone.component.scss'],
 })
 export class DetailMilestoneComponent implements OnInit {
   public projectId: string = '';
-  public testRunId: string = '';
+  public milestoneId: string = '';
   public milestoneName: string = '';
   public dueDate: string = '';
   public isCompleted: boolean = false;
-  public results: Result[] = [];
-  public map: Map<string, Result[]> = new Map<string, Result[]>();
+  public results: TestRun[] = [];
   public top: string = '';
   public left: string = '';
+
+  public incompleteTestRuns: TestRun[] = [];
+  public completedTestRuns: TestRun[] = [];
+
   @ViewChild('statusDropdown') statusDropdown: any;
   @ViewChild('button') button: any;
   public isMenuOpen = false;
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private resultService: ResultService,
+    private testRunService: TestRunService,
     private milestoneService: MilestoneService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.projectId = params['id'];
-      this.testRunId = params['subId'];
+      this.milestoneId = params['subId'];
       console.log(this.projectId);
-      console.log(this.testRunId);
-      this.refreshResult(parseInt(this.testRunId));
+      console.log(this.milestoneId);
+      this.refreshTestrun(parseInt(this.milestoneId));
       this.milestoneService
-        .findByMilestoneId(parseInt(this.testRunId))
+        .findByMilestoneId(parseInt(this.milestoneId))
         .subscribe((results) => {
           this.milestoneName = results.milestoneName;
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
@@ -62,21 +69,27 @@ export class DetailMilestoneComponent implements OnInit {
     // });
   }
 
-  refreshResult(testRunId: number) {
-    this.resultService.findAllByTestRunId(testRunId).subscribe((results) => {
-      this.results = results;
-      this.map = new Map<string, Result[]>();
-      for (const result of results) {
-        if (!result.sectionName) continue;
-        let results = this.map.get(result.sectionName);
-        if (!results) {
-          this.map.set(result.sectionName, [result]);
+  refreshTestrun(testRunId: number) {
+    this.testRunService.findAllByProjectId(testRunId).subscribe((testRuns) => {
+      this.results = testRuns;
+      for (const testRun of testRuns) {
+        if (testRun.isCompleted) {
+          this.completedTestRuns.push(testRun);
         } else {
-          results.push(result);
+          if (testRun.createdOn instanceof Array) {
+            testRun.createdOn =
+              testRun.createdOn[2] +
+              '/' +
+              testRun.createdOn[1] +
+              '/' +
+              testRun.createdOn[0];
+          }
+          this.incompleteTestRuns.push(testRun);
         }
       }
     });
   }
+
   openDropDown(e: any) {
     var target = e.target || e.srcElement || e.currentTarget;
     console.log(target.getBoundingClientRect());
@@ -86,5 +99,4 @@ export class DetailMilestoneComponent implements OnInit {
     console.log(this.top);
     console.log(this.left);
   }
-
 }

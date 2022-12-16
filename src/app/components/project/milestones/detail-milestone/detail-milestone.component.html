@@ -1,5 +1,5 @@
-<div style="display: flex; height: 100%;">
-  <app-new-menu-project [projectId]="projectId" [selectedMenu]="'milestone'"></app-new-menu-project>
+<div style="display: flex; height: 100%;"> <app-new-menu-project [projectId]="projectId"
+    [selectedMenu]="'milestone'"></app-new-menu-project>
   <div>
     <section>
       <app-header></app-header>
@@ -22,203 +22,253 @@
         <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
         <div class="table" style="height: 100%;">
           <div id="content" class="column content overflow-content">
-            <div id="notificationbar" class="notificationbar notificationbar-hidden">
-            </div>
-            <div class="notificationbar notificationbar-local">
-            </div>
+            <div id="notificationbar" class="notificationbar notificationbar-hidden"> </div>
+            <div class="notificationbar notificationbar-local"> </div>
             <div id="content-header" class="content-header content-header-default">
               <div class="content-header-inner">
-                <div class="content-header-result"></div>
-                <div class="content-header-id">{{testRunId}}</div>
-                <span id="subscribed" class="content-header-icon hidden">
-                  <a class="unsubscribe link-tooltip"
-                    tooltip-text="Unsubscribe from email updates on test changes for this test run.">
-                    <div class="icon-unsubscribe"></div>
-                  </a>
-                  <span class="hidden busy">
-                    <div class="icon-progress-standard"></div>
-                  </span>
-                </span>
+                <div class="content-header-id">{{milestoneId}}</div>
                 <div class="content-header-title page_title">{{milestoneName}}</div>
               </div>
             </div>
-            <script type="text/javascript">
-              $("#sites").prop("selectedIndex", 0);
-            </script>
-            <div id="content-inner" class="content-inner goals-clear">
-              <div id="groupContainer" style="margin-top: 1.5em; display: block;">
-                <div id="groupContent">
-                  <div id="groups">
-                    <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
-                      <div class="grid-title">
-                        <span class="title" id="sectionName-4">{{section.key}}</span>
-                        <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                        <span id="sectionBusy-4" class="busy" style="display: none;">
-                          <div class="icon-progress-inline"></div>
-                        </span>
-                      </div>
-                      <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
-                        <div class="scroll-auto-inner markdown">
+            <div id="content-inner" class="content-inner ">
+              <div id="drilldown_container"></div>
+              <div id="content_container">
+                <!-- <div id="submilestones-active"> <span class="select-checkbox select-checkbox-details"><input
+                      type="checkbox" name="select_all" onchange="SelectAllEntity(this);"></span>
+                  <h1 class="top float-left"> Milestones </h1> <span class="delete-selected-link"
+                    id="delete-milestones"> <a href="javascript:void(0)" onclick="App.Milestones.BulkDelete(this);">
+                      <span class="button button-negative button-delete"> Delete selected </span> </a> </span>
+                  <div style="margin-top: 1.2em;">
+                    <div class="table table-fixed">
+                      <div id="milestone-6" class="row flex-milestones-row hoverSensitive">
+                        <div
+                          class="column summary-column summary-column-checkbox flex-runs-1-medium select-checkbox-flex-medium summary-column-first				summary-column-last			">
+                          <input type="checkbox" name="entity_milestones" value="6">
+                        </div>
+                        <div
+                          class=" column summary-column summary-column-icon-compact flex-milestones-1-medium icon-milestone-32 summary-column-first		    summary-column-last">
+                        </div>
+                        <div
+                          class="column summary-column flex-milestones-2-medium summary-column-first summary-column-last">
+                          <div class="summary-title summary-title-compact text-ppp"> <a
+                              href="index.php?/milestones/view/6">Test</a> <span class="hidden hoverAction"> <a
+                                href="index.php?/milestones/edit/6">
+                                <div class="icon-small-edit icon-small-inline"></div>
+                              </a> </span> </div>
+                          <div class="summary-description-compact text-secondary text-ppp"> No due date </div>
+                        </div>
+                        <div
+                          class="column summary-column summary-column-bar flex-milestones-3-medium summary-column-first summary-column-last">
+                          <div class="table">
+                            <div class="column">
+                              <div class="chart-bar ">
+                                <div class="chart-bar-transparent" style="width: 100%"></div>
+                              </div>
+                            </div>
+                            <div class="column chart-bar-percent "> 0% </div>
+                          </div>
+                        </div>
+                        <div
+                          class="column summary-column column-delete-medium-first				flex-milestones-3-medium summary-column-first				summary-column-last			">
+                          <a title="Delete this milestone" class="deleteLink" href="javascript:void(0)"
+                            onclick="this.blur(); App.Dialogs.remove('Really delete this milestone? This irrevocably deletes this milestone for all users and cannot be undone.', null, null, null, function() { App.Milestones.removeMilestone(6); });; return false;">
+                            <div class="icon-small-delete "></div>
+                          </a>
                         </div>
                       </div>
-                      <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
-                        <tbody>
-                          <tr class="header">
-                            <th>
-                              <span>ID</span>
-                              <div class="column-actions">
-                              </div>
-                            </th>
-                            <th><span>Title</span>
-                              <div class="column-actions">
-                              </div>
-                            </th>
-                            <th>
-                            </th>
-                            <th>
-                              <span style="float: right;" class="hidden-xs">Status</span>
-                            </th>
-                          </tr>
-                          <tr *ngFor="let result of section.value" id="row-{{result.resultId}}" class="row odd">
-                            <td class="id">
-                              {{result.resultId}}
-                            </td>
-                            <td>
-                              {{result.caseName}}
-                            <td class="js-status" rel="4">
-                            </td>
-                            <td class="js-status" rel="4">
-                              <!-- <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Untested'" class="custom-dropdown dropdownLink status hidden-xs"
-                          style="background: #737373; color: #ffffff">{{result.status}}<span
-                            class="custom-dropdown caret button-caret"></span></a>
-                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Passed'" class="custom-dropdown dropdownLink status hidden-xs"
-                          style="background: #338a41; color: #ffffff">{{result.status}}<span
-                            class="custom-dropdown caret button-caret"></span></a>
-                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Blocked'" class="custom-dropdown dropdownLink status hidden-xs"
-                          style="background: #474747; color: #ffffff">{{result.status}}<span
-                            class="custom-dropdown caret button-caret"></span></a>
-                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Retest'" class="custom-dropdown dropdownLink status hidden-xs"
-                          style="background: #b99109; color: #ffffff">{{result.status}}<span
-                            class="custom-dropdown caret button-caret"></span></a>
-                        <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
-                          *ngIf="result.status == 'Failed'" class="custom-dropdown dropdownLink status hidden-xs"
-                          style="background: #a9093a; color: #ffffff">{{result.status}}<span
-                            class="custom-dropdown caret button-caret"></span></a> -->
-                              <!-- <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
-                                *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #737373; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
-                                *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #338a41; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
-                                *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #474747; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
-                                *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #b99109; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (isCompleted ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted" #button (click)="openDialog(result.status, result.resultId)"
-                                *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #a9093a; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret"></span>
-                              </button> -->
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    </div>
+                  </div>
+                </div> -->
+                <div id="submilestones-upcoming"> </div>
+                <div id="submilestones-completed"> </div>
+                <div id="runs-958655204">
+                  <h1 class=" " id="mile_heading"> Test Runs </h1> <span class="delete-selected-link " id="delete-run">
+                    <a href="javascript:void(0)" onclick="App.Runs.BulkRunDelete(this);"> <span
+                        class="button button-negative button-delete"> Delete selected </span> </a> </span>
+                  <div style="margin-top: 1.2em;">
+                    <div class="table">
+                      <div *ngFor="let incompelete of incompleteTestRuns" class="row flex-runs-row hoverSensitive"
+                        id="run-{{incompelete.runId}}">
+                        <div
+                          class="column summary-column summary-column-icon-compact flex-runs-1-medium icon-plan-32 summary-column-first ">
+                        </div>
+                        <div class="column summary-column flex-runs-2-medium summary-column-first ">
+                          <div class="summary-title summary-title-compact text-ppp"> <a>{{incompelete.runName}}</a>
+                            <span class="hidden hoverAction"> </span>
+                          </div>
+                          <div class="summary-description-compact text-secondary text-ppp"> By Đỗ T. on 11/29/2022
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div id="completed">
+                  <h2 style="margin-top: 0.3em"> Completed </h2>
+                  <table class="run-grid grid">
+                    <tr *ngFor="let entry of completedTestRuns" class="odd hoverSensitive">
+                      <td> <a>{{entry.runName}}</a> </td>
+                      <td class="sub right"> <span class="text-soft">{{entry.completedOn
+                          ? entry.completedOn[2] +
+                          '/' +
+                          entry.completedOn[1] +
+                          '/' +
+                          entry.completedOn[0]
+                          : ''}}</span> </td>
+                    </tr>
+                  </table>
+                </div>
               </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-          </div>
-          <div id="qpane" class="column qpane" style="width: 600px; display: none">
-            <div id="qpane-empty" class="qpane-empty hidden">
-              <div class="qpane-empty-header">
-                No test case selected. </div>
-              <div class="qpane-empty-body">
-                You can select a different group or change the filters. </div>
-            </div>
-            <div id="qpane-inner">
-              <div id="qpaneSticky">
-                <div id="qpane-content">
+              <div class="bubble filter-bubble hidden" id="filterTestsBubble">
+                <div id="filterTestsContent" class="filter-bubble-inner"> </div>
+              </div>
+              <div class="bubble integration-bubble" id="referenceBubble">
+                <div class="integration-bubble-busy busy">
+                  <div class="icon-progress-large" title="Loading..."></div>
+                </div>
+                <div class="error">
+                  <div class="integration-bubble-error-header"> An Error Occurred </div>
+                  <div class="integration-bubble-error-body" id="referenceBubbleError"></div>
+                </div>
+                <div class="content"></div>
+              </div>
+              <div class="bubble filter-bubble hidden" id="filterTestsBubble">
+                <div id="filterTestsContent" class="filter-bubble-inner"> </div>
+              </div>
+              <script
+                type="text/javascript">      var statuses = {}; statuses[1] = { "id": 1, "name": "passed", "system_name": "passed", "label": "Passed", "color_dark": "338a41", "color_medium": "3cb850", "color_bright": "4be663", "color_gradient_a": "2b7537", "color_gradient_b": "23602d" }; statuses[2] = { "id": 2, "name": "blocked", "system_name": "blocked", "label": "Blocked", "color_dark": "474747", "color_medium": "595959", "color_bright": "8c8c8c", "color_gradient_a": "3c3c3c", "color_gradient_b": "313131" }; statuses[3] = { "id": 3, "name": "untested", "system_name": "untested", "label": "Untested", "color_dark": "737373", "color_medium": "979797", "color_bright": "c9c9c9", "color_gradient_a": "616161", "color_gradient_b": "505050" }; statuses[4] = { "id": 4, "name": "retest", "system_name": "retest", "label": "Retest", "color_dark": "b99109", "color_medium": "fcc200", "color_bright": "ffd549", "color_gradient_a": "9d7b07", "color_gradient_b": "816506" }; statuses[5] = { "id": 5, "name": "failed", "system_name": "failed", "label": "Failed", "color_dark": "a9093a", "color_medium": "e40046", "color_bright": "fc004e", "color_gradient_a": "8f0731", "color_gradient_b": "760628" }; statuses[6] = { "id": 6, "name": "custom_status1", "system_name": "custom_status1", "label": "Unnamed 1", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; statuses[7] = { "id": 7, "name": "custom_status2", "system_name": "custom_status2", "label": "Unnamed 2", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; statuses[8] = { "id": 8, "name": "custom_status3", "system_name": "custom_status3", "label": "Unnamed 3", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; statuses[9] = { "id": 9, "name": "custom_status4", "system_name": "custom_status4", "label": "Unnamed 4", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; statuses[10] = { "id": 10, "name": "custom_status5", "system_name": "custom_status5", "label": "Unnamed 5", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; statuses[11] = { "id": 11, "name": "custom_status6", "system_name": "custom_status6", "label": "Unnamed 6", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; statuses[12] = { "id": 12, "name": "custom_status7", "system_name": "custom_status7", "label": "Unnamed 7", "color_dark": "000000", "color_medium": "a0a0a0", "color_bright": "d0d0d0", "color_gradient_a": "404040", "color_gradient_b": "101010" }; var status_default_id = 1;    </script>
+              <div class="dialog bulk-delete-dialog" id="bulkDeleteDialog">
+                <div class="dialog-title">Confirmation</div>
+                <div class="dialog-body">
+                  <p class="top bottom dialog-message"><strong>Delete these test milestones?</strong> This also unlinks
+                    the <br /> milestones from all test runs and plans and cannot be <br />undone (no test runs and
+                    plans are deleted). </p>
+                  <p class="dialog-extra text-delete"></p>
+                  <div class="message message-delete bottom delete-confirm-container confirm-container">
+                    <div class="checkbox"> <label> <span class="dialog-confirm"><span style="color:red">Yes, delete the
+                            selected milestones (cannot be <br />undone)</span></span> <span
+                          class="dialog-confirm-busy"></span> <input id="confirm-check" type="checkbox" value="1"
+                          name="deleteCheckbox" /> </label> </div>
+                  </div>
+                </div>
+                <div class="button-group dialog-buttons-highlighted"> <a
+                    class="button button-black button-black-disabled button-left button-positive button-disabled dialog-action-default">
+                    Delete </a> <a
+                    class='button button-left button-delete button-disabled button-hidden button-no-margin-right dialog-action-secondary'>
+                  </a> <a class="button button-cancel button-left button-negative dialog-action-close"> Cancel </a>
                 </div>
               </div>
             </div>
           </div>
-          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
-          </div>
-          <div id="sidebar" class="column sidebar" style="width: 250px">
-
-            <div class="sidebar-inner">
-              <p style="margin: 0">
-                Due on {{dueDate}}
-              </p>
+          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none"> </div>
+          <div id="qpane" class="column qpane" style="width: 600px; display: none">
+            <div id="qpane-empty" class="qpane-empty hidden">
+              <div class="qpane-empty-header"> No test case selected. </div>
+              <div class="qpane-empty-body"> You can select a different group or change the filters. </div>
             </div>
-
+            <div id="qpane-inner">
+              <div id="qpaneSticky">
+                <div id="qpane-content"> </div>
+              </div>
+            </div>
+          </div>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter"> </div>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
+            <div class="sidebar-inner">
+              <p class="top bottom"> Due on {{dueDate}}.</p>
+            </div>
             <div class="sidebar-menu">
               <ul>
-                <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected">
-                  <a id="navigation-runs-testsresults">
-                    Tests &amp; Results</a>
-                </li>
+                <li class="sidebar-menu-item sidebar-menu-item-first sidebar-menu-item-selected"> <a
+                    id="navigation-milestones-status"> Status</a> </li>
               </ul>
             </div>
-            <div class="sidebar-inner">
+            <div class='attachments-new-dialog dialog dialog_attachment' id='attachmentNewDialogFile'>
+              <div class='dialog-title'> <span class='addAttachment'>Attach file</span> </div>
+              <div class="attachments-filter bubble filter-bubble hidden" id="filterAttachmentsBubble">
+                <div id="filterAttachmentsContent" class="filter-bubble-inner"> </div>
+              </div>
+              <script
+                type="text/javascript">      $(document).ready(function () { App.Translations.add("attachments_drop", "Drop files here to attach, or click to browse."); App.Translations.add("attachments_drop_image", "Drop images here to embed, or click to browse."); App.Translations.add("attachments_drop_image_nobrowse", "Drop images here to embed."); App.Translations.add("attachments_drop_notype", "You can only add images to this text field (example: PNG or JPG files)."); App.Translations.add("attachments_drop_notype_canattach", "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs."); App.Translations.add("attachments_file_here", "Drop file here, or click to browse."); App.Translations.add("attachments_remove_image", "Remove"); App.Translations.add("attachments_drop_notype_canattach_jira", "You can only add images to this text field (example: PNG or JPG files)."); App.Translations.add("attachments_confirm_replace", "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?"); App.Translations.add("attachments_replace_title", "Replace?"); App.Translations.add("attachments_loading_error_title", "Loading error"); App.Translations.add("attachments_loading_error_generic", "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!"); App.Translations.add("attachment_info_all_projects", "All Projects"); App.Translations.add("attachments_confirm_delete", "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently."); App.Translations.add("attachments_delete", "Delete"); App.Translations.add("attachment_upload_name_allowed", ""); });    </script>
+              <script type="text/javascript">      $(document).ready(function () { App.Dropzone.init(); });    </script>
+              <input id='newAttachments' type='hidden' /> <input id='projectId' type='hidden' value='' />
+              <div class='attachments-library attachment-library-dialog'>
+                <div>
+                  <div style='float: left'> <strong class='attachment-library-title'>Media Library</strong> <a
+                      id='libraryAddAttachment' class="button button-left button-add">Add New</a> <a
+                      id='libraryDeleteAttachment' style='display: none;'
+                      class="button button-left button-negative button-delete" href="javascript:void(0)"
+                      onclick="this.blur(); App.Dialogs.remove('This action &lt;strong&gt;deletes selected attachment/s and all their instances across your projects&lt;/strong&gt; (except those on closed Test Runs &amp; Plans) permanently. This cannot be undone. Do you wish to continue?', null, null, null, function() { App.Attachments.removeAttachments(); });; return false;">Delete</a>
+                  </div>
+                  <div style='float: right'> <span class="h1-additional"> Sort: <a id="attachments-library-sortby"
+                        href="#sortDropdown" class="link link-dashed dropdownLink"> <span
+                          id="attachmentsByName">Date</span></a> <span id="orderByAsc" class="hidden">
+                        <div class="icon-asc"></div>
+                      </span> <span id="orderByDesc" class="">
+                        <div class="icon-desc"></div>
+                      </span> &nbsp;|&nbsp; Filter: <a class="link link-dashed" href="javascript:void(0)"
+                        onclick="this.blur(); App.Attachments.filterAttachments(event); return false;"
+                        id="attachmentFilterByChange"><span id="attachmentFilterByEmpty" class="">None</span><span
+                          id="attachmentFilterByInfo" class="hidden toolbar-highlighted"></span></a> <span
+                        id="attachmentFilterByBusy" class="busy">
+                        <div class="icon-progress-inline"></div>
+                      </span> <span id="attachmentFilterByReset" class="hidden"> <a href="javascript:void(0)"
+                          onclick="this.blur(); App.Attachments.filterReset(); return false;" class="link-tooltip"
+                          tooltip-text="Reset filters">
+                          <div class="icon-orderreset"></div>
+                        </a> </span> <input type="text" name="search" id="libraryAttachmentsSearch"
+                        class="attachment-library-search" /> </span>
+                    <div id="sortDropdown" class="dropdown dropdown-menu sortDropdown"
+                      style="position: fixed; width: 100px">
+                      <ul>
+                        <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                            onclick="this.blur(); App.Attachments.sortAttachments('created_on'); return false;">Date</a>
+                        </li>
+                        <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                            onclick="this.blur(); App.Attachments.sortAttachments('name'); return false;">Name</a> </li>
+                        <li><a class="dropdown-menu-link" href="javascript:void(0)"
+                            onclick="this.blur(); App.Attachments.sortAttachments('size'); return false;">Size</a> </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div style='margin-top: 40px; clear: both; background-color: white; height: 361px; overflow-y: auto;'
+                  id='attachmentsNewList'> </div>
+                <div id="attachmentsPagination" style='margin-bottom: 10px;'></div>
+              </div>
+              <script
+                type="text/javascript">      $(document).ready(function () { App.Attachments.orderByOptions = { "created_on": "Date", "name": "Name", "size": "Size" }; var defaultTimeout = null; $('#libraryAttachmentsSearch').keyup(function () { if (defaultTimeout != null) clearTimeout(defaultTimeout); defaultTimeout = setTimeout(function () { defaultTimeout = null; App.Attachments.reloadRepository(); }, 500); }); });    </script>
+              <div id='attachmentNewButtons' class='dialog-buttons-highlighted button-group'>
+                <div style='margin-top: 6px; float: left;'>Maximum file size: 256 MB.</div> <button
+                  id='attachmentNewSubmit' type='submit' class='button button-right button-positive button-ok'
+                  style='margin-left: 7px'> <span class='addAttachment'>Attach</span> </button> <a
+                  class='button button-right button-negative button-cancel dialog-action-close'> Cancel </a>
+              </div>
             </div>
+            <div class="sidebar-inner"> </div>
+            <div class="sidebar-inner"> <a id="navigation-milestones-add" class="sidebar-button"
+                [routerLink]="['/milestones-add', projectId]"> <span>Add Milestone</span> </a> </div>
+            <script
+              type="text/javascript">    $(document).ready(function () { App.Hotkeys.register('e', function () { App.Page.load('milestones/edit/3/1'); }); App.References.applyLookup(1); App.Hotkeys.register('d', function () { App.Defects.preparePush(1, 0, 'milestones/view', 3); }); let runs_activecount = 2; if (runs_activecount > 0) { $("#mile_heading").addClass('top-milestnmargin'); } else { $("#mile_heading").removeClass('top-milestnmargin'); } });  </script>
+            <div class="dialog" id="startMilestoneDialog" style="width: 450px">
+              <div class="dialog-title">Start Milestone</div>
+              <form id="startMilestoneForm" class="dialogFormDefault">
+                <div class="dialog-body">
+                  <div class="message message-error validationError" id="startMilestoneErrors"></div>
+                  <div id="startMilestoneControls"> </div>
+                </div>
+                <div class="button-group dialog-buttons-highlighted"> <button
+                    class="button button-left button-positive button-ok dialog-action-default" id="startMilestoneSubmit"
+                    type="submit"> Start Milestone </button> <a
+                    class="button button-left button-negative button-cancel dialog-action-close"> Cancel </a> </div>
+              </form>
+            </div>
+            <script
+              type="text/javascript">    $(document).ready(function () { App.Translations.add("attachments_drop", "Drop files here to attach, or click to browse."); App.Translations.add("attachments_drop_image", "Drop images here to embed, or click to browse."); App.Translations.add("attachments_drop_image_nobrowse", "Drop images here to embed."); App.Translations.add("attachments_drop_notype", "You can only add images to this text field (example: PNG or JPG files)."); App.Translations.add("attachments_drop_notype_canattach", "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs."); App.Translations.add("attachments_file_here", "Drop file here, or click to browse."); App.Translations.add("attachments_remove_image", "Remove"); App.Translations.add("attachments_drop_notype_canattach_jira", "You can only add images to this text field (example: PNG or JPG files)."); App.Translations.add("attachments_confirm_replace", "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?"); App.Translations.add("attachments_replace_title", "Replace?"); App.Translations.add("attachments_loading_error_title", "Loading error"); App.Translations.add("attachments_loading_error_generic", "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!"); App.Translations.add("attachment_info_all_projects", "All Projects"); App.Translations.add("attachments_confirm_delete", "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently."); App.Translations.add("attachments_delete", "Delete"); App.Translations.add("attachment_upload_name_allowed", ""); });  </script>
+            <script type="text/javascript">    $(document).ready(function () { App.Dropzone.init(); });  </script>
           </div>
         </div>
-
       </div>
-
-      <!-- <div id="statusDropdown" #statusDropdown class="dropdown dropdown-menu"
-        [ngStyle]="{'top': top, 'left': left, 'width': '175px', 'display': 'block', 'position': 'absolute' }"
-        *ngIf="top && left">
-        <ul>
-          <li>
-            <a class="dropdown-menu-link">
-              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #338a41"></span>Passed</a>
-          </li>
-          <li class="dropdown-menu-separator"></li>
-          <li>
-            <a class="dropdown-menu-link">
-              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #474747"></span>Blocked</a>
-          </li>
-          <li class="dropdown-menu-separator"></li>
-          <li>
-            <a class="dropdown-menu-link">
-              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #b99109"></span>Retest</a>
-          </li>
-          <li class="dropdown-menu-separator"></li>
-          <li>
-            <a class="dropdown-menu-link">
-              <span class="status-mini" style="float: left; margin: 1px 5px 0 0; background: #a9093a"></span>Failed</a>
-          </li>
-        </ul>
-      </div> -->
     </section>
   </div>
 </div>

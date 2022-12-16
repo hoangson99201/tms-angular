@@ -40,6 +40,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { StatusSelectComponent } from './components/project/test-run/detail-test-run/status-select/status-select.component';
 import { DetailMilestoneComponent } from './components/project/milestones/detail-milestone/detail-milestone.component';
 import { ActivityComponent } from './components/project/overview/activity/activity.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { ActivityComponent } from './components/project/overview/activity/activi
     useClass: AuthInterceptor,
     multi: true,
   },
+  DatePipe,
   {
     provide: APP_INITIALIZER,
     useFactory: AuthService.authServiceFactory,
