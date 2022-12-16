@@ -29,4 +29,8 @@ export class TestRunService {
       responseType: 'text'
     });
   }
+
+  findAllByMilestoneId(projectId: number): Observable<TestRun[]> {
+    return this._http.get<TestRun[]>("/tms/api/v1/milestone/" + projectId + "/test-run");
+  }
 }

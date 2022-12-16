@@ -35,7 +35,7 @@ export class DetailMilestoneComponent implements OnInit {
     private testRunService: TestRunService,
     private milestoneService: MilestoneService,
     private datePipe: DatePipe
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -52,10 +52,10 @@ export class DetailMilestoneComponent implements OnInit {
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
           this.dueDate = results.endDate
             ? results.endDate[2] +
-              '/' +
-              results.endDate[1] +
-              '/' +
-              results.endDate[0]
+            '/' +
+            results.endDate[1] +
+            '/' +
+            results.endDate[0]
             : '';
         });
     });
@@ -70,7 +70,7 @@ export class DetailMilestoneComponent implements OnInit {
   }
 
   refreshTestrun(testRunId: number) {
-    this.testRunService.findAllByProjectId(testRunId).subscribe((testRuns) => {
+    this.testRunService.findAllByMilestoneId(testRunId).subscribe((testRuns) => {
       this.results = testRuns;
       for (const testRun of testRuns) {
         if (testRun.isCompleted) {
