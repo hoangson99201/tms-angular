@@ -135,13 +135,13 @@
                             </td>
                             <td class="nolink">
 
-                              <!-- <a *ngIf="isActive('ADD_USER')" (click)="openDropDown($event, user.userId)"
+                              <a *ngIf="isActive('ADD_USER')" (click)="openDropDown($event, user.userId)"
                                 class="dropdownLink">
                                 <span class="custom-dropdown dropdown-icon-black"><span class="role">{{user.roleName}}
                                   </span>
                                 </span>
-                              </a> -->
-                              <a *ngIf="isActive('ADD_USER')" class="dropdownLink">{{user.roleName}}
+                              </a>
+                              <a *ngIf="!isActive('ADD_USER')" class="dropdownLink">{{user.roleName}}
                               </a>
                             </td>
                           </tr>
