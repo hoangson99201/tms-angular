@@ -61,7 +61,8 @@
                           </div>
                           <div class="column summary-column  flex-milestones-2-compact summary-column-first ">
                             <div class="summary-title summary-title-compact text-ppp">
-                              <a id="navigation-overview-viewmilestones">{{milestone.milestoneName}}</a>
+                              <a [routerLink]="['/milestones', projectId, 'detail', milestone.milestoneId]"
+                                id="navigation-overview-viewmilestones">{{milestone.milestoneName}}</a>
                             </div>
                             <div class="summary-description-compact text-secondary text-ppp">
                               {{milestone.endDate ? "Due on " + milestone.endDate : "No due date"}}

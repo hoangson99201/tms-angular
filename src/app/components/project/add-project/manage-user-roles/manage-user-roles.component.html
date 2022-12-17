@@ -66,15 +66,14 @@
           </ul>
         </div> -->
 
-              <!-- <div id="roleDropdown" class="dropdown dropdown-menu roleDropdown" rel="" style="width: 125px">
-          <ul>
-            <li><a class="dropdown-menu-link">No Access</a></li>
-            <li><a class="dropdown-menu-link">Read-only</a></li>
-            <li><a class="dropdown-menu-link">Tester</a></li>
-            <li><a class="dropdown-menu-link">Designer</a></li>
-            <li><a class="dropdown-menu-link">Lead</a></li>
-          </ul>
-        </div> -->
+              <div *ngIf="top && left"
+                [ngStyle]="{'top': top, 'left': left, 'width': '175px', 'display': 'block', 'position': 'absolute' }"
+                id="roleDropdown" class="dropdown dropdown-menu roleDropdown" style="width: 125px">
+                <ul>
+                  <li *ngFor="let role of rolesArray"><a (click)="changeRole(role.roleId)"
+                      class="dropdown-menu-link">{{role.roleName}}</a></li>
+                </ul>
+              </div>
 
               <input type="hidden" name="tab" id="tab">
 
@@ -134,12 +133,10 @@
                             <td class="nolink">
                               <span class="email">{{user.email}}</span>
                             </td>
-                            <!-- <td class="nolink">
-                        Active
-                      </td> -->
                             <td class="nolink">
-                              <a routerLink="#roleDropdown" rel="1" class="dropdownLink">
-                                <span class="dropdown-icon-black"><span class="role">Lead</span></span>
+                              <a (click)="openDropDown($event, user.userId)" class="dropdownLink">
+                                <span class="custom-dropdown dropdown-icon-black"><span
+                                    class="role">{{user.roleName}}</span></span>
                               </a>
                             </td>
                           </tr>

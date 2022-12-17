@@ -19,4 +19,10 @@ export class UserService {
       responseType: 'text'
     });
   }
+
+  update(user: User): Observable<string> {
+    return this._http.put("/tms/api/v1/user", user, {
+      responseType: 'text'
+    });
+  }
 }
