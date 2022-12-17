@@ -1,7 +1,7 @@
 import { User } from 'src/app/models/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -41,6 +41,9 @@ export class AuthService {
       }),
       catchError(error => {
         console.log(error);
+        if (['/tms/login', '/tms/signup'].includes(window.location.pathname)) {
+          return EMPTY;
+        }
         return this.router.navigateByUrl('/login');
       })
     );
@@ -52,5 +55,11 @@ export class AuthService {
 
   static authServiceFactory(authService: AuthService): Function {
     return () => authService.load();
+  }
+
+  signup(user: User): Observable<string> {
+    return this.http.post("/tms/api/v1/signup", user, {
+      responseType: 'text'
+    });
   }
 }

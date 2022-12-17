@@ -1,4 +1,4 @@
-<div style="display: flex; height: 100%;">
+<div *ngIf="isActive('ADD_USER')" style="display: flex; height: 100%;">
   <app-new-menu [selectedMenu]="'users-roles'"></app-new-menu>
   <div>
     <section>
@@ -66,25 +66,11 @@
                           in the next field.</div>
                       </div>
                       <div class="form-group">
-                        <label for="confirm">Confirm
-                          Password <span class="form-required">*</span>
+                        <label for="confirm">Confirm Password <span class="form-required">*</span>
                         </label>
                         <input [(ngModel)]="confirmPassword" class="form-control fo" type="password" autocomplete="off"
                           name="confirm" id="confirm" maxlength="250">
                       </div>
-                      <!-- <div class="form-group">
-                <div class="checkbox">
-                  <label>
-                    <strong>Enable email notifications</strong>
-                    <input type="checkbox" class="checkbox" id="notifications" name="notifications" value="1"
-                      checked="checked">
-                  </label>
-                </div>
-                <div class="form-description">Email notifications are sent for test
-                  changes and test results.
-                  Note: global email notifications must also be enabled to use this
-                  feature.</div>
-              </div> -->
                       <div class="form-separator">
                       </div>
                       <div class="form-group">

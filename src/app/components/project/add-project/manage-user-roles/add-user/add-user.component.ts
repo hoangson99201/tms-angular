@@ -1,11 +1,12 @@
-import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -19,7 +20,8 @@ export class AddUserComponent implements OnInit {
     private roleService: RoleService,
     private userService: UserService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   public roles: Role[] = [];
@@ -53,5 +55,9 @@ export class AddUserComponent implements OnInit {
         this.toastr.error('Add user failed', 'Error');
       },
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

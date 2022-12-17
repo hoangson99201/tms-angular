@@ -1,4 +1,4 @@
-<div style="display: flex; height: 100%;">
+<div style="display: flex; height: 100%;" *ngIf="isActive('LIST_USER_ROLE')">
   <app-new-menu [selectedMenu]="'users-roles'"></app-new-menu>
   <div>
     <section>
@@ -152,7 +152,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="button-group grid-buttons">
+                    <div *ngIf="isActive('ADD_USER')" class="button-group grid-buttons">
                       <a routerLink="/user-role/add" class="button button-left button-add">
                         Add User
                       </a>

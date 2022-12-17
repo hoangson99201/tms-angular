@@ -43,15 +43,15 @@
           </li>
         </ul>
 
-        <div class="sidebar__menu__nav__header">Security</div>
-        <ul>
-          <li class=""><a routerLink="/users-roles" data-content="Users & roles">
-              <i class="fad fa-users icon-sidebar-users fa-fw"></i><span> Users & roles</span></a></li>
-        </ul>
-        <!-- <ul>
-          <li class=""><a data-content="Logout">
-              <i class="fad fa-sign-out icon-sidebar-users fa-fw"></i><span> Logout</span></a></li>
-        </ul> -->
+        <ng-template [ngIf]="isActive('LIST_USER_ROLE')">
+          <div class="sidebar__menu__nav__header">Security</div>
+          <ul>
+            <li>
+              <a routerLink="/users-roles" data-content="Users & roles">
+                <i class="fad fa-users icon-sidebar-users fa-fw"></i><span> Users & roles</span></a>
+            </li>
+          </ul>
+        </ng-template>
       </div>
       <div class="sidebar__menu__nav sidebar__menu__nav--compact">
         <ul>

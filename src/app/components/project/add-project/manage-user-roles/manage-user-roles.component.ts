@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,7 +17,8 @@ export class ManageUserRolesComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private roleService: RoleService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   public usersArray: any[] = [];
   public userId: any = '';
@@ -75,6 +77,10 @@ export class ManageUserRolesComponent implements OnInit, OnDestroy {
     this.displayTab = tab == 'user' ? tab : 'role';
   }
 
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
+  }
+
   changeRole(changeTo: number) {
     this.user.roleId = changeTo;
     this.userService.update(this.user).subscribe({
@@ -82,7 +88,7 @@ export class ManageUserRolesComponent implements OnInit, OnDestroy {
         console.log(res);
         this.toastr.success('Update user role success', 'Success');
         this.router.navigateByUrl('/users-roles');
-        this.refresh()
+        this.refresh();
       },
       error: (e) => {
         console.log(e);
