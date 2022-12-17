@@ -8,7 +8,7 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./new-menu-project.component.scss'],
 })
 export class NewMenuProjectComponent {
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private authService: AuthService) { }
   @Input() public selectedMenu = 'overview';
   private project: Project = {
     projectName: '',
@@ -39,5 +39,9 @@ export class NewMenuProjectComponent {
   public getFullname() {
     console.log('activeUser' + AuthService.activeUser);
     return AuthService.activeUser.fullname;
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

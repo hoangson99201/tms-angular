@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/models/role';
-import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ManageUserRolesComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private authService: AuthService
   ) {}
   public usersArray: any[] = [];
   public rolesArray: Role[] = [];
@@ -38,5 +39,9 @@ export class ManageUserRolesComponent implements OnInit {
 
   switchTab(tab: string) {
     this.displayTab = tab == 'user' ? tab : 'role';
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

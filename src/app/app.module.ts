@@ -41,6 +41,7 @@ import { StatusSelectComponent } from './components/project/test-run/detail-test
 import { DetailMilestoneComponent } from './components/project/milestones/detail-milestone/detail-milestone.component';
 import { ActivityComponent } from './components/project/overview/activity/activity.component';
 import { DatePipe } from '@angular/common';
+import { SignUpComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { DatePipe } from '@angular/common';
     HeaderComponent,
     StatusSelectComponent,
     DetailMilestoneComponent,
-    ActivityComponent
+    ActivityComponent,
+    SignUpComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [
