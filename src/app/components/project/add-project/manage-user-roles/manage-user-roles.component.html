@@ -134,10 +134,12 @@
                               <span class="email">{{user.email}}</span>
                             </td>
                             <td class="nolink">
-                              <a (click)="openDropDown($event, user.userId)" class="dropdownLink">
-                                <span class="custom-dropdown dropdown-icon-black"><span
-                                    class="role">{{user.roleName}}</span></span>
-                              </a>
+                              <button (disabled)="!isActive('ADD_USER')" (click)="openDropDown($event, user.userId)"
+                                class="dropdownLink">
+                                <span class="custom-dropdown dropdown-icon-black"><span class="role">{{user.roleName}}
+                                  </span>
+                                </span>
+                              </button>
                             </td>
                           </tr>
                         </tbody>
