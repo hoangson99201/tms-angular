@@ -42,6 +42,7 @@ import { DetailMilestoneComponent } from './components/project/milestones/detail
 import { ActivityComponent } from './components/project/overview/activity/activity.component';
 import { DatePipe } from '@angular/common';
 import { SignUpComponent } from './components/signup/signup.component';
+import { ConfirmDeleteDialogComponent } from './components/project/testcase/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { SignUpComponent } from './components/signup/signup.component';
     StatusSelectComponent,
     DetailMilestoneComponent,
     ActivityComponent,
-    SignUpComponent
+    SignUpComponent,
+    ConfirmDeleteDialogComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [

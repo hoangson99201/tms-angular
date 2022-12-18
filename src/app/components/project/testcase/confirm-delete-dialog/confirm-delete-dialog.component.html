@@ -1,0 +1,28 @@
+<div class="ui-dialog-titlebar ui-widget-header" id="confirm-delete-title">
+  <span class="ui-dialog-title" id="ui-dialog-title-casesDeletionDialog">
+    Confirmation
+  </span>
+  <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
+    <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>
+  </a>
+</div>
+<form id="editSectionForm" class="dialogFormDefault">
+  <div class="dialog-body" style="width: 385px;">
+    <p class="top">
+      <strong class="singular">Really delete this test case?</strong>
+    </p>
+
+    <span class="singular">
+      'Delete Permanently' can only delete if there is no active tests and results for this case and cannot be undone.
+    </span>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <a class="button button-left button-positive button-no-margin-right dialog-action-secondary button-black"
+      (click)="delete()">
+      Delete Permanently
+    </a>
+    <a (click)="close()" class="button button-left button-negative button-cancel dialog-action-close">
+      Cancel
+    </a>
+  </div>
+</form>

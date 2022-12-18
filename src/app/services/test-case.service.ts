@@ -29,4 +29,8 @@ export class TestCaseService {
       responseType: 'text'
     });
   }
+
+  delete(testCaseId: number): Observable<{ deletedCount: number }> {
+    return this._http.delete<{ deletedCount: number }>("/tms/api/v1/test-case/" + testCaseId);
+  }
 }

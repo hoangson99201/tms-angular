@@ -120,13 +120,14 @@
                               <td class="checkbox"><input type="checkbox" value="36" class="selectionCheckbox"
                                   name="selected-36"></td>
                               <td class="id">
-                                <a class="link-noline" rel="keep-get">
+                                <a [routerLink]="['/test-cases-edit', testCase.caseId]" class="link-noline"
+                                  rel="keep-get">
                                   {{testCase.caseId}}
                                 </a>
                               </td>
                               <td>
                                 <span class="case-deleted case-deleted-hidden" title="Test Case Deleted"></span>
-                                <a rel="keep-get">
+                                <a [routerLink]="['/test-cases-edit', testCase.caseId]" rel="keep-get">
                                   <span class="title">{{testCase.caseName}}</span>
                                 </a>
                               </td>
@@ -136,7 +137,7 @@
                                 </a>
                               </td>
                               <td class="action">
-                                <a class="deleteLink">
+                                <a (click)="deleteTestCase(testCase.caseId)" class="deleteLink">
                                   <div class="icon-small-delete hidden action-hover"></div>
                                 </a>
                                 <span class="busy deleteBusy">

@@ -5,6 +5,7 @@ import { Section } from 'src/app/models/section';
 import { TestCase } from 'src/app/models/test-case';
 import { SectionService } from 'src/app/services/section.service';
 import { TestCaseService } from 'src/app/services/test-case.service';
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 import { SectionDialogComponent } from './section-dialog/section-dialog.component';
 
 @Component({
@@ -28,29 +29,33 @@ export class TestcaseComponent {
       console.log(params);
       this.projectId = params['id'];
       console.log(this.projectId);
-      this.testCaseService
-        .findAllByProjectId(parseInt(this.projectId))
-        .subscribe((testCases) => {
-          this.testCases = testCases;
-          this.map = new Map<string, TestCase[]>();
-          for (const testCase of testCases) {
-            if (!testCase.sectionName) continue;
-            let testCases = this.map.get(testCase.sectionName);
-            if (!testCases) {
-              this.map.set(testCase.sectionName, [testCase]);
-            } else {
-              testCases.push(testCase);
-            }
-          }
-          console.log(testCases);
-          console.log(this.map);
-        });
+      this.refreshTestCase(parseInt(this.projectId));
       this.sectionService.findAllByProjectId(parseInt(this.projectId))
         .subscribe(sections => {
           this.sections = sections;
           console.log(sections);
         });
     });
+  }
+
+  refreshTestCase(projectId: number) {
+    this.testCaseService
+      .findAllByProjectId(projectId)
+      .subscribe((testCases) => {
+        this.testCases = testCases;
+        this.map = new Map<string, TestCase[]>();
+        for (const testCase of testCases) {
+          if (!testCase.sectionName) continue;
+          let testCases = this.map.get(testCase.sectionName);
+          if (!testCases) {
+            this.map.set(testCase.sectionName, [testCase]);
+          } else {
+            testCases.push(testCase);
+          }
+        }
+        console.log(testCases);
+        console.log(this.map);
+      });
   }
 
   openDialog() {
@@ -60,5 +65,18 @@ export class TestcaseComponent {
         projectId: parseInt(this.projectId)
       },
     });
+  }
+
+  deleteTestCase(testCaseId: number | undefined) {
+    if (testCaseId != undefined) {
+      const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+        data: {
+          testCaseId
+        },
+      }).afterClosed()
+        .subscribe((_) => {
+          this.refreshTestCase(parseInt(this.projectId));
+        });
+    }
   }
 }
