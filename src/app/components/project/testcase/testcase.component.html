@@ -180,7 +180,7 @@
 
               <div id="sidebarInfo">
                 <p style="margin: 0">
-                  Contains <strong class="text-softer">0</strong> sections
+                  Contains <strong class="text-softer">{{sections.length}}</strong> sections
                   and <strong class="text-softer">{{testCases.length}}</strong>
                   <span> cases</span>.
                 </p>
@@ -227,27 +227,21 @@
                 <div id="sidebarSticky">
                   <div class="toolbar" id="sidebarToolbar">
                     <a id="addSection" (click)="openDialog()" class="toolbar-button toolbar-button-last button-add">
-                      Add Section </a>
-                    <a id="addSectionDisabled"
-                      class="toolbar-button toolbar-button-disabled button-add-disabled link-tooltip"
-                      tooltip-text="Adding sections is only supported if the cases are grouped by sections."
-                      style="display: none">
-                      Add Section </a>
-                    <div class="toolbar-inner">
-                      <a routerLink="#displayDropdown" class="link dropdownLink toolbar-dropdown">
-                        <span class="toolbar-dropdown-icon">
-                          <div class="icon-display-tree-inactive"></div>
-                        </span>
-                        <span class="toolbar-dropdown-text link-dashed">All</span>
-                        <div class="icon-desc"></div>
-                      </a>
-                    </div>
+                      Add Section
+                    </a>
                   </div>
                   <div class="clear"></div>
                   <div id="groupTreeContainer">
-                    <div id="groupTreeContent" style="overflow: auto; height: 203.312px;">
-                      <div id="groupTree" class="jstree jstree-default">
+                    <div id="groupTreeContent" style="overflow: auto; height: 638.312px;">
+                      <div id="groupTree" class="jstree jstree-default jstree-0 jstree-focused">
                         <ul>
+                          <li *ngFor="let section of sections" class="jstree-closed jstree-leaf">
+                            <ins class="jstree-icon">&nbsp;</ins><a class="caseDroppable" href=""><ins
+                                class="jstree-icon">&nbsp;</ins>
+                              <span id="sectionNameAlt-11">{{section.sectionName}}</span></a>
+                            <ul class="">
+                            </ul>
+                          </li>
                         </ul>
                       </div>
                     </div>
