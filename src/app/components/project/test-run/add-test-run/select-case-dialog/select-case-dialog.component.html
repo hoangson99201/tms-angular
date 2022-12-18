@@ -26,14 +26,14 @@
                 <div class="select-dialog-scroll">
                   <div id="selectCasesGroupContainer" class="select-dialog-group select-dialog-group-with-splitter"
                     style="min-width: 350px">
-                    <div class="toolbar select-dialog-toolbar">
+                    <!-- <div class="toolbar select-dialog-toolbar">
                       <a id="selectCasesColumns" style="margin-left: 8px" class="toolbar-button button-columns">
                         Columns</a>
                       <div class="toolbar-inner">
                         Select <a id="selectCasesGroupAll" class="link">All</a> |
                         <a id="selectCasesGroupNone" class="link">None</a>
                       </div>
-                    </div>
+                    </div> -->
                     <div id="selectCasesGroup">
                       <!-- <div class="grid-container  bottom">
                         <div class="grid-title">
@@ -140,12 +140,6 @@
                         <div class="grid-title">
                           <span class="title" id="sectionName-4">{{section.key}}</span>
                           <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                          <a style="margin-left: 5px">
-                            <div class="icon-small-edit icon-small-inline"></div>
-                          </a>
-                          <a style="margin-left: 5px">
-                            <div class="icon-small-delete hidden action-hover"></div>
-                          </a>
                           <span id="sectionBusy-4" class="busy" style="display: none;">
                             <div class="icon-progress-inline"></div>
                           </span>
@@ -172,21 +166,21 @@
                               <th class="checkbox"><input type="checkbox" class="selectionCheckbox"
                                   (click)="onSelectAll($event, section.value)"></th>
                               <th>
-                                <a class="link-noline" title="ID"><span>ID</span></a>
+                                <span>ID</span>
                                 <div class="column-actions">
                                 </div>
                               </th>
                               <th>
-                                <a class="link-noline" title="Title"><span>Title</span></a>
+                                <span>Title</span>
                                 <div class="column-actions">
                                 </div>
                               </th>
                               <th class="action"></th>
                               <th class="action"></th>
                               <th class="action columns" id="selectColumns-4">
-                                <span class="select"><a>
-                                    <div class="icon-columns"></div>
-                                  </a></span><span class="busy">
+                                <span class="select">
+                                  <div class="icon-columns"></div>
+                                </span><span class="busy">
                                   <div class="icon-progress-inline"></div>
                                 </span>
                               </th>
@@ -201,43 +195,20 @@
                                   (change)="onSelectCase($event)">
                               </td>
                               <td class="id">
-                                <a class="link-noline" rel="keep-get">
-                                  {{testCase.caseId}}
-                                </a>
+                                <!-- <a class="link-noline" rel="keep-get"> -->
+                                {{testCase.caseId}}
+                                <!-- </a> -->
                               </td>
                               <td>
                                 <span class="case-deleted case-deleted-hidden" title="Test Case Deleted"></span>
-                                <a rel="keep-get">
-                                  <span class="title">{{testCase.caseName}}</span>
-                                </a>
-
-                                <a>
-                                  <div class="icon-small-edit action-hover hidden"></div>
-                                </a>
+                                <span class="title">{{testCase.caseName}}</span>
                               </td>
                               <td class="action">
-                                <a>
-                                  <div class="icon-small-edit hidden action-hover"></div>
-                                </a>
                               </td>
                               <td class="action">
-                                <a class="deleteLink">
-                                  <div class="icon-small-delete hidden action-hover"></div>
-                                </a>
-                                <span class="busy deleteBusy">
-                                  <div class="icon-progress-inline"></div>
-                                </span>
                               </td>
 
                               <td class="action">
-                                <a><span class="action-expand">
-                                    <div class="icon-small-expandrow hidden action-hover"></div>
-                                  </span>
-                                  <span class="action-collapse hidden">
-                                    <div class="icon-small-collapserow"></div>
-                                  </span><span class="action-expanding busy">
-                                    <div class="icon-progress-inline"></div>
-                                  </span></a>
                               </td>
                             </tr>
                           </tbody>

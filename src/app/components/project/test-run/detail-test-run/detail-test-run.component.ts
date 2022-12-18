@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Result } from 'src/app/models/result';
+import { TestRun } from 'src/app/models/test-run';
 import { ResultService } from 'src/app/services/result.service';
 import { TestRunService } from 'src/app/services/test-run.service';
 import { AddResultComponent } from '../add-result/add-result.component';
+import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
 
 @Component({
   selector: 'app-detail-test-run',
@@ -21,6 +24,10 @@ export class DetailTestRunComponent implements OnInit {
   public map: Map<string, Result[]> = new Map<string, Result[]>();
   public top: string = '';
   public left: string = '';
+  testRun: TestRun = {
+    runId: this.testRunId,
+    runName: '',
+  };
   @ViewChild('statusDropdown') statusDropdown: any;
   @ViewChild('button') button: any;
   public isMenuOpen = false;
@@ -28,7 +35,9 @@ export class DetailTestRunComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private testRunService: TestRunService,
-    private resultService: ResultService
+    private resultService: ResultService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -102,5 +111,33 @@ export class DetailTestRunComponent implements OnInit {
     console.log(this.isMenuOpen);
     console.log(this.top);
     console.log(this.left);
+  }
+
+  update() {
+    this.testRunService.update(this.testRun).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Update test run success', 'Success');
+        this.router.navigateByUrl('/test-runs/' + this.testRun.projectId);
+      },
+      error: (e) => {
+        console.log(e);
+        this.toastr.error('Update test run failed', 'Error');
+      },
+    });
+  }
+
+  close() {
+    this.dialog
+      .open(ConfirmCloseDialogComponent)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result && result.event == 'Close') {
+          this.testRun.isCompleted = true;
+          this.testRun.runId = this.testRunId;
+          this.testRun.projectId = parseInt(this.projectId);
+          this.update();
+        }
+      });
   }
 }
