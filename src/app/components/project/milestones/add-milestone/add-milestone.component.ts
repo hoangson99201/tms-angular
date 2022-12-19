@@ -1,10 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IDatePickerDirectiveConfig } from 'ng2-date-picker';
 import { ToastrService } from 'ngx-toastr';
 import { Mode } from 'src/app/core/mode';
 import { Milestone } from 'src/app/models/milestone';
+import { AuthService } from 'src/app/services/auth.service';
 import { MilestoneService } from 'src/app/services/milestone.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class AddMilestoneComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   milestone: Milestone = {
@@ -87,5 +88,9 @@ export class AddMilestoneComponent implements OnInit {
         this.toastr.error('Update test case failed', 'Error');
       },
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

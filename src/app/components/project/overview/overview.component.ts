@@ -5,6 +5,7 @@ import { Milestone } from 'src/app/models/milestone';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/project';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-overview',
@@ -12,7 +13,7 @@ import { Project } from 'src/app/models/project';
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private milestoneService: MilestoneService, private testRunService: TestRunService) { }
+  constructor(private route: ActivatedRoute, private milestoneService: MilestoneService, private testRunService: TestRunService, private authService: AuthService) { }
   public projectId: string = '';
   public milestones: Milestone[] = [];
   public testRuns: TestRun[] = [];
@@ -49,5 +50,9 @@ export class OverviewComponent implements OnInit {
 
   getProject(project: Project) {
     this.project = project;
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

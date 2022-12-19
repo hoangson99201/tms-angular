@@ -46,7 +46,8 @@
                       <p>No test runs have been defined for this project, yet. Use the following
                         button to add your first test run.</p>
                       <div class="button-group">
-                        <a class="button button-left button-add" [routerLink]="['/test-runs-add', projectId]">
+                        <a *ngIf="isActive('ADD_TESTRUN')" class="button button-left button-add"
+                          [routerLink]="['/test-runs-add', projectId]">
                           Add Test Run </a>
                       </div>
                     </div>
@@ -166,11 +167,9 @@
 
 
             <div class="sidebar-inner">
-              <a id="navigation-runs-add" class="sidebar-button bottom" [routerLink]="['/test-runs-add', projectId]">
+              <a *ngIf="isActive('ADD_TESTRUN')" id="navigation-runs-add" class="sidebar-button bottom"
+                [routerLink]="['/test-runs-add', projectId]">
                 <span>Add Test Run</span>
-              </a>
-              <a id="navigation-plans-add" class="sidebar-button">
-                <span>Add Test Plan</span>
               </a>
 
               <p *ngIf="!completedTestRuns.size && !incompleteTestRuns.length; else elseCountBlock" class="top">

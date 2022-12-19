@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { MilestoneService } from 'src/app/services/milestone.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Milestone } from 'src/app/models/milestone';
+import { AuthService } from 'src/app/services/auth.service';
+import { MilestoneService } from 'src/app/services/milestone.service';
 
 @Component({
   selector: 'app-milestones',
@@ -11,7 +12,8 @@ import { Milestone } from 'src/app/models/milestone';
   providers: [DatePipe]
 })
 export class MilestonesComponent {
-  constructor(private route: ActivatedRoute, private milestoneService: MilestoneService, private datePipe: DatePipe) { }
+  constructor(private route: ActivatedRoute, private milestoneService: MilestoneService, private datePipe: DatePipe,
+    private authService: AuthService) { }
 
   public projectId: string = '';
   public incompleteMilestones: Milestone[] = [];
@@ -49,5 +51,9 @@ export class MilestonesComponent {
         }
       });
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

@@ -242,8 +242,9 @@
               </div>
             </div>
             <div class="sidebar-inner"> </div>
-            <div class="sidebar-inner"> <a id="navigation-milestones-add" class="sidebar-button"
-                [routerLink]="['/milestones-add', projectId]"> <span>Add Milestone</span> </a> </div>
+            <div class="sidebar-inner"> <a *ngIf="isActive('ADD_MILESTONE')" id="navigation-milestones-add"
+                class="sidebar-button" [routerLink]="['/milestones-add', projectId]"> <span>Add Milestone</span> </a>
+            </div>
 
             <div class="sidebar-inner">
               <div class="sidebar-h1 top">Actions</div>

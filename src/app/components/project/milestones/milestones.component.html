@@ -48,7 +48,8 @@
                         create
                         the first milestone.</p>
                       <div class="button-group">
-                        <a [routerLink]="['/milestones-add', projectId]" class="button button-left button-add">
+                        <a *ngIf="isActive('ADD_MILESTONE')" [routerLink]="['/milestones-add', projectId]"
+                          class="button button-left button-add">
                           Add Milestone </a>
                       </div>
                     </div>
@@ -127,14 +128,17 @@
           <div id="sidebar" class="column sidebar" style="width: 250px;white-space: unset;">
 
             <div class="sidebar-inner">
-              <a id="navigation-milestones-add" class="sidebar-button" [routerLink]="['/milestones-add', projectId]">
+              <a *ngIf="isActive('ADD_MILESTONE')" id="navigation-milestones-add" class="sidebar-button"
+                [routerLink]="['/milestones-add', projectId]">
                 <span>Add Milestone</span>
               </a>
               <p *ngIf="!(incompleteMilestones && completedMilestones) || (incompleteMilestones.length == 0 && completedMilestones.size ==0)"
                 class="top">There are no milestones.</p>
 
-              <p class="top">There are <strong>{{incompleteMilestones ? incompleteMilestones.length : 0}}</strong> incompleted and
-                <strong>{{completedMilestones ? completedMilestones.size : 0}}</strong> completed.</p>
+              <p class="top">There are <strong>{{incompleteMilestones ? incompleteMilestones.length : 0}}</strong>
+                incompleted and
+                <strong>{{completedMilestones ? completedMilestones.size : 0}}</strong> completed.
+              </p>
             </div>
           </div>
         </div>

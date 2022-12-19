@@ -44,8 +44,8 @@
                       <p>This project doesn't have any active milestones.
                         You can add a new milestone.</p>
                       <div class="button-group">
-                        <a id="navigation-overview-addmilestones" [routerLink]="['/milestones-add', projectId]"
-                          class="button button-left button-add">
+                        <a *ngIf="isActive('ADD_MILESTONE')" id="navigation-overview-addmilestones"
+                          [routerLink]="['/milestones-add', projectId]" class="button button-left button-add">
                           Add Milestone </a>
                       </div>
                     </ng-template>
@@ -77,8 +77,8 @@
                       <p>This project doesn't have any active test
                         runs. You can add a new test run.</p>
                       <div class="button-group">
-                        <a id="navigation-overview-addrunssuite" [routerLink]="['/test-runs-add', projectId]"
-                          class="button button-left button-add">
+                        <a *ngIf="isActive('ADD_TESTRUN')" id="navigation-overview-addrunssuite"
+                          [routerLink]="['/test-runs-add', projectId]" class="button button-left button-add">
                           Add Test Run </a>
                       </div>
                     </ng-template>
@@ -151,7 +151,8 @@
                       <a id="sidebar-runs-overview" [routerLink]="['/test-runs', projectId]">Test Runs</a>
                     </div>
                     <div class="summary-description-compact text-secondary">
-                      <a id="sidebar-runs-add" class="link" [routerLink]="['/test-runs-add', projectId]">Add</a> |
+                      <a *ngIf="isActive('ADD_TESTRUN')" id="sidebar-runs-add" class="link"
+                        [routerLink]="['/test-runs-add', projectId]">Add</a> |
                       <a id="sidebar-runs-viewall" class="link" [routerLink]="['/test-runs', projectId]">View
                         All</a>
                     </div>

@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { BasePaginator } from './../../../core/base-paginator';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TestRun } from 'src/app/models/test-run';
+import { AuthService } from 'src/app/services/auth.service';
 import { TestRunService } from 'src/app/services/test-run.service';
+import { BasePaginator } from './../../../core/base-paginator';
 
 @Component({
   selector: 'app-test-run',
@@ -15,7 +16,7 @@ export class TestRunComponent extends BasePaginator {
   refresh(): void {
     throw new Error('Method not implemented.');
   }
-  constructor(private route: ActivatedRoute, private testRunService: TestRunService, private datePipe: DatePipe) {
+  constructor(private route: ActivatedRoute, private testRunService: TestRunService, private datePipe: DatePipe, private authService: AuthService) {
     super();
   }
 
@@ -56,5 +57,9 @@ export class TestRunComponent extends BasePaginator {
         }
       });
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

@@ -1,19 +1,19 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Mode } from 'src/app/core/mode';
 import { Milestone } from 'src/app/models/milestone';
+import { Result } from 'src/app/models/result';
 import { TestRun } from 'src/app/models/test-run';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { MilestoneService } from 'src/app/services/milestone.service';
 import { TestRunService } from 'src/app/services/test-run.service';
 import { UserService } from 'src/app/services/user.service';
-import { MatDialog } from '@angular/material/dialog';
-import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
 import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
-import { Result } from 'src/app/models/result';
-import { AuthService } from 'src/app/services/auth.service';
+import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
 
 @Component({
   selector: 'app-add-test-run',
@@ -43,9 +43,6 @@ export class AddTestRunComponent implements OnInit {
   testCasesIdIncluded: number[] = [];
   currentMode: Mode = Mode.Create;
   Mode = Mode;
-  isActive(functionalityName: string) {
-    return this.authService.isActive(functionalityName);
-  }
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-runs-edit/')
       ? Mode.Update
@@ -181,5 +178,9 @@ export class AddTestRunComponent implements OnInit {
         this.toastr.error('Update test run failed', 'Error');
       },
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

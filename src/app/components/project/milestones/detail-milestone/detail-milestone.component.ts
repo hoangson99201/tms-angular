@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Milestone } from 'src/app/models/milestone';
 import { Result } from 'src/app/models/result';
 import { TestRun } from 'src/app/models/test-run';
+import { AuthService } from 'src/app/services/auth.service';
 import { MilestoneService } from 'src/app/services/milestone.service';
 import { ResultService } from 'src/app/services/result.service';
 import { TestRunService } from 'src/app/services/test-run.service';
@@ -41,8 +42,9 @@ export class DetailMilestoneComponent implements OnInit {
     private testRunService: TestRunService,
     private milestoneService: MilestoneService,
     private router: Router,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -60,10 +62,10 @@ export class DetailMilestoneComponent implements OnInit {
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
           this.dueDate = results.endDate
             ? results.endDate[2] +
-              '/' +
-              results.endDate[1] +
-              '/' +
-              results.endDate[0]
+            '/' +
+            results.endDate[1] +
+            '/' +
+            results.endDate[0]
             : '';
         });
     });
@@ -115,5 +117,9 @@ export class DetailMilestoneComponent implements OnInit {
         this.toastr.error('Update test case failed', 'Error');
       },
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }
