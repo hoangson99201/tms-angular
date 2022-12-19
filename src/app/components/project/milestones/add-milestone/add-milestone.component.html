@@ -1,4 +1,4 @@
-<div *ngIf="isActive('ADD_MILESTONE')" style="display: flex; height: 100%;">
+<div *ngIf="isActive('ADD_MILESTONE') || isActive('EDIT_MILESTONE')" style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="milestone.projectId + ''" [selectedMenu]="'milestone'"></app-new-menu-project>
   <div>
     <section>
@@ -96,12 +96,12 @@
                 </div>
 
                 <div class="button-group form-buttons">
-                  <button *ngIf="currentMode == Mode.Update" type="button" (click)="update()"
-                    class="button button-left button-positive button-ok"
+                  <button *ngIf="currentMode == Mode.Update && isActive('EDIT_MILESTONE')" type="button"
+                    (click)="update()" class="button button-left button-positive button-ok"
                     [disabled]="milestone.milestoneName.trim().length == 0 || !milestone.projectId">
                     Save Milestone
                   </button>
-                  <button *ngIf="currentMode == Mode.Create" (click)="submit()"
+                  <button *ngIf="currentMode == Mode.Create && isActive('ADD_MILESTONE')" (click)="submit()"
                     class="button button-left button-positive button-ok" type="button"
                     [disabled]="milestone.milestoneName.trim().length == 0 || !milestone.projectId">
                     Add Milestone

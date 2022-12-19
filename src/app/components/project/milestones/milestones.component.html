@@ -74,7 +74,7 @@
                                 [routerLink]="['/milestones', projectId, 'detail', milestone.milestoneId]">{{milestone.milestoneName}}</a>
                             </div>
                             <div class="summary-links text-secondary">
-                              Due on {{milestone.endDate}} | <a class="link"
+                              Due on {{milestone.endDate}} | <a *ngIf="isActive('EDIT_MILESTONE')" class="link"
                                 [routerLink]="['/milestones-edit', milestone.milestoneId]">Edit</a>
                             </div>
                             <div class="summary-description">

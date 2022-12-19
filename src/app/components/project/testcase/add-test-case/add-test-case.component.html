@@ -1,4 +1,4 @@
-<div *ngIf="isActive('ADD_TESTCASE') || isActive('EDIT_TESTCASE')" style="display: flex; height: 100%;">
+<div style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="testCase.projectId + ''" [selectedMenu]="'test-cases'"></app-new-menu-project>
   <div>
     <section>
@@ -47,15 +47,17 @@
 
                   <div class="form-group form-group-main">
                     <label for="title">Title <span class="form-required">*</span></label>
-                    <input [(ngModel)]="testCase.caseName" class="form-control form-control-full form-fields "
-                      type="text" name="title" id="title" maxlength="250" value="">
+                    <input [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                      [(ngModel)]="testCase.caseName" class="form-control form-control-full form-fields " type="text"
+                      name="title" id="title" maxlength="250" value="">
                   </div>
 
                   <div class="io-container io-framed form-group table">
 
                     <div class="column-p4 column">
                       <label class="io-label" for="section_id">Section <span class="form-required">*</span></label>
-                      <select [(ngModel)]="testCase.sectionId" name="section_id" id="section_id"
+                      <select [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                        [(ngModel)]="testCase.sectionId" name="section_id" id="section_id"
                         class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
                         <option *ngFor="let section of sections" value="{{section.sectionId}}">
                           {{section.sectionName}}
@@ -65,7 +67,8 @@
 
                     <div class="column-p4 column">
                       <label class="io-label" for="priority_id">Priority <span class="form-required">*</span></label>
-                      <select [(ngModel)]="testCase.priorityId" name="priority_id" id="priority_id"
+                      <select [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                        [(ngModel)]="testCase.priorityId" name="priority_id" id="priority_id"
                         class="form-control form-control-full form-select searchable  chzn-done" style="width: 100%;">
                         <option *ngFor="let priority of priorities" value="{{priority.prioritiesId}}">
                           {{priority.priorityName}}
@@ -76,8 +79,9 @@
                     <div class="column-p4 column">
                       <label class="io-label" for="estimate">
                         Estimate </label>
-                      <input [(ngModel)]="testCase.estimate" class="form-control form-control-full form-fields"
-                        type=" text" name="estimate" id="estimate" maxlength="250" value="">
+                      <input [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                        [(ngModel)]="testCase.estimate" class="form-control form-control-full form-fields" type=" text"
+                        name="estimate" id="estimate" maxlength="250" value="">
                     </div>
                   </div>
 
@@ -85,7 +89,8 @@
                     <label for="custom_preconds">
                       Preconditions </label>
                     <div class="textarea-resizable">
-                      <textarea [(ngModel)]="testCase.preconditions"
+                      <textarea [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                        [(ngModel)]="testCase.preconditions"
                         class="form-control form-control-full  processed textarea-with-grippie" rows="6"
                         name="preconditions" id="preconditions"></textarea>
                       <div class="textarea-grippie"></div>
@@ -97,7 +102,8 @@
                     <label for="custom_steps">
                       Steps </label>
                     <div class="textarea-resizable">
-                      <textarea [(ngModel)]="testCase.steps"
+                      <textarea [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                        [(ngModel)]="testCase.steps"
                         class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="steps"
                         id="steps"></textarea>
                       <div class="textarea-grippie"></div>
@@ -110,7 +116,8 @@
                       Expected Result
                     </label>
                     <div class="textarea-resizable">
-                      <textarea [(ngModel)]="testCase.expectedResult"
+                      <textarea [disabled]="!isActive('ADD_TESTCASE') && !isActive('EDIT_TESTCASE')"
+                        [(ngModel)]="testCase.expectedResult"
                         class="form-control form-control-full  processed textarea-with-grippie" rows="6"
                         name="expectedResult" id="expectedResult"></textarea>
                       <div class="textarea-grippie"></div>
@@ -127,11 +134,11 @@
                 </div>
 
                 <div class="button-group">
-                  <button *ngIf="currentMode == Mode.Update" id="accept" type="button" (click)="update()"
-                    class="button button-left button-positive button-ok"
+                  <button *ngIf="currentMode == Mode.Update && isActive('EDIT_TESTCASE')" id="accept" type="button"
+                    (click)="update()" class="button button-left button-positive button-ok"
                     [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId || !testCase.projectId">
                     Save Test Case </button>
-                  <ng-template [ngIf]="currentMode == Mode.Create">
+                  <ng-template [ngIf]="currentMode == Mode.Create && isActive('ADD_TESTCASE')">
                     <button id="accept" type="button" (click)="submit()"
                       class="button button-left button-positive button-ok"
                       [disabled]="testCase.caseName.trim().length == 0 || !testCase.sectionId || !testCase.priorityId || !testCase.projectId">
