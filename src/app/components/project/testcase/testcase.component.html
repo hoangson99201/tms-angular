@@ -65,12 +65,6 @@
                         <div class="grid-title">
                           <span class="title" id="sectionName-4">{{section.key}}</span>
                           <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                          <a style="margin-left: 5px">
-                            <div class="icon-small-edit icon-small-inline"></div>
-                          </a>
-                          <a style="margin-left: 5px">
-                            <div class="icon-small-delete hidden action-hover"></div>
-                          </a>
                           <span id="sectionBusy-4" class="busy" style="display: none;">
                             <div class="icon-progress-inline"></div>
                           </span>
@@ -81,8 +75,6 @@
                         </div>
                         <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
                           <colgroup>
-                            <col class="drag-no">
-                            <col class="checkbox">
                             <col style="width: 65px">
                             <col>
                             <col class="action-edit">
@@ -91,17 +83,13 @@
                           </colgroup>
                           <tbody>
                             <tr class="header sectionRow caseDroppable">
-                              <th class="drag-no">
-                                <div class="icon-dragnoblue"></div>
-                              </th>
-                              <th class="checkbox"><input type="checkbox" class="selectionCheckbox"></th>
                               <th>
-                                <a class="link-noline" title="ID"><span>ID</span></a>
+                                <span>ID</span>
                                 <div class="column-actions">
                                 </div>
                               </th>
                               <th>
-                                <a class="link-noline" title="Title"><span>Title</span></a>
+                                <span>Title</span>
                                 <div class="column-actions">
                                 </div>
                               </th>
@@ -117,11 +105,6 @@
                             </tr>
                             <tr *ngFor="let testCase of section.value" id="row-36" rel="36"
                               class="caseRow row odd caseDroppable ">
-                              <td class="drag">
-                                <div class="caseDraggable dragdrop-action"></div>
-                              </td>
-                              <td class="checkbox"><input type="checkbox" value="36" class="selectionCheckbox"
-                                  name="selected-36"></td>
                               <td class="id">
                                 <a [routerLink]="['/test-cases-edit', testCase.caseId]" class="link-noline"
                                   rel="keep-get">
@@ -140,23 +123,15 @@
                                 </a>
                               </td>
                               <td class="action">
-                                <a (click)="deleteTestCase(testCase.caseId)" class="deleteLink">
+                                <a (click)="deleteTestCase(testCase.caseId)" class="deleteLink"
+                                  *ngIf="isActive('REMOVE_TESTCASE')">
                                   <div class="icon-small-delete hidden action-hover"></div>
                                 </a>
                                 <span class="busy deleteBusy">
                                   <div class="icon-progress-inline"></div>
                                 </span>
                               </td>
-
                               <td class="action">
-                                <a><span class="action-expand">
-                                    <div class="icon-small-expandrow hidden action-hover"></div>
-                                  </span>
-                                  <span class="action-collapse hidden">
-                                    <div class="icon-small-collapserow"></div>
-                                  </span><span class="action-expanding busy">
-                                    <div class="icon-progress-inline"></div>
-                                  </span></a>
                               </td>
                             </tr>
                           </tbody>
