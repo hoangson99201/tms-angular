@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Milestone } from 'src/app/models/milestone';
 import { Result } from 'src/app/models/result';
 import { TestRun } from 'src/app/models/test-run';
 import { MilestoneService } from 'src/app/services/milestone.service';
@@ -25,7 +27,11 @@ export class DetailMilestoneComponent implements OnInit {
 
   public incompleteTestRuns: TestRun[] = [];
   public completedTestRuns: TestRun[] = [];
-
+  milestone: Milestone = {
+    projectId: 0,
+    milestoneName: '',
+    isCompleted: false,
+  };
   @ViewChild('statusDropdown') statusDropdown: any;
   @ViewChild('button') button: any;
   public isMenuOpen = false;
@@ -34,8 +40,9 @@ export class DetailMilestoneComponent implements OnInit {
     private route: ActivatedRoute,
     private testRunService: TestRunService,
     private milestoneService: MilestoneService,
-    private datePipe: DatePipe
-  ) { }
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -52,42 +59,36 @@ export class DetailMilestoneComponent implements OnInit {
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
           this.dueDate = results.endDate
             ? results.endDate[2] +
-            '/' +
-            results.endDate[1] +
-            '/' +
-            results.endDate[0]
+              '/' +
+              results.endDate[1] +
+              '/' +
+              results.endDate[0]
             : '';
         });
     });
-    // document.addEventListener('click', (e) => {
-    //   if (e.target instanceof Element) {
-    //     if (!e.target.className.startsWith('custom-dropdown')) {
-    //       this.top = '';
-    //       this.left = '';
-    //     }
-    //   }
-    // });
   }
 
   refreshTestrun(testRunId: number) {
-    this.testRunService.findAllByMilestoneId(testRunId).subscribe((testRuns) => {
-      this.results = testRuns;
-      for (const testRun of testRuns) {
-        if (testRun.isCompleted) {
-          this.completedTestRuns.push(testRun);
-        } else {
-          if (testRun.createdOn instanceof Array) {
-            testRun.createdOn =
-              testRun.createdOn[2] +
-              '/' +
-              testRun.createdOn[1] +
-              '/' +
-              testRun.createdOn[0];
+    this.testRunService
+      .findAllByMilestoneId(testRunId)
+      .subscribe((testRuns) => {
+        this.results = testRuns;
+        for (const testRun of testRuns) {
+          if (testRun.isCompleted) {
+            this.completedTestRuns.push(testRun);
+          } else {
+            if (testRun.createdOn instanceof Array) {
+              testRun.createdOn =
+                testRun.createdOn[2] +
+                '/' +
+                testRun.createdOn[1] +
+                '/' +
+                testRun.createdOn[0];
+            }
+            this.incompleteTestRuns.push(testRun);
           }
-          this.incompleteTestRuns.push(testRun);
         }
-      }
-    });
+      });
   }
 
   openDropDown(e: any) {
@@ -98,5 +99,19 @@ export class DetailMilestoneComponent implements OnInit {
     console.log(this.isMenuOpen);
     console.log(this.top);
     console.log(this.left);
+  }
+
+  update() {
+    this.milestoneService.update(this.milestone).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Update test case success', 'Success');
+        this.router.navigateByUrl('/milestones/' + this.milestone.projectId);
+      },
+      error: (e) => {
+        console.log(e);
+        this.toastr.error('Update test case failed', 'Error');
+      },
+    });
   }
 }

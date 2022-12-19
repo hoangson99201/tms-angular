@@ -96,7 +96,8 @@
                           <div class="summary-title summary-title-compact text-ppp"> <a>{{incompelete.runName}}</a>
                             <span class="hidden hoverAction"> </span>
                           </div>
-                          <div class="summary-description-compact text-secondary text-ppp"> By {{incompelete.fullname}} on {{incompelete.createdOn}}
+                          <div class="summary-description-compact text-secondary text-ppp"> By {{incompelete.fullname}}
+                            on {{incompelete.createdOn}}
                           </div>
                         </div>
                       </div>
@@ -188,9 +189,6 @@
               <div class="attachments-filter bubble filter-bubble hidden" id="filterAttachmentsBubble">
                 <div id="filterAttachmentsContent" class="filter-bubble-inner"> </div>
               </div>
-              <script
-                type="text/javascript">      $(document).ready(function () { App.Translations.add("attachments_drop", "Drop files here to attach, or click to browse."); App.Translations.add("attachments_drop_image", "Drop images here to embed, or click to browse."); App.Translations.add("attachments_drop_image_nobrowse", "Drop images here to embed."); App.Translations.add("attachments_drop_notype", "You can only add images to this text field (example: PNG or JPG files)."); App.Translations.add("attachments_drop_notype_canattach", "You can only add images to this text field (example: PNG or JPG files). You can attach other file types to a case or result from the sidebar or result dialogs."); App.Translations.add("attachments_file_here", "Drop file here, or click to browse."); App.Translations.add("attachments_remove_image", "Remove"); App.Translations.add("attachments_drop_notype_canattach_jira", "You can only add images to this text field (example: PNG or JPG files)."); App.Translations.add("attachments_confirm_replace", "This action <strong>replaces current attachment with selected one. This will refresh all attachment\u2019s instances across your projects<\/strong> (except those on closed Runs & Plans). This cannot be undone. Do you wish to continue?"); App.Translations.add("attachments_replace_title", "Replace?"); App.Translations.add("attachments_loading_error_title", "Loading error"); App.Translations.add("attachments_loading_error_generic", "<strong>An unexpected uploading error occurred.<\/strong><br><br>Try again!"); App.Translations.add("attachment_info_all_projects", "All Projects"); App.Translations.add("attachments_confirm_delete", "This <strong>deletes selected instances of your attachments.<\/strong> The files will keep on being stored on your Library. Go to Attachments on Data Storage to delete permanently."); App.Translations.add("attachments_delete", "Delete"); App.Translations.add("attachment_upload_name_allowed", ""); });    </script>
-              <script type="text/javascript">      $(document).ready(function () { App.Dropzone.init(); });    </script>
               <input id='newAttachments' type='hidden' /> <input id='projectId' type='hidden' value='' />
               <div class='attachments-library attachment-library-dialog'>
                 <div>
@@ -236,8 +234,6 @@
                   id='attachmentsNewList'> </div>
                 <div id="attachmentsPagination" style='margin-bottom: 10px;'></div>
               </div>
-              <script
-                type="text/javascript">      $(document).ready(function () { App.Attachments.orderByOptions = { "created_on": "Date", "name": "Name", "size": "Size" }; var defaultTimeout = null; $('#libraryAttachmentsSearch').keyup(function () { if (defaultTimeout != null) clearTimeout(defaultTimeout); defaultTimeout = setTimeout(function () { defaultTimeout = null; App.Attachments.reloadRepository(); }, 500); }); });    </script>
               <div id='attachmentNewButtons' class='dialog-buttons-highlighted button-group'>
                 <div style='margin-top: 6px; float: left;'>Maximum file size: 256 MB.</div> <button
                   id='attachmentNewSubmit' type='submit' class='button button-right button-positive button-ok'
@@ -248,8 +244,15 @@
             <div class="sidebar-inner"> </div>
             <div class="sidebar-inner"> <a id="navigation-milestones-add" class="sidebar-button"
                 [routerLink]="['/milestones-add', projectId]"> <span>Add Milestone</span> </a> </div>
-            <script
-              type="text/javascript">    $(document).ready(function () { App.Hotkeys.register('e', function () { App.Page.load('milestones/edit/3/1'); }); App.References.applyLookup(1); App.Hotkeys.register('d', function () { App.Defects.preparePush(1, 0, 'milestones/view', 3); }); let runs_activecount = 2; if (runs_activecount > 0) { $("#mile_heading").addClass('top-milestnmargin'); } else { $("#mile_heading").removeClass('top-milestnmargin'); } });  </script>
+
+            <div class="sidebar-inner">
+              <div class="sidebar-h1 top">Actions</div>
+              <p>Archive this test run to prevent future modifications to its tests and results.</p>
+              <div class="sidebar-action">
+                <button class="button button-close" type="button" (click)="update()">Close this test run</button>
+              </div>
+            </div>
+
             <div class="dialog" id="startMilestoneDialog" style="width: 450px">
               <div class="dialog-title">Start Milestone</div>
               <form id="startMilestoneForm" class="dialogFormDefault">
