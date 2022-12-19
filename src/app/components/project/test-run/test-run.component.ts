@@ -23,7 +23,7 @@ export class TestRunComponent extends BasePaginator {
   public projectId: string = '';
   public incompleteTestRuns: TestRun[] = [];
   public completedTestRuns: Map<string, TestRun[]> = new Map<string, TestRun[]>();
-
+  public numCompletedTestRuns = 0;
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -47,6 +47,7 @@ export class TestRunComponent extends BasePaginator {
               } else {
                 array.push(testRun);
               }
+              this.numCompletedTestRuns++;
             }
           } else {
             if (testRun.createdOn instanceof Array) {

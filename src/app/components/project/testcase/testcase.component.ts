@@ -32,12 +32,16 @@ export class TestcaseComponent {
       this.projectId = params['id'];
       console.log(this.projectId);
       this.refreshTestCase(parseInt(this.projectId));
-      this.sectionService.findAllByProjectId(parseInt(this.projectId))
-        .subscribe(sections => {
-          this.sections = sections;
-          console.log(sections);
-        });
+      this.refreshSections(parseInt(this.projectId));
     });
+  }
+
+  refreshSections(projectId: number) {
+    this.sectionService.findAllByProjectId(projectId)
+      .subscribe(sections => {
+        this.sections = sections;
+        console.log(sections);
+      });
   }
 
   refreshTestCase(projectId: number) {
@@ -66,7 +70,10 @@ export class TestcaseComponent {
         type: 'add',
         projectId: parseInt(this.projectId)
       },
-    });
+    }).afterClosed()
+      .subscribe(_ => {
+        this.refreshSections(parseInt(this.projectId));
+      });
   }
 
   deleteTestCase(testCaseId: number | undefined) {

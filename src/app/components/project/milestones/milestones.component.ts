@@ -18,6 +18,7 @@ export class MilestonesComponent {
   public projectId: string = '';
   public incompleteMilestones: Milestone[] = [];
   public completedMilestones: Map<string, Milestone[]> = new Map<string, Milestone[]>();
+  public numCompletedMilestones = 0;
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -41,6 +42,7 @@ export class MilestonesComponent {
               } else {
                 array.push(milestone);
               }
+              this.numCompletedMilestones++;
             }
           } else {
             if (milestone.endDate instanceof Array) {

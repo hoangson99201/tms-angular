@@ -71,12 +71,12 @@
                                 {{testRun.runName}}
                               </a>
                             </div>
-                            <div class="summary-links text-secondary" *ngIf="isActive('EDIT_TESTRUN')" >
+                            <div class="summary-links text-secondary" *ngIf="isActive('EDIT_TESTRUN')">
                               By {{testRun.fullname}} on {{testRun.createdOn}} | <a class="link"
                                 [routerLink]="['/test-runs-edit', testRun.runId]">Edit</a>
                             </div>
 
-                            <div class="summary-links text-secondary" *ngIf="!isActive('EDIT_TESTRUN')" >
+                            <div class="summary-links text-secondary" *ngIf="!isActive('EDIT_TESTRUN')">
                               By {{testRun.fullname}} on {{testRun.createdOn}}
                             </div>
                             <div class="summary-description">
@@ -181,7 +181,7 @@
               </p>
               <ng-template #elseCountBlock>
                 <p class="top"><strong class="text-softer">{{incompleteTestRuns.length}}</strong> open and <strong
-                    class="text-softer">{{completedTestRuns.size}}</strong>
+                    class="text-softer">{{numCompletedTestRuns}}</strong>
                   completed
                   test runs in this project.</p>
               </ng-template>
