@@ -55,6 +55,7 @@ export class DetailMilestoneComponent implements OnInit {
       this.milestoneService
         .findByMilestoneId(parseInt(this.milestoneId))
         .subscribe((results) => {
+          this.milestone = results;
           this.milestoneName = results.milestoneName;
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
           this.dueDate = results.endDate
@@ -101,7 +102,8 @@ export class DetailMilestoneComponent implements OnInit {
     console.log(this.left);
   }
 
-  update() {
+  close() {
+    this.milestone.isCompleted = true;
     this.milestoneService.update(this.milestone).subscribe({
       next: (res) => {
         console.log(res);

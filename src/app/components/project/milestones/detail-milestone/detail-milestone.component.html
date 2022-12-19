@@ -174,7 +174,7 @@
             </div>
           </div>
           <div id="sidebar-splitter" class="column splitter sidebar-splitter"> </div>
-          <div id="sidebar" class="column sidebar" style="width: 250px">
+          <div id="sidebar" class="column sidebar" style="width: 250px; white-space: unset;">
             <div class="sidebar-inner">
               <p class="top bottom"> Due on {{dueDate}}.</p>
             </div>
@@ -247,9 +247,8 @@
 
             <div class="sidebar-inner">
               <div class="sidebar-h1 top">Actions</div>
-              <p>Archive this test run to prevent future modifications to its tests and results.</p>
               <div class="sidebar-action">
-                <button class="button button-close" type="button" (click)="update()">Close this test run</button>
+                <button class="button button-close" type="button" (click)="close()">Complete this milestone</button>
               </div>
             </div>
 
