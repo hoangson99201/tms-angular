@@ -187,7 +187,7 @@
                 </li>
               </ul>
             </div>
-            <div class="sidebar-inner">
+            <div class="sidebar-inner" *ngIf="isActive('CLOSE_TESTRUN')">
               <div class="sidebar-h1 top">Actions</div>
               <p>Archive this test run to prevent future modifications to its tests and results.</p>
               <div class="sidebar-action">

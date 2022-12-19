@@ -190,7 +190,7 @@
           <div id="sidebar-splitter" class="column splitter sidebar-splitter">
           </div>
           <div id="sidebar" class="column sidebar" style="width: 250px">
-            <div class="sidebar-inner">
+            <div class="sidebar-inner" *ngIf="isActive('CLOSE_TESTRUN')">
               <ng-template [ngIf]="currentMode == Mode.Update">
                 <div class="sidebar-h1 top">Actions</div>
                 <p>Archive this test run to prevent future modifications to its tests and results.</p>

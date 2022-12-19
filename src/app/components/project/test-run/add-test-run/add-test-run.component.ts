@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
 import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
 import { Result } from 'src/app/models/result';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-add-test-run',
@@ -28,8 +29,9 @@ export class AddTestRunComponent implements OnInit {
     private userService: UserService,
     private location: Location,
     private route: ActivatedRoute,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    private authService: AuthService
+  ) {}
 
   testRun: TestRun = {
     runName: 'Test Run ' + this.getToday(),
@@ -41,7 +43,9 @@ export class AddTestRunComponent implements OnInit {
   testCasesIdIncluded: number[] = [];
   currentMode: Mode = Mode.Create;
   Mode = Mode;
-
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
+  }
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-runs-edit/')
       ? Mode.Update
@@ -93,11 +97,9 @@ export class AddTestRunComponent implements OnInit {
 
   submit() {
     if (this.testCasesIdIncluded.length) {
-      let results: Result[] = this.testCasesIdIncluded.map(
-        caseId => ({
-          caseId: caseId
-        })
-      );
+      let results: Result[] = this.testCasesIdIncluded.map((caseId) => ({
+        caseId: caseId,
+      }));
       this.testRun.testRunResults = results;
     }
     this.testRunService.create(this.testRun).subscribe({
@@ -135,9 +137,14 @@ export class AddTestRunComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open<SelectCaseDialogComponent, any, {
-      event: string, data?: number[]
-    }>(SelectCaseDialogComponent, {
+    const dialogRef = this.dialog.open<
+      SelectCaseDialogComponent,
+      any,
+      {
+        event: string;
+        data?: number[];
+      }
+    >(SelectCaseDialogComponent, {
       data: {
         id: this.testRun.projectId,
       },

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Result } from 'src/app/models/result';
 import { TestRun } from 'src/app/models/test-run';
+import { AuthService } from 'src/app/services/auth.service';
 import { ResultService } from 'src/app/services/result.service';
 import { TestRunService } from 'src/app/services/test-run.service';
 import { AddResultComponent } from '../add-result/add-result.component';
@@ -37,8 +38,13 @@ export class DetailTestRunComponent implements OnInit {
     private testRunService: TestRunService,
     private resultService: ResultService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) {}
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
