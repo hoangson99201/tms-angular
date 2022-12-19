@@ -46,7 +46,8 @@
                       and
                       section.</p>
                     <div class="button-group">
-                      <a id="addSectionInline" class="button button-left button-add" routerLink="javascript:void(0)">
+                      <a *ngIf="isActive('ADD_SECTION')" id="addSectionInline" (click)="openDialog()"
+                        class="button button-left button-add" routerLink="javascript:void(0)">
                         Add Section
                       </a>
                       <a *ngIf="isActive('ADD_TESTCASE')" [routerLink]="['/test-cases-add', projectId]"
@@ -206,7 +207,8 @@
               <div style="height: 2px;">
                 <div id="sidebarSticky">
                   <div class="toolbar" id="sidebarToolbar">
-                    <a id="addSection" (click)="openDialog()" class="toolbar-button toolbar-button-last button-add">
+                    <a *ngIf="isActive('ADD_SECTION')" id="addSection" (click)="openDialog()"
+                      class="toolbar-button toolbar-button-last button-add">
                       Add Section
                     </a>
                   </div>
