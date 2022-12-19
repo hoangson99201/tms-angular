@@ -57,6 +57,7 @@ export class DetailTestRunComponent implements OnInit {
       this.testRunService
         .findByTestRunId(parseInt(this.testRunId))
         .subscribe((results) => {
+          this.testRun = results;
           this.testRunName = results.runName;
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
           this.createDate = results.createdOn
@@ -140,8 +141,8 @@ export class DetailTestRunComponent implements OnInit {
       .subscribe((result) => {
         if (result && result.event == 'Close') {
           this.testRun.isCompleted = true;
-          this.testRun.runId = this.testRunId;
-          this.testRun.projectId = parseInt(this.projectId);
+          // this.testRun.runId = this.testRunId;
+          // this.testRun.projectId = parseInt(this.projectId);
           this.update();
         }
       });

@@ -34,7 +34,9 @@ export class SignUpComponent {
     });
   }
 
+  emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$";
+  regexp = new RegExp(this.emailPattern)
   disable(): boolean {
-    return !this.user.email!.trim() || !this.user.fullname!.trim() || !this.user.password!.trim() || (this.user.password != this.confirmPassword);
+    return !this.regexp.test(this.user.email!.trim()) || !this.user.email!.trim() || !this.user.fullname!.trim() || !this.user.password!.trim() || (this.user.password != this.confirmPassword);
   }
 }
