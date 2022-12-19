@@ -71,9 +71,13 @@
                                 {{testRun.runName}}
                               </a>
                             </div>
-                            <div class="summary-links text-secondary">
+                            <div class="summary-links text-secondary" *ngIf="isActive('EDIT_TESTRUN')" >
                               By {{testRun.fullname}} on {{testRun.createdOn}} | <a class="link"
                                 [routerLink]="['/test-runs-edit', testRun.runId]">Edit</a>
+                            </div>
+
+                            <div class="summary-links text-secondary" *ngIf="!isActive('EDIT_TESTRUN')" >
+                              By {{testRun.fullname}} on {{testRun.createdOn}}
                             </div>
                             <div class="summary-description">
                               {{testRun.passedCount}} Passed, {{testRun.blockedCount}} Blocked,

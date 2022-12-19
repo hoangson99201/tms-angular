@@ -135,13 +135,13 @@
                             </td>
                             <td class="nolink">
 
-                              <a *ngIf="isActive('ADD_USER')" (click)="openDropDown($event, user.userId)"
+                              <a *ngIf="isActive('EDIT_USER')" (click)="openDropDown($event, user.userId)"
                                 class="dropdownLink">
                                 <span class="custom-dropdown dropdown-icon-black"><span class="role">{{user.roleName}}
                                   </span>
                                 </span>
                               </a>
-                              <a *ngIf="!isActive('ADD_USER')" class="dropdownLink">{{user.roleName}}
+                              <a *ngIf="!isActive('EDIT_USER')" class="dropdownLink">{{user.roleName}}
                               </a>
                             </td>
                           </tr>
@@ -221,164 +221,6 @@
           <div id="sidebar" class="column sidebar" style="width: 250px">
 
             <app-sidebar></app-sidebar>
-
-
-            <script type="text/javascript">
-
-              $(document).ready(function () {
-                $("#contentSticky").sticky({
-                  height: 28,
-                  className: 'content-sticky',
-                  container: '#users-tab-frame'
-                });
-              });
-              let typingTimer; //timer identifier
-              let doneTypingInterval = 1000; //time in ms, 5 seconds for example
-              $("#search_txt").keyup(function () {
-                var val = this.value;
-                clearTimeout(typingTimer);
-                if (val.length >= 3) {
-                  typingTimer = setTimeout(doneTyping, doneTypingInterval);
-                } else if (val.length == 0) {
-                  typingTimer = setTimeout(doneTyping, doneTypingInterval);
-                }
-              });
-              function doneTyping() {
-                App.Users.seSearchGrouping();
-              }
-
-              $(document).ready(function () {
-                // Reload the page when a user switches the grouping combobox
-                $('#showSelection').change(function () {
-                  document.location = 'index.php?/admin/users/overview&show=' + this.value;
-                });
-                if (isIE() || isFirefox()) {
-                  $('.email[title],.user-name-col[title]').each(function () {
-                    var titleValue = $(this).attr('title');
-                    $(this).attr('title', chunk(titleValue, 55).join('\n'));
-                  });
-                }
-
-                // Register add user hotkeys
-                App.Hotkeys.register('u', function () {
-                  App.Page.load('admin/users/add');
-                });
-                App.Hotkeys.register('m', function () {
-                  App.Page.load('admin/users/add_many');
-                });
-              });
-              function isIE(userAgent) {
-                var userAgent = userAgent || navigator.userAgent;
-                return userAgent.indexOf("MSIE ") > - 1 || userAgent.indexOf("Trident/") > - 1 || userAgent.indexOf("Edge/") > - 1;
-              }
-
-              function isFirefox(userAgent) {
-                var userAgent = userAgent || navigator.userAgent;
-                return userAgent.indexOf("Firefox") > - 1;
-              }
-
-              function chunk(str, n) {
-                var i, len, arr = [];
-                for (i = 0, len = str.length; i < len; i += n) {
-                  arr.push(str.substr(i, n))
-                }
-                return arr
-              }
-
-              function selectAll(source) {
-                checkboxes = document.getElementsByName('color');
-                for (var i = 0, n = checkboxes.length; i < n; i++) {
-                  checkboxes[i].checked = source.checked;
-                }
-              }
-            </script>
-
-            <script type="text/javascript">
-              $("#bulk-toolbar").click(function () {
-                var favorite = [];
-                $.each($("input[name='color']:checked"), function () {
-                  favorite.push($(this).val());
-                  return false;
-                });
-                if (favorite.length == 0) {
-                  $("#editBulkSelected").removeClass('cursor-pointer');
-                  $("#editBulkSelected").addClass('dropdown-menu-link-disabled');
-                  $("#editBulkSelected").removeAttr('onclick');
-                } else {
-                  $("#editBulkSelected").addClass('cursor-pointer');
-                  $("#editBulkSelected").removeClass('dropdown-menu-link-disabled');
-                  $("#editBulkSelected").attr('onclick', "SelectRedirect('EditSelected')");
-                }
-              });
-              function SelectRedirect(bulk_user_choice) {
-                var selected_value = [];
-                $(document).ready(function () {
-                  if (bulk_user_choice.split(" ").join("") == "Editallinfilter") {
-                    $(".source").each(function () {
-                      selected_value.push($(this).val());
-                    });
-                  }
-                  else {
-                    $(".source:checked").each(function () {
-                      selected_value.push($(this).val());
-                    });
-                  }
-
-                  var checkBoxId = selected_value.toString();
-                  Consts.ajaxCsrf = 'iU.KFuAiJ8LuprOCNYor';
-                  Consts.ajaxVersion = '7.5.5.2003';
-                  $.ajax({
-                    type: "POST",
-                    url: "index.php?/admin/users/store_edit_bulk_details",
-                    dataType: 'json',
-                    data: {
-                      "user_ids": checkBoxId,
-                      "bulk_user_choice": bulk_user_choice,
-                      "_token": Consts.ajaxCsrf,
-                      "_version": Consts.ajaxVersion
-                    },
-                    success: function (result) {
-                      window.location.routerLink = 'index.php?/admin/users/edit_bulk';
-                    },
-                    error: function (result) {
-                    }
-                  });
-                });
-              }
-
-              function checkboxState(source) {
-                var checkboxarray = document.getElementsByClassName('source');
-                var flag = true;
-                for (var i = 0; checkboxarray[i]; i++) {
-                  if (checkboxarray[i].checked)
-                    continue;
-                  else {
-                    flag = false;
-                    break;
-                  }
-                }
-                var selected_value = [];
-                $(".source:checked").each(function () {
-                  selected_value.push($(this).val());
-                });
-                if (flag == true)
-                  $("#selectall").prop('checked', true);
-                else
-                  $("#selectall").prop('checked', false);
-              }
-            </script>
-            <script>
-              $(document).ready(function () {
-                $(".tabs-users .tab-header a").click(function () {
-                  var id = $(this).attr('id');
-                  if (id === "navigation-user-users") {
-                    $('#sidebar-add-users').removeClass('hidden');
-                  } else {
-                    $('#sidebar-add-users').addClass('hidden');
-                  }
-                })
-              });
-            </script>
 
           </div>
         </div>
