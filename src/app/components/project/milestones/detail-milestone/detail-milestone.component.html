@@ -93,7 +93,8 @@
                           class="column summary-column summary-column-icon-compact flex-runs-1-medium icon-plan-32 summary-column-first ">
                         </div>
                         <div class="column summary-column flex-runs-2-medium summary-column-first ">
-                          <div class="summary-title summary-title-compact text-ppp"> <a>{{incompelete.runName}}</a>
+                          <div class="summary-title summary-title-compact text-ppp"> <a
+                              [routerLink]="['/test-runs', projectId, 'detail', incompelete.runId]">{{incompelete.runName}}</a>
                             <span class="hidden hoverAction"> </span>
                           </div>
                           <div class="summary-description-compact text-secondary text-ppp"> By {{incompelete.fullname}}
@@ -108,7 +109,9 @@
                   <h2 style="margin-top: 0.3em"> Completed </h2>
                   <table class="run-grid grid">
                     <tr *ngFor="let entry of completedTestRuns" class="odd hoverSensitive">
-                      <td> <a>{{entry.runName}}</a> </td>
+                      <td>
+                        <a [routerLink]="['/test-runs', projectId, 'detail', entry.runId]">{{entry.runName}}</a>
+                      </td>
                       <td class="sub right"> <span class="text-soft">{{entry.completedOn
                           ? entry.completedOn[2] +
                           '/' +
