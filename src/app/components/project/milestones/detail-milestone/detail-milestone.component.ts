@@ -109,12 +109,12 @@ export class DetailMilestoneComponent implements OnInit {
     this.milestoneService.update(this.milestone).subscribe({
       next: (res) => {
         console.log(res);
-        this.toastr.success('Update test case success', 'Success');
+        this.toastr.success('Update milestone success', 'Success');
         this.router.navigateByUrl('/milestones/' + this.milestone.projectId);
       },
       error: (e) => {
         console.log(e);
-        this.toastr.error('Update test case failed', 'Error');
+        this.toastr.error('Update milestone failed', 'Error');
       },
     });
   }
