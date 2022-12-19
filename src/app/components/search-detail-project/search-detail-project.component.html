@@ -1,0 +1,133 @@
+<div style="display: flex; height: 100%;">
+  <app-new-menu-project [projectId]="project.projectId + ''" (getProject)="project = $event"></app-new-menu-project>
+  <div style="display: flex; flex-direction: column;">
+    <app-header></app-header>
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+      media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+      media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+      media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css"
+      media="all" />
+    <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+      media="all" />
+    <link rel="shortcut icon" href="https://static.testrail.io/7.5.4.2008/images/favicon.ico" />
+
+    <div class="table" style="height: 100%;">
+      <div id="content" class="column content overflow-content">
+        <div id="content-header" class="content-header content-header-default">
+          <div class="content-header-inner">
+            <div class="content-header-result"></div>
+            <div class="content-header-id">P{{project.projectId}}</div>
+            <div class="content-header-title page_title">
+              {{project.projectName}}
+            </div>
+          </div>
+        </div>
+        <div id="content-inner" class="content-inner ">
+          <h1>Results</h1>
+          <div *ngIf="!testCases.length && !milestones.length && !testRuns.length then thenBlock else elseBlock">
+          </div>
+          <ng-template #thenBlock>
+            <p>No results found.</p>
+          </ng-template>
+          <ng-template #elseBlock>
+            <ng-template [ngIf]="testCases.length">
+              <h2 style="margin-top: 1.5em">Test Cases</h2>
+              <table class="grid">
+                <colgroup>
+                  <col class="box">
+                  <col class="id">
+                  <col>
+                </colgroup>
+                <tbody>
+                  <tr *ngFor="let testCase of testCases" id="case-{{testCase.caseId}}">
+                    <td class="box">
+                      <span class="status entity-case">Test Case</span>
+                    </td>
+                    <td class="id">
+                      <a class="link-noline" [routerLink]="['/test-cases-edit', testCase.caseId]">
+                        C{{testCase.caseId}}
+                      </a>
+                    </td>
+
+                    <td>
+                      <a [routerLink]="['/test-cases-edit', testCase.caseId]">{{testCase.caseName}}</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-template>
+
+            <ng-template [ngIf]="milestones.length">
+              <h2 style="margin-top: 1.5em">Milestones</h2>
+              <table class="run-grid grid">
+                <colgroup>
+                  <col class="box">
+                  <col class="id">
+                  <col>
+                </colgroup>
+                <tbody>
+                  <tr *ngFor="let milestone of milestones" class="hoverSensitive"
+                    id="milestone-{{milestone.milestoneId}}">
+                    <td class="box">
+                      <span class="status entity-milestone">Milestone</span>
+                    </td>
+                    <td class="id">
+                      <a class="link-noline"
+                        [routerLink]="['/milestones', project.projectId, 'detail', milestone.milestoneId]">
+                        M{{milestone.milestoneId}}
+                      </a>
+                    </td>
+
+                    <td>
+                      <a [routerLink]="['/milestones', project.projectId, 'detail', milestone.milestoneId]">
+                        {{milestone.milestoneName}}
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-template>
+
+            <ng-template [ngIf]="testRuns.length">
+              <h2 style="margin-top: 1.5em">Test Runs</h2>
+              <table class="run-grid grid">
+                <colgroup>
+                  <col class="box">
+                  <col class="id">
+                  <col>
+                </colgroup>
+                <tbody>
+                  <tr *ngFor="let testRun of testRuns" class="hoverSensitive" id="run-{{testRun.runId}}">
+                    <td class="box">
+                      <span class="status entity-run">Test Run</span>
+                    </td>
+                    <td class="id">
+                      <a class="link-noline" [routerLink]="['/test-runs', project.projectId, 'detail', testRun.runId]">
+                        R{{testRun.runId}}
+                      </a>
+                    </td>
+                    <td>
+                      <a [routerLink]="['/test-runs', project.projectId, 'detail', testRun.runId]">
+                        {{testRun.runName}}
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-template>
+          </ng-template>
+        </div>
+      </div>
+      <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+      </div>
+      <div id="sidebar" class="column sidebar" style="width: 250px">
+      </div>
+    </div>
+  </div>
+</div>

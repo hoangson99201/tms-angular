@@ -15,6 +15,7 @@ import { DetailTestRunComponent } from './components/project/test-run/detail-tes
 import { TestRunComponent } from './components/project/test-run/test-run.component';
 import { AddTestCaseComponent } from './components/project/testcase/add-test-case/add-test-case.component';
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
+import { SearchDetailProjectComponent } from './components/search-detail-project/search-detail-project.component';
 import { SignUpComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
@@ -93,7 +94,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignUpComponent
-  }
+  },
+  {
+    path: 'search/:id',
+    component: SearchDetailProjectComponent,
+  },
 ];
 
 @NgModule({

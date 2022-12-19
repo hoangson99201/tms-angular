@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,8 +7,21 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-  constructor(private router: Router) { }
+export class HeaderComponent implements OnInit {
+  constructor(private router: Router, private route: ActivatedRoute) { }
+  projectId: number = 0;
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.projectId = params['id'];
+    });
+    this.route.queryParams.subscribe(queryParams => {
+      this.name = queryParams['searchParam'];
+      if (this.name == undefined) {
+        this.name = '';
+      }
+    })
+  }
 
   @Output() onSearch = new EventEmitter<string>();
   public name: string = '';
@@ -35,5 +48,13 @@ export class HeaderComponent {
     document.cookie = 'token=;path=/tms;Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     AuthService.activeUser = {};
     return this.router.navigateByUrl('/login');
+  }
+
+  submit() {
+    if (['/tms/', '/tms'].includes(window.location.pathname)) {
+      this.onSearch.emit(this.name);
+    } else {
+      this.router.navigateByUrl('/search/' + this.projectId + '?searchParam=' + this.name);
+    }
   }
 }
