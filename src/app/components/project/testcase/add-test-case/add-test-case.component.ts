@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../services/auth.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +25,8 @@ export class AddTestCaseComponent implements OnInit {
     private testCaseService: TestCaseService,
     private router: Router,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   testCase: TestCase = {
@@ -109,5 +111,9 @@ export class AddTestCaseComponent implements OnInit {
         this.toastr.error('Update test case failed', 'Error');
       },
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

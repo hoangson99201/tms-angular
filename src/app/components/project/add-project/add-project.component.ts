@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Project } from 'src/app/models/project';
 import { ToastrService } from 'ngx-toastr';
+import { Project } from 'src/app/models/project';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class AddProjectComponent {
     private _location: Location,
     private projectService: ProjectService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) { }
 
   project: Project = {
@@ -39,5 +41,9 @@ export class AddProjectComponent {
         this.toastr.error('Add project failed', 'Error');
       },
     });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

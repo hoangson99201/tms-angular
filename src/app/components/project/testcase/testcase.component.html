@@ -47,9 +47,12 @@
                       section.</p>
                     <div class="button-group">
                       <a id="addSectionInline" class="button button-left button-add" routerLink="javascript:void(0)">
-                        Add Section </a>
-                      <a [routerLink]="['/test-cases-add', projectId]" class="button button-left button-add">
-                        Add Test Case </a>
+                        Add Section
+                      </a>
+                      <a *ngIf="isActive('ADD_TESTCASE')" [routerLink]="['/test-cases-add', projectId]"
+                        class="button button-left button-add">
+                        Add Test Case
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -175,7 +178,8 @@
 
 
             <div class="sidebar-inner">
-              <a id="sidebar-cases-add" class="sidebar-button" [routerLink]="['/test-cases-add', projectId]">
+              <a *ngIf="isActive('ADD_TESTCASE')" id="sidebar-cases-add" class="sidebar-button"
+                [routerLink]="['/test-cases-add', projectId]">
                 <span>Add Test Case</span>
               </a>
 

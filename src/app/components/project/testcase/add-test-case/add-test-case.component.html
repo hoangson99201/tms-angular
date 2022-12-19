@@ -1,4 +1,4 @@
-<div style="display: flex; height: 100%;">
+<div *ngIf="isActive('ADD_TESTCASE')" style="display: flex; height: 100%;">
   <app-new-menu-project [projectId]="testCase.projectId + ''" [selectedMenu]="'test-cases'"></app-new-menu-project>
   <div>
     <section>

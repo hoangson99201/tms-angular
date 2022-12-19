@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +19,8 @@ export class TestcaseComponent {
     private route: ActivatedRoute,
     private testCaseService: TestCaseService,
     public dialog: MatDialog,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    private authService: AuthService
   ) { }
   public projectId: string = '';
   public testCases: TestCase[] = [];
@@ -78,5 +80,9 @@ export class TestcaseComponent {
           this.refreshTestCase(parseInt(this.projectId));
         });
     }
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }
