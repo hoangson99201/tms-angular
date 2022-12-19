@@ -249,7 +249,7 @@
                 class="sidebar-button" [routerLink]="['/milestones-add', projectId]"> <span>Add Milestone</span> </a>
             </div>
 
-            <div class="sidebar-inner">
+            <div class="sidebar-inner" *ngIf="!this.isCompleted">
               <div class="sidebar-h1 top">Actions</div>
               <div class="sidebar-action">
                 <button class="button button-close" type="button" (click)="close()">Complete this milestone</button>
