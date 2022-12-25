@@ -29,15 +29,27 @@
               <div class="form-description">Set the test status (<em>passed</em>, <em>failed</em> etc.).</div>
             </div>
             <div class="form-group">
-              <label for="addResultComment">
+              <label for="comment">
                 Comment </label>
               <div class="textarea-resizable">
                 <textarea [(ngModel)]="result.comment"
-                  class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="announcement"
-                  id="announcement"></textarea>
+                  class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="comment"
+                  id="comment"></textarea>
                 <div class="textarea-grippie"></div>
               </div>
               <div class="form-description">Describe your test result.</div>
+            </div>
+            <div class="form-group">
+              <label for="screenshot">
+                Screenshot </label>
+              <input [disabled]="isProcessingFile" type="file" name="screenshot" id="screenshot"
+                accept=".jpg, .jpeg, .png" (change)="handleFileInput($event)" multiple>
+              <div class="form-description">Screenshot of your test result.</div>
+            </div>
+            <div id="entityAttachmentList" class="dz-persistent">
+              <img *ngFor="let base64 of base64Images; let i = index" src="{{base64}}"
+                (click)="openNewTab(getPendingFileURL(i))"
+                style="object-fit: contain; width: 190px; height: 190px; cursor: pointer;">
             </div>
           </div>
         </div>

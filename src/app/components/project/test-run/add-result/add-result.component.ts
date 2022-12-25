@@ -16,7 +16,7 @@ export class AddResultComponent implements OnInit {
     private resultService: ResultService,
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // this.color =
@@ -29,6 +29,9 @@ export class AddResultComponent implements OnInit {
     resultId: 2,
     status: 'Blocked',
   };
+  public pendingUpload: File[] = [];
+  public isProcessingFile: boolean = false;
+  public base64Images: Array<string> = [];
 
   close() {
     this.sectionDialog.close();
@@ -56,7 +59,13 @@ export class AddResultComponent implements OnInit {
   }
 
   submit() {
-    this.resultService.update(this.result).subscribe({
+    let formData = new FormData();
+    formData.append("result", JSON.stringify(this.result));
+    for (let i = 0; i < this.pendingUpload.length; i++) {
+      const file = this.pendingUpload[i];
+      formData.append("file_" + i, file);
+    }
+    this.resultService.update(formData).subscribe({
       next: (res) => {
         console.log(res);
         this.toastr.success('Add result success', 'Success');
@@ -67,5 +76,51 @@ export class AddResultComponent implements OnInit {
         this.toastr.error('Add result failed', 'Error');
       },
     });
+  }
+
+  handleFileInput(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      console.log("FileUpload -> files", fileList);
+      this.pendingUpload = [];
+      this.isProcessingFile = true;
+      let promises: Promise<string>[] = [];
+      for (let i = 0; i < fileList.length; i++) {
+        promises.push(this.getBase64(fileList[i]));
+        this.pendingUpload.push(fileList[i]);
+      }
+      Promise.all(promises).then(values => {
+        this.base64Images = values;
+        this.isProcessingFile = false;
+      });
+    }
+  }
+
+  getBase64(file: File): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        console.log(typeof reader.result);
+        if (reader.result instanceof ArrayBuffer || reader.result == null) {
+          reject("wrong format file");
+        } else {
+          resolve(reader.result);
+        }
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+        reject(error);
+      };
+    });
+  }
+
+  getPendingFileURL(index: number) {
+    return URL.createObjectURL(this.pendingUpload[index]);
+  }
+
+  openNewTab(url: string) {
+    window.open(url);
   }
 }
