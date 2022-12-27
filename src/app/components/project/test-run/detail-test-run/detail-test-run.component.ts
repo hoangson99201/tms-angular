@@ -95,13 +95,14 @@ export class DetailTestRunComponent implements OnInit {
     });
   }
 
-  openDialog(status: any, id: any) {
+  openDialog(status: any, id: any, isCompleted: boolean) {
     console.log('here');
     const dialogRef = this.dialog
       .open(AddResultComponent, {
         data: {
           status: status,
           id: id,
+          isCompleted: isCompleted,
         },
       })
       .afterClosed()

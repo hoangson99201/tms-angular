@@ -16,7 +16,7 @@ export class AddResultComponent implements OnInit {
     private resultService: ResultService,
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   public result: Result = {
     resultId: 2,
@@ -24,19 +24,23 @@ export class AddResultComponent implements OnInit {
   };
   public pendingUpload: File[] = [];
   public isProcessingFile: boolean = false;
+  public isTestRunCompleted: boolean = false;
   public base64Images: Array<string> = [];
 
   ngOnInit(): void {
     // this.color =
     this.result.status =
       this.data.status == 'Untested' ? 'Passed' : this.data.status;
+    this.isTestRunCompleted = this.data.isCompleted;
     this.switchColor(this.result.status);
     this.result.resultId = this.data.id;
     if (this.result.resultId) {
-      this.resultService.findByResultId(this.result.resultId).subscribe(result => {
-        this.result = result;
-        this.switchColor(this.result.status);
-      })
+      this.resultService
+        .findByResultId(this.result.resultId)
+        .subscribe((result) => {
+          this.result = result;
+          this.switchColor(this.result.status);
+        });
     }
   }
 
@@ -67,10 +71,10 @@ export class AddResultComponent implements OnInit {
 
   submit() {
     let formData = new FormData();
-    formData.append("result", JSON.stringify(this.result));
+    formData.append('result', JSON.stringify(this.result));
     for (let i = 0; i < this.pendingUpload.length; i++) {
       const file = this.pendingUpload[i];
-      formData.append("file_" + i, file);
+      formData.append('file_' + i, file);
     }
     this.resultService.update(formData).subscribe({
       next: (res) => {
@@ -89,7 +93,7 @@ export class AddResultComponent implements OnInit {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      console.log("FileUpload -> files", fileList);
+      console.log('FileUpload -> files', fileList);
       this.pendingUpload = [];
       this.isProcessingFile = true;
       let promises: Promise<string>[] = [];
@@ -97,7 +101,7 @@ export class AddResultComponent implements OnInit {
         promises.push(this.getBase64(fileList[i]));
         this.pendingUpload.push(fileList[i]);
       }
-      Promise.all(promises).then(values => {
+      Promise.all(promises).then((values) => {
         this.base64Images = values;
         this.isProcessingFile = false;
       });
@@ -111,7 +115,7 @@ export class AddResultComponent implements OnInit {
       reader.onload = function () {
         console.log(typeof reader.result);
         if (reader.result instanceof ArrayBuffer || reader.result == null) {
-          reject("wrong format file");
+          reject('wrong format file');
         } else {
           resolve(reader.result);
         }

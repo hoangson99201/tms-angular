@@ -109,40 +109,40 @@
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
                             class="custom-dropdown caret button-caret"></span></a> -->
 
-                              <button [ngStyle]="{'cursor': (isCompleted || !isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
                                 [disabled]="isCompleted  || !isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Untested'"
-                                class="dropdownLink status hidden-xs"
+                                (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
                                 style="border: unset; float: right; background: #737373; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="!isCompleted && isActive('ADD_RESULT')"></span>
+                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
                               </button>
-                              <button [ngStyle]="{'cursor': (isCompleted || !isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted   || !isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Passed'"
-                                class="dropdownLink status hidden-xs"
+                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                [disabled]="!isActive('ADD_RESULT')" #button
+                                (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
                                 style="border: unset; float: right; background: #338a41; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="!isCompleted && isActive('ADD_RESULT')"></span>
+                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
                               </button>
-                              <button [ngStyle]="{'cursor': (isCompleted || !isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted   || !isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Blocked'"
-                                class="dropdownLink status hidden-xs"
+                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                [disabled]="!isActive('ADD_RESULT')" #button
+                                (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
                                 style="border: unset; float: right; background: #474747; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="!isCompleted && isActive('ADD_RESULT')"></span>
+                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
                               </button>
-                              <button [ngStyle]="{'cursor': (isCompleted || !isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted   || !isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Retest'"
-                                class="dropdownLink status hidden-xs"
+                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                [disabled]="!isActive('ADD_RESULT')" #button
+                                (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
                                 style="border: unset; float: right; background: #b99109; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="!isCompleted && isActive('ADD_RESULT')"></span>
+                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
                               </button>
-                              <button [ngStyle]="{'cursor': (isCompleted || !isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted   || !isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId)" *ngIf="result.status == 'Failed'"
-                                class="dropdownLink status hidden-xs"
+                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                [disabled]="!isActive('ADD_RESULT')" #button
+                                (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
                                 style="border: unset; float: right; background: #a9093a; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="!isCompleted && isActive('ADD_RESULT')"></span>
+                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
                               </button>
                             </td>
                           </tr>

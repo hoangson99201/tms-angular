@@ -18,7 +18,7 @@
           <div class="column result-dialog-column-left">
             <div class="form-group">
               <label for="addResultStatus">Status <span class="form-required">*</span></label>
-              <select [(ngModel)]="result.status" (change)="onChange($event)"
+              <select [(ngModel)]="result.status" (change)="onChange($event)" disabled="{{isTestRunCompleted}}"
                 class="form-control form-control-small form-select searchable chzn-done" name="addResultStatus"
                 id="addResultStatus">
                 <option value="Passed">Passed</option>
@@ -32,7 +32,7 @@
               <label for="comment">
                 Comment </label>
               <div class="textarea-resizable">
-                <textarea [(ngModel)]="result.comment"
+                <textarea [(ngModel)]="result.comment" disabled="{{isTestRunCompleted}}"
                   class="form-control form-control-full  processed textarea-with-grippie" rows="6" name="comment"
                   id="comment"></textarea>
                 <div class="textarea-grippie"></div>
@@ -42,7 +42,7 @@
             <div class="form-group">
               <label for="screenshot">
                 Screenshot </label>
-              <input [disabled]="isProcessingFile" type="file" name="screenshot" id="screenshot"
+              <input [disabled]="isProcessingFile || isTestRunCompleted" type="file" name="screenshot" id="screenshot"
                 accept=".jpg, .jpeg, .png" (change)="handleFileInput($event)" multiple>
               <div class="form-description">Screenshot of your test result.</div>
             </div>
@@ -63,7 +63,7 @@
 <div class="dialog-buttons-pane-container">
   <div id="addResultButtons" class="button-group dialog-buttons-pane dialog-buttons-highlighted">
     <button type="button" id="addResultSubmit" class="button button-left button-positive button-ok button-dark"
-      (click)="submit()">
+      (click)="submit()" *ngIf="!isTestRunCompleted">
       <span class="addResult">Add Result</span>
     </button>
     <a id="addResultClose" class="button button-left button-negative button-cancel button-dark dialog-action-close"
