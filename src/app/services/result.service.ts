@@ -11,12 +11,16 @@ export class ResultService {
   constructor(private _http: HttpClient) { }
 
   findAllByTestRunId(testRunId: number): Observable<Result[]> {
-    return this._http.get<Result[]>("/tms/api/v1/result/" + testRunId);
+    return this._http.get<Result[]>("/tms/api/v1/test-run/" + testRunId + "/result");
   }
 
   update(formData: FormData): Observable<string> {
     return this._http.put("/tms/api/v1/result", formData, {
       responseType: 'text'
     });
+  }
+
+  findByResultId(resultId: number): Observable<Result> {
+    return this._http.get<Result>("/tms/api/v1/result/" + resultId);
   }
 }

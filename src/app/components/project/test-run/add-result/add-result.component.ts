@@ -18,13 +18,6 @@ export class AddResultComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {
-    // this.color =
-    this.result.status =
-      this.data.status == 'Untested' ? 'Passed' : this.data.status;
-    this.switchColor(this.result.status);
-    this.result.resultId = this.data.id;
-  }
   public result: Result = {
     resultId: 2,
     status: 'Blocked',
@@ -32,6 +25,20 @@ export class AddResultComponent implements OnInit {
   public pendingUpload: File[] = [];
   public isProcessingFile: boolean = false;
   public base64Images: Array<string> = [];
+
+  ngOnInit(): void {
+    // this.color =
+    this.result.status =
+      this.data.status == 'Untested' ? 'Passed' : this.data.status;
+    this.switchColor(this.result.status);
+    this.result.resultId = this.data.id;
+    if (this.result.resultId) {
+      this.resultService.findByResultId(this.result.resultId).subscribe(result => {
+        this.result = result;
+        this.switchColor(this.result.status);
+      })
+    }
+  }
 
   close() {
     this.sectionDialog.close();

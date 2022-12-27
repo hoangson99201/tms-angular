@@ -47,6 +47,9 @@
               <div class="form-description">Screenshot of your test result.</div>
             </div>
             <div id="entityAttachmentList" class="dz-persistent">
+              <img *ngFor="let fileUpload of result.fileUploads;" src="/tms-upload/{{fileUpload.uploadedFileName}}"
+                (click)="openNewTab('/tms-upload/' + fileUpload.uploadedFileName)"
+                style="object-fit: contain; width: 190px; height: 190px; cursor: pointer;">
               <img *ngFor="let base64 of base64Images; let i = index" src="{{base64}}"
                 (click)="openNewTab(getPendingFileURL(i))"
                 style="object-fit: contain; width: 190px; height: 190px; cursor: pointer;">
