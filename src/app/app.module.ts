@@ -45,6 +45,7 @@ import { SignUpComponent } from './components/signup/signup.component';
 import { ConfirmDeleteDialogComponent } from './components/project/testcase/confirm-delete-dialog/confirm-delete-dialog.component';
 import { SearchDetailProjectComponent } from './components/search-detail-project/search-detail-project.component';
 import { RerunDialogComponent } from './components/project/test-run/rerun-dialog/rerun-dialog.component';
+import { ExportDialogComponent } from './components/project/testcase/export-dialog/export-dialog.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { RerunDialogComponent } from './components/project/test-run/rerun-dialog
     SignUpComponent,
     ConfirmDeleteDialogComponent,
     SearchDetailProjectComponent,
+    ExportDialogComponent,
     RerunDialogComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],

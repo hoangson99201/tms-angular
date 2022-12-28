@@ -1,12 +1,15 @@
-import { AuthService } from './../../../services/auth.service';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Priority } from 'src/app/models/priority';
 import { Section } from 'src/app/models/section';
 import { TestCase } from 'src/app/models/test-case';
+import { PriorityService } from 'src/app/services/priority.service';
 import { SectionService } from 'src/app/services/section.service';
 import { TestCaseService } from 'src/app/services/test-case.service';
+import { AuthService } from './../../../services/auth.service';
 import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
+import { ExportDialogComponent } from './export-dialog/export-dialog.component';
 import { SectionDialogComponent } from './section-dialog/section-dialog.component';
 
 @Component({
@@ -20,12 +23,14 @@ export class TestcaseComponent {
     private testCaseService: TestCaseService,
     public dialog: MatDialog,
     private sectionService: SectionService,
-    private authService: AuthService
+    private authService: AuthService,
+    private priorityService: PriorityService,
   ) { }
   public projectId: string = '';
   public testCases: TestCase[] = [];
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public sections: Section[] = [];
+  priorityMap: Map<number, Priority> = new Map<number, Priority>;
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -33,6 +38,11 @@ export class TestcaseComponent {
       console.log(this.projectId);
       this.refreshTestCase(parseInt(this.projectId));
       this.refreshSections(parseInt(this.projectId));
+    });
+    this.priorityService.findAll().subscribe((priorities) => {
+      priorities.forEach(priority => {
+        this.priorityMap.set(priority.prioritiesId, priority);
+      })
     });
   }
 
@@ -91,5 +101,52 @@ export class TestcaseComponent {
 
   isActive(functionalityName: string) {
     return this.authService.isActive(functionalityName);
+  }
+
+  openExportDialog() {
+    this.dialog.open<ExportDialogComponent, Section[], string | string[] | undefined>(ExportDialogComponent, {
+      data: this.sections
+    }).afterClosed()
+      .subscribe(selectedSections => {
+        if (selectedSections === undefined) {
+          return;
+        }
+        let selectedTestCases: TestCase[] = [];
+        if (selectedSections == 'all') {
+          selectedTestCases = this.testCases;
+        } else if (selectedSections instanceof Array) {
+          let selectedSectionSet = new Set(selectedSections.map(x => parseInt(x)));
+          selectedTestCases = this.testCases.filter(x => x.sectionId && selectedSectionSet.has(x.sectionId));
+        }
+        console.log(selectedTestCases);
+        this.toCsv(selectedTestCases);
+      });
+  }
+
+  toCsv(exportTestCases: TestCase[]) {
+    // choose another string to temporally replace commas if necessary
+    let stringToReplaceComas = ';';
+
+    exportTestCases.forEach((singleRow) => {
+      singleRow.caseName = singleRow.caseName.replace(/,/g, stringToReplaceComas);
+      // singleRow.pr
+    })
+    let csvContent = "data:text/csv;charset=utf-8,Title,Estimate,Priority,Section\r\n";
+    for (const testCase of exportTestCases) {
+      if (!testCase.priorityId) {
+        continue;
+      }
+      csvContent += testCase.caseName.replace(/,/g, stringToReplaceComas) + ',' + testCase.estimate + ','
+        + this.priorityMap.get(testCase.priorityId)?.priorityName.replace(/,/g, stringToReplaceComas) + ','
+        + testCase.sectionName?.replace(/,/g, stringToReplaceComas) + '\r\n';
+    }
+
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "test_cases.csv");
+    document.body.appendChild(link); // Required for FF
+
+    link.click(); // This will download the data file named "test_cases.csv".
   }
 }

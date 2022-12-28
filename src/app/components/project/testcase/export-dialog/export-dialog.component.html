@@ -1,0 +1,47 @@
+<div class="ui-dialog-titlebar ui-widget-header" style="display: flex;justify-content: space-between;padding: 10px;">
+  <span class="ui-dialog-title" id="ui-dialog-title-editSectionDialog">
+    Export to CSV
+  </span>
+  <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
+    <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>
+  </a>
+</div>
+<form id="editSectionForm" class="dialogFormDefault">
+  <div class="dialog-body">
+    <div class="form-group">
+      <label>Sections</label>
+      <div class="radio form-radio" style="margin-left: 5px; margin-top: 15px">
+        <label>
+          Export all sections <input [(ngModel)]="exportType" type="radio" id="exportCsvSectionsAll"
+            name="exportCsvSections" value="all" checked="checked">
+        </label>
+      </div>
+      <div class="radio form-radio" style="margin-left: 5px">
+        <label>
+          Export the following sections only:
+          <input [(ngModel)]="exportType" type="radio" id="exportCsvSectionsSelected" name="exportCsvSections"
+            value="selected">
+        </label>
+      </div>
+      <div style="margin-left: 25px">
+        <select [(ngModel)]="selectedSections" class="form-control form-select" id="exportCsvSectionsSelection"
+          name="exportCsvSectionsSelection" multiple="multiple" style="width: 100%; height: 120px">
+          <option *ngFor="let section of sections" value="{{section.sectionId}}">
+            {{section.sectionName}}
+          </option>
+        </select>
+        <div class="form-description">
+          You can select multiple sections by holding Ctrl/Cmd on your keyboard. </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <button (click)="export()" class="button button-left button-positive button-add dialog-action-default"
+      id="exportSubmit" type="submit">
+      Export
+    </button>
+    <button (click)="close()" class="button button-left button-negative button-cancel dialog-action-close">
+      Cancel
+    </button>
+  </div>
+</form>

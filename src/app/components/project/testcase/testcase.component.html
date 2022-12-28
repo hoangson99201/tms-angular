@@ -25,8 +25,22 @@
           <div id="content" class="column content overflow-content">
             <div id="content-header" class="content-header content-header-default">
               <div class="content-header-inner">
+                <span class="content-header-icon">
+                  <span (click)="openExportDialog()" style="cursor: pointer" class="dropdownLink link-tooltip"
+                    tooltip-header="Export Cases"
+                    tooltip-text="Exports the sections and test cases into different formats (XML, Excel/CSV).">
+                    <div class="icon-export"></div>
+                  </span>
+                </span>
+                <span class="content-header-icon">
+                  <span style="cursor: pointer" class="dropdownLink link-tooltip" tooltip-header="Import Cases"
+                    tooltip-text="Imports sections and test cases from a TestRail XML or CSV file.">
+                    <div class="icon-import"></div>
+                  </span>
+                </span>
                 <div class="content-header-title page_title">
-                  Test Cases </div>
+                  Test Cases
+                </div>
               </div>
             </div>
             <div id="content-inner" class="content-inner goals-clear">
