@@ -44,6 +44,7 @@ import { DatePipe } from '@angular/common';
 import { SignUpComponent } from './components/signup/signup.component';
 import { ConfirmDeleteDialogComponent } from './components/project/testcase/confirm-delete-dialog/confirm-delete-dialog.component';
 import { SearchDetailProjectComponent } from './components/search-detail-project/search-detail-project.component';
+import { RerunDialogComponent } from './components/project/test-run/rerun-dialog/rerun-dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { SearchDetailProjectComponent } from './components/search-detail-project
     ActivityComponent,
     SignUpComponent,
     ConfirmDeleteDialogComponent,
-    SearchDetailProjectComponent
+    SearchDetailProjectComponent,
+    RerunDialogComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [
