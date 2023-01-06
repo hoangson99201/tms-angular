@@ -1,0 +1,37 @@
+<div class="ui-dialog-titlebar ui-widget-header" style="display: flex;justify-content: space-between;padding: 10px;">
+  <span class="ui-dialog-title" id="ui-dialog-title-editSectionDialog">
+    Import from CSV
+  </span>
+  <a class="ui-dialog-titlebar-close ui-corner-all" role="button">
+    <span class="ui-icon ui-icon-closethick" (click)="close()">close</span>
+  </a>
+</div>
+<form id="editSectionForm" class="dialogFormDefault">
+  <div class="dialog-body">
+
+    <div id="importCsvSteps">
+      <div id="importCsvStep1" style="display: block;">
+        <div class="dialog-h1">
+          Load File
+        </div>
+        <div class="form-group">
+          <label for="importCsvFile">
+            File <span class="form-required">*</span>
+          </label>
+          <input class="form-control form-control-upload" size="45" type="file" accept=".csv, .CSV" name="importCsvFile"
+            id="importCsvFile" style="display: block;" (change)="handleFileInput($event)">
+          <a (click)="downloadTemplate()" target="_blank" rel="noopener noreferrer">Download Template</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-group dialog-buttons-highlighted">
+    <button [disabled]="uploadFile === undefined || isImporting" (click)="import()"
+      class="button button-left button-positive button-add" id="importCsvImport" type="submit" rel="import">
+      {{ isImporting ? 'Importing' : 'Import' }}
+    </button>
+    <button (click)="close()" class="button button-left button-negative button-cancel dialog-action-close"
+      id="importCsvCancel">
+      Cancel </button>
+  </div>
+</form>

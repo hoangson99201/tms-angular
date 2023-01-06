@@ -1,3 +1,4 @@
+import { ImportDialogComponent } from './import-dialog/import-dialog.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -26,7 +27,7 @@ export class TestcaseComponent {
     private authService: AuthService,
     private priorityService: PriorityService,
   ) { }
-  public projectId: string = '';
+  public projectId: number = 0;
   public testCases: TestCase[] = [];
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public sections: Section[] = [];
@@ -34,10 +35,10 @@ export class TestcaseComponent {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
-      this.projectId = params['id'];
+      this.projectId = parseInt(params['id']);
       console.log(this.projectId);
-      this.refreshTestCase(parseInt(this.projectId));
-      this.refreshSections(parseInt(this.projectId));
+      this.refreshTestCase(this.projectId);
+      this.refreshSections(this.projectId);
     });
     this.priorityService.findAll().subscribe((priorities) => {
       priorities.forEach(priority => {
@@ -78,11 +79,11 @@ export class TestcaseComponent {
     const dialogRef = this.dialog.open(SectionDialogComponent, {
       data: {
         type: 'add',
-        projectId: parseInt(this.projectId)
+        projectId: this.projectId
       },
     }).afterClosed()
       .subscribe(_ => {
-        this.refreshSections(parseInt(this.projectId));
+        this.refreshSections(this.projectId);
       });
   }
 
@@ -94,7 +95,7 @@ export class TestcaseComponent {
         },
       }).afterClosed()
         .subscribe((_) => {
-          this.refreshTestCase(parseInt(this.projectId));
+          this.refreshTestCase(this.projectId);
         });
     }
   }
@@ -120,6 +121,16 @@ export class TestcaseComponent {
         }
         console.log(selectedTestCases);
         this.toCsv(selectedTestCases);
+      });
+  }
+
+  openImportDialog() {
+    this.dialog.open<ImportDialogComponent, number>(ImportDialogComponent, {
+      data: this.projectId
+    }).afterClosed()
+      .subscribe(_ => {
+        this.refreshTestCase(this.projectId);
+        this.refreshSections(this.projectId);
       });
   }
 

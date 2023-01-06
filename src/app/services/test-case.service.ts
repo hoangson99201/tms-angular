@@ -33,4 +33,12 @@ export class TestCaseService {
   delete(testCaseId: number): Observable<{ deletedCount: number }> {
     return this._http.delete<{ deletedCount: number }>("/tms/api/v1/test-case/" + testCaseId);
   }
+
+  importTestCases(projectId: number, file: File): Observable<string> {
+    let formData = new FormData();
+    formData.append('file', file);
+    return this._http.post("/tms/api/v1/project/" + projectId + "/test-case", formData, {
+      responseType: 'text'
+    });
+  }
 }

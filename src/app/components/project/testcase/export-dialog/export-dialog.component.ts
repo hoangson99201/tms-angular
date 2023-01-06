@@ -28,8 +28,4 @@ export class ExportDialogComponent implements OnInit {
   close() {
     this.exportDialog.close();
   }
-
-  log() {
-    console.log(this.selectedSections + ' ' + this.exportType);
-  }
 }
