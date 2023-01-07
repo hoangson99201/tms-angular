@@ -41,6 +41,11 @@
             <a [routerLink]="['/test-cases', projectId]">
               <i class="fad fa-project-diagram icon-sidebar-workflows fa-fw"></i><span> Test Cases</span></a>
           </li>
+
+          <li [class]="selectedMenu == 'reports' ? 'sidebar__menu__nav__item--selected' : '' ">
+            <a [routerLink]="['/reports', projectId]">
+              <i class="fad fa-file icon-sidebar-workflows fa-fw"></i><span> Reports</span></a>
+          </li>
         </ul>
 
         <ng-template [ngIf]="isActive('LIST_USER_ROLE')">

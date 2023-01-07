@@ -9,6 +9,7 @@ import { AddMilestoneComponent } from './components/project/milestones/add-miles
 import { DetailMilestoneComponent } from './components/project/milestones/detail-milestone/detail-milestone.component';
 import { MilestonesComponent } from './components/project/milestones/milestones.component';
 import { OverviewComponent } from './components/project/overview/overview.component';
+import { AddReportComponent } from './components/project/report/add-report/add-report.component';
 import { ReportComponent } from './components/project/report/report.component';
 import { AddTestRunComponent } from './components/project/test-run/add-test-run/add-test-run.component';
 import { DetailTestRunComponent } from './components/project/test-run/detail-test-run/detail-test-run.component';
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'reports/:id',
     component: ReportComponent,
+  },
+  {
+    path: 'reports-add/:id',
+    component: AddReportComponent,
   },
   {
     path: 'project/add',

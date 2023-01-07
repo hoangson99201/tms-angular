@@ -48,6 +48,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { NewMenuProjectComponent } from './shared/new-menu-project/new-menu-project.component';
 import { NewMenuComponent } from './shared/new-menu/new-menu.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AddReportComponent } from './components/project/report/add-report/add-report.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     SearchDetailProjectComponent,
     ExportDialogComponent,
     RerunDialogComponent,
-    ImportDialogComponent
+    ImportDialogComponent,
+    AddReportComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [

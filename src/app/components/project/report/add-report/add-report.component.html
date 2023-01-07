@@ -1,0 +1,433 @@
+<div style="display: flex; height: 100%;">
+  <app-new-menu-project [projectId]="projectId" [selectedMenu]="'reports'"></app-new-menu-project>
+  <div>
+    <section>
+      <app-header></app-header>
+      <div>
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+          media="all" />
+        <link type="text/css" rel="stylesheet"
+          href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+          media="all" />
+
+
+        <div class="table" style="height: 100%;">
+          <div id="content" class="column content overflow-content">
+            <div id="notificationbar" class="notificationbar notificationbar-hidden">
+            </div>
+            <div class="notificationbar notificationbar-local">
+            </div>
+            <div id="content-header" class="content-header content-header-default">
+              <div class="content-header-inner">
+                <div class="content-header-result" style=""></div>
+                <div class="content-header-title page_title">
+                  Add Report </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $("#sites").prop("selectedIndex", 0);
+            </script>
+            <div id="content-inner" class="content-inner ">
+
+
+
+              <div class="bubble filter-bubble hidden" id="filterTestsBubble">
+                <div id="filterTestsContent" class="filter-bubble-inner">
+                </div>
+              </div>
+
+              <div class="dialog" id="addColumnDialog" style="width: 400px;">
+                <div class="dialog-title">
+                  Add Column </div>
+                <form id="addColumnForm" class="dialogFormDefault">
+                  <div class="dialog-body">
+                    <div class="form-group bottom">
+                      <label for="addColumnItems">Column <span class="form-required">*</span></label>
+                      <select class="form-control form-control-full form-select" name="addColumnItems"
+                        id="addColumnItems">
+                        <option id="addColumn-tests:assignedto_id" value="tests:assignedto_id">
+                          Assigned To </option>
+                        <option id="addColumn-cases:custom_automation_type" value="cases:custom_automation_type">
+                          Automation Type </option>
+                        <option id="addColumn-tests:original_case_id" value="tests:original_case_id">
+                          Case ID </option>
+                        <option id="addColumn-tests:defects" value="tests:defects">
+                          Defects </option>
+                        <option id="addColumn-tests:defects_all" value="tests:defects_all">
+                          Defects All </option>
+                        <option id="addColumn-tests:elapsed" value="tests:elapsed">
+                          Elapsed </option>
+                        <option id="addColumn-tests:elapsed_all" value="tests:elapsed_all">
+                          Elapsed All </option>
+                        <option id="addColumn-cases:estimate" value="cases:estimate">
+                          Estimate </option>
+                        <option id="addColumn-cases:estimate_forecast" value="cases:estimate_forecast">
+                          Forecast </option>
+                        <option id="addColumn-tests:in_progress_by" value="tests:in_progress_by">
+                          In Progress </option>
+                        <option id="addColumn-cases:priority_id" value="cases:priority_id">
+                          Priority </option>
+                        <option id="addColumn-cases:refs" value="cases:refs">
+                          References </option>
+                        <option id="addColumn-cases:section_id" value="cases:section_id">
+                          Section </option>
+                        <option id="addColumn-tests:status_id" value="tests:status_id">
+                          Status </option>
+                        <option id="addColumn-cases:template_id" value="cases:template_id">
+                          Template </option>
+                        <option id="addColumn-tests:tested_by" value="tests:tested_by">
+                          Tested By </option>
+                        <option id="addColumn-tests:tested_on" value="tests:tested_on">
+                          Tested On </option>
+                        <option id="addColumn-cases:type_id" value="cases:type_id">
+                          Type </option>
+                        <option id="addColumn-tests:version" value="tests:version">
+                          Version </option>
+                        <option id="addColumn-tests:version_all" value="tests:version_all">
+                          Version All </option>
+                      </select>
+                      <div class="form-description">Select the column to add to the tables.</div>
+                    </div>
+                  </div>
+                  <div class="button-group dialog-buttons-highlighted">
+                    <button id="addColumnSubmit" type="submit"
+                      class="button button-left button-positive button-ok dialog-action-default">
+                      Add Column </button>
+                    <a class="button button-left button-negative button-cancel dialog-action-close">
+                      Cancel </a>
+                  </div>
+                </form>
+              </div>
+
+
+              <div class="dialog" id="addRunsDialog" style="width: 850px; height: 700px">
+                <div class="dialog-title">Add Test Runs</div>
+                <form id="addRunsForm">
+                  <div class="dialog-body" style="padding: 0">
+                    <div id="addRunsContainer" class="select-dialog-container">
+                      <div id="addRunsContent" class="select-dialog-content hidden">
+                      </div>
+                      <div id="addRunsProgress" class="select-dialog-progress" style="margin: auto">
+                        <div class="icon-progress-large" title="Loading..."></div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="dialog-buttons-pane-container">
+                  <div class="button-group dialog-buttons-highlighted">
+                    <button type="submit" id="addRunsSubmit"
+                      class="button button-left button-positive button-ok dialog-action-default">
+                      OK </button>
+                    <a id="addRunsClose" class="button button-left button-negative button-cancel dialog-action-close">
+                      Cancel </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bubble filter-bubble hidden" id="filterRunsBubble">
+                <div id="filterRunsContent" class="filter-bubble-inner">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
+          </div>
+          <div id="qpane" class="column qpane" style="width: 600px; display: none">
+            <div id="qpane-empty" class="qpane-empty hidden">
+              <div class="qpane-empty-header">
+                No test case selected. </div>
+              <div class="qpane-empty-body">
+                You can select a different group or change the filters. </div>
+            </div>
+            <div id="qpane-inner">
+              <div id="qpaneSticky">
+                <div id="qpane-content">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="sidebar-splitter" class="column splitter sidebar-splitter">
+          </div>
+          <div id="sidebar" class="column sidebar" style="width: 250px">
+            <script type="text/javascript">
+              $(document).ready(function () {
+                if ($('#schedule_later').is(':checked')) {
+                  $('#schedule_until_link').removeClass('disabled');
+                }
+                $('#schedule_until_link').click(function () {
+                  $('#schedule_until').datepicker("option", "minDate", 0).datepicker("show");
+                });
+                $('#schedule_until').datepicker({
+                  beforeShow: function (event, ui) {
+                    let $link = $('#schedule_until_link');
+                    ui.dpDiv.offset({
+                      top: $link.offset().top + 10,
+                      left: $link.offset().left + 10
+                    });
+                  },
+                });
+                $('#schedule_later').change(function () {
+                  if ($(this).is(":checked")) {
+                    $('#schedule_until_link').removeClass('disabled');
+                  } else {
+                    $('#schedule_until_link').addClass('disabled').text('Select a date');
+                    $('#schedule_until').val('');
+                  }
+                });
+                $('#ui-datepicker-div').on("click", '#clear-button', function () {
+                  $('#schedule_until_link').text('Select a date');
+                });
+
+              });
+            </script>
+
+
+
+
+
+            <div class="sidebar-inner">
+              <div class="sidebar-h1 top">Create Report</div>
+              <p>You can create or schedule reports for the following report templates:</p>
+              <div class="sidebar-h2 ">Cases</div>
+              <div style="margin-left: 10px">
+                <table class="grid create-report">
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=cases_activity_summary"
+                        tooltip-text="Shows a summary of new and updated test cases." tooltip-position="left">
+                        Activity Summary</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=cases_activity_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=references_case_coverage"
+                        tooltip-text="Shows the test case coverage for references in a coverage matrix."
+                        tooltip-position="left">
+                        Coverage for References</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=references_case_coverage">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=cases_property_groups"
+                        tooltip-text="Shows the test cases grouped by a selectable attribute." tooltip-position="left">
+                        Property Distribution</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=cases_property_groups">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=cases_status_tops"
+                        tooltip-text="Shows the test cases with the highest amount of results, grouped by status."
+                        tooltip-position="left">
+                        Status Tops</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=cases_status_tops">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="sidebar-h2 ">Defects</div>
+              <div style="margin-left: 10px">
+                <table class="grid create-report">
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=defects_summary"
+                        tooltip-text="Shows the found defects for a milestone, test plan or select test runs."
+                        tooltip-position="left">
+                        Summary</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=defects_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=cases_defect_summary"
+                        tooltip-text="Shows the found defects for test cases in a coverage matrix."
+                        tooltip-position="left">
+                        Summary for Cases</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=cases_defect_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=references_defect_summary"
+                        tooltip-text="Shows the found defects for references in a coverage matrix."
+                        tooltip-position="left">
+                        Summary for References</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=references_defect_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="sidebar-h2 ">Results</div>
+              <div style="margin-left: 10px">
+                <table class="grid create-report">
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=cases_result_coverage"
+                        tooltip-text="Shows the results for test cases in a coverage &amp; comparison matrix."
+                        tooltip-position="left">
+                        Comparison for Cases</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=cases_result_coverage">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=references_result_coverage"
+                        tooltip-text="Shows the results for references in a coverage &amp; comparison matrix."
+                        tooltip-position="left">
+                        Comparison for References</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=references_result_coverage">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=tests_property_groups"
+                        tooltip-text="Shows the tests grouped by a selectable attribute." tooltip-position="left">
+                        Property Distribution</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=tests_property_groups">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="sidebar-h2 ">Summary</div>
+              <div style="margin-left: 10px">
+                <table class="grid create-report">
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=milestones_summary"
+                        tooltip-text="Shows a status summary for a milestone." tooltip-position="left">
+                        Milestone</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=milestones_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=plans_summary"
+                        tooltip-text="Shows a status summary for a test plan." tooltip-position="left">
+                        Plan</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=plans_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=projects_summary"
+                        tooltip-text="Shows a status summary and overview for the project." tooltip-position="left">
+                        Project</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=projects_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr class="dark">
+                    <td class="dark text-softer darkSelected">
+                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=runs_summary"
+                        tooltip-text="Shows a status summary and overview for test runs." tooltip-position="left">
+                        Runs</a>
+                    </td>
+                    <td class="dark action-large darkSelected">
+                      <a href="index.php?/reports/add_job/1&plugin=runs_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="sidebar-h2 ">Users</div>
+              <div style="margin-left: 10px">
+                <table class="grid create-report">
+                  <tr class="dark">
+                    <td class="dark text-softer ">
+                      <a class="link-noline link-tooltip"
+                        href="index.php?/reports/add_job/1&plugin=users_workload_summary"
+                        tooltip-text="Shows the current workload for users." tooltip-position="left">
+                        Workload Summary</a>
+                    </td>
+                    <td class="dark action-large ">
+                      <a href="index.php?/reports/add_job/1&plugin=users_workload_summary">
+                        <div class="icon-add"></div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  </div>
+</div>
