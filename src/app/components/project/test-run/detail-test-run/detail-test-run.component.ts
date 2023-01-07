@@ -9,6 +9,14 @@ import { ResultService } from 'src/app/services/result.service';
 import { TestRunService } from 'src/app/services/test-run.service';
 import { AddResultComponent } from '../add-result/add-result.component';
 import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
+import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  labels: any;
+  colors: any[]
+};
 
 @Component({
   selector: 'app-detail-test-run',
@@ -16,6 +24,10 @@ import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-clo
   styleUrls: ['./detail-test-run.component.scss'],
 })
 export class DetailTestRunComponent implements OnInit {
+  public chartOptions: ChartOptions | undefined;
+  public numUntested = 0;
+  public percentPassed = '0';
+  public percentUntested = '0';
   public projectId: string = '';
   public testRunId: string = '';
   public testRunName: string = '';
@@ -40,7 +52,7 @@ export class DetailTestRunComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   isActive(functionalityName: string) {
     return this.authService.isActive(functionalityName);
@@ -62,10 +74,10 @@ export class DetailTestRunComponent implements OnInit {
           this.isCompleted = results.isCompleted ? results.isCompleted : false;
           this.createDate = results.createdOn
             ? results.createdOn[2] +
-              '/' +
-              results.createdOn[1] +
-              '/' +
-              results.createdOn[0]
+            '/' +
+            results.createdOn[1] +
+            '/' +
+            results.createdOn[0]
             : '';
         });
     });
@@ -82,6 +94,42 @@ export class DetailTestRunComponent implements OnInit {
   refreshResult(testRunId: number) {
     this.resultService.findAllByTestRunId(testRunId).subscribe((results) => {
       this.results = results;
+      this.chartOptions = {
+        series: [0, 0, 0, 0, 0],
+        chart: {
+          width: 390,
+          type: "pie",
+          height: 260
+        },
+        labels: ["Passed", "Blocked", "Retest", "Failed", "Untested"],
+        colors: ['#338a41', '#474747', '#b99109', '#a9093a', '#737373'],
+      }
+      this.numUntested = 0;
+      for (const result of results) {
+        switch (result.status) {
+          case "Passed":
+            this.chartOptions.series[0]++;
+            break;
+          case "Blocked":
+            this.chartOptions.series[1]++;
+            break;
+          case "Retest":
+            this.chartOptions.series[2]++;
+            break;
+          case "Failed":
+            this.chartOptions.series[3]++;
+            break;
+          case "Untested":
+            this.chartOptions.series[4]++;
+            this.numUntested++;
+            break;
+          default:
+            break;
+        }
+      }
+      this.percentUntested = (this.numUntested / this.results.length * 100).toFixed(1);
+      this.percentPassed = (this.chartOptions.series[0] / this.results.length * 100).toFixed(1);
+
       this.map = new Map<string, Result[]>();
       for (const result of results) {
         if (!result.sectionName) continue;

@@ -30,65 +30,79 @@
               <div class="content-header-inner">
                 <div class="content-header-result"></div>
                 <div class="content-header-id">{{testRunId}}</div>
-                <span id="subscribed" class="content-header-icon hidden">
-                  <a class="unsubscribe link-tooltip"
-                    tooltip-text="Unsubscribe from email updates on test changes for this test run.">
-                    <div class="icon-unsubscribe"></div>
-                  </a>
-                  <span class="hidden busy">
-                    <div class="icon-progress-standard"></div>
-                  </span>
-                </span>
                 <div class="content-header-title page_title">{{testRunName}}</div>
               </div>
             </div>
-            <script type="text/javascript">
-              $("#sites").prop("selectedIndex", 0);
-            </script>
-            <div id="content-inner" class="content-inner goals-clear">
-              <div id="groupContainer" style="margin-top: 1.5em; display: block;">
-                <div id="groupContent">
-                  <div id="groups">
-                    <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
-                      <div class="grid-title">
-                        <span class="title" id="sectionName-4">{{section.key}}</span>
-                        <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
-                        <span id="sectionBusy-4" class="busy" style="display: none;">
-                          <div class="icon-progress-inline"></div>
-                        </span>
+            <div id="content-inner" class="content-inner">
+              <div id="statsContainer">
+
+
+                <div class="chart-pie" rel="4">
+                  <div style="height: 100%;" class="table-extended" id="tablechart_testun">
+                    <div style="padding: 0; height: 100%;" id="statusChartContainer">
+                      <div id="chart">
+                        <apx-chart #chart *ngIf="chartOptions !== undefined" [series]="chartOptions.series"
+                          [chart]="chartOptions.chart" [labels]="chartOptions.labels" [colors]="chartOptions.colors">
+                        </apx-chart>
                       </div>
-                      <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
-                        <div class="scroll-auto-inner markdown">
+                    </div>
+                    <div class="column chart-pie-column-percent">
+                      <div class="chart-pie-percent" style="padding-top: 5em">
+                        <div class="chart-pie-percent-title">{{percentPassed}}%</div>
+                        <div class="chart-pie-percent-description">passed</div>
+                        <div class="chart-pie-percent-note text-secondary" style="line-height: 130%">
+                          {{numUntested}} / {{results.length}} untested ({{percentUntested}}%).
                         </div>
                       </div>
-                      <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
-                        <tbody>
-                          <tr class="header">
-                            <th>
-                              <span>ID</span>
-                              <div class="column-actions">
-                              </div>
-                            </th>
-                            <th><span>Title</span>
-                              <div class="column-actions">
-                              </div>
-                            </th>
-                            <th>
-                            </th>
-                            <th>
-                              <span style="float: right;" class="hidden-xs">Status</span>
-                            </th>
-                          </tr>
-                          <tr *ngFor="let result of section.value" id="row-{{result.resultId}}" class="row odd">
-                            <td class="id">
-                              {{result.resultId}}
-                            </td>
-                            <td>
-                              {{result.caseName}}
-                            <td class="js-status" rel="4">
-                            </td>
-                            <td class="js-status" rel="4">
-                              <!-- <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
+                    </div>
+                  </div>
+                </div>
+                <a download="TestRail-stats-1-20230107092820.png" href="#" id="dl" hidden="">download image</a>
+              </div>
+              <div id="content_container">
+                <div id="groupContainer" style="margin-top: 1.5em; display: block;">
+                  <div id="groupContent">
+                    <div id="groups">
+                      <div *ngFor="let section of map | keyvalue" id="section-4" rel="4" class="group grid-container">
+                        <div class="grid-title">
+                          <span class="title" id="sectionName-4">{{section.key}}</span>
+                          <span class="text-secondary section-count" id="sectionCount-4">{{section.value.length}}</span>
+                          <span id="sectionBusy-4" class="busy" style="display: none;">
+                            <div class="icon-progress-inline"></div>
+                          </span>
+                        </div>
+                        <div id="sectionDesc-4" class="hidden remove_scroll_add_margin scroll-auto">
+                          <div class="scroll-auto-inner markdown">
+                          </div>
+                        </div>
+                        <table id="grid-4" class="grid" style="margin-bottom: 0.75em">
+                          <tbody>
+                            <tr class="header">
+                              <th>
+                                <span>ID</span>
+                                <div class="column-actions">
+                                </div>
+                              </th>
+                              <th><span>Title</span>
+                                <div class="column-actions">
+                                </div>
+                              </th>
+                              <th>
+                              </th>
+                              <th>
+                                <span style="float: right;" class="hidden-xs">Status</span>
+                              </th>
+                            </tr>
+                            <tr *ngFor="let result of section.value" id="row-{{result.resultId}}" class="row odd">
+                              <td class="id">
+                                {{result.resultId}}
+                              </td>
+                              <td>
+                                {{result.caseName}}
+                              <td class="js-status" rel="4">
+                              </td>
+                              <td class="js-status" rel="4">
+                                <!-- <a id="a-{{result.resultId}}" #button (click)="openDropDown($event)"
                           *ngIf="result.status == 'Untested'" class="custom-dropdown dropdownLink status hidden-xs"
                           style="background: #737373; color: #ffffff">{{result.status}}<span
                             class="custom-dropdown caret button-caret"></span></a>
@@ -109,68 +123,48 @@
                           style="background: #a9093a; color: #ffffff">{{result.status}}<span
                             class="custom-dropdown caret button-caret"></span></a> -->
 
-                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="isCompleted  || !isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId, isCompleted)"
-                                *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #737373; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="!isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId, isCompleted)"
-                                *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #338a41; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="!isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId, isCompleted)"
-                                *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #474747; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="!isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId, isCompleted)"
-                                *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #b99109; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
-                              </button>
-                              <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
-                                [disabled]="!isActive('ADD_RESULT')" #button
-                                (click)="openDialog(result.status, result.resultId, isCompleted)"
-                                *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
-                                style="border: unset; float: right; background: #a9093a; color: #ffffff">{{result.status}}
-                                <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                                <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                  [disabled]="isCompleted  || !isActive('ADD_RESULT')" #button
+                                  (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                  *ngIf="result.status == 'Untested'" class="dropdownLink status hidden-xs"
+                                  style="border: unset; float: right; background: #737373; color: #ffffff">{{result.status}}
+                                  <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
+                                </button>
+                                <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                  [disabled]="!isActive('ADD_RESULT')" #button
+                                  (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                  *ngIf="result.status == 'Passed'" class="dropdownLink status hidden-xs"
+                                  style="border: unset; float: right; background: #338a41; color: #ffffff">{{result.status}}
+                                  <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
+                                </button>
+                                <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                  [disabled]="!isActive('ADD_RESULT')" #button
+                                  (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                  *ngIf="result.status == 'Blocked'" class="dropdownLink status hidden-xs"
+                                  style="border: unset; float: right; background: #474747; color: #ffffff">{{result.status}}
+                                  <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
+                                </button>
+                                <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                  [disabled]="!isActive('ADD_RESULT')" #button
+                                  (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                  *ngIf="result.status == 'Retest'" class="dropdownLink status hidden-xs"
+                                  style="border: unset; float: right; background: #b99109; color: #ffffff">{{result.status}}
+                                  <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
+                                </button>
+                                <button [ngStyle]="{'cursor': (!isActive('ADD_RESULT')  ? 'unset' : 'pointer')}"
+                                  [disabled]="!isActive('ADD_RESULT')" #button
+                                  (click)="openDialog(result.status, result.resultId, isCompleted)"
+                                  *ngIf="result.status == 'Failed'" class="dropdownLink status hidden-xs"
+                                  style="border: unset; float: right; background: #a9093a; color: #ffffff">{{result.status}}
+                                  <span class="caret button-caret" *ngIf="isActive('ADD_RESULT')"></span>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-          </div>
-          <div id="qpane" class="column qpane" style="width: 600px; display: none">
-            <div id="qpane-empty" class="qpane-empty hidden">
-              <div class="qpane-empty-header">
-                No test case selected. </div>
-              <div class="qpane-empty-body">
-                You can select a different group or change the filters. </div>
-            </div>
-            <div id="qpane-inner">
-              <div id="qpaneSticky">
-                <div id="qpane-content">
                 </div>
               </div>
             </div>

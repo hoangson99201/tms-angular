@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -38,12 +39,12 @@ export class ImportDialogComponent {
       this.testCaseService.importTestCases(this.projectId, this.uploadFile).subscribe({
         next: (res) => {
           console.log(res);
-          this.toastr.success('Import testcases success', 'Success');
+          this.toastr.success(res, 'Success');
           this.importDialog.close();
         },
-        error: (e) => {
+        error: (e: HttpErrorResponse) => {
           console.log(e);
-          this.toastr.error('Import testcases failed', 'Error');
+          this.toastr.error(e.error, 'Error');
           this.isImporting = false;
         },
       });

@@ -32,6 +32,8 @@ export class AddTestCaseComponent implements OnInit {
   testCase: TestCase = {
     caseName: '',
     projectId: 0,
+    sectionId: undefined,
+    priorityId: undefined
   };
   sections: Section[] = [];
   priorities: Priority[] = [];
@@ -59,17 +61,8 @@ export class AddTestCaseComponent implements OnInit {
         default:
           break;
       }
-      console.log('Test case data: ' + this.testCase);
-      this.sectionService
-        .findAllByProjectId(this.testCase.projectId)
-        .subscribe((sections) => {
-          this.sections = sections;
-        });
       this.priorityService.findAll().subscribe((priorities) => {
         this.priorities = priorities;
-        if (this.priorities.length) {
-          this.testCase.priorityId = this.priorities[0].prioritiesId;
-        }
       });
     });
   }
@@ -81,9 +74,6 @@ export class AddTestCaseComponent implements OnInit {
     }
     this.sectionService.findAllByProjectId(projectId).subscribe((sections) => {
       this.sections = sections;
-      if (this.sections.length) {
-        this.testCase.sectionId = this.sections[0].sectionId;
-      }
     });
   }
 

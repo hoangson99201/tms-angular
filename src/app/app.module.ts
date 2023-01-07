@@ -7,6 +7,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgApexchartsModule } from "ng-apexcharts";
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -101,7 +102,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
       preventDuplicates: true
     }),
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgApexchartsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
