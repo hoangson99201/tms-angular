@@ -34,12 +34,295 @@
                   Add Report </div>
               </div>
             </div>
-            <script type="text/javascript">
-              $("#sites").prop("selectedIndex", 0);
-            </script>
+
             <div id="content-inner" class="content-inner ">
 
 
+              <form action="index.php?/reports/add_job/2&plugin=runs_summary" method="post"><input type="hidden"
+                  name="_token" value="FecjS1sIIOIkrBlkY.N." />
+                <div class="form-group form-group-main">
+                  <label for="name">Name <span class="form-required">*</span></label>
+                  <input class="form-control " type="text" name="name" id="name" maxlength="250"
+                    value="Runs (Summary) %date%" />
+                  <div class="form-description">You can use the following variables in the report name: <a class="link"
+                      href="javascript:void(0)">date</a>, <a class="link" href="javascript:void(0)">date/time</a>.
+                  </div>
+                </div>
+                <div class="form-group bottom">
+                  <label for="description">
+                    Description </label>
+                  <textarea class="form-control form-control-full " rows="6" name="description"
+                    id="description"></textarea>
+                  <div class="form-description form-description-full">Use the description to explain the content and
+                    purpose
+                    of this report or add links to additional resources.</div>
+                </div>
+
+                <h1 class="h1-dark" style="margin-top: 1.5em">Report Options</h1>
+                <div class="report-form">
+
+                  <input type="hidden" name="tab" id="tab" />
+
+                  <div class="tabs">
+                    <div class="tab-header">
+                      <a href="javascript:void(0)" class="tab1 current" rel="1">
+                        Test Runs </a>
+                      <!-- <a href="javascript:void(0)" class="tab2 " rel="2" onclick="App.Tabs.activate(this)">Details</a>
+                      <a href="javascript:void(0)" class="tab3 " rel="3" onclick="App.Tabs.activate(this)">Activity</a>
+                      <a href="javascript:void(0)" class="tab4 " rel="4" onclick="App.Tabs.activate(this)">Tests</a> -->
+                    </div>
+                    <div class="tab-body tab-frame">
+                      <div class="tab tab1 ">
+                        <div style="margin-left: 35px">
+                          <div class="grid-container" style="margin-bottom: 5px">
+                            <table id="custom_runs_grid" class="grid">
+                              <tr class="header droppable">
+                                <th>Test Run</th>
+                                <th>Test Plan</th>
+                                <th>Milestone</th>
+                                <th></th>
+                                <th></th>
+                              </tr>
+                            </table>
+                          </div>
+                          <div style="margin-top: 1em">
+                            <a id="custom_runs_add">
+                              Add Test Runs</a>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="custom_runs_filters" id="custom_runs_filters" value="" />
+                        <input type="hidden" name="custom_runs_ids" id="custom_runs_ids" value="" />
+
+                      </div>
+                      <div class="tab tab2 hidden">
+                        <p class="top">Include the following details/sections:</p>
+                        <div class="checkbox form-checkbox" style="margin-left: 15px">
+                          <label>
+                            Status and test statistics <input type="checkbox" id="custom_status_include"
+                              name="custom_status_include" value="1" checked="checked" />
+                          </label>
+                        </div>
+                        <div class="checkbox form-checkbox" style="margin-left: 15px">
+                          <label>
+                            Activity (results over time) <input type="checkbox" id="custom_activities_include"
+                              name="custom_activities_include" value="1" checked="checked" />
+                          </label>
+                        </div>
+                        <div class="checkbox form-checkbox" style="margin-left: 15px">
+                          <label>
+                            Progress and remaining estimate/forecast <input type="checkbox" id="custom_progress_include"
+                              name="custom_progress_include" value="1" checked="checked" />
+                          </label>
+                        </div>
+                        <div class="checkbox" style="margin-left: 15px; padding-bottom: 0">
+                          <label>
+                            Tests and test results <input type="checkbox" id="custom_tests_include"
+                              name="custom_tests_include" value="1" checked="checked" />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="tab tab3 hidden">
+
+
+                        <p class="top">Use the following time frame: <span class="form-required">*</span></p>
+                        <div style="margin-left: 15px">
+                          <select class="form-control form-select " id="custom_activities_daterange"
+                            name="custom_activities_daterange" style="width: 200px">
+                            <option value="3">Today</option>
+                            <option value="4">Yesterday</option>
+                            <option value="5" selected="selected">This week</option>
+                            <option value="7">Last week</option>
+                            <option value="9">This month</option>
+                            <option value="11">Last month</option>
+                            <option value="14">Last 24 hours</option>
+                            <option value="15">Last 48 hours</option>
+                            <option value="6">Last 7 days</option>
+                            <option value="8">Last 14 days</option>
+                            <option value="10">Last 30 days</option>
+                            <option value="12">Last 60 days</option>
+                            <option value="13">Last 90 days</option>
+                            <option value="2">Custom</option>
+                          </select>
+                        </div>
+                        <div style="margin-left: 15px; margin-top: 8px" id="custom_activities_daterange_from_container"
+                          class="hidden">
+                          <div style="float: left; line-height: 150%">
+                            From: </div>
+                          <div style="margin-left: 50px">
+                            <input class="form-control datepicker" type="text" style="width: 125px"
+                              name="custom_activities_daterange_from" id="custom_activities_daterange_from" value="" />
+                          </div>
+                          <div style="clear: both"></div>
+                        </div>
+                        <div style="margin-left: 15px; margin-top: 8px" id="custom_activities_daterange_to_container"
+                          class="hidden">
+                          <div style="float: left; line-height: 150%">
+                            To:<br />
+                          </div>
+                          <div style="margin-left: 50px">
+                            <input class="form-control datepicker" type="text" style="width: 125px"
+                              name="custom_activities_daterange_to" id="custom_activities_daterange_to" value="" />
+                          </div>
+                          <div style="clear: both"></div>
+                        </div>
+
+                        <p class="">Include the following statuses:</p>
+                        <div class="radio form-radio" style="margin-left: 15px">
+                          <label>
+                            All statuses <input type="radio" id="custom_activities_statuses_include_all"
+                              name="custom_activities_statuses_include" value="1" checked="checked" />
+                          </label>
+                        </div>
+                        <div class="radio form-radio" style="margin-left: 15px">
+                          <label>
+                            The following statuses only: <input type="radio"
+                              id="custom_activities_statuses_include_selected" name="custom_activities_statuses_include"
+                              value="2" />
+                          </label>
+                        </div>
+                        <div style="margin-left: 35px">
+                          <select class="form-control form-select " id="custom_activities_statuses_ids"
+                            name="custom_activities_statuses_ids[]" style="width: 100%; height: 200px"
+                            multiple="multiple">
+                            <option value="1">Passed</option>
+
+                            <option value="2">Blocked</option>
+
+                            <option value="3">Untested</option>
+
+                            <option value="4">Retest</option>
+
+                            <option value="5">Failed</option>
+
+                          </select>
+                          <div class="form-description">You can select multiple statuses by holding Ctrl/Cmd on your
+                            keyboard.</div>
+                        </div>
+
+                        <p class="">Maximum number of activities to display:</p>
+                        <div style="margin-left: 15px">
+                          <select class="form-control form-select " id="custom_activities_limit"
+                            name="custom_activities_limit" style="width: 200px">
+                            <option value="10">
+                              10 </option>
+                            <option value="25">
+                              25 </option>
+                            <option value="50">
+                              50 </option>
+                            <option value="100" selected="selected">
+                              100 </option>
+                            <option value="250">
+                              250 </option>
+                            <option value="500">
+                              500 </option>
+                            <option value="1000">
+                              1000 </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="tab tab4 hidden">
+                        <p class="top">Apply the following filter for the tests:</p>
+                        <div style="margin-left: 15px">
+                          <div class="form-message filter-info">
+                            <span id="custom_tests_filter_info">
+                              [No filter set] </span>
+                            (<a id="custom_tests_filter_change" href="javascript:void(0)">change</a>)
+                            <span id="custom_tests_filter_busy" class="busy">
+                              <div class="icon-progress-inline"></div>
+                            </span>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="custom_tests_filters" id="custom_tests_filters" value="" />
+
+                        <p style="">Include the following columns: <span class="form-required">*</span></p>
+                        <div style="margin-left: 15px">
+                          <div class="grid-container" style="margin-bottom: 5px">
+                            <table id="custom_tests_grid" class="grid">
+                              <tr class="header droppable">
+                                <th class="drag-no">
+                                  <div class="icon-dragnoblue"></div>
+                                </th>
+                                <th>Column</th>
+                                <th>Width</th>
+                                <th></th>
+                                <th></th>
+                              </tr>
+                              <tr id="column-tests:id" class="row droppable odd" rel="tests:id">
+                                <td class="drag">
+                                  <div class="draggable icon-draggray"></div>
+                                </td>
+                                <td class="dragHelper">ID</td>
+                                <td class="input" style="padding-top: 4px">
+                                  <input type="text" class="width"
+                                    onkeypress="return App.ReportPlugins.Columns.Select.onWidthChanged(this, event, 1000)"
+                                    value="75" />
+                                </td>
+                                <td></td>
+                                <td><a tabindex="-1" href="javascript:void(0)"
+                                    onclick="this.blur(); App.ReportPlugins.Columns.Select.remove('tests:id'); return false;">
+                                    <div class="icon-small-delete"></div>
+                                  </a></td>
+                              </tr>
+                              <tr id="column-cases:title" class="row droppable even" rel="cases:title">
+                                <td class="drag">
+                                  <div class="draggable icon-draggray"></div>
+                                </td>
+                                <td class="dragHelper">Title</td>
+                                <td class="input" style="padding-top: 4px">
+                                  <input type="text" class="width"
+                                    onkeypress="return App.ReportPlugins.Columns.Select.onWidthChanged(this, event, 1000)"
+                                    value="0" />
+                                </td>
+                                <td></td>
+                                <td><a tabindex="-1" href="javascript:void(0)"
+                                    onclick="this.blur(); App.ReportPlugins.Columns.Select.remove('cases:title'); return false;">
+                                    <div class="icon-small-delete"></div>
+                                  </a></td>
+                              </tr>
+                            </table>
+                          </div>
+                          <div style="margin-top: 1em">
+                            <a id="custom_tests_add" href="javascript:void(0)">Add Column</a>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="custom_tests_columns" id="custom_tests_columns" value="" />
+
+                        <p class="">Maximum number of tests to display:</p>
+                        <div style="margin-left: 15px">
+                          <select class="form-control form-select " id="custom_tests_limit" name="custom_tests_limit"
+                            style="width: 200px">
+                            <option value="10">
+                              10 </option>
+                            <option value="25">
+                              25 </option>
+                            <option value="50">
+                              50 </option>
+                            <option value="100" selected="selected">
+                              100 </option>
+                            <option value="250">
+                              250 </option>
+                            <option value="500">
+                              500 </option>
+                            <option value="1000">
+                              1000 </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-group form-buttons">
+                  <button class="button button-left button-positive button-ok" id="submit" type="submit">
+                    Add Report </button>
+                  <a href="index.php?/reports/overview/2" class="button button-left button-negative button-cancel">
+                    Cancel </a>
+                </div>
+
+              </form>
 
               <div class="bubble filter-bubble hidden" id="filterTestsBubble">
                 <div id="filterTestsContent" class="filter-bubble-inner">
@@ -158,276 +441,38 @@
           </div>
           <div id="sidebar-splitter" class="column splitter sidebar-splitter">
           </div>
-          <div id="sidebar" class="column sidebar" style="width: 250px">
-            <script type="text/javascript">
-              $(document).ready(function () {
-                if ($('#schedule_later').is(':checked')) {
-                  $('#schedule_until_link').removeClass('disabled');
-                }
-                $('#schedule_until_link').click(function () {
-                  $('#schedule_until').datepicker("option", "minDate", 0).datepicker("show");
-                });
-                $('#schedule_until').datepicker({
-                  beforeShow: function (event, ui) {
-                    let $link = $('#schedule_until_link');
-                    ui.dpDiv.offset({
-                      top: $link.offset().top + 10,
-                      left: $link.offset().left + 10
-                    });
-                  },
-                });
-                $('#schedule_later').change(function () {
-                  if ($(this).is(":checked")) {
-                    $('#schedule_until_link').removeClass('disabled');
-                  } else {
-                    $('#schedule_until_link').addClass('disabled').text('Select a date');
-                    $('#schedule_until').val('');
-                  }
-                });
-                $('#ui-datepicker-div').on("click", '#clear-button', function () {
-                  $('#schedule_until_link').text('Select a date');
-                });
-
-              });
-            </script>
-
-
-
-
+          <div id="sidebar" class="column sidebar" style="width: 250px; white-space: unset;">
 
             <div class="sidebar-inner">
               <div class="sidebar-h1 top">Create Report</div>
               <p>You can create or schedule reports for the following report templates:</p>
-              <div class="sidebar-h2 ">Cases</div>
-              <div style="margin-left: 10px">
-                <table class="grid create-report">
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=cases_activity_summary"
-                        tooltip-text="Shows a summary of new and updated test cases." tooltip-position="left">
-                        Activity Summary</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=cases_activity_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=references_case_coverage"
-                        tooltip-text="Shows the test case coverage for references in a coverage matrix."
-                        tooltip-position="left">
-                        Coverage for References</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=references_case_coverage">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=cases_property_groups"
-                        tooltip-text="Shows the test cases grouped by a selectable attribute." tooltip-position="left">
-                        Property Distribution</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=cases_property_groups">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=cases_status_tops"
-                        tooltip-text="Shows the test cases with the highest amount of results, grouped by status."
-                        tooltip-position="left">
-                        Status Tops</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=cases_status_tops">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="sidebar-h2 ">Defects</div>
-              <div style="margin-left: 10px">
-                <table class="grid create-report">
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=defects_summary"
-                        tooltip-text="Shows the found defects for a milestone, test plan or select test runs."
-                        tooltip-position="left">
-                        Summary</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=defects_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=cases_defect_summary"
-                        tooltip-text="Shows the found defects for test cases in a coverage matrix."
-                        tooltip-position="left">
-                        Summary for Cases</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=cases_defect_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=references_defect_summary"
-                        tooltip-text="Shows the found defects for references in a coverage matrix."
-                        tooltip-position="left">
-                        Summary for References</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=references_defect_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="sidebar-h2 ">Results</div>
-              <div style="margin-left: 10px">
-                <table class="grid create-report">
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=cases_result_coverage"
-                        tooltip-text="Shows the results for test cases in a coverage &amp; comparison matrix."
-                        tooltip-position="left">
-                        Comparison for Cases</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=cases_result_coverage">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=references_result_coverage"
-                        tooltip-text="Shows the results for references in a coverage &amp; comparison matrix."
-                        tooltip-position="left">
-                        Comparison for References</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=references_result_coverage">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=tests_property_groups"
-                        tooltip-text="Shows the tests grouped by a selectable attribute." tooltip-position="left">
-                        Property Distribution</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=tests_property_groups">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
               <div class="sidebar-h2 ">Summary</div>
               <div style="margin-left: 10px">
                 <table class="grid create-report">
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=milestones_summary"
-                        tooltip-text="Shows a status summary for a milestone." tooltip-position="left">
-                        Milestone</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=milestones_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=plans_summary"
-                        tooltip-text="Shows a status summary for a test plan." tooltip-position="left">
-                        Plan</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=plans_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=projects_summary"
-                        tooltip-text="Shows a status summary and overview for the project." tooltip-position="left">
-                        Project</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=projects_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr class="dark">
-                    <td class="dark text-softer darkSelected">
-                      <a class="link-noline link-tooltip" href="index.php?/reports/add_job/1&plugin=runs_summary"
-                        tooltip-text="Shows a status summary and overview for test runs." tooltip-position="left">
-                        Runs</a>
-                    </td>
-                    <td class="dark action-large darkSelected">
-                      <a href="index.php?/reports/add_job/1&plugin=runs_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="sidebar-h2 ">Users</div>
-              <div style="margin-left: 10px">
-                <table class="grid create-report">
-                  <tr class="dark">
-                    <td class="dark text-softer ">
-                      <a class="link-noline link-tooltip"
-                        href="index.php?/reports/add_job/1&plugin=users_workload_summary"
-                        tooltip-text="Shows the current workload for users." tooltip-position="left">
-                        Workload Summary</a>
-                    </td>
-                    <td class="dark action-large ">
-                      <a href="index.php?/reports/add_job/1&plugin=users_workload_summary">
-                        <div class="icon-add"></div>
-                      </a>
-                    </td>
-                  </tr>
+                  <colgroup>
+                    <col>
+                    <col class="action">
+                  </colgroup>
+                  <tbody>
+                    <tr class="dark">
+                      <td class="dark text-softer ">
+                        <a class="link-noline link-tooltip" [routerLink]="['/reports-add', projectId]"
+                          tooltip-text="Shows a status summary and overview for test runs." tooltip-position="left">
+                          Runs</a>
+                      </td>
+                      <td class="dark action-large ">
+                        <a [routerLink]="['/reports-add', projectId]">
+                          <div class="icon-add"></div>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>
-
-
-
           </div>
         </div>
-
       </div>
-
     </section>
   </div>
 </div>
