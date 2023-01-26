@@ -133,11 +133,11 @@ export class DetailTestRunComponent implements OnInit {
       this.map = new Map<string, Result[]>();
       for (const result of results) {
         if (!result.sectionName) continue;
-        let results = this.map.get(result.sectionName);
-        if (!results) {
+        let tempResults = this.map.get(result.sectionName);
+        if (!tempResults) {
           this.map.set(result.sectionName, [result]);
         } else {
-          results.push(result);
+          tempResults.push(result);
         }
       }
     });

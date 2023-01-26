@@ -17,5 +17,6 @@ export interface TestRun {
   untestedCount?: number,
   retestCount?: number,
   failedCount?: number,
-  testRunResults?: Result[]
+  testRunResults?: Result[],
+  results?: Result[], // Report only
 }

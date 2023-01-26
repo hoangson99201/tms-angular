@@ -11,4 +11,6 @@ export interface Report {
     results: Result[],
     testRuns: TestRun[]
   },
+  projectName?: string,
+  fullName?: string,
 }
