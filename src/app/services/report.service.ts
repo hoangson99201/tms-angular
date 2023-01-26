@@ -1,0 +1,16 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Report } from '../models/report';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ReportService {
+
+  constructor(private _http: HttpClient) { }
+
+  findByReportId(reportId: number): Observable<Report> {
+    return this._http.get<Report>("/tms/api/v1/report/" + reportId);
+  }
+}

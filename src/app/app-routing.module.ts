@@ -1,3 +1,4 @@
+import { DetailReportComponent } from './components/project/report/detail-report/detail-report.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
@@ -75,6 +76,10 @@ const routes: Routes = [
   {
     path: 'reports/:id',
     component: ReportComponent,
+  },
+  {
+    path: 'reports/view/:id',
+    component: DetailReportComponent,
   },
   {
     path: 'reports-add/:id',
