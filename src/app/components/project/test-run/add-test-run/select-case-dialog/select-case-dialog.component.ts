@@ -85,7 +85,7 @@ export class SelectCaseDialogComponent implements OnInit {
 
   submit() {
     this.sectionDialog.close({
-      event: this.action,
+      // event: this.action,
       data: this.selectedTestCases,
     });
   }

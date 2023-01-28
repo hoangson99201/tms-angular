@@ -1,1 +1,95 @@
-<p>select-test-run-dialog works!</p>
+<div class="ui-dialog" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-addRunsDialog"
+  style="display: block; z-index: 1002; outline: 0px; height: auto; width: 850px; position: inherit !important;"
+  id="dialog-ident-addRunsDialog">
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title"
+      id="ui-dialog-title-addRunsDialog">Add Test Runs</span><a href="#" class="ui-dialog-titlebar-close ui-corner-all"
+      role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div>
+  <div class="dialog ui-dialog-content ui-widget-content" id="addRunsDialog"
+    style="width: auto; height: 661px; display: block; min-height: 0px;">
+    <div class="dialog-title">Add Test Runs</div>
+    <form id="addRunsForm">
+      <div class="dialog-body" style="padding: 0px; height: 602px;">
+        <div id="addRunsContainer" class="select-dialog-container">
+          <div id="addRunsContent" class="select-dialog-content hidden" style="display: block;">
+            <div class="select-dialog-column select-dialog-column-main-container">
+              <div id="addRunsMain" class="select-dialog-column select-dialog-column-main">
+                <div class="select-dialog-scroll">
+                  <div class="select-dialog-group">
+                    <div class="select-dialog-toolbar toolbar">
+                      <div class="toolbar-inner text-secondary">
+                        Select <a class="link" (click)="selectAll()">All</a> |
+                        <a class="link" (click)="unselectAll()">None</a>
+                      </div>
+                    </div>
+                    <div id="addRunsTables">
+                      <div *ngFor="let entry of completedTestRuns | keyvalue">
+                        <h3 class="">
+                          <span class="title">{{entry.key}}</span>
+                        </h3>
+                        <div class="grid-container" style="margin-bottom: 2em">
+                          <table class="grid">
+                            <colgroup>
+                              <col class="checkbox">
+                              <col style="">
+                              <col style="width: 25%">
+                              <col style="width: 25%">
+                            </colgroup>
+                            <tbody>
+                              <tr class="header">
+                                <th class="checkbox">
+                                  <!-- <input type="checkbox" class="selectionCheckbox"> -->
+                                </th>
+                                <th>Test Run</th>
+                                <th>Test Plan</th>
+                                <th>Milestone</th>
+                              </tr>
+                              <tr *ngFor="let testRun of entry.value" class="odd hoverSensitive">
+                                <td class="checkbox">
+                                  <input (click)="select(testRun.runId)" type="checkbox" [value]="testRun.runId"
+                                    class="selectionCheckbox" name="selected-{{testRun.runId}}">
+                                </td>
+                                <td><a target="_blank"
+                                    [routerLink]="['/test-runs', projectId, 'detail', testRun.runId]">{{testRun.runName}}</a>
+                                </td>
+                                <td class="sub">
+                                </td>
+                                <td class="sub">{{testRun.runName}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="addRunsProgress" class="select-dialog-progress"
+            style="margin: auto; padding-top: 241px; display: none;">
+            <div class="icon-progress-large" title="Loading..."></div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="dialog-buttons-pane-container">
+    <div class="button-group dialog-buttons-highlighted">
+      <button type="submit" id="addRunsSubmit"
+        class="button button-left button-positive button-ok dialog-action-default">
+        OK </button>
+      <a id="addRunsClose" class="button button-left button-negative button-cancel dialog-action-close">
+        Cancel </a>
+    </div>
+  </div>
+  <div class="ui-resizable-handle ui-resizable-n"></div>
+  <div class="ui-resizable-handle ui-resizable-e"></div>
+  <div class="ui-resizable-handle ui-resizable-s"></div>
+  <div class="ui-resizable-handle ui-resizable-w"></div>
+  <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se"
+    style="z-index: 1001;"></div>
+  <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div>
+  <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div>
+  <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div>
+</div>

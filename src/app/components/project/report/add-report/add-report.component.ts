@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Report } from 'src/app/models/report';
+import { TestRun } from 'src/app/models/test-run';
+import { ReportService } from 'src/app/services/report.service';
+import { SelectTestRunDialogComponent } from './select-test-run-dialog/select-test-run-dialog.component';
 
 @Component({
   selector: 'app-add-report',
@@ -7,13 +13,60 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-report.component.scss'],
 })
 export class AddReportComponent {
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private reportService: ReportService,
+    private toastr: ToastrService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
   public projectId: string = '';
+  public fullName: string = '';
+  public des: string = '';
+  public testRunsSelected: TestRun[] = [];
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.projectId = params['id'];
       console.log(this.projectId);
     });
+  }
+  public report: Report = {
+    fullName: '',
+    reportDescription: '',
+    jsonData: {
+      results: [],
+      testRuns: this.testRunsSelected
+    }
+  };
+  submit() {
+    this.reportService.addReport(this.report).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Add report success', 'Success');
+        this.router.navigateByUrl('/reports/' + this.projectId);
+      },
+      error: (e) => {
+        console.log(e);
+        this.toastr.error('Add report failed', 'Error');
+      },
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog
+      .open(SelectTestRunDialogComponent, {
+        data: {
+          project_id: this.projectId,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result && result.event != 'Cancel' && result.data) {
+          this.testRunsSelected = [...result.data];
+        }
+        console.log(this.testRunsSelected);
+      });
   }
 }

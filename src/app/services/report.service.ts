@@ -18,4 +18,10 @@ export class ReportService {
     return this._http.get<Report[]>("/tms/api/v1/report/" + projectId);
   }
 
+  addReport(report: Report): Observable<string> {
+    return this._http.post("/tms/api/v1/report", report, {
+      responseType: 'text'
+    });
+  }
+
 }
