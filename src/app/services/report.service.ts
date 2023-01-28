@@ -13,4 +13,9 @@ export class ReportService {
   findByReportId(reportId: number): Observable<Report> {
     return this._http.get<Report>("/tms/api/v1/report/" + reportId);
   }
+
+  findAllByProjectId(projectId: number): Observable<Report[]> {
+    return this._http.get<Report[]>("/tms/api/v1/report/" + projectId);
+  }
+
 }

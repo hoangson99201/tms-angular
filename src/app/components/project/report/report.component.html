@@ -33,7 +33,7 @@
             </div>
             <div id="content-inner" class="content-inner goals-clear">
 
-              <div class="empty empty-with-explanation" style="margin-bottom: 2em">
+              <div *ngIf="!(listReport && listReport.length > 0)" class="empty empty-with-explanation" style="margin-bottom: 2em">
                 <div class="empty-explanation">
                   <div class="empty-explanation-title">What's a report?</div>
                   <div class="empty-explanation-body">A report lets you generate statistics and charts
@@ -48,50 +48,27 @@
                 </div>
               </div>
 
-              <h1 class="top width-4">
-                Private </h1>
-              <div id="private" class="report-title">
-
-
-
+              <h1  *ngIf="(listReport && listReport.length > 0)" class="top width-4">
+                Private
+              </h1>
+              <div  *ngIf="(listReport && listReport.length > 0)" id="private" class="report-title">
                 <div id="report_914173544">
                   <span class="select-checkbox"><input type="checkbox" onchange="SelectAllReports(this)"
                       name="select_all" /></span>
                   <h3 class="top">
                     <span class="title">January 2023</span>
                   </h3>
-
-
-
                   <table class="grid">
-                    <colgroup>
-                      <!-- <col class="icon">
-                      </col>
-                      <col class="icon">
-                      </col>
-                      <col>
-                      </col>
-                      <col class="action">
-                      </col>
-                      <col class="action">
-                      </col>
-                      <col class="action">
-                      </col> -->
-
-                    </colgroup>
-
-
-
-                    <tr id="report-2" class="odd">
-                      <td class="icon">
+                    <tr *ngFor="let report of listReport" id="report-{{report.reportId}}" class="odd">
+                      <!-- <td class="icon">
                         <input data-type="report" type="checkbox" name="report" value="2" />
-                      </td>
+                      </td> -->
                       <td class="icon">
                         <div class="icon-report-10"></div>
                       </td>
 
                       <td>
-                        <a [routerLink]="['/reports/view/2']">Runs (Summary) 1/6/2023</a>
+                        <a [routerLink]="['/reports/view/' + report.reportId]">{{report.reportName}}</a>
                       </td>
                       <td class="action">
                         <a href="javascript:void(0)" onclick="this.blur(); App.Reports.share(2, true); return false;"
@@ -108,42 +85,6 @@
                       <td class="action">
                         <a tooltip-text="Delete this report." class="deleteLink link-tooltip" href="javascript:void(0)"
                           onclick="this.blur(); App.Dialogs.remove('Really delete this report? This irrevocably deletes this report for all users and cannot be undone.', null, null, null, function() { App.Reports.remove(2); });; return false;">
-                          <div class="icon-small-delete "></div>
-                        </a>
-                        <span class="busy deleteBusy">
-                          <div class="icon-progress-inline"></div>
-                        </span>
-                      </td>
-                    </tr>
-
-
-
-                    <tr id="report-1" class="even">
-                      <td class="icon">
-                        <input data-type="report" type="checkbox" name="report" value="1" />
-                      </td>
-                      <td class="icon">
-                        <div class="icon-report-10"></div>
-                      </td>
-
-                      <td>
-                        <a [routerLink]="['/reports/view/1']">Activity Summary (Cases) 1/6/2023</a>
-                      </td>
-                      <td class="action">
-                        <a href="javascript:void(0)" onclick="this.blur(); App.Reports.share(1, true); return false;"
-                          class="link-tooltip" tooltip-text="Share this report via email.">
-                          <div class="icon-small-share "></div>
-                        </a>
-                      </td>
-                      <td class="action">
-                        <a href="index.php?/reports/rerun/1" class="link-tooltip"
-                          tooltip-text="Create or schedule a similar report.">
-                          <div class="icon-small-copy "></div>
-                        </a>
-                      </td>
-                      <td class="action">
-                        <a tooltip-text="Delete this report." class="deleteLink link-tooltip" href="javascript:void(0)"
-                          onclick="this.blur(); App.Dialogs.remove('Really delete this report? This irrevocably deletes this report for all users and cannot be undone.', null, null, null, function() { App.Reports.remove(1); });; return false;">
                           <div class="icon-small-delete "></div>
                         </a>
                         <span class="busy deleteBusy">
