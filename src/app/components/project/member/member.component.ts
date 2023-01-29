@@ -1,0 +1,68 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ProjectUser } from 'src/app/models/projectUser';
+import { MemberService } from 'src/app/services/member.service';
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
+
+@Component({
+  selector: 'app-member',
+  templateUrl: './member.component.html',
+  styleUrls: ['./member.component.scss']
+})
+export class MemberComponent implements OnInit {
+  constructor(private route: ActivatedRoute,
+    private memberService: MemberService,
+    public dialog: MatDialog,
+    private toastr: ToastrService
+  ) { }
+
+  projectId = 0;
+  projectUsers: ProjectUser[] = []
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      console.log(params);
+      this.projectId = params['id'];
+      console.log(this.projectId);
+      this.refreshProjectUsers(this.projectId);
+    });
+  }
+
+  refreshProjectUsers(projectId: number) {
+      this.memberService.findAllByProjectId(projectId).subscribe(projectUsers => {
+        console.log(projectUsers);
+        this.projectUsers = projectUsers;
+      });
+  }
+
+  openDeleteDialog(projectUser: ProjectUser) {
+    this.dialog.open<ConfirmDeleteDialogComponent, string, string>(ConfirmDeleteDialogComponent, {
+      data: projectUser.email
+    }).afterClosed()
+      .subscribe(command => {
+        if (command === undefined || command === 'cancel') {
+          return;
+        }
+        if (command === 'delete') {
+          this.memberService.delete(projectUser.projectUserId).subscribe({
+            next: (res) => {
+              console.log(res);
+              if (res.deletedCount == 0) {
+                this.toastr.error('User is not available', 'Delete member failed');
+              } else {
+                this.toastr.success('Delete member success', 'Success');
+              }
+            },
+            error: (e) => {
+              console.log(e);
+              this.toastr.error('User is not available', 'Delete member failed');
+            },
+            complete: () => this.refreshProjectUsers(this.projectId)
+          });
+        }
+      });
+  }
+
+}

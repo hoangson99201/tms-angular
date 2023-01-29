@@ -1,0 +1,93 @@
+<div style="display: flex; height: 100%;">
+  <app-new-menu-project [projectId]="projectId + ''" [selectedMenu]="'members'"></app-new-menu-project>
+  <div style="display: flex; flex-direction: column;">
+    <app-header></app-header>
+    <div style="flex: 1;">
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/app-modern-combined.css"
+        media="all" />
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/font.css" media="all" />
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/drilldown.css"
+        media="all" />
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/style.css"
+        media="all" />
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/brand/brand-modern.css"
+        media="all" />
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/assembla.css"
+        media="all" />
+      <link type="text/css" rel="stylesheet"
+        href="https://static.testrail.io/7.5.4.2008/css/banner-enterprise-modern.css" media="all" />
+      <link type="text/css" rel="stylesheet" href="https://static.testrail.io/7.5.4.2008/css/autocomplete.css"
+        media="all" />
+
+
+      <div class="table" style="height: 100%;">
+        <div id="content" class="column content overflow-content">
+          <div id="content-header" class="content-header content-header-default">
+            <div class="content-header-inner">
+              <div class="content-header-result"></div>
+
+              <div class="content-header-title page_title">
+                Members
+              </div>
+            </div>
+          </div>
+          <div id="content-inner" class="content-inner goals-clear">
+
+            <div id="usersTable">
+              <table class="grid" id="example">
+                <colgroup>
+                  <col class="width-24">
+                  <col class="width-20">
+                  <col class="width-13">
+                </colgroup>
+                <tbody>
+                  <tr class="header">
+                    <th>
+                      <a class="link-noline" title="User">
+                        <div>User </div>
+                      </a>
+                    </th>
+                    <th>
+                      <a class="link-noline" title="Email Address">
+                        <div>Email Address </div>
+                      </a>
+                    </th>
+                    <th>
+                      <a class="link-noline" title="Role">
+                        <div>Action </div>
+                      </a>
+                    </th>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr *ngFor="let user of projectUsers">
+                    <td>
+                      {{user.fullname}}
+                    </td>
+                    <td>
+                      {{user.email}}
+                    </td>
+                    <td>
+                      <button (click)="openDeleteDialog(user)"
+                        class="button button-left button-negative button-cancel save-cancel-button">
+                        Delete
+                      </button>
+                      <!-- <a *ngIf="isActive('EDIT_USER')" (click)="openDropDown($event, user.userId)"
+                          class="dropdownLink">
+                          <span class="custom-dropdown dropdown-icon-black"><span class="role">{{user.roleName}}
+                            </span>
+                          </span>
+                        </a>
+                        <a *ngIf="!isActive('EDIT_USER')" class="dropdownLink">{{user.roleName}}
+                        </a> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

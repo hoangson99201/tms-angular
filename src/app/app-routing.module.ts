@@ -19,6 +19,7 @@ import { AddTestCaseComponent } from './components/project/testcase/add-test-cas
 import { TestcaseComponent } from './components/project/testcase/testcase.component';
 import { SearchDetailProjectComponent } from './components/search-detail-project/search-detail-project.component';
 import { SignUpComponent } from './components/signup/signup.component';
+import { MemberComponent } from './components/project/member/member.component';
 
 const routes: Routes = [
   {
@@ -108,6 +109,10 @@ const routes: Routes = [
   {
     path: 'search/:id',
     component: SearchDetailProjectComponent,
+  },
+  {
+    path: 'members/:id',
+    component: MemberComponent,
   },
 ];
 
