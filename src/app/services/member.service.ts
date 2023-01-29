@@ -17,4 +17,10 @@ export class MemberService {
   delete(projectUserId: number): Observable<{ deletedCount: number }> {
     return this._http.delete<{ deletedCount: number }>("/tms/api/v1/project-user/" + projectUserId);
   }
+
+  create(projectUser: ProjectUser): Observable<string> {
+    return this._http.post("/tms/api/v1/project-user", projectUser, {
+      responseType: 'text'
+    });
+  }
 }

@@ -52,6 +52,7 @@ import { AddReportComponent } from './components/project/report/add-report/add-r
 import { SelectTestRunDialogComponent } from './components/project/report/add-report/select-test-run-dialog/select-test-run-dialog.component';
 import { DetailReportComponent } from './components/project/report/detail-report/detail-report.component';
 import { MemberComponent } from './components/project/member/member.component';
+import { AddDialogComponent } from './components/project/member/add-dialog/add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { MemberComponent } from './components/project/member/member.component';
     AddReportComponent,
     SelectTestRunDialogComponent,
     DetailReportComponent,
-    MemberComponent
+    MemberComponent,
+    AddDialogComponent
   ],
   entryComponents: [SectionDialogComponent, AddResultComponent, StatusDropdownComponent, SelectCaseDialogComponent, ConfirmCloseDialogComponent],
   imports: [

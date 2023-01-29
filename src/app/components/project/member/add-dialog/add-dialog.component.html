@@ -1,0 +1,22 @@
+<div class="ui-dialog" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-confirmDialog"
+  style="display: block; z-index: 1004; outline: 0px; height: auto; width: 350px;  position: inherit !important;"
+  id="dialog-ident-confirmDialog">
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title"
+      id="ui-dialog-title-confirmDialog">Add Member</span><a class="ui-dialog-titlebar-close ui-corner-all"
+      role="button"><span class="ui-icon ui-icon-closethick" (click)="close()">close</span></a></div>
+  <div class="dialog ui-dialog-content ui-widget-content" id="confirmDialog"
+    style="width: auto; display: block; min-height: 0px; height: auto;">
+    <div class="dialog-title">Add Member</div>
+    <div class="dialog-body">
+      <select [(ngModel)]="userId" class="form-control form-select" style="width: 200px">
+        <option *ngFor="let user of users" [value]="user.userId">{{user.email}}</option>
+      </select>
+    </div>
+    <div class="button-group dialog-buttons-highlighted">
+      <a class="button button-ok button-left button-positive dialog-action-default" (click)="submit()">
+        Add </a>
+      <a class="button button-cancel button-left button-negative dialog-action-close" (click)="close()">
+        Cancel </a>
+    </div>
+  </div>
+</div>

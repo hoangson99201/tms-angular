@@ -6,6 +6,7 @@ import { ProjectUser } from 'src/app/models/projectUser';
 import { User } from 'src/app/models/user';
 import { MemberService } from 'src/app/services/member.service';
 import { UserService } from 'src/app/services/user.service';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
 import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
@@ -49,7 +50,7 @@ export class MemberComponent implements OnInit {
       data: projectUser.email
     }).afterClosed()
       .subscribe(command => {
-        if (command === undefined || command === 'cancel') {
+        if (command === undefined || command === 'cancel' || projectUser.projectUserId === undefined) {
           return;
         }
         if (command === 'delete') {
@@ -72,4 +73,28 @@ export class MemberComponent implements OnInit {
       });
   }
 
+  openCreateDialog() {
+    let setProjectUserId = new Set(this.projectUsers.map(x => x.userId));
+    let unSetUsers = this.users.filter(x => x.userId && !setProjectUserId.has(x.userId));
+    this.dialog.open<AddDialogComponent, User[], number>(AddDialogComponent, {
+      data: unSetUsers
+    }).afterClosed()
+      .subscribe(userId => {
+        if (!userId) {
+          return;
+        }
+        this.memberService.create({projectId: this.projectId, userId: userId}).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.toastr.success('Add member success', 'Success');
+            this.refreshProjectUsers(this.projectId);
+          },
+          error: (e) => {
+            console.log(e);
+            this.toastr.error('Add member failed', 'Error');
+            this.refreshProjectUsers(this.projectId);
+          },
+        });
+      });
+  }
 }

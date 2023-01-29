@@ -1,7 +1,7 @@
 export interface ProjectUser {
-  projectUserId: number,
+  projectUserId?: number,
   projectId: number,
   userId: number,
-  fullname: string,
-  email: string,
+  fullname?: string,
+  email?: string,
 }
