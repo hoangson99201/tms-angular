@@ -19,8 +19,8 @@ export class ManageUserRolesComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private router: Router,
     private authService: AuthService
-  ) {}
-  public usersArray: any[] = [];
+  ) { }
+  public usersArray: User[] = [];
   public userId: any = '';
   public rolesArray: Role[] = [];
   public displayTab: string = 'user';
@@ -42,13 +42,12 @@ export class ManageUserRolesComponent implements OnInit, OnDestroy {
       this.roleService.findAll().subscribe((rolesRes) => {
         console.log(rolesRes);
         this.rolesArray = [...rolesRes];
-        this.usersArray = [...usersRes];
-        this.usersArray = this.usersArray.map((a, i) => {
+        let mapRoleId = new Map(rolesRes.map(i => [i.roleId, i]))
+        // remove user have undefined role
+        this.usersArray = usersRes.filter(x => x.roleId && mapRoleId.has(x.roleId));
+        this.usersArray = this.usersArray.map(a => {
           return {
             ...a,
-            isProjectAdmin: rolesRes.find((b) => {
-              return b.roleId == a.roleId;
-            })?.isProjectAdmin,
             roleName: rolesRes.find((b) => {
               return b.roleId == a.roleId;
             })?.roleName,

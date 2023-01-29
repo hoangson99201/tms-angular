@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectUser } from 'src/app/models/projectUser';
+import { User } from 'src/app/models/user';
 import { MemberService } from 'src/app/services/member.service';
+import { UserService } from 'src/app/services/user.service';
 import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
@@ -15,11 +17,13 @@ export class MemberComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private memberService: MemberService,
     public dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
   ) { }
 
   projectId = 0;
   projectUsers: ProjectUser[] = []
+  users: User[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -27,14 +31,17 @@ export class MemberComponent implements OnInit {
       this.projectId = params['id'];
       console.log(this.projectId);
       this.refreshProjectUsers(this.projectId);
+      this.userService.getUsers().subscribe(users => {
+        this.users = users;
+      });
     });
   }
 
   refreshProjectUsers(projectId: number) {
-      this.memberService.findAllByProjectId(projectId).subscribe(projectUsers => {
-        console.log(projectUsers);
-        this.projectUsers = projectUsers;
-      });
+    this.memberService.findAllByProjectId(projectId).subscribe(projectUsers => {
+      console.log(projectUsers);
+      this.projectUsers = projectUsers;
+    });
   }
 
   openDeleteDialog(projectUser: ProjectUser) {
