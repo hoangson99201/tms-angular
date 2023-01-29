@@ -3,6 +3,7 @@ export interface TestRun {
   runName: string,
   runId?: string,
   milestoneId?: number,
+  milestoneName?: string,
   assignedToId?: number,
   description?: string,
   userId?: number,
@@ -19,4 +20,5 @@ export interface TestRun {
   failedCount?: number,
   testRunResults?: Result[],
   results?: Result[], // Report only
+  isSelected?: boolean, // Report only
 }

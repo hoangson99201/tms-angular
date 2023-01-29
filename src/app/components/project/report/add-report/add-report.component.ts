@@ -25,22 +25,28 @@ export class AddReportComponent {
   public des: string = '';
   public testRunsSelected: TestRun[] = [];
 
+  public report: Report = {
+    projectId: parseInt(this.projectId),
+    reportName: '',
+    reportDescription: '',
+    jsonData: JSON.stringify({
+      results: [],
+      testRuns: this.testRunsSelected,
+    }),
+  };
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.projectId = params['id'];
       console.log(this.projectId);
+      this.report.projectId = parseInt(this.projectId);
     });
   }
-  public report: Report = {
-    fullName: '',
-    reportDescription: '',
-    jsonData: {
-      results: [],
-      testRuns: this.testRunsSelected
-    }
-  };
   submit() {
+    if (!(this.report.testRunIds && this.report.reportName && this.report.reportName.trim())) {
+      this.toastr.warning('Name and Test Run must not empty', 'Warning');
+      return;
+    }
     this.reportService.addReport(this.report).subscribe({
       next: (res) => {
         console.log(res);
@@ -59,14 +65,23 @@ export class AddReportComponent {
       .open(SelectTestRunDialogComponent, {
         data: {
           project_id: this.projectId,
+          test_run_ids: this.report.testRunIds
         },
       })
       .afterClosed()
       .subscribe((result) => {
-        if (result && result.event != 'Cancel' && result.data) {
+        if (result && result.data) {
           this.testRunsSelected = [...result.data];
         }
         console.log(this.testRunsSelected);
+        this.report.jsonData = JSON.stringify({
+          results: [],
+          testRuns: this.testRunsSelected,
+        });
+        this.report.testRunIds = this.testRunsSelected.map((a) => {
+          return a.runId;
+        });
+        console.log(this.report.testRunIds);
       });
   }
 }

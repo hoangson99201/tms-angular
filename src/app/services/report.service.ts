@@ -15,7 +15,7 @@ export class ReportService {
   }
 
   findAllByProjectId(projectId: number): Observable<Report[]> {
-    return this._http.get<Report[]>("/tms/api/v1/report/" + projectId);
+    return this._http.get<Report[]>("/tms/api/v1/project/" + projectId + "/report");
   }
 
   addReport(report: Report): Observable<string> {

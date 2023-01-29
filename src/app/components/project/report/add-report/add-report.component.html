@@ -43,16 +43,13 @@
                 <div class="form-group form-group-main">
                   <label for="name">Name <span class="form-required">*</span></label>
                   <input class="form-control " type="text" name="name" id="name" maxlength="250"
-                    value="Runs (Summary) %date%" [(ngModel)]="report.fullName" />
-                  <div class="form-description">You can use the following variables in the report name: <a class="link"
-                      href="javascript:void(0)">date</a>, <a class="link" href="javascript:void(0)">date/time</a>.
-                  </div>
+                    value="Runs (Summary) %date%" [(ngModel)]="report.reportName" />
                 </div>
                 <div class="form-group bottom">
                   <label for="description">
                     Description </label>
-                  <textarea class="form-control form-control-full " rows="6" name="description"
-                    id="description" [(ngModel)]="report.reportDescription" ></textarea>
+                  <textarea class="form-control form-control-full " rows="6" name="description" id="description"
+                    [(ngModel)]="report.reportDescription"></textarea>
                   <div class="form-description form-description-full">Use the description to explain the content and
                     purpose
                     of this report or add links to additional resources.</div>
@@ -78,10 +75,15 @@
                             <table id="custom_runs_grid" class="grid">
                               <tr class="header droppable">
                                 <th>Test Run</th>
-                                <th>Test Plan</th>
+                                <th></th>
                                 <th>Milestone</th>
                                 <th></th>
-                                <th></th>
+                              </tr>
+                              <tr *ngFor="let testRun of testRunsSelected">
+                                <td>{{testRun.runName}}</td>
+                                <td></td>
+                                <td>{{testRun.milestoneName}}</td>
+                                <td></td>
                               </tr>
                             </table>
                           </div>
@@ -316,9 +318,9 @@
                 </div>
 
                 <div class="button-group form-buttons">
-                  <button (click)="submit()" class="button button-left button-positive button-ok" id="submit" >
+                  <button (click)="submit()" class="button button-left button-positive button-ok" id="submit">
                     Add Report </button>
-                  <a  class="button button-left button-negative button-cancel">
+                  <a class="button button-left button-negative button-cancel">
                     Cancel </a>
                 </div>
 

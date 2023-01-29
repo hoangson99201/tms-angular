@@ -23,6 +23,7 @@ export class ReportComponent {
       this.projectId = params['id'];
       console.log(this.projectId);
       this.reportService.findAllByProjectId(parseInt(this.projectId)).subscribe(reports => {
+        console.log(reports);
         this.listReport = reports;
       });
     });

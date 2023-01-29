@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TestRun } from 'src/app/models/test-run';
 import { AuthService } from 'src/app/services/auth.service';
 import { TestRunService } from 'src/app/services/test-run.service';
+import { MilestoneService } from 'src/app/services/milestone.service';
 @Component({
   selector: 'app-select-test-run-dialog',
   templateUrl: './select-test-run-dialog.component.html',
@@ -22,7 +23,8 @@ export class SelectTestRunDialogComponent {
     private authService: AuthService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private testRunDialog: MatDialogRef<SelectTestRunDialogComponent>
+    private testRunDialog: MatDialogRef<SelectTestRunDialogComponent>,
+    private milestoneService: MilestoneService
   ) {}
 
   public projectId: string = '';
@@ -61,6 +63,20 @@ export class SelectTestRunDialogComponent {
                   continue;
                 }
                 testRun.completedOn = date;
+
+                if (testRun.milestoneId) {
+                  this.milestoneService
+                    .findByMilestoneId(testRun.milestoneId)
+                    .subscribe((milestone) => {
+                      testRun.milestoneName = milestone.milestoneName;
+                    });
+                }
+                if (this.data.test_run_ids) {
+                  testRun.isSelected = this.data.test_run_ids.includes(
+                    testRun.runId
+                  );
+                }
+
                 let array = this.completedTestRuns.get(testRun.completedOn);
                 if (!array) {
                   this.completedTestRuns.set(testRun.completedOn, [testRun]);
@@ -86,11 +102,14 @@ export class SelectTestRunDialogComponent {
   }
 
   select(id: any) {
+    let testRunSet = new Set();
     let testRun = this.testRuns.find((a) => {
       if (a.runId == id) {
+        testRunSet.add(id);
         return a;
       } else return undefined;
     });
+    this.data.test_run_ids = [...testRunSet];
     if (testRun) this.selectedTestRun.add(testRun);
     console.log(this.selectedTestRun);
   }
@@ -100,18 +119,38 @@ export class SelectTestRunDialogComponent {
         return a;
       })
     );
-    console.log(this.selectedTestRun);
+    this.data.test_run_ids = [...this.selectedTestRun].map((a) => {
+      return a.runId;
+    });
+    this.completedTestRuns.forEach((a) => {
+      a.forEach((b) => {
+        b.isSelected = true;
+      });
+    });
+    console.log(this.completedTestRuns);
+
   }
 
   unselectAll() {
     this.selectedTestRun = new Set<TestRun>();
+    this.data.test_run_ids = [];
     console.log(this.selectedTestRun);
+    this.completedTestRuns.forEach((a) => {
+      a.forEach((b) => {
+        b.isSelected = false;
+      });
+    });
   }
 
   submit() {
     this.testRunDialog.close({
       event: '',
       data: this.selectedTestRun,
+    });
+  }
+  close() {
+    this.testRunDialog.close({
+      event: '',
     });
   }
 }

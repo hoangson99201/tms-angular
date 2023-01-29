@@ -33,7 +33,8 @@
             </div>
             <div id="content-inner" class="content-inner goals-clear">
 
-              <div *ngIf="!(listReport && listReport.length > 0)" class="empty empty-with-explanation" style="margin-bottom: 2em">
+              <div *ngIf="!(listReport && listReport.length > 0)" class="empty empty-with-explanation"
+                style="margin-bottom: 2em">
                 <div class="empty-explanation">
                   <div class="empty-explanation-title">What's a report?</div>
                   <div class="empty-explanation-body">A report lets you generate statistics and charts
@@ -48,16 +49,15 @@
                 </div>
               </div>
 
-              <h1  *ngIf="(listReport && listReport.length > 0)" class="top width-4">
+              <!-- <h1  *ngIf="(listReport && listReport.length > 0)" class="top width-4">
                 Private
-              </h1>
-              <div  *ngIf="(listReport && listReport.length > 0)" id="private" class="report-title">
+              </h1> -->
+              <div *ngIf="(listReport && listReport.length > 0)" id="private" class="report-title">
                 <div id="report_914173544">
-                  <span class="select-checkbox"><input type="checkbox" onchange="SelectAllReports(this)"
-                      name="select_all" /></span>
-                  <h3 class="top">
+                  <span class="select-checkbox"></span>
+                  <!-- <h3 class="top">
                     <span class="title">January 2023</span>
-                  </h3>
+                  </h3> -->
                   <table class="grid">
                     <tr *ngFor="let report of listReport" id="report-{{report.reportId}}" class="odd">
                       <!-- <td class="icon">
