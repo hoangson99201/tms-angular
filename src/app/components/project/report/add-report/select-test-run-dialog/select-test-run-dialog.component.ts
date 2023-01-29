@@ -146,9 +146,6 @@ export class SelectTestRunDialogComponent {
   }
 
   submit() {
-    console.log(this.selectedTestRun);
-    console.log('============================');
-    console.log(this.data.old_test_runs);
     if (
       [...this.selectedTestRun].every((x) => this.data.old_test_runs.has(x)) &&
       this.selectedTestRun.size == this.data.old_test_runs.size &&

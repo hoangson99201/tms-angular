@@ -55,6 +55,10 @@ const routes: Routes = [
     component: AddTestRunComponent,
   },
   {
+    path: 'test-runs-add/:id/rerun/:rerun-id',
+    component: AddTestRunComponent,
+  },
+  {
     path: 'test-runs-edit/:id',
     component: AddTestRunComponent,
   },

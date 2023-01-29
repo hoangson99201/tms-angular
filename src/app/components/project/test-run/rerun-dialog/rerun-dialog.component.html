@@ -24,39 +24,11 @@
                   onclick="this.blur(); App.Controls.Checkboxes.checkNone('rerunStatuses'); return false;">None</a>
               </div>
             </div>
-            <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-1">
+            <div *ngFor="let status of statusArray" class="checkbox checkbox-list-item">
               <label>
-                <span class="checkbox-name text-ppp">Passed</span>
-                <input name="rerunStatuses[]" id="rerunStatuses-1" type="checkbox" value="1" checked="checked"
-                  class="checkbox-list-input">
-              </label>
-            </div>
-            <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-2">
-              <label>
-                <span class="checkbox-name text-ppp">Blocked</span>
-                <input name="rerunStatuses[]" id="rerunStatuses-2" type="checkbox" value="2" checked="checked"
-                  class="checkbox-list-input">
-              </label>
-            </div>
-            <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-3">
-              <label>
-                <span class="checkbox-name text-ppp">Untested</span>
-                <input name="rerunStatuses[]" id="rerunStatuses-3" type="checkbox" value="3" checked="checked"
-                  class="checkbox-list-input">
-              </label>
-            </div>
-            <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-4">
-              <label>
-                <span class="checkbox-name text-ppp">Retest</span>
-                <input name="rerunStatuses[]" id="rerunStatuses-4" type="checkbox" value="4" checked="checked"
-                  class="checkbox-list-input">
-              </label>
-            </div>
-            <div class="checkbox checkbox-list-item" id="rerunStatuses_checkbox-5">
-              <label>
-                <span class="checkbox-name text-ppp">Failed</span>
-                <input name="rerunStatuses[]" id="rerunStatuses-5" type="checkbox" value="5" checked="checked"
-                  class="checkbox-list-input">
+                <span class="checkbox-name text-ppp">{{status.status}}</span>
+                <input (click)="select(status.status)" name="rerunStatuses[]" id="rerunStatuses-{{status.status}}"
+                  type="checkbox" value="{{status.status}}" [checked]="selectedStatus.has(status.isSelected)" class="checkbox-list-input">
               </label>
             </div>
           </div>
@@ -70,9 +42,9 @@
       </div>
       <div>
         <div class="button-group dialog-buttons-highlighted">
-          <button class="button button-left button-positive button-ok dialog-action-default" type="submit">
+          <button (click)="submit()" class="button button-left button-positive button-ok dialog-action-default" type="submit">
             OK </button>
-          <a class="button button-left button-negative button-cancel dialog-action-close">
+          <a (click)="close()" class="button button-left button-negative button-cancel dialog-action-close">
             Cancel </a>
         </div>
       </div>

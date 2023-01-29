@@ -15,7 +15,7 @@ export class SelectCaseDialogComponent implements OnInit {
     private testCaseService: TestCaseService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) document: Document
-  ) { }
+  ) {}
 
   public selectedTestCases: number[] = [];
   public testCases: TestCase[] = [];

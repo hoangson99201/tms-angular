@@ -89,10 +89,12 @@ export class TestRunComponent extends BasePaginator {
     return this.authService.isActive(functionalityName);
   }
 
-  openDialog() {
+  openDialog(runId: any) {
     const dialogRef = this.dialog
       .open(RerunDialogComponent, {
         data: {
+          projectId: this.projectId,
+          testrunId: runId,
         },
       })
       .afterClosed()

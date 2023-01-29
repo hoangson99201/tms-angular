@@ -6,10 +6,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Mode } from 'src/app/core/mode';
 import { Milestone } from 'src/app/models/milestone';
 import { Result } from 'src/app/models/result';
+import { TestCase } from 'src/app/models/test-case';
 import { TestRun } from 'src/app/models/test-run';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { MilestoneService } from 'src/app/services/milestone.service';
+import { ResultService } from 'src/app/services/result.service';
+import { TestCaseService } from 'src/app/services/test-case.service';
 import { TestRunService } from 'src/app/services/test-run.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
@@ -30,6 +33,8 @@ export class AddTestRunComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     public dialog: MatDialog,
+    private resultService: ResultService,
+    private testCaseService: TestCaseService,
     private authService: AuthService
   ) {}
 
@@ -40,9 +45,14 @@ export class AddTestRunComponent implements OnInit {
   };
   milestones: Milestone[] = [];
   users: User[] = [];
-  testCasesIdIncluded: number[] = [];
+  testCasesIdIncluded: (number | undefined)[] = [];
   currentMode: Mode = Mode.Create;
   Mode = Mode;
+  rerunId: string = '';
+  projectId: string = '';
+
+  public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
+  public testCases: TestCase[] = [];
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-runs-edit/')
       ? Mode.Update
@@ -54,6 +64,8 @@ export class AddTestRunComponent implements OnInit {
       switch (this.currentMode) {
         case Mode.Create:
           this.testRun.projectId = params['id'];
+          this.projectId = params['id'];
+          this.rerunId = params['rerun-id'];
           this.getMilestonesByProjectId(this.testRun.projectId);
           break;
         case Mode.Update:
@@ -73,6 +85,36 @@ export class AddTestRunComponent implements OnInit {
         console.log(users);
       });
     });
+    this.rerun();
+  }
+
+  rerun() {
+    if (this.rerunId) {
+      this.resultService
+        .findAllByTestRunId(parseInt(this.rerunId))
+        .subscribe((results) => {
+          var statusData = this.testRunService.getData();
+          console.log(statusData);
+          if (statusData && statusData.length < 4) {
+            this.testRun.includeAll = false;
+          }
+          var resultFilter = results
+            .filter((a) => statusData.includes(a.status))
+            .map((b) => b.caseId);
+          console.log(resultFilter);
+
+          this.testCaseService
+            .findAllByProjectId(+this.projectId)
+            .subscribe((testCases) => {
+              this.testCases = testCases;
+              let casetFilter = testCases.filter((a) =>
+                resultFilter.includes(a.caseId)
+              );
+              this.testCasesIdIncluded = casetFilter.map((a) => a.caseId);
+              console.log(casetFilter);
+            });
+        });
+    }
   }
 
   getMilestonesByProjectId(projectId: number | undefined) {
