@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,12 +19,14 @@ export class AddReportComponent {
     private reportService: ReportService,
     private toastr: ToastrService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _location: Location
   ) {}
   public projectId: string = '';
   public fullName: string = '';
   public des: string = '';
   public testRunsSelected: TestRun[] = [];
+  public oldSelectedTestRun = new Set<TestRun>();
 
   public report: Report = {
     projectId: parseInt(this.projectId),
@@ -43,7 +46,13 @@ export class AddReportComponent {
     });
   }
   submit() {
-    if (!(this.report.testRunIds && this.report.reportName && this.report.reportName.trim())) {
+    if (
+      !(
+        this.report.testRunIds &&
+        this.report.reportName &&
+        this.report.reportName.trim()
+      )
+    ) {
       this.toastr.warning('Name and Test Run must not empty', 'Warning');
       return;
     }
@@ -65,12 +74,14 @@ export class AddReportComponent {
       .open(SelectTestRunDialogComponent, {
         data: {
           project_id: this.projectId,
-          test_run_ids: this.report.testRunIds
+          test_run_ids: this.report.testRunIds,
+          old_test_runs: this.oldSelectedTestRun,
         },
       })
       .afterClosed()
       .subscribe((result) => {
         if (result && result.data) {
+          this.oldSelectedTestRun = result.data;
           this.testRunsSelected = [...result.data];
         }
         console.log(this.testRunsSelected);
@@ -83,5 +94,9 @@ export class AddReportComponent {
         });
         console.log(this.report.testRunIds);
       });
+  }
+
+  backClicked() {
+    this._location.back();
   }
 }

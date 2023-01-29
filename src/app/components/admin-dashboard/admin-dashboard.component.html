@@ -51,7 +51,8 @@
                       <div class="summary-links text-secondary">
                         <a class="link" [routerLink]="['/milestones', project.projectId]">Milestones</a> |
                         <a class="link" [routerLink]="['/test-runs', project.projectId]">Test Runs</a> |
-                        <a class="link" [routerLink]="['/test-cases', project.projectId]">Test Cases</a>
+                        <a class="link" [routerLink]="['/test-cases', project.projectId]">Test Cases</a> |
+                        <a class="link" [routerLink]="['/reports', project.projectId]">Reports</a>
                       </div>
                       <div class="summary-description">
                         Contains <strong>{{project.activeTestRun}}</strong> active test runs and

@@ -71,7 +71,11 @@ export class SelectTestRunDialogComponent {
                       testRun.milestoneName = milestone.milestoneName;
                     });
                 }
-                if (this.data.test_run_ids) {
+                if (this.data.test_run_ids && this.data.old_test_runs) {
+                  this.data.old_test_runs.forEach((a: TestRun) => {
+                    this.selectedTestRun.add(a);
+                  });
+
                   testRun.isSelected = this.data.test_run_ids.includes(
                     testRun.runId
                   );
@@ -128,7 +132,6 @@ export class SelectTestRunDialogComponent {
       });
     });
     console.log(this.completedTestRuns);
-
   }
 
   unselectAll() {
@@ -143,10 +146,24 @@ export class SelectTestRunDialogComponent {
   }
 
   submit() {
-    this.testRunDialog.close({
-      event: '',
-      data: this.selectedTestRun,
-    });
+    console.log(this.selectedTestRun);
+    console.log('============================');
+    console.log(this.data.old_test_runs);
+    if (
+      [...this.selectedTestRun].every((x) => this.data.old_test_runs.has(x)) &&
+      this.selectedTestRun.size == this.data.old_test_runs.size &&
+      this.data.old_test_runs.size > 0
+    ) {
+      this.testRunDialog.close({
+        event: '',
+        data: this.data.old_test_runs,
+      });
+    } else {
+      this.testRunDialog.close({
+        event: '',
+        data: this.selectedTestRun,
+      });
+    }
   }
   close() {
     this.testRunDialog.close({
