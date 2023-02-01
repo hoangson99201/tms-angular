@@ -71,7 +71,8 @@
                                 {{testRun.runName}}
                               </a>
                             </div>
-                            <div class="summary-links text-secondary" *ngIf="isActive('EDIT_TESTRUN')">
+                            <!-- <div class="summary-links text-secondary" *ngIf="isActive('EDIT_TESTRUN')"> -->
+                              <div class="summary-links text-secondary" >
                               By {{testRun.fullname}} on {{testRun.createdOn}}
                                | <a class="link" [routerLink]="['/test-runs-edit', testRun.runId]">Edit</a>
                                | <a class="link" (click)="openDialog(testRun.runId)">Rerun</a>

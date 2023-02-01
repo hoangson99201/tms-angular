@@ -34,6 +34,19 @@ export class RerunDialogComponent {
     this.selectedStatus.add(status);
   }
 
+  selectAll() {
+    this.selectedStatus = new Set(this.statusArray.map((a) => a.status));
+    this.statusArray.forEach((a) => (a.isSelected = true));
+    console.log(this.statusArray);
+
+  }
+
+  clearAll() {
+    this.selectedStatus = new Set();
+    this.statusArray.forEach((a) => (a.isSelected = false));
+    console.log(this.statusArray);
+  }
+
   statusArray = [
     { status: 'Passed', isSelected: false },
     { status: 'Blocked', isSelected: false },

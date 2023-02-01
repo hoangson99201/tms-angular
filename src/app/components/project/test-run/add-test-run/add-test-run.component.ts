@@ -53,7 +53,7 @@ export class AddTestRunComponent implements OnInit {
 
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public testCases: TestCase[] = [];
-  public oldSelectedTestCase: number[] = [];
+  public oldSelectedTestCase: (number | undefined)[] = [];
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-runs-edit/')
       ? Mode.Update
@@ -95,25 +95,28 @@ export class AddTestRunComponent implements OnInit {
         .findAllByTestRunId(parseInt(this.rerunId))
         .subscribe((results) => {
           var statusData = this.testRunService.getData();
-          console.log(statusData);
-          if (statusData && statusData.length < 4) {
-            this.testRun.includeAll = false;
-          }
-          var resultFilter = results
-            .filter((a) => statusData.includes(a.status))
-            .map((b) => b.caseId);
-          console.log(resultFilter);
+          if (statusData) {
+            console.log(statusData);
+            if (statusData && statusData.length < 4) {
+              this.testRun.includeAll = false;
+            }
+            var resultFilter = results
+              .filter((a) => statusData.includes(a.status))
+              .map((b) => b.caseId);
+            console.log(resultFilter);
 
-          this.testCaseService
-            .findAllByProjectId(+this.projectId)
-            .subscribe((testCases) => {
-              this.testCases = testCases;
-              let casetFilter = testCases.filter((a) =>
-                resultFilter.includes(a.caseId)
-              );
-              this.testCasesIdIncluded = casetFilter.map((a) => a.caseId);
-              console.log(casetFilter);
-            });
+            this.testCaseService
+              .findAllByProjectId(+this.projectId)
+              .subscribe((testCases) => {
+                this.testCases = testCases;
+                let casetFilter = testCases.filter((a) =>
+                  resultFilter.includes(a.caseId)
+                );
+                this.testCasesIdIncluded = casetFilter.map((a) => a.caseId);
+                this.oldSelectedTestCase = casetFilter.map((a) => a.caseId);
+                console.log(casetFilter);
+              });
+          }
         });
     }
   }

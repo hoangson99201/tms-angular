@@ -19,16 +19,16 @@
             <div class="checkbox-list-toolbar toolbar toolbar-compact">
               <div class="toolbar-inner text-secondary">
                 Select <a class="link" href="javascript:void(0)"
-                  onclick="this.blur(); App.Controls.Checkboxes.checkAll('rerunStatuses'); return false;">All</a>
+                  (click)="selectAll()">All</a>
                 | <a class="link" href="javascript:void(0)"
-                  onclick="this.blur(); App.Controls.Checkboxes.checkNone('rerunStatuses'); return false;">None</a>
+                  (click)="clearAll()">None</a>
               </div>
             </div>
             <div *ngFor="let status of statusArray" class="checkbox checkbox-list-item">
               <label>
                 <span class="checkbox-name text-ppp">{{status.status}}</span>
                 <input (click)="select(status.status)" name="rerunStatuses[]" id="rerunStatuses-{{status.status}}"
-                  type="checkbox" value="{{status.status}}" [checked]="selectedStatus.has(status.isSelected)" class="checkbox-list-input">
+                  type="checkbox" value="{{status.status}}" [checked]="status.isSelected" class="checkbox-list-input">
               </label>
             </div>
           </div>

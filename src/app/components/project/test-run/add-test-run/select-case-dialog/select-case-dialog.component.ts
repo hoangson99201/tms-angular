@@ -37,15 +37,16 @@ export class SelectCaseDialogComponent implements OnInit {
             testCases.push(testCase);
           }
           console.log(this.data.test_cases_ids);
+          console.log('==============');
           console.log(this.data.old_test_cases);
           if (this.data.test_cases_ids && this.data.old_test_cases) {
             this.data.old_test_cases.forEach((a: number) => {
               this.selectedTestCases.push(a);
             });
 
-            testCase.isSelected = this.data.test_cases_ids.includes(
-              testCase.caseId + ''
-            );
+            testCase.isSelected =
+              this.data.test_cases_ids.includes(testCase.caseId + '') ||
+              this.data.test_cases_ids.includes(testCase.caseId);
           }
         }
       });
@@ -95,10 +96,24 @@ export class SelectCaseDialogComponent implements OnInit {
   }
 
   submit() {
-    this.sectionDialog.close({
-      // event: this.action,
-      data: [...new Set(this.selectedTestCases)],
-    });
+    if (
+      [...new Set(this.selectedTestCases)].every((x) =>
+        this.data.old_test_cases.includes(x)
+      ) &&
+      this.selectedTestCases.length == this.data.old_test_cases.length &&
+      this.data.old_test_cases.length > 0
+    ) {
+      this.sectionDialog.close({
+        event: '',
+        data: this.data.old_test_cases,
+      });
+    } else {
+      console.log([...new Set(this.selectedTestCases)]);
+      this.sectionDialog.close({
+        event: '',
+        data: [...new Set(this.selectedTestCases)],
+      });
+    }
   }
 
   close() {
