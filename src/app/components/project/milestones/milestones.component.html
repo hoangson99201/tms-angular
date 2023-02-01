@@ -27,7 +27,7 @@
             <div id="content-header" class="content-header content-header-default">
               <div class="content-header-inner">
                 <div class="content-header-title page_title">
-                  Milestones </div>
+                  Phase </div>
               </div>
             </div>
             <div id="content-inner" class="content-inner goals-clear">
@@ -50,7 +50,7 @@
                       <div class="button-group">
                         <a *ngIf="isActive('ADD_MILESTONE')" [routerLink]="['/milestones-add', projectId]"
                           class="button button-left button-add">
-                          Add Milestone </a>
+                          Add Phase </a>
                       </div>
                     </div>
                   </div>
@@ -130,7 +130,7 @@
             <div class="sidebar-inner">
               <a *ngIf="isActive('ADD_MILESTONE')" id="navigation-milestones-add" class="sidebar-button"
                 [routerLink]="['/milestones-add', projectId]">
-                <span>Add Milestone</span>
+                <span>Add Phase</span>
               </a>
               <p *ngIf="!(incompleteMilestones && completedMilestones) || (incompleteMilestones.length == 0 && completedMilestones.size ==0)"
                 class="top">There are no milestones.</p>

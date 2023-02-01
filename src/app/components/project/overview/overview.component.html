@@ -37,7 +37,7 @@
                 <div class="table">
                   <div class="column column-p2 column-pad-right">
                     <h1 class="top"><a id="navigation-overview-viewmilestones" class="nolink"
-                        [routerLink]="['/milestones', projectId]">Milestones</a>
+                        [routerLink]="['/milestones', projectId]">Phase</a>
                     </h1>
                     <div *ngIf="milestones.length == 0; then thenMilestoneBlock else elseMilestoneBlock"></div>
                     <ng-template #thenMilestoneBlock>
@@ -46,7 +46,7 @@
                       <div class="button-group">
                         <a *ngIf="isActive('ADD_MILESTONE')" id="navigation-overview-addmilestones"
                           [routerLink]="['/milestones-add', projectId]" class="button button-left button-add">
-                          Add Milestone </a>
+                          Add Phase </a>
                       </div>
                     </ng-template>
                     <ng-template #elseMilestoneBlock>
@@ -134,7 +134,7 @@
                   </div>
                   <div class="column summary-column summary-column-first">
                     <div class="summary-title summary-title-compact">
-                      <a id="sidebar-milestones-overview" [routerLink]="['/milestones', projectId]">Milestones</a>
+                      <a id="sidebar-milestones-overview" [routerLink]="['/milestones', projectId]">Phase</a>
                     </div>
                     <div class="summary-description-compact text-secondary">
                       <a *ngIf="isActive('ADD_MILESTONE')" id="sidebar-runs-add" class="link"

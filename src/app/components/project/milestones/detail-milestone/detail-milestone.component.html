@@ -246,7 +246,7 @@
             </div>
             <div class="sidebar-inner"> </div>
             <div class="sidebar-inner"> <a *ngIf="isActive('ADD_MILESTONE')" id="navigation-milestones-add"
-                class="sidebar-button" [routerLink]="['/milestones-add', projectId]"> <span>Add Milestone</span> </a>
+                class="sidebar-button" [routerLink]="['/milestones-add', projectId]"> <span>Add Phase</span> </a>
             </div>
 
             <div class="sidebar-inner" *ngIf="!this.isCompleted">
@@ -259,7 +259,7 @@
             </div>
 
             <div class="dialog" id="startMilestoneDialog" style="width: 450px">
-              <div class="dialog-title">Start Milestone</div>
+              <div class="dialog-title">Start Phase</div>
               <form id="startMilestoneForm" class="dialogFormDefault">
                 <div class="dialog-body">
                   <div class="message message-error validationError" id="startMilestoneErrors"></div>
@@ -267,7 +267,7 @@
                 </div>
                 <div class="button-group dialog-buttons-highlighted"> <button
                     class="button button-left button-positive button-ok dialog-action-default" id="startMilestoneSubmit"
-                    type="submit"> Start Milestone </button> <a
+                    type="submit"> Start Phase </button> <a
                     class="button button-left button-negative button-cancel dialog-action-close"> Cancel </a> </div>
               </form>
             </div>

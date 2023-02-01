@@ -64,7 +64,7 @@
             </ng-template>
 
             <ng-template [ngIf]="milestones.length">
-              <h2 style="margin-top: 1.5em">Milestones</h2>
+              <h2 style="margin-top: 1.5em">Phase</h2>
               <table class="run-grid grid">
                 <colgroup>
                   <col class="box">
@@ -75,7 +75,7 @@
                   <tr *ngFor="let milestone of milestones" class="hoverSensitive"
                     id="milestone-{{milestone.milestoneId}}">
                     <td class="box">
-                      <span class="status entity-milestone">Milestone</span>
+                      <span class="status entity-milestone">Phase</span>
                     </td>
                     <td class="id">
                       <a class="link-noline"

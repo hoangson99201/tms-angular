@@ -27,7 +27,7 @@
             <div id="content-header" class="content-header content-header-default">
               <div class="content-header-inner">
                 <div *ngIf="currentMode == Mode.Create" class="content-header-title page_title">
-                  Add Milestone
+                  Add Phase
                 </div>
                 <ng-template [ngIf]="currentMode == Mode.Update">
                   <div class="content-header-id">M{{milestone.milestoneId}}</div>
@@ -99,12 +99,12 @@
                   <button *ngIf="currentMode == Mode.Update && isActive('EDIT_MILESTONE')" type="button"
                     (click)="update()" class="button button-left button-positive button-ok"
                     [disabled]="milestone.milestoneName.trim().length == 0 || !milestone.projectId">
-                    Save Milestone
+                    Save Phase
                   </button>
                   <button *ngIf="currentMode == Mode.Create && isActive('ADD_MILESTONE')" (click)="submit()"
                     class="button button-left button-positive button-ok" type="button"
                     [disabled]="milestone.milestoneName.trim().length == 0 || !milestone.projectId">
-                    Add Milestone
+                    Add Phase
                   </button>
                   <a (click)="cancel()" class="button button-left button-negative button-cancel milestone-form-cancel">
                     Cancel </a>
