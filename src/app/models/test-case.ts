@@ -11,4 +11,5 @@ export interface TestCase {
   projectId: number,
   sectionName?: string,
   fullname?: string
+  isSelected?: boolean
 }

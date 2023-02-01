@@ -53,6 +53,7 @@ export class AddTestRunComponent implements OnInit {
 
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public testCases: TestCase[] = [];
+  public oldSelectedTestCase: number[] = [];
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-runs-edit/')
       ? Mode.Update
@@ -176,24 +177,29 @@ export class AddTestRunComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open<
-      SelectCaseDialogComponent,
-      any,
-      {
-        event: string;
-        data?: number[];
-      }
-    >(SelectCaseDialogComponent, {
-      data: {
-        id: this.testRun.projectId,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.event != 'Cancel' && result.data) {
-        this.testCasesIdIncluded = [...result.data];
-      }
-      console.log(this.testCasesIdIncluded);
-    });
+    const dialogRef = this.dialog
+      .open<
+        SelectCaseDialogComponent,
+        any,
+        {
+          event: string;
+          data?: number[];
+        }
+      >(SelectCaseDialogComponent, {
+        data: {
+          id: this.testRun.projectId,
+          test_cases_ids: this.testCasesIdIncluded,
+          old_test_cases: this.oldSelectedTestCase,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result && result.event != 'Cancel' && result.data) {
+          this.oldSelectedTestCase = [...result.data];
+          this.testCasesIdIncluded = [...result.data];
+        }
+        console.log(this.testCasesIdIncluded);
+      });
   }
 
   close() {

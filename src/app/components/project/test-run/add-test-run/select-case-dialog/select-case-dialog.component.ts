@@ -36,6 +36,17 @@ export class SelectCaseDialogComponent implements OnInit {
           } else {
             testCases.push(testCase);
           }
+          console.log(this.data.test_cases_ids);
+          console.log(this.data.old_test_cases);
+          if (this.data.test_cases_ids && this.data.old_test_cases) {
+            this.data.old_test_cases.forEach((a: number) => {
+              this.selectedTestCases.push(a);
+            });
+
+            testCase.isSelected = this.data.test_cases_ids.includes(
+              testCase.caseId + ''
+            );
+          }
         }
       });
   }
@@ -86,7 +97,7 @@ export class SelectCaseDialogComponent implements OnInit {
   submit() {
     this.sectionDialog.close({
       // event: this.action,
-      data: this.selectedTestCases,
+      data: [...new Set(this.selectedTestCases)],
     });
   }
 

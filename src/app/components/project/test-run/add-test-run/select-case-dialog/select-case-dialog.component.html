@@ -192,7 +192,7 @@
                               <td class="checkbox">
                                 <input type="checkbox" value="{{testCase.caseId}}" class="selectionCheckbox"
                                   name="{{testCase.caseId}}" id="testcase-{{testCase.caseId}}"
-                                  (change)="onSelectCase($event)">
+                                  (change)="onSelectCase($event)" [checked]="testCase.isSelected">
                               </td>
                               <td class="id">
                                 <!-- <a class="link-noline" rel="keep-get"> -->
