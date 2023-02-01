@@ -1,5 +1,6 @@
 <div *ngIf="isActive('ADD_MILESTONE') || isActive('EDIT_MILESTONE')" style="display: flex; height: 100%;">
-  <app-new-menu-project [projectId]="milestone.projectId + ''" [selectedMenu]="'milestone'"></app-new-menu-project>
+  <app-new-menu-project [projectId]="milestone.projectId + ''" [selectedMenu]="'milestone'"
+    (getProject)="project = $event"></app-new-menu-project>
   <div>
     <section>
       <app-header></app-header>
@@ -69,7 +70,7 @@
                 <div class="form-group">
                   <label for="due_on">Start Date</label>
                   <input #startDate name="startDate" [(ngModel)]="milestone.startDate"
-                    [dpDayPicker]="{format: 'YYYY-MM-DD', max: endDate.value}"
+                    [dpDayPicker]="{format: 'YYYY-MM-DD', min: getProjectStartDate(), max: findMaxDate(endDate.value)}"
                     class="form-control form-control-small dirty-trackable-datepicker hasDatepicker">
                   <div class="form-description">The expected or scheduled start date of this milestone (for
                     upcoming and not yet active milestones).</div>
@@ -77,7 +78,7 @@
                 <div class="form-group">
                   <label for="due_on">End Date</label>
                   <input #endDate name="endDate" [(ngModel)]="milestone.endDate"
-                    [dpDayPicker]="{format: 'YYYY-MM-DD', min: startDate.value}"
+                    [dpDayPicker]="{format: 'YYYY-MM-DD', min: findMinDate(startDate.value), max: getProjectEndDate()}"
                     class="form-control form-control-small dirty-trackable-datepicker hasDatepicker">
                   <div class="form-description">The expected due or end date of this milestone.</div>
                 </div>

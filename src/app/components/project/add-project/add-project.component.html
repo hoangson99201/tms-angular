@@ -64,6 +64,23 @@
                           This could include links to the project's issue tracker or knowledge
                           base, for example.</div>
                       </div>
+                      <div class="form-separator">
+                      </div>
+                      <div class="form-group">
+                        <label for="due_on">Start Date</label>
+                        <input #startDate name="startDate" [(ngModel)]="project.startDate"
+                          [dpDayPicker]="{format: 'YYYY-MM-DD', max: endDate.value}"
+                          class="form-control form-control-small dirty-trackable-datepicker hasDatepicker">
+                        <div class="form-description">The expected or scheduled start date of this project (for
+                          upcoming and not yet active projects).</div>
+                      </div>
+                      <div class="form-group">
+                        <label for="due_on">End Date</label>
+                        <input #endDate name="endDate" [(ngModel)]="project.endDate"
+                          [dpDayPicker]="{format: 'YYYY-MM-DD', min: startDate.value}"
+                          class="form-control form-control-small dirty-trackable-datepicker hasDatepicker">
+                        <div class="form-description">The expected due or end date of this project.</div>
+                      </div>
                     </div>
                   </div>
                 </div>

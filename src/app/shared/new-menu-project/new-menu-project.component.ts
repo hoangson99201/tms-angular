@@ -24,7 +24,15 @@ export class NewMenuProjectComponent {
       this.projectService
         .findByProjectId(parseInt(this.projectId))
         .subscribe((project) => {
+          if (project.endDate instanceof Array) {
+            project.endDate = project.endDate[0] + "-" + String(project.endDate[1]).padStart(2, '0') + "-" + String(project.endDate[2]).padStart(2, '0');
+          }
+          if (project.startDate instanceof Array) {
+            project.startDate = project.startDate[0] + "-" + String(project.startDate[1]).padStart(2, '0') + "-" + String(project.startDate[2]).padStart(2, '0');
+          }
           this.project.projectName = project.projectName;
+          this.project.startDate = project.startDate;
+          this.project.endDate = project.endDate;
           this.getProject.emit(this.project);
         });
     }

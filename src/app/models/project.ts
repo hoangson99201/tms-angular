@@ -5,5 +5,7 @@ export interface Project {
   masterId?: number,
   completed?: boolean,
   activeMilestone?: number,
-  activeTestRun?: number
+  activeTestRun?: number,
+  startDate?: string | number[],
+  endDate?: string | number[],
 }

@@ -1,3 +1,4 @@
+import { Project } from 'src/app/models/project';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,6 +30,7 @@ export class AddMilestoneComponent implements OnInit {
   };
   currentMode: Mode = Mode.Create;
   Mode = Mode;
+  project: Project | undefined
 
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/milestones-edit/') ? Mode.Update : Mode.Create;
@@ -92,5 +94,49 @@ export class AddMilestoneComponent implements OnInit {
 
   isActive(functionalityName: string) {
     return this.authService.isActive(functionalityName);
+  }
+
+  findMaxDate(milestoneEndDate: string) {
+    let projectEndDate = this.project?.endDate;
+    if (!projectEndDate) {
+      return milestoneEndDate;
+    }
+    if (projectEndDate instanceof Array) {
+      projectEndDate = projectEndDate[0] + "-" + String(projectEndDate[1]).padStart(2, '0') + "-" + String(projectEndDate[2]).padStart(2, '0');
+    }
+    if (!milestoneEndDate) {
+      return projectEndDate;
+    }
+    return new Date(projectEndDate) < new Date(milestoneEndDate) ? projectEndDate : milestoneEndDate;
+  }
+
+  findMinDate(milestoneStartDate: string) {
+    let projectStartDate = this.project?.startDate;
+    if (!projectStartDate) {
+      return milestoneStartDate;
+    }
+    if (projectStartDate instanceof Array) {
+      projectStartDate = projectStartDate[0] + "-" + String(projectStartDate[1]).padStart(2, '0') + "-" + String(projectStartDate[2]).padStart(2, '0');
+    }
+    if (!milestoneStartDate) {
+      return projectStartDate;
+    }
+    return new Date(projectStartDate) > new Date(milestoneStartDate) ? projectStartDate : milestoneStartDate;
+  }
+
+  getProjectStartDate() {
+    let projectStartDate = this.project?.startDate;
+    if (projectStartDate instanceof Array) {
+      projectStartDate = projectStartDate[0] + "-" + String(projectStartDate[1]).padStart(2, '0') + "-" + String(projectStartDate[2]).padStart(2, '0');
+    }
+    return projectStartDate
+  }
+
+  getProjectEndDate() {
+    let projectEndDate = this.project?.endDate;
+    if (projectEndDate instanceof Array) {
+      projectEndDate = projectEndDate[0] + "-" + String(projectEndDate[1]).padStart(2, '0') + "-" + String(projectEndDate[2]).padStart(2, '0');
+    }
+    return projectEndDate
   }
 }
