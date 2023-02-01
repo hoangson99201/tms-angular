@@ -68,7 +68,7 @@
                       {{user.email}}
                     </td>
                     <td>
-                      <button (click)="openDeleteDialog(user)"
+                      <button (click)="openDeleteDialog(user)" *ngIf="isActive('REMOVE_MEMBER')"
                         class="button button-left button-negative button-cancel save-cancel-button">
                         Delete
                       </button>
@@ -77,7 +77,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="button-group grid-buttons">
+            <div class="button-group grid-buttons" *ngIf="isActive('ADD_MEMBER')">
               <button (click)="openCreateDialog()" class="button button-left button-add">
                 Add Member
               </button>

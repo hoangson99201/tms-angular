@@ -59,122 +59,31 @@
                     <span class="title">January 2023</span>
                   </h3> -->
                   <table class="grid">
+                    <tr class="header sectionRow caseDroppable">
+                      <th style="width: 60px;"></th>
+                      <th style="width: 60px;">ID</th>
+                      <th>Report Name</th>
+                      <th>Description</th>
+                      <th>Created On</th>
+                    </tr>
                     <tr *ngFor="let report of listReport" id="report-{{report.reportId}}" class="odd">
-                      <!-- <td class="icon">
-                        <input data-type="report" type="checkbox" name="report" value="2" />
-                      </td> -->
                       <td class="icon">
                         <div class="icon-report-10"></div>
                       </td>
-
+                      <td>
+                        {{report.reportId}}
+                      </td>
                       <td>
                         <a [routerLink]="['/reports/view/' + report.reportId]">{{report.reportName}}</a>
                       </td>
-                      <td class="action">
-                        <a href="javascript:void(0)" onclick="this.blur(); App.Reports.share(2, true); return false;"
-                          class="link-tooltip" tooltip-text="Share this report via email.">
-                          <div class="icon-small-share "></div>
-                        </a>
+                      <td>
+                        {{report.reportDescription}}
                       </td>
-                      <td class="action">
-                        <a href="index.php?/reports/rerun/2" class="link-tooltip"
-                          tooltip-text="Create or schedule a similar report.">
-                          <div class="icon-small-copy "></div>
-                        </a>
-                      </td>
-                      <td class="action">
-                        <a tooltip-text="Delete this report." class="deleteLink link-tooltip" href="javascript:void(0)"
-                          onclick="this.blur(); App.Dialogs.remove('Really delete this report? This irrevocably deletes this report for all users and cannot be undone.', null, null, null, function() { App.Reports.remove(2); });; return false;">
-                          <div class="icon-small-delete "></div>
-                        </a>
-                        <span class="busy deleteBusy">
-                          <div class="icon-progress-inline"></div>
-                        </span>
+                      <td>
+                        {{report.createdOn}}
                       </td>
                     </tr>
                   </table>
-                </div>
-              </div>
-
-
-              <div class="dialog" id="shareReportDialog" style="width: 500px">
-                <div class="dialog-title">Share Report</div>
-                <form id="shareReportForm" action="post">
-                  <div class="dialog-body">
-                    <div class="message message-error validationError" id="shareReportErrors"
-                      style="white-space: pre-line">
-                    </div>
-                    <div class="message message-success successPanel" id="shareReportSuccess" style="display: none">
-                      Successfully shared the report via email.</div>
-                    <p class="" style="margin-top: 0">You can share this report with other users or
-                      external people (with no Test Management System access). <br>For larger
-                      reports which may not display correctly in a PDF, you have the option of
-                      using HTML format instead,<br> but please note that some email providers
-                      will block HTML reports from being sent. <br>As an alternative, please
-                      consider splitting the report scope into multiple, smaller, PDF reports.</p>
-                    <div id="shareReportLinkContainer" class="form-group">
-                      <div class="checkbox" style="margin-left: 5px; margin-bottom: 8px">
-                        <label>
-                          Email a link to the report (requires Test Management System access):
-                          <input type="checkbox" id="shareReportLink" name="shareReportLink" value="1">
-                        </label>
-                      </div>
-                      <div style="margin-left: 25px">
-                        <select id="shareReportLinkRecipients" name="shareReportLinkRecipients"
-                          class="form-control form-select" style="height: 100px; width: 447px" multiple="multiple">
-                          <option value="1">Doan Bao</option>
-                          <option value="2">Nguyen Tien Khoa</option>
-                        </select>
-                        <div class="form-description">You can select multiple users by holding
-                          Ctrl/Cmd on your keyboard.</div>
-                      </div>
-                    </div>
-                    <div id="shareReportAttachmentContainer">
-                      <input type="hidden" id="shareReportAttachment" name="shareReportAttachment" value="0">
-                      <div class="checkbox" style="margin-left: 5px; margin-bottom: 8px">
-                        <label>
-                          Email the report as HTML attachment <input type="checkbox" id="shareReportHTMLAttachment"
-                            name="shareReportHTMLAttachment" value="1">
-                        </label>
-                      </div>
-                      <div class="checkbox" style="margin-left: 5px; margin-bottom: 8px">
-                        <label>
-                          Email the report as PDF attachment <input type="checkbox" id="shareReportPDFAttachment"
-                            name="shareReportPDFAttachment" value="1">
-                        </label>
-                      </div>
-                      <div style="margin-left: 25px">
-                        <textarea id="shareReportAttachmentRecipients" name="shareReportAttachmentRecipients"
-                          class="form-control processed" style="height: 100px; width: 435px">person1@example.com
-person2@example.com</textarea>
-                        <div class="form-description">Please enter one email address per line.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="button-group dialog-buttons-highlighted">
-                    <button class="button button-left button-positive button-ok dialog-action-default"
-                      id="shareReportSubmit" type="submit">
-                      Share </button>
-                    <a class="button button-left button-negative button-cancel dialog-action-close">
-                      Cancel </a>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div id="qpane-splitter" class="column splitter qpane-splitter" style="display: none">
-          </div>
-          <div id="qpane" class="column qpane" style="width: 600px; display: none">
-            <div id="qpane-empty" class="qpane-empty hidden">
-              <div class="qpane-empty-header">
-                No test case selected. </div>
-              <div class="qpane-empty-body">
-                You can select a different group or change the filters. </div>
-            </div>
-            <div id="qpane-inner">
-              <div id="qpaneSticky">
-                <div id="qpane-content">
                 </div>
               </div>
             </div>
@@ -241,152 +150,6 @@ person2@example.com</textarea>
                 </table>
               </div>
             </div>
-
-
-
-          </div>
-        </div>
-
-      </div>
-
-      <div id="projectGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-          <span class="tooltip-goal-step">1/6</span>
-          Create a Project
-        </div>
-        <div class="tooltip-goal-body">
-          <p class="top">Welcome! Start by creating your first project. Projects in Test Management System
-            usually represent a product or software project and serve as organizational unit for cases,
-            results and milestones. You can create as many projects as you like.</p>
-          <div class="tooltip-goal-image goal-project-help"></div>
-        </div>
-      </div>
-      <div id="casesGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-          <span class="tooltip-goal-step">2/6</span>
-          Add Test Cases
-        </div>
-        <div class="tooltip-goal-body">
-          <p class="top">Test cases represent a certain feature, behavior or functionality you wish to test.
-            They often contain a description, a list of steps and expected results. Cases are organized in
-            sections to make it easy to group related cases together.</p>
-          <div class="tooltip-goal-image goal-cases-help"></div>
-        </div>
-      </div>
-      <div id="runGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-          <span class="tooltip-goal-step">3/6</span>
-          Start a Test Run
-        </div>
-        <div class="tooltip-goal-body">
-          <p class="top">To execute tests and enter results for your cases, you start a test run. You can have
-            multiple test runs over time and reuse your test cases across runs. A test run has a status and
-            you can easily follow its progress and test activity.</p>
-          <div class="tooltip-goal-image goal-run-help"></div>
-        </div>
-      </div>
-      <div id="resultsGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-          <span class="tooltip-goal-step">4/6</span>
-          Add Test Results
-        </div>
-        <div class="tooltip-goal-body">
-          <p class="top">Once you've added a test run, you can start testing and record results. A result has
-            a status such as <em>Passed</em> or <em>Failed</em> and the statuses are signaled by different
-            colors. Adding results contributes to the overall status and progress of the test run.</p>
-          <div class="tooltip-goal-image goal-results-help"></div>
-        </div>
-      </div>
-      <div id="usersGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-          <span class="tooltip-goal-step">5/6</span>
-          Invite Team Members
-        </div>
-        <div class="tooltip-goal-body">
-          <p class="top">Test Management System is especially useful when used with a team. Invite other team
-            members and build your test case repository, assign test runs and record results together.
-            Easily track the workload and progress from the Todo tab for your entire team.</p>
-          <div class="tooltip-goal-image goal-users-help"></div>
-        </div>
-      </div>
-
-
-      <div id="integrationGoalHelp" class="tooltip tooltip-goal">
-        <div class="tooltip-goal-title">
-          <span class="tooltip-goal-step">6/6</span>
-          Set up Integration
-        </div>
-        <div class="tooltip-goal-body">
-          <p class="top">Integrate Test Management System with your issue/bug tracker (such as JIRA, Redmine
-            &amp; more), requirement tool and test automation. Start by configuring your issue integration
-            to collaborate with your dev team, run coverage reports and link issues to results.</p>
-          <div class="tooltip-goal-image goal-integration-help"></div>
-          <div class="checkbox" style="margin-top: 1em">
-            <label>
-              I don't plan to integrate Test Management System with other tools for now <input type="checkbox"
-                id="integrationGoalToggle">
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div id="goals" class="goals">
-        <div id="goals-banner" class="goals-banner ">
-          <span id="goals-cancel" class="goals-cancel hidden">
-            <a class="link-noline nolink">
-              <div class="icon-cancel"></div>
-            </a>
-          </span>
-          <div class="goals-banner-inner">
-            <ol class="goals-progress">
-              <li class="goals-progress-step goals-progress-step-done">
-                <span class="goals-progress-title">Create a project</span>
-                <div class="goals-progress-marker link-tooltip goal-project-checked" tooltip-id="#projectGoalHelp"
-                  tooltip-position="top" tooltip-width="400"></div>
-              </li>
-              <li class="goals-progress-step goals-progress-step-done">
-                <span class="goals-progress-title">Add cases</span>
-                <div class="goals-progress-marker link-tooltip goal-cases-checked" tooltip-id="#casesGoalHelp"
-                  tooltip-position="top" tooltip-width="400"></div>
-              </li>
-              <li class="goals-progress-step goals-progress-step-done">
-                <span class="goals-progress-title">Start a run</span>
-                <div class="goals-progress-marker link-tooltip goal-run-checked" tooltip-id="#runGoalHelp"
-                  tooltip-position="top" tooltip-width="400"></div>
-              </li>
-              <li class="goals-progress-step ">
-                <span class="goals-progress-title">Add results</span>
-                <div class="goals-progress-marker link-tooltip goal-results" tooltip-id="#resultsGoalHelp"
-                  tooltip-position="top" tooltip-width="400"></div>
-              </li>
-              <li class="goals-progress-step goals-progress-step-done">
-                <span class="goals-progress-title">Invite users</span>
-                <div class="goals-progress-marker link-tooltip goal-users-checked" tooltip-id="#usersGoalHelp"
-                  tooltip-position="top" tooltip-width="400"></div>
-              </li>
-              <li class="goals-progress-step ">
-                <span class="goals-progress-title">Set up integration</span>
-                <div class="goals-progress-marker link-tooltip goal-integration" tooltip-id="#integrationGoalHelp"
-                  tooltip-position="top" tooltip-width="400"></div>
-              </li>
-            </ol>
-          </div>
-          <div id="goals-start" class="goals-start hidden">
-            <div class="goal-start"></div>
-          </div>
-          <div id="goals-finish" class="goals-finish hidden">
-            <div class="goal-finish"></div>
-          </div>
-          <div id="goals-next" class="goals-next hidden">
-            <img src="https://static.testrail.io/7.5.5.2003/images/layout/blank.gif" usemap="#goalsNextMap"
-              class="goal-next">
-            <map name="goalsNextMap">
-              <area shape="rect" coords="691,13,726,48">
-              <area shape="rect" coords="64,305,254,339" target="_blank" href="http://www.gurock.com/testrail/support">
-              <area shape="rect" coords="280,305,470,339" target="_blank" href="http://blog.gurock.com/">
-              <area shape="rect" coords="496,305,686,339" target="_blank"
-                href="http://www.gurock.com/testrail/videos/introduction-projects/">
-            </map>
           </div>
         </div>
       </div>

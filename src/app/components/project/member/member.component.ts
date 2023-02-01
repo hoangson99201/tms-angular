@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectUser } from 'src/app/models/projectUser';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { MemberService } from 'src/app/services/member.service';
 import { UserService } from 'src/app/services/user.service';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
@@ -20,6 +21,7 @@ export class MemberComponent implements OnInit {
     public dialog: MatDialog,
     private toastr: ToastrService,
     private userService: UserService,
+    private authService: AuthService
   ) { }
 
   projectId = 0;
@@ -83,7 +85,7 @@ export class MemberComponent implements OnInit {
         if (!userId) {
           return;
         }
-        this.memberService.create({projectId: this.projectId, userId: userId}).subscribe({
+        this.memberService.create({ projectId: this.projectId, userId: userId }).subscribe({
           next: (res) => {
             console.log(res);
             this.toastr.success('Add member success', 'Success');
@@ -96,5 +98,9 @@ export class MemberComponent implements OnInit {
           },
         });
       });
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

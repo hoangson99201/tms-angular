@@ -52,7 +52,7 @@ export class ImportDialogComponent {
   }
 
   downloadTemplate() {
-    let csvContent = "data:text/csv;charset=utf-8,Title,Estimate,Priority,Section\r\n";
+    let csvContent = "data:text/csv;charset=utf-8,Title,Estimate,Priority,Section,,Priority: High / Low / Medium,,,Estimate: Integer number";
     let encodedUri = encodeURI(csvContent);
     let link = document.createElement("a");
     link.setAttribute("href", encodedUri);
