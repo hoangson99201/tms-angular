@@ -36,6 +36,10 @@ export class ActivityComponent implements OnInit {
               activity.className = 'entity-run';
               activity.url = `/test-runs/${activity.projectId}/detail/${activity.targetId}`;
               break;
+            case "Report":
+              activity.className = 'entity-report';
+              activity.url = `/reports/view/${activity.targetId}`;
+              break;
             default:
               activity.className = '';
               break;
