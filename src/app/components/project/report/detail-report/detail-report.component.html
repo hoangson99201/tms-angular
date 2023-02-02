@@ -62,13 +62,19 @@
                   <table class="run-grid grid">
                     <colgroup>
                       <col>
+                      <col>
                     </colgroup>
                     <tbody>
                       <tr *ngFor="let testRun of entry.value" class="odd hoverSensitive">
-                        <td>
+                        <td style="width: 300px;">
                           <a [routerLink]="['/test-runs', this.report.projectId, 'detail', testRun.runId]">
                             {{testRun.runName}}
                           </a>
+                        </td>
+                        <td>
+                          {{testRun.passedCount}} Passed, {{testRun.blockedCount}} Blocked,
+                              {{testRun.untestedCount}}
+                              Untested, {{testRun.retestCount}} Retest and {{testRun.failedCount}} Failed.
                         </td>
                       </tr>
                     </tbody>
