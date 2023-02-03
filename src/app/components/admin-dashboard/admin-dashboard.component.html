@@ -57,6 +57,9 @@
                       <div class="summary-description">
                         Contains <strong>{{project.activeTestRun}}</strong> active test runs and
                         <strong>{{project.activeMilestone}}</strong> active milestones.
+                        <br>
+                        {{project.startDate ? ('start date: ' + project.startDate) : 'No start date'}},
+                        {{project.endDate ? ('end date: ' + project.endDate) : 'no end date'}}
                       </div>
                     </div>
                   </div>
