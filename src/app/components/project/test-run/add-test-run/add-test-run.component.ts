@@ -1,3 +1,4 @@
+import { ProjectUser } from './../../../../models/projectUser';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,8 +15,8 @@ import { MilestoneService } from 'src/app/services/milestone.service';
 import { ResultService } from 'src/app/services/result.service';
 import { TestCaseService } from 'src/app/services/test-case.service';
 import { TestRunService } from 'src/app/services/test-run.service';
-import { UserService } from 'src/app/services/user.service';
 import { ConfirmCloseDialogComponent } from '../confirm-close-dialog/confirm-close-dialog.component';
+import { MemberService } from './../../../../services/member.service';
 import { SelectCaseDialogComponent } from './select-case-dialog/select-case-dialog.component';
 
 @Component({
@@ -29,7 +30,7 @@ export class AddTestRunComponent implements OnInit {
     private router: Router,
     private milestoneService: MilestoneService,
     private toastr: ToastrService,
-    private userService: UserService,
+    private memberService: MemberService,
     private location: Location,
     private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -44,12 +45,11 @@ export class AddTestRunComponent implements OnInit {
     includeAll: true,
   };
   milestones: Milestone[] = [];
-  users: User[] = [];
+  users: ProjectUser[] = [];
   testCasesIdIncluded: (number | undefined)[] = [];
   currentMode: Mode = Mode.Create;
   Mode = Mode;
   rerunId: string = '';
-  projectId: string = '';
 
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public testCases: TestCase[] = [];
@@ -66,27 +66,35 @@ export class AddTestRunComponent implements OnInit {
       switch (this.currentMode) {
         case Mode.Create:
           this.testRun.projectId = params['id'];
-          this.projectId = params['id'];
           this.rerunId = params['rerun-id'];
+          if (!this.testRun.projectId) {
+            return;
+          }
           this.getMilestonesByProjectId(this.testRun.projectId);
+          this.memberService.findAllByProjectId(this.testRun.projectId).subscribe(projectUsers => {
+            console.log(projectUsers);
+            this.users = projectUsers;
+          });
           break;
         case Mode.Update:
           this.testRunService
             .findByTestRunId(params['id'])
             .subscribe((testRun) => {
               this.testRun = testRun;
+              if (!this.testRun.projectId) {
+                return;
+              }
               this.loadCase(this.testRun, this.testRun.projectId);
               this.getMilestonesByProjectId(this.testRun.projectId);
+              this.memberService.findAllByProjectId(this.testRun.projectId).subscribe(projectUsers => {
+                console.log(projectUsers);
+                this.users = projectUsers;
+              });
             });
           break;
         default:
           break;
       }
-
-      this.userService.getUsers().subscribe((users) => {
-        this.users = users;
-        // console.log(users);
-      });
     });
     this.rerun();
   }
@@ -107,8 +115,12 @@ export class AddTestRunComponent implements OnInit {
               .map((b) => b.caseId);
             // console.log(resultFilter);
 
+            if (!this.testRun?.projectId) {
+              return;
+            }
+
             this.testCaseService
-              .findAllByProjectId(+this.projectId)
+              .findAllByProjectId(this.testRun.projectId)
               .subscribe((testCases) => {
                 this.testCases = testCases;
                 let casetFilter = testCases.filter((a) =>
@@ -123,7 +135,7 @@ export class AddTestRunComponent implements OnInit {
     }
   }
 
-  loadCase(testRun: TestRun, projectId: any) {
+  loadCase(testRun: TestRun, projectId: number) {
     this.testCaseService
       .findAllByProjectId(projectId)
       .subscribe((testCases) => {
@@ -148,15 +160,11 @@ export class AddTestRunComponent implements OnInit {
       });
   }
 
-  getMilestonesByProjectId(projectId: number | undefined) {
-    if (!projectId) {
-      // console.error('projectId is undefined');
-      return;
-    }
+  getMilestonesByProjectId(projectId: number) {
     this.milestoneService
       .findAllByProjectId(projectId)
       .subscribe((milestones) => {
-        this.milestones = milestones;
+        this.milestones = milestones.filter(x => !x.isCompleted);
         // console.log(milestones);
       });
   }
