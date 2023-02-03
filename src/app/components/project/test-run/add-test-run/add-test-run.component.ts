@@ -54,14 +54,15 @@ export class AddTestRunComponent implements OnInit {
   public map: Map<string, TestCase[]> = new Map<string, TestCase[]>();
   public testCases: TestCase[] = [];
   public oldSelectedTestCase: (number | undefined)[] = [];
+
   ngOnInit(): void {
     this.currentMode = this.router.url.startsWith('/test-runs-edit/')
       ? Mode.Update
       : Mode.Create;
-    console.log('Current mode: ' + this.currentMode);
+    // console.log('Current mode: ' + this.currentMode);
 
     this.route.params.subscribe((params) => {
-      console.log(params);
+      // console.log(params);
       switch (this.currentMode) {
         case Mode.Create:
           this.testRun.projectId = params['id'];
@@ -74,6 +75,7 @@ export class AddTestRunComponent implements OnInit {
             .findByTestRunId(params['id'])
             .subscribe((testRun) => {
               this.testRun = testRun;
+              this.loadCase(this.testRun, this.testRun.projectId);
               this.getMilestonesByProjectId(this.testRun.projectId);
             });
           break;
@@ -83,7 +85,7 @@ export class AddTestRunComponent implements OnInit {
 
       this.userService.getUsers().subscribe((users) => {
         this.users = users;
-        console.log(users);
+        // console.log(users);
       });
     });
     this.rerun();
@@ -96,14 +98,14 @@ export class AddTestRunComponent implements OnInit {
         .subscribe((results) => {
           var statusData = this.testRunService.getData();
           if (statusData) {
-            console.log(statusData);
+            // console.log(statusData);
             if (statusData && statusData.length < 4) {
               this.testRun.includeAll = false;
             }
             var resultFilter = results
               .filter((a) => statusData.includes(a.status))
               .map((b) => b.caseId);
-            console.log(resultFilter);
+            // console.log(resultFilter);
 
             this.testCaseService
               .findAllByProjectId(+this.projectId)
@@ -114,23 +116,48 @@ export class AddTestRunComponent implements OnInit {
                 );
                 this.testCasesIdIncluded = casetFilter.map((a) => a.caseId);
                 this.oldSelectedTestCase = casetFilter.map((a) => a.caseId);
-                console.log(casetFilter);
+                // console.log(casetFilter);
               });
           }
         });
     }
   }
 
+  loadCase(testRun: TestRun, projectId: any) {
+    this.testCaseService
+      .findAllByProjectId(projectId)
+      .subscribe((testCases) => {
+        this.testCases = testCases;
+        if (testRun && testRun.results) {
+          console.log(new Set(this.testCases.map((a) => a.caseId)));
+          console.log(new Set(testRun.results.map((a) => a.caseId)));
+
+          let selectedCase = [...new Set(testRun.results.map((a) => a.caseId))];
+          this.testCasesIdIncluded = selectedCase;
+          this.oldSelectedTestCase = selectedCase;
+          let allCase = [...new Set(this.testCases.map((a) => a.caseId))];
+          if (
+            selectedCase.every((x) => allCase.includes(x)) &&
+            selectedCase.length === allCase.length
+          ) {
+            testRun.includeAll = true;
+          } else {
+            testRun.includeAll = false;
+          }
+        }
+      });
+  }
+
   getMilestonesByProjectId(projectId: number | undefined) {
     if (!projectId) {
-      console.error('projectId is undefined');
+      // console.error('projectId is undefined');
       return;
     }
     this.milestoneService
       .findAllByProjectId(projectId)
       .subscribe((milestones) => {
         this.milestones = milestones;
-        console.log(milestones);
+        // console.log(milestones);
       });
   }
 
@@ -140,19 +167,28 @@ export class AddTestRunComponent implements OnInit {
 
   submit() {
     if (this.testCasesIdIncluded.length) {
+      this.testCasesIdIncluded = this.testCasesIdIncluded.map((a) =>
+        parseInt(a + '')
+      );
+      console.log(this.testCasesIdIncluded);
       let results: Result[] = this.testCasesIdIncluded.map((caseId) => ({
         caseId: caseId,
       }));
       this.testRun.testRunResults = results;
+      console.log("acccccccccccc");
+      console.log(results);
+      console.log("aaaaaaaaaaaaaaa");
+      console.log(this.testRun);
+
     }
     this.testRunService.create(this.testRun).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.toastr.success('Add test run success', 'Success');
         this.router.navigateByUrl('/test-runs/' + this.testRun.projectId);
       },
       error: (e) => {
-        console.log(e);
+        // console.log(e);
         this.toastr.error('Add test run failed', 'Error');
       },
     });
@@ -201,7 +237,7 @@ export class AddTestRunComponent implements OnInit {
           this.oldSelectedTestCase = [...result.data];
           this.testCasesIdIncluded = [...result.data];
         }
-        console.log(this.testCasesIdIncluded);
+        // console.log(this.testCasesIdIncluded);
       });
   }
 
@@ -218,14 +254,29 @@ export class AddTestRunComponent implements OnInit {
   }
 
   update() {
+    if (this.testCasesIdIncluded.length) {
+      this.testCasesIdIncluded = this.testCasesIdIncluded.map((a) =>
+        parseInt(a + '')
+      );
+      console.log(this.testCasesIdIncluded);
+      let results: Result[] = this.testCasesIdIncluded.map((caseId) => ({
+        caseId: caseId,
+      }));
+      this.testRun.results = results;
+      console.log("acccccccccccc");
+      console.log(results);
+      console.log("aaaaaaaaaaaaaaa");
+      console.log(this.testRun);
+
+    }
     this.testRunService.update(this.testRun).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.toastr.success('Update test run success', 'Success');
         this.router.navigateByUrl('/test-runs/' + this.testRun.projectId);
       },
       error: (e) => {
-        console.log(e);
+        // console.log(e);
         this.toastr.error('Update test run failed', 'Error');
       },
     });
