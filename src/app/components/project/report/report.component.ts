@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +13,8 @@ import { ReportService } from 'src/app/services/report.service';
 export class ReportComponent {
   constructor(private route: ActivatedRoute,
     private reportService: ReportService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private authService: AuthService
     ) {}
 
   public listReport: Report[] = [];
@@ -45,5 +47,9 @@ export class ReportComponent {
       return '';
     }
     return date;
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

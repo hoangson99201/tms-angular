@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Report } from 'src/app/models/report';
 import { TestRun } from 'src/app/models/test-run';
+import { AuthService } from 'src/app/services/auth.service';
 import { ReportService } from 'src/app/services/report.service';
 import { SelectTestRunDialogComponent } from './select-test-run-dialog/select-test-run-dialog.component';
 
@@ -20,7 +21,8 @@ export class AddReportComponent {
     private toastr: ToastrService,
     private router: Router,
     public dialog: MatDialog,
-    private _location: Location
+    private _location: Location,
+    private authService: AuthService
   ) {}
   public projectId: string = '';
   public fullName: string = '';
@@ -98,5 +100,9 @@ export class AddReportComponent {
 
   backClicked() {
     this._location.back();
+  }
+
+  isActive(functionalityName: string) {
+    return this.authService.isActive(functionalityName);
   }
 }

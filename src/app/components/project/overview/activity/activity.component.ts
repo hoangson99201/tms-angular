@@ -40,6 +40,10 @@ export class ActivityComponent implements OnInit {
               activity.className = 'entity-report';
               activity.url = `/reports/view/${activity.targetId}`;
               break;
+            case "Test Case":
+              activity.className = 'entity-test-case';
+              activity.url = activity.action !== 'Deleted by' ? `/test-cases-edit/${activity.targetId}` : `/overview/${activity.projectId}`;
+              break;
             default:
               activity.className = '';
               break;

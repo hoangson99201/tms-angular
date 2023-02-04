@@ -10,6 +10,7 @@ import { TestCase } from 'src/app/models/test-case';
 import { PriorityService } from 'src/app/services/priority.service';
 import { SectionService } from 'src/app/services/section.service';
 import { TestCaseService } from 'src/app/services/test-case.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-test-case',
@@ -53,9 +54,16 @@ export class AddTestCaseComponent implements OnInit {
           break;
         case Mode.Update:
           this.testCaseService.findByTestCaseId(params['id'])
-            .subscribe(testCase => {
-              this.testCase = testCase;
-              this.getSectionsByProjectId(this.testCase.projectId);
+            .subscribe({
+              next: testCase => {
+                this.testCase = testCase;
+                this.getSectionsByProjectId(this.testCase.projectId);
+              },
+              error: (e: HttpErrorResponse) => {
+                console.log(e);
+                this.toastr.error(e.error);
+                this._location.back();
+              },
             })
           break;
         default:

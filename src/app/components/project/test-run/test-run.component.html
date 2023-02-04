@@ -72,10 +72,10 @@
                               </a>
                             </div>
                             <!-- <div class="summary-links text-secondary" *ngIf="isActive('EDIT_TESTRUN')"> -->
-                              <div class="summary-links text-secondary" >
+                            <div class="summary-links text-secondary" *ngIf="isActive('ADD_TESTRUN')">
                               By {{testRun.fullname}} on {{testRun.createdOn}}
-                               | <a class="link" [routerLink]="['/test-runs-edit', testRun.runId]">Edit</a>
-                               | <a class="link" (click)="openDialog(testRun.runId)">Rerun</a>
+                              | <a class="link" [routerLink]="['/test-runs-edit', testRun.runId]">Edit</a>
+                              | <a class="link" (click)="openDialog(testRun.runId)">Rerun</a>
                             </div>
 
                             <div class="summary-links text-secondary" *ngIf="!isActive('EDIT_TESTRUN')">
